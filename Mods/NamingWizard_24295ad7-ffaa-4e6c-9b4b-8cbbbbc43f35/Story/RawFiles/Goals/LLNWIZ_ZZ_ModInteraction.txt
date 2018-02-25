@@ -26,6 +26,18 @@ StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
 THEN
 LLNWIZ_ModInteraction_SetInitialText(_Player);
 LLNWIZ_Naming_OpenNamingWizard(_Player);
+
+IF
+DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word)
+THEN
+LLNWIZ_Naming_Words_AddModWord(_Word);
+NOT DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word);
+
+IF
+DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
+THEN
+LLNWIZ_Naming_Words_AddPlayerWord(_Word);
+NOT DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word);
 EXITSECTION
 
 ENDEXITSECTION

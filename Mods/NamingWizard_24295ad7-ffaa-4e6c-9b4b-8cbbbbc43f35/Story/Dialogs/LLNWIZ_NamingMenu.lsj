@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1519521091,
+         "time" : 1519573126,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -14,6 +14,9 @@
                   "RootNodes" : [
                      {
                         "RootNodes" : {"type" : 22, "value" : "8ae5319f-9bad-4b4a-b0cb-83f29cc4e87e"}
+                     },
+                     {
+                        "RootNodes" : {"type" : 22, "value" : "f9cb519e-ee3a-4bbe-be30-35c881315b03"}
                      }
                   ],
                   "node" : [
@@ -1240,6 +1243,130 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
+                                                   "value" : "Revert to Original Name"
+                                                },
+                                                "stub" : {"type" : 19, "value" : 1}
+                                             }
+                                          ]
+                                       }
+                                    ]
+                                 }
+                              ]
+                           }
+                        ],
+                        "Tags" : [ {} ],
+                        "UUID" : {"type" : 22, "value" : "2f09caa4-b4fe-49b7-8315-299e875e574f"},
+                        "addressedspeaker" : {"type" : 4, "value" : -1},
+                        "checkflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_Naming_TargetNameSet"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}}
+                              ]
+                           }
+                        ],
+                        "children" : [
+                           {
+                              "child" : [
+                                 {
+                                    "UUID" : {"type" : 22, "value" : "a3d4f805-8c14-4816-b640-da035158b864"}
+                                 }
+                              ]
+                           }
+                        ],
+                        "constructor" : {"type" : 22, "value" : "TagQuestion"},
+                        "editorData" : [
+                           {
+                              "data" : [
+                                 {
+                                    "key" : {"type" : 22, "value" : "NodeContext"},
+                                    "val" : {"type" : 23, "value" : ""}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "collapsed"},
+                                    "val" : {"type" : 23, "value" : "False"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "logicalname"},
+                                    "val" : {"type" : 23, "value" : "Question"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "position"},
+                                    "val" : {"type" : 23, "value" : "655;453"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "sourcetemplate"},
+                                    "val" : {"type" : 23, "value" : ""}
+                                 }
+                              ]
+                           }
+                        ],
+                        "endnode" : {"type" : 19, "value" : 0},
+                        "exclusive" : {"type" : 19, "value" : 0},
+                        "optional" : {"type" : 19, "value" : 0},
+                        "setflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_Naming_RevertToTargetName"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}}
+                              ]
+                           }
+                        ],
+                        "speaker" : {"type" : 4, "value" : 1},
+                        "stub" : {"type" : 19, "value" : 1},
+                        "transitionmode" : {"type" : 1, "value" : 0},
+                        "waittime" : {"type" : 6, "value" : -1.0}
+                     },
+                     {
+                        "GameData" : [
+                           {
+                              "AiPersonalities" : [ {} ],
+                              "CameraTarget" : {"type" : 4, "value" : -1},
+                              "CustomMovie" : {"type" : 23, "value" : ""},
+                              "Emotion" : {"type" : 23, "value" : "Default"},
+                              "ExtraWaitTime" : {"type" : 4, "value" : 0},
+                              "MusicInstrumentSounds" : [ {} ],
+                              "OriginSound" : [
+                                 {
+                                    "OriginOnly" : {"type" : 22, "value" : ""},
+                                    "OriginTheme" : {"type" : 22, "value" : ""},
+                                    "OriginThemeAddInstrument" : {"type" : 19, "value" : 0}
+                                 }
+                              ],
+                              "SoundEvent" : {"type" : 23, "value" : ""}
+                           }
+                        ],
+                        "ShowOnce" : {"type" : 19, "value" : 0},
+                        "TaggedTexts" : [
+                           {
+                              "TaggedText" : [
+                                 {
+                                    "HasTagRule" : {"type" : 19, "value" : 1},
+                                    "RuleGroup" : [
+                                       {
+                                          "Rules" : [ {} ],
+                                          "TagCombineOp" : {"type" : 1, "value" : 0}
+                                       }
+                                    ],
+                                    "TagTexts" : [
+                                       {
+                                          "TagText" : [
+                                             {
+                                                "TagText" : {
+                                                   "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
+                                                   "type" : 28,
                                                    "value" : "Refreshing..."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
@@ -1785,7 +1912,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "975;453"}
+                                    "val" : {"type" : 23, "value" : "975;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1847,12 +1974,15 @@
                                                    },
                                                    {
                                                       "DialogVariables" : {"type" : 22, "value" : "9d81dba3-e7bd-4209-a5b1-793491e80fc4"}
+                                                   },
+                                                   {
+                                                      "DialogVariables" : {"type" : 22, "value" : "36de6db5-815a-42c3-a8c9-6fe7c0ff1b35"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Character Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]"
+                                                   "value" : "<i>Character Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -2111,12 +2241,15 @@
                                                    },
                                                    {
                                                       "DialogVariables" : {"type" : 22, "value" : "9d81dba3-e7bd-4209-a5b1-793491e80fc4"}
+                                                   },
+                                                   {
+                                                      "DialogVariables" : {"type" : 22, "value" : "36de6db5-815a-42c3-a8c9-6fe7c0ff1b35"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Character Commands Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]"
+                                                   "value" : "<i>Character Commands Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -3894,7 +4027,20 @@
                         "Tags" : [ {} ],
                         "UUID" : {"type" : 22, "value" : "8ae5319f-9bad-4b4a-b0cb-83f29cc4e87e"},
                         "addressedspeaker" : {"type" : 4, "value" : -1},
-                        "checkflags" : [ {} ],
+                        "checkflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_Naming_WizardPresent"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 0}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}}
+                              ]
+                           }
+                        ],
                         "children" : [
                            {
                               "child" : [
@@ -4265,7 +4411,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "655;453"}
+                                    "val" : {"type" : 23, "value" : "655;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -4678,7 +4824,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "1295;453"}
+                                    "val" : {"type" : 23, "value" : "1295;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5778,12 +5924,15 @@
                                                    },
                                                    {
                                                       "DialogVariables" : {"type" : 22, "value" : "7a9befad-b178-478e-b374-f65e7efcf94f"}
+                                                   },
+                                                   {
+                                                      "DialogVariables" : {"type" : 22, "value" : "36de6db5-815a-42c3-a8c9-6fe7c0ff1b35"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Words Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>Page [LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf]/[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]"
+                                                   "value" : "<i>Words Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>Page [LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf]/[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -6062,12 +6211,15 @@
                                                    },
                                                    {
                                                       "DialogVariables" : {"type" : 22, "value" : "9d81dba3-e7bd-4209-a5b1-793491e80fc4"}
+                                                   },
+                                                   {
+                                                      "DialogVariables" : {"type" : 22, "value" : "36de6db5-815a-42c3-a8c9-6fe7c0ff1b35"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Main Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]"
+                                                   "value" : "<i>Main Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -6095,10 +6247,13 @@
                                     "UUID" : {"type" : 22, "value" : "e8ca3131-ac15-450e-ae77-e8ccd3369741"}
                                  },
                                  {
-                                    "UUID" : {"type" : 22, "value" : "9cac0d90-8164-494e-9d85-d1aa2a9d89fe"}
+                                    "UUID" : {"type" : 22, "value" : "2f09caa4-b4fe-49b7-8315-299e875e574f"}
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "72f76eec-e879-4865-8ad8-d1b7117215ea"}
+                                 },
+                                 {
+                                    "UUID" : {"type" : 22, "value" : "9cac0d90-8164-494e-9d85-d1aa2a9d89fe"}
                                  }
                               ]
                            }
@@ -7126,6 +7281,122 @@
                         "optional" : {"type" : 19, "value" : 0},
                         "setflags" : [ {} ],
                         "speaker" : {"type" : 4, "value" : 1},
+                        "stub" : {"type" : 19, "value" : 1},
+                        "transitionmode" : {"type" : 1, "value" : 0},
+                        "waittime" : {"type" : 6, "value" : -1.0}
+                     },
+                     {
+                        "GameData" : [
+                           {
+                              "AiPersonalities" : [ {} ],
+                              "CameraTarget" : {"type" : 4, "value" : -1},
+                              "CustomMovie" : {"type" : 23, "value" : ""},
+                              "Emotion" : {"type" : 23, "value" : "Default"},
+                              "ExtraWaitTime" : {"type" : 4, "value" : 0},
+                              "MusicInstrumentSounds" : [ {} ],
+                              "OriginSound" : [
+                                 {
+                                    "OriginOnly" : {"type" : 22, "value" : ""},
+                                    "OriginTheme" : {"type" : 22, "value" : ""},
+                                    "OriginThemeAddInstrument" : {"type" : 19, "value" : 0}
+                                 }
+                              ],
+                              "SoundEvent" : {"type" : 23, "value" : ""}
+                           }
+                        ],
+                        "ShowOnce" : {"type" : 19, "value" : 0},
+                        "TaggedTexts" : [
+                           {
+                              "TaggedText" : [
+                                 {
+                                    "HasTagRule" : {"type" : 19, "value" : 1},
+                                    "RuleGroup" : [
+                                       {
+                                          "Rules" : [ {} ],
+                                          "TagCombineOp" : {"type" : 1, "value" : 0}
+                                       }
+                                    ],
+                                    "TagTexts" : [
+                                       {
+                                          "TagText" : [
+                                             {
+                                                "DialogVariables" : [
+                                                   {
+                                                      "DialogVariables" : {"type" : 22, "value" : "7b3afe6c-373f-4586-8b62-06cd89b2efc4"}
+                                                   }
+                                                ],
+                                                "TagText" : {
+                                                   "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
+                                                   "type" : 28,
+                                                   "value" : "[LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4]"
+                                                },
+                                                "stub" : {"type" : 19, "value" : 1}
+                                             }
+                                          ]
+                                       }
+                                    ]
+                                 }
+                              ]
+                           }
+                        ],
+                        "Tags" : [ {} ],
+                        "UUID" : {"type" : 22, "value" : "f9cb519e-ee3a-4bbe-be30-35c881315b03"},
+                        "addressedspeaker" : {"type" : 4, "value" : -1},
+                        "checkflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_Naming_WizardPresent"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}}
+                              ]
+                           }
+                        ],
+                        "children" : [
+                           {
+                              "child" : [
+                                 {
+                                    "UUID" : {"type" : 22, "value" : "e1dda1f0-929c-4d60-9d11-c5dd59d8752f"}
+                                 }
+                              ]
+                           }
+                        ],
+                        "constructor" : {"type" : 22, "value" : "TagGreeting"},
+                        "editorData" : [
+                           {
+                              "data" : [
+                                 {
+                                    "key" : {"type" : 22, "value" : "NodeContext"},
+                                    "val" : {"type" : 23, "value" : ""}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "collapsed"},
+                                    "val" : {"type" : 23, "value" : "False"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "logicalname"},
+                                    "val" : {"type" : 23, "value" : "Greeting"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "position"},
+                                    "val" : {"type" : 23, "value" : "15;15"}
+                                 },
+                                 {
+                                    "key" : {"type" : 22, "value" : "sourcetemplate"},
+                                    "val" : {"type" : 23, "value" : ""}
+                                 }
+                              ]
+                           }
+                        ],
+                        "endnode" : {"type" : 19, "value" : 0},
+                        "exclusive" : {"type" : 19, "value" : 0},
+                        "optional" : {"type" : 19, "value" : 0},
+                        "setflags" : [ {} ],
+                        "speaker" : {"type" : 4, "value" : 0},
                         "stub" : {"type" : 19, "value" : 1},
                         "transitionmode" : {"type" : 1, "value" : 0},
                         "waittime" : {"type" : 6, "value" : -1.0}

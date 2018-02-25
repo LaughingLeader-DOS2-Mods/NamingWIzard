@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e988a674-28fe-49d2-a6ce-c5c1e0141f4c">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_Rename" />
+        <field name="SkillType" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="4" enumeration_type_name="SkillAbility" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_RENAME,100,-1" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="18" />
+        <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Character" />
+        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Item_WPN_Humans_Wand_1H_A" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Nameicus Renameicus" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Tear apart the very fabric of reality to rename the target character." />
+        <field name="StatsDescription" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Range: [1]" />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="TargetRadius" />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_Items_Weapons_Prepare_Weapon_Root_01,KeepRot;RS3_FX_Items_Weapons_Prepare_Weapon_Hand_01:Dummy_L_HandFX" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_attack_projectile_01_cast" />
+        <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_attack_projectile_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="cast" />
+        <field name="BeamEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_GP_Beams_ShadowBeam_01:Dummy_L_HandFX:Dummy_BodyFX:cast" />
+        <field name="Requirement" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="5" enumeration_type_name="SkillRequirement" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Damage Type" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="!Combat" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
+        <field name="AIFlags" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="AIFlags" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_Skills_Totem_Cast_Target_Totem_Shadow_Hand_01,detach:Dummy_CastFX:cast" />
+        <field name="TargetEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_Skills_Totem_Impact_Target_Root_Shadow_01:Dummy_BodyFX:cast" />
+        <field name="TargetGroundEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_Skills_Totem_Impact_Target_Root_Shadow_01:Dummy_BodyFX:cast" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

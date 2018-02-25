@@ -166,6 +166,15 @@ LLNWIZ_System_MarkHost(_Player);
 LLNWIZ_System_InitialSetup(_Player);
 //END_REGION
 
+//REGION FX_HELPERS
+PROC
+LLNWIZ_PlayEffectAtTargetPosition((CHARACTERGUID)_Target, (STRING)_Effect)
+AND
+GetPosition(_Target,_x,_y,_z)
+THEN
+PlayEffectAtPosition(_Effect, _x, _y, _z);
+//END_REGION
+
 //REGION RANDOM
 //Thanks to Norbyte for this chunk
 QRY

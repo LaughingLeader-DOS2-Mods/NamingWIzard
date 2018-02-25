@@ -1,15 +1,72 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+LLNWIZ_NameWand_InitializeSettings();
 
+//DB_LLNWIZ_NameWand_Skills(_Skill)
+//DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
+//DB_LLNWIZ_NameWand_TimerDelay(_SkillUseDelay, _CastDelay)
+//DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 KBSECTION
+PROC
+LLNWIZ_NameWand_InitializeSettings()
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NameWand_Skills", 1);
+DB_LLNWIZ_NameWand_Skills("Target_LLNWIZ_Rename");
+
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NameWand_TimerDelay", 2);
+DB_LLNWIZ_NameWand_TimerDelay(3000, 700);
+
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLNWIZ_Renamer", _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+AND
+DB_LLNWIZ_NameWand_Skills(_Skill)
+AND
+GetUUID(_Player, _ID)
+AND
+StringConcatenate("LLNWIZ_Timers_RenameTarget_", _ID, _TimerName)
+AND
+DB_LLNWIZ_NameWand_TimerDelay(_SkillUseDelay, _CastDelay)
+THEN
+DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
+TimerLaunch(_TimerName, _SkillUseDelay); // Failsafe, in case the skill never reaches a "cast"
+
+IF
+SkillCast(_Player, _Skill, _)
+AND
+DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
+AND
+DB_LLNWIZ_NameWand_TimerDelay(_SkillUseDelay, _CastDelay)
+THEN
+TimerCancel(_TimerName);
+TimerLaunch(_TimerName, _CastDelay);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 AND
 CharacterGetDisplayName(_Target, _Handle, _Name)
+AND
+LLNWIZ_QRY_Wizard_CreateWizard(_Player, _Target)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 THEN
-LLNWIZ_Naming_SetInitialText(_Name, _Player);
-LLNWIZ_Naming_OpenNamingWizard(_Player);
+LLNWIZ_Naming_SetTargetName(_Name, _Player);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingFinished")
+AND
+DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
+AND
+ObjectExists(_Target, 1)
+AND
+GetVarString(_Player, "LLNWIZ_FinalText", _Name)
+THEN
+CharacterSetCustomName(_Target, _Name);
+ClearVarObject(_Player, "LLNWIZ_FinalText");
+NOT DB_LLNWIZ_NameWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
+ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 EXITSECTION
 
 ENDEXITSECTION

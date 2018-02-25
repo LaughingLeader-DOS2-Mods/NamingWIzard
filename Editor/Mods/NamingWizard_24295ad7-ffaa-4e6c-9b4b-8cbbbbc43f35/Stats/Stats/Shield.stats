@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="ec8e5086-0ef6-4151-b3d4-a3bdbd25bbd6">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_NamingTool" />
+        <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="ModifierType" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="ActPart" />
+        <field name="Armor Defense Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Magic Armor Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Blocking" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Durability" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="DurabilityDegradeSpeed" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Qualifier" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="500" />
+        <field name="Movement" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Slot" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="4" enumeration_type_name="Itemslot" />
+        <field name="Fire" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Air" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Water" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Earth" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Poison" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Piercing" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Physical" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename;Projectile_LLNWIZ_Rename" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="InventoryTabs" />
+        <field name="ItemColor" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="DefaultGray" />
+        <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="RuneSlots_V1" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Unique" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+        <field name="MaxLevel" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

@@ -14,6 +14,7 @@ LLNWIZ_Naming_InitializeSettings();
 //DB_LLNWIZ_Naming_FinishedText(_Text, _Player, _Length);
 //DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length);
 //DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+//DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 
 //DB_LLNWIZ_Naming_Groups(_Index, _Group)
 //DB_LLNWIZ_Naming_CurrentGroup(_Index, _Instance)
@@ -165,6 +166,7 @@ DB_LLNWIZ_Naming_DialogVariables("SelectedLetter", "LLNWIZ_Naming_SelectedLetter
 DB_LLNWIZ_Naming_DialogVariables("Text", "LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4");
 DB_LLNWIZ_Naming_DialogVariables("LastWord", "LLNWIZ_Naming_LastWord_fcc4d39a-1009-4037-9848-3838066ee9b7");
 DB_LLNWIZ_Naming_DialogVariables("WordStateText", "LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4");
+DB_LLNWIZ_Naming_DialogVariables("TargetName", "LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35");
 //END_REGION
 
 //REGION SETTINGS_MAIN
@@ -175,25 +177,11 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_MaxLength", 1);
 DB_LLNWIZ_Naming_MaxLength(_Max);
 
 PROC
-LLNWIZ_Wizard_AddGreeting((STRING)_Text)
-AND
-SysCount("DB_LLNWIZ_Wizard_RandomGreeting", 2, _Index)
-THEN
-DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text);
-
-PROC
 LLNWIZ_Naming_InitializeSettings()
 THEN
 LLNWIZ_Naming_SetMaxCharacterLength(32);
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_StartText", 2);
 LLNWIZ_Naming_InitialzeDialogVariables();
-
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_RandomGreeting", 2);
-LLNWIZ_Wizard_AddGreeting("Welcome. What shall we name today?");
-LLNWIZ_Wizard_AddGreeting("Beep, boop. I am the Naming Wizard. How may I serv-o you today?");
-LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. *He laughs.* Can you imagine?");
-LLNWIZ_Wizard_AddGreeting("I'm the Wiz, and nobody can beat my prices!");
-LLNWIZ_Wizard_AddGreeting("Nameicas Combopulous. Your wish is my command.");
 
 PROC
 LLNWIZ_Naming_ClearDatabases()
@@ -260,6 +248,16 @@ AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 1)
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_CanUndo");
+
+PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+THEN
+NOT DB_LLNWIZ_Naming_TargetName(_Player, _Name);
+ObjectClearFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
 //END_REGION
 
 //REGION TEXT_SETTINGS
@@ -858,6 +856,16 @@ THEN
 LLNWIZ_Naming_UndoLast(_Instance);
 
 IF
+ObjectFlagSet("LLNWIZ_Naming_RevertToTargetName", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_RevertToTargetName")
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+THEN
+LLNWIZ_Naming_SetText(_Name, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+
+IF
 ObjectFlagSet("LLNWIZ_Naming_SaveText", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveText")
@@ -883,6 +891,20 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_CanUndo");
 
 //REGION DIALOG_INITIAL_TEXT
 PROC
+LLNWIZ_Naming_SetTargetName((STRING)_Name, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _PreviousName)
+THEN
+NOT DB_LLNWIZ_Naming_TargetName(_Player, _PreviousName);
+
+PROC
+LLNWIZ_Naming_SetTargetName((STRING)_Name, (CHARACTERGUID)_Player)
+THEN
+DB_LLNWIZ_Naming_TargetName(_Player, _Name);
+ObjectSetFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
+LLNWIZ_Naming_SetInitialText("", _Player);
+
+PROC
 LLNWIZ_Naming_SetInitialText((STRING)_Text, (CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_StartText(_PreviousText, _Player)
@@ -893,27 +915,6 @@ PROC
 LLNWIZ_Naming_SetInitialText((STRING)_Text, (CHARACTERGUID)_Player)
 THEN
 DB_LLNWIZ_Naming_StartText(_Text, _Player);
-
-PROC
-LLNWIZ_Naming_SetRandomGreeting(0)
-THEN
-DB_LLNWIZ_Temp_NextWizardGreeting("Naming Wizard Menu");
-
-PROC
-LLNWIZ_Naming_SetRandomGreeting(1)
-AND
-SysCount("DB_LLNWIZ_Wizard_RandomGreeting", 2, _TotalGreetings)
-AND
-IntegerSubtract(_TotalGreetings, 1, _MaxIndex)
-AND
-LLNWIZ_Random(_MaxIndex)
-AND
-DB_LLNWIZ_Temp_Rand(_Index)
-AND
-DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
-THEN
-DB_LLNWIZ_Temp_NextWizardGreeting(_Text);
-//DB_LLNWIZ_Wizard_LastGreeting(_Index);
 //END_REGION
 
 //REGION DIALOG_EVENTS
@@ -949,6 +950,19 @@ DB_LLNWIZ_Naming_DialogVariables("RandomGreeting", _DialogVar)
 THEN
 DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
 NOT DB_LLNWIZ_Temp_NextWizardGreeting(_Text);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+AND
+DB_LLNWIZ_Naming_DialogVariables("TargetName", _DialogVar)
+AND
+StringConcatenate("Target: ", _Name, _Text)
+THEN
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
 
 PROC
 LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
@@ -1003,16 +1017,18 @@ LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_MenuDialog(_DialogName)
 THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_WizardPresent");
 Proc_StartDialog(0, _DialogName, _Player, _Player);
-LLNWIZ_Naming_SetRandomGreeting(0); // No Wizard
+LLNWIZ_Wizard_SetRandomGreeting(0); // No Wizard
 
 PROC
 LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Wizard)
 AND
 DB_LLNWIZ_MenuDialog(_DialogName)
 THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_WizardPresent");
 Proc_StartDialog(0, _DialogName, _Wizard, _Player);
-LLNWIZ_Naming_SetRandomGreeting(1);
+LLNWIZ_Wizard_SetRandomGreeting(1);
 //END_REGION
 
 //REGION LETTER_SETTING
@@ -1107,7 +1123,7 @@ THEN
 LLNWIZ_Naming_SetFinishedText(_Text, _Player, _Length);
 ObjectSetFlag(_Player, "LLNWIZ_Naming_TextSaved");
 SetVarString(_Player, "LLNWIZ_FinalText", _Text);
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingFinished");
+
 
 PROC
 LLNWIZ_Naming_OnNamingCancelled((CHARACTERGUID)_Player, (INTEGER)_Instance)
@@ -1115,6 +1131,17 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_TextSaved")
 THEN
 LLNWIZ_Naming_ClearInstanceVariables(_Instance);
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingFinished");
 //END_REGION
 
 //REGION LIMIT_REACHED

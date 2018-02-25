@@ -3,9 +3,11 @@ SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Naming_Words_InitializeSettings();
 //Settings
-//DB_LLNWIZ_Naming_DialogVariables(_Shortname, _VariableName)
 //DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
-//DB_LLNWIZ_Naming_CommonWordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
+//DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+//DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+//DB_LLNWIZ_Naming_DialogVariables(_Shortname, _VariableName)
+//DB_LLNWIZ_Naming_WordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
 //DB_LLNWIZ_Naming_WordPageSettings(_WordsPerPage)
 //Temp variables
 //DB_LLNWIZ_Temp_TotalNamingWordVariables(_Total)
@@ -19,76 +21,132 @@ LLNWIZ_Naming_Words_InitializeSettings();
 KBSECTION
 //REGION SETTINGS_WORDS
 PROC
+LLNWIZ_Naming_Words_AddWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Naming_CommonWords(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Naming_CommonWords", 2, _Count)
+AND
+IntegerSubtract(_Count, 1, _Index)
+THEN
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word);
+
+PROC
+LLNWIZ_Naming_Words_AddPlayerWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Naming_PlayerWords(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Naming_PlayerWords", 2, _Count)
+AND
+IntegerSubtract(_Count, 1, _Index)
+THEN
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word);
+
+PROC
+LLNWIZ_Naming_Words_AddModWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Naming_ModWords(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Naming_ModWords", 2, _Count)
+AND
+IntegerSubtract(_Count, 1, _Index)
+THEN
+DB_LLNWIZ_Naming_ModWords(_Index, _Word);
+
+PROC
 LLNWIZ_Naming_Words_InitializeSettings()
 THEN
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_CommonWords", 2);
-DB_LLNWIZ_Naming_CommonWords(0, "Aerothurge");
-DB_LLNWIZ_Naming_CommonWords(1, "Armor");
-DB_LLNWIZ_Naming_CommonWords(2, "Axe");
-DB_LLNWIZ_Naming_CommonWords(3, "Barter");
-DB_LLNWIZ_Naming_CommonWords(4, "Battle");
-DB_LLNWIZ_Naming_CommonWords(5, "Bow");
-DB_LLNWIZ_Naming_CommonWords(6, "Charisma");
-DB_LLNWIZ_Naming_CommonWords(7, "Class");
-DB_LLNWIZ_Naming_CommonWords(8, "Cloth");
-DB_LLNWIZ_Naming_CommonWords(9, "Combat");
-DB_LLNWIZ_Naming_CommonWords(10, "Common");
-DB_LLNWIZ_Naming_CommonWords(11, "Crafting");
-DB_LLNWIZ_Naming_CommonWords(12, "Crossbow");
-DB_LLNWIZ_Naming_CommonWords(13, "Custom");
-DB_LLNWIZ_Naming_CommonWords(14, "DualWielding");
-DB_LLNWIZ_Naming_CommonWords(15, "Epic");
-DB_LLNWIZ_Naming_CommonWords(16, "Geomancer");
-DB_LLNWIZ_Naming_CommonWords(17, "Healer");
-DB_LLNWIZ_Naming_CommonWords(18, "Huntsman");
-DB_LLNWIZ_Naming_CommonWords(19, "Hydrosophist");
-DB_LLNWIZ_Naming_CommonWords(20, "Junk");
-DB_LLNWIZ_Naming_CommonWords(21, "Knight");
-DB_LLNWIZ_Naming_CommonWords(22, "Leadership");
-DB_LLNWIZ_Naming_CommonWords(23, "Leather");
-DB_LLNWIZ_Naming_CommonWords(24, "Legendary");
-DB_LLNWIZ_Naming_CommonWords(25, "Loremaster");
-DB_LLNWIZ_Naming_CommonWords(26, "Luck");
-DB_LLNWIZ_Naming_CommonWords(27, "Mace");
-DB_LLNWIZ_Naming_CommonWords(28, "Mage");
-DB_LLNWIZ_Naming_CommonWords(29, "Magic");
-DB_LLNWIZ_Naming_CommonWords(30, "Magic Armor");
-DB_LLNWIZ_Naming_CommonWords(31, "Metal");
-DB_LLNWIZ_Naming_CommonWords(32, "Necromancy");
-DB_LLNWIZ_Naming_CommonWords(33, "Paladin");
-DB_LLNWIZ_Naming_CommonWords(34, "Perseverance");
-DB_LLNWIZ_Naming_CommonWords(35, "Persuasion");
-DB_LLNWIZ_Naming_CommonWords(36, "Physical");
-DB_LLNWIZ_Naming_CommonWords(37, "Physical Armor");
-DB_LLNWIZ_Naming_CommonWords(38, "Pickpocket");
-DB_LLNWIZ_Naming_CommonWords(39, "Polymorph");
-DB_LLNWIZ_Naming_CommonWords(40, "Priest");
-DB_LLNWIZ_Naming_CommonWords(41, "Pyrokinetic");
-DB_LLNWIZ_Naming_CommonWords(42, "Ranged");
-DB_LLNWIZ_Naming_CommonWords(43, "Ranger");
-DB_LLNWIZ_Naming_CommonWords(44, "Rare");
-DB_LLNWIZ_Naming_CommonWords(45, "Retribution");
-DB_LLNWIZ_Naming_CommonWords(46, "Rogue");
-DB_LLNWIZ_Naming_CommonWords(47, "Running");
-DB_LLNWIZ_Naming_CommonWords(48, "Scoundrel");
-DB_LLNWIZ_Naming_CommonWords(49, "Shield");
-DB_LLNWIZ_Naming_CommonWords(50, "SingleHanded");
-DB_LLNWIZ_Naming_CommonWords(51, "Sneaking");
-DB_LLNWIZ_Naming_CommonWords(52, "Sourcery");
-DB_LLNWIZ_Naming_CommonWords(53, "Spear");
-DB_LLNWIZ_Naming_CommonWords(54, "Speed");
-DB_LLNWIZ_Naming_CommonWords(55, "Staff");
-DB_LLNWIZ_Naming_CommonWords(56, "Summoning");
-DB_LLNWIZ_Naming_CommonWords(57, "Sword");
-DB_LLNWIZ_Naming_CommonWords(58, "Telekinesis");
-DB_LLNWIZ_Naming_CommonWords(59, "Thievery");
-DB_LLNWIZ_Naming_CommonWords(60, "Town");
-DB_LLNWIZ_Naming_CommonWords(61, "TwoHanded");
-DB_LLNWIZ_Naming_CommonWords(62, "Uncommon");
-DB_LLNWIZ_Naming_CommonWords(63, "Unique");
-DB_LLNWIZ_Naming_CommonWords(64, "Vitality");
-DB_LLNWIZ_Naming_CommonWords(65, "Wand");
-DB_LLNWIZ_Naming_CommonWords(66, "Warfare");
+LLNWIZ_Naming_Words_AddWord("Aerothurge");
+LLNWIZ_Naming_Words_AddWord("Air");
+LLNWIZ_Naming_Words_AddWord("AoE");
+LLNWIZ_Naming_Words_AddWord("Armor");
+LLNWIZ_Naming_Words_AddWord("Axe");
+LLNWIZ_Naming_Words_AddWord("Barter");
+LLNWIZ_Naming_Words_AddWord("Battle");
+LLNWIZ_Naming_Words_AddWord("Beast");
+LLNWIZ_Naming_Words_AddWord("Bow");
+LLNWIZ_Naming_Words_AddWord("Charisma");
+LLNWIZ_Naming_Words_AddWord("Class");
+LLNWIZ_Naming_Words_AddWord("Cloth");
+LLNWIZ_Naming_Words_AddWord("Combat");
+LLNWIZ_Naming_Words_AddWord("Common");
+LLNWIZ_Naming_Words_AddWord("Crafting");
+LLNWIZ_Naming_Words_AddWord("Crossbow");
+LLNWIZ_Naming_Words_AddWord("Custom");
+LLNWIZ_Naming_Words_AddWord("DPS");
+LLNWIZ_Naming_Words_AddWord("DualWielding");
+LLNWIZ_Naming_Words_AddWord("Dwarven");
+LLNWIZ_Naming_Words_AddWord("Earth");
+LLNWIZ_Naming_Words_AddWord("Elven");
+LLNWIZ_Naming_Words_AddWord("Epic");
+LLNWIZ_Naming_Words_AddWord("Fane");
+LLNWIZ_Naming_Words_AddWord("Fire");
+LLNWIZ_Naming_Words_AddWord("Geomancer");
+LLNWIZ_Naming_Words_AddWord("Glass Cannon");
+LLNWIZ_Naming_Words_AddWord("Healer");
+LLNWIZ_Naming_Words_AddWord("Human");
+LLNWIZ_Naming_Words_AddWord("Huntsman");
+LLNWIZ_Naming_Words_AddWord("Hydrosophist");
+LLNWIZ_Naming_Words_AddWord("Ifan");
+LLNWIZ_Naming_Words_AddWord("Junk");
+LLNWIZ_Naming_Words_AddWord("Knight");
+LLNWIZ_Naming_Words_AddWord("Leader");
+LLNWIZ_Naming_Words_AddWord("Leadership");
+LLNWIZ_Naming_Words_AddWord("Leather");
+LLNWIZ_Naming_Words_AddWord("Legendary");
+LLNWIZ_Naming_Words_AddWord("Lifesteal");
+LLNWIZ_Naming_Words_AddWord("Lizard");
+LLNWIZ_Naming_Words_AddWord("Lockpicking");
+LLNWIZ_Naming_Words_AddWord("Lohse");
+LLNWIZ_Naming_Words_AddWord("Lone Wolf");
+LLNWIZ_Naming_Words_AddWord("Loremaster");
+LLNWIZ_Naming_Words_AddWord("Luck");
+LLNWIZ_Naming_Words_AddWord("Mace");
+LLNWIZ_Naming_Words_AddWord("Mage");
+LLNWIZ_Naming_Words_AddWord("Magic");
+LLNWIZ_Naming_Words_AddWord("Metal");
+LLNWIZ_Naming_Words_AddWord("Mod");
+LLNWIZ_Naming_Words_AddWord("Necromancy");
+LLNWIZ_Naming_Words_AddWord("Paladin");
+LLNWIZ_Naming_Words_AddWord("Perseverance");
+LLNWIZ_Naming_Words_AddWord("Persuasion");
+LLNWIZ_Naming_Words_AddWord("Physical");
+LLNWIZ_Naming_Words_AddWord("Pickpocket");
+LLNWIZ_Naming_Words_AddWord("Polymorph");
+LLNWIZ_Naming_Words_AddWord("Priest");
+LLNWIZ_Naming_Words_AddWord("Pyrokinetic");
+LLNWIZ_Naming_Words_AddWord("Ranged");
+LLNWIZ_Naming_Words_AddWord("Ranger");
+LLNWIZ_Naming_Words_AddWord("Rare");
+LLNWIZ_Naming_Words_AddWord("Retribution");
+LLNWIZ_Naming_Words_AddWord("Rogue");
+LLNWIZ_Naming_Words_AddWord("Rune");
+LLNWIZ_Naming_Words_AddWord("Running");
+LLNWIZ_Naming_Words_AddWord("Scoundrel");
+LLNWIZ_Naming_Words_AddWord("Sebille");
+LLNWIZ_Naming_Words_AddWord("Shield");
+LLNWIZ_Naming_Words_AddWord("SingleHanded");
+LLNWIZ_Naming_Words_AddWord("Sneaking");
+LLNWIZ_Naming_Words_AddWord("Source");
+LLNWIZ_Naming_Words_AddWord("Spear");
+LLNWIZ_Naming_Words_AddWord("Speed");
+LLNWIZ_Naming_Words_AddWord("Staff");
+LLNWIZ_Naming_Words_AddWord("Stealth");
+LLNWIZ_Naming_Words_AddWord("Summoning");
+LLNWIZ_Naming_Words_AddWord("Sword");
+LLNWIZ_Naming_Words_AddWord("Tank");
+LLNWIZ_Naming_Words_AddWord("Telekinesis");
+LLNWIZ_Naming_Words_AddWord("Thievery");
+LLNWIZ_Naming_Words_AddWord("Town");
+LLNWIZ_Naming_Words_AddWord("TwoHanded");
+LLNWIZ_Naming_Words_AddWord("Uncommon");
+LLNWIZ_Naming_Words_AddWord("Undead");
+LLNWIZ_Naming_Words_AddWord("Unique");
+LLNWIZ_Naming_Words_AddWord("Vitality");
+LLNWIZ_Naming_Words_AddWord("Wand");
+LLNWIZ_Naming_Words_AddWord("Warfare");
+LLNWIZ_Naming_Words_AddWord("Water");
 //END_REGION
 
 //REGION SETTINGS
@@ -98,16 +156,16 @@ THEN
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_WordPageSettings", 1);
 DB_LLNWIZ_Naming_WordPageSettings(9);
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_CommonWordVariables", 4);
-DB_LLNWIZ_Naming_CommonWordVariables(0, "LLNWIZ_Naming_Word1_e05055e1-d008-44c0-b6d2-f64d11ecf563", "LLNWIZ_Naming_SelectedWord1", "LLNWIZ_Naming_Word1Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(1, "LLNWIZ_Naming_Word2_1db77bd2-f3a4-40c7-8a15-f0e0caf5ec6b", "LLNWIZ_Naming_SelectedWord2", "LLNWIZ_Naming_Word2Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(2, "LLNWIZ_Naming_Word3_56f0192b-d33c-495a-a5fe-14fd72e3c766", "LLNWIZ_Naming_SelectedWord3", "LLNWIZ_Naming_Word3Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(3, "LLNWIZ_Naming_Word4_2459bfdd-2c5f-4c1d-9f54-6b72ce2adde3", "LLNWIZ_Naming_SelectedWord4", "LLNWIZ_Naming_Word4Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(4, "LLNWIZ_Naming_Word5_bd2f1c32-7ce3-4cfa-b6cd-f57632ac534c", "LLNWIZ_Naming_SelectedWord5", "LLNWIZ_Naming_Word5Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(5, "LLNWIZ_Naming_Word6_c592657e-f33a-4759-bf1f-4be7c88ecc9f", "LLNWIZ_Naming_SelectedWord6", "LLNWIZ_Naming_Word6Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(6, "LLNWIZ_Naming_Word7_c1daa983-8936-44da-9dcf-cf734026e32d", "LLNWIZ_Naming_SelectedWord7", "LLNWIZ_Naming_Word7Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(7, "LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9827ac2a2ea0", "LLNWIZ_Naming_SelectedWord8", "LLNWIZ_Naming_Word8Empty");
-DB_LLNWIZ_Naming_CommonWordVariables(8, "LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-eee79b9ca96d", "LLNWIZ_Naming_SelectedWord9", "LLNWIZ_Naming_Word9Empty");
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_WordVariables", 4);
+DB_LLNWIZ_Naming_WordVariables(0, "LLNWIZ_Naming_Word1_e05055e1-d008-44c0-b6d2-f64d11ecf563", "LLNWIZ_Naming_SelectedWord1", "LLNWIZ_Naming_Word1Empty");
+DB_LLNWIZ_Naming_WordVariables(1, "LLNWIZ_Naming_Word2_1db77bd2-f3a4-40c7-8a15-f0e0caf5ec6b", "LLNWIZ_Naming_SelectedWord2", "LLNWIZ_Naming_Word2Empty");
+DB_LLNWIZ_Naming_WordVariables(2, "LLNWIZ_Naming_Word3_56f0192b-d33c-495a-a5fe-14fd72e3c766", "LLNWIZ_Naming_SelectedWord3", "LLNWIZ_Naming_Word3Empty");
+DB_LLNWIZ_Naming_WordVariables(3, "LLNWIZ_Naming_Word4_2459bfdd-2c5f-4c1d-9f54-6b72ce2adde3", "LLNWIZ_Naming_SelectedWord4", "LLNWIZ_Naming_Word4Empty");
+DB_LLNWIZ_Naming_WordVariables(4, "LLNWIZ_Naming_Word5_bd2f1c32-7ce3-4cfa-b6cd-f57632ac534c", "LLNWIZ_Naming_SelectedWord5", "LLNWIZ_Naming_Word5Empty");
+DB_LLNWIZ_Naming_WordVariables(5, "LLNWIZ_Naming_Word6_c592657e-f33a-4759-bf1f-4be7c88ecc9f", "LLNWIZ_Naming_SelectedWord6", "LLNWIZ_Naming_Word6Empty");
+DB_LLNWIZ_Naming_WordVariables(6, "LLNWIZ_Naming_Word7_c1daa983-8936-44da-9dcf-cf734026e32d", "LLNWIZ_Naming_SelectedWord7", "LLNWIZ_Naming_Word7Empty");
+DB_LLNWIZ_Naming_WordVariables(7, "LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9827ac2a2ea0", "LLNWIZ_Naming_SelectedWord8", "LLNWIZ_Naming_Word8Empty");
+DB_LLNWIZ_Naming_WordVariables(8, "LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-eee79b9ca96d", "LLNWIZ_Naming_SelectedWord9", "LLNWIZ_Naming_Word9Empty");
 
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -118,7 +176,7 @@ PROC
 LLNWIZ_System_ClearDatabases()
 THEN
 SysClear("DB_LLNWIZ_Naming_CommonWords", 2);
-SysClear("DB_LLNWIZ_Naming_CommonWordVariables", 4);
+SysClear("DB_LLNWIZ_Naming_WordVariables", 4);
 SysClear("DB_LLNWIZ_Naming_WordPageSettings", 1);
 SysClear("DB_LLNWIZ_Naming_MaxWordPage", 3);
 SysClear("DB_LLNWIZ_Naming_LastWord", 2);
@@ -182,7 +240,7 @@ PROC
 LLNWIZ_Naming_Words_CalculateMaxPage()
 THEN
 LLNWIZ_System_Debug_DatabaseCount("DB_LLNWIZ_Naming_CommonWords", 2);
-LLNWIZ_System_Debug_DatabaseCount("DB_LLNWIZ_Naming_CommonWordVariables", 4);
+LLNWIZ_System_Debug_DatabaseCount("DB_LLNWIZ_Naming_WordVariables", 4);
 
 PROC
 LLNWIZ_Naming_Words_SetWordIterator()
@@ -195,7 +253,7 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Temp_WordVariableValue", 2);
 PROC
 LLNWIZ_Naming_Words_SetWordIterator()
 AND
-SysCount("DB_LLNWIZ_Naming_CommonWordVariables", 4, _Total)
+SysCount("DB_LLNWIZ_Naming_WordVariables", 4, _Total)
 THEN
 DB_LLNWIZ_Temp_TotalNamingWordVariables(_Total);
 DB_LLNWIZ_Temp_CurrentWordVariableIndex(0);
@@ -381,7 +439,7 @@ DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
 DB_LLNWIZ_Naming_WordIterator(_WordIndex)
 AND
-DB_LLNWIZ_Naming_CommonWordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
+DB_LLNWIZ_Naming_WordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
 AND
 IntegerSum(_MaxPage, 1, _StartOffset)
 AND
@@ -519,7 +577,7 @@ LLNWIZ_Naming_UndoLast(_Instance);
 IF
 ObjectFlagSet(_SelectFlag, (CHARACTERGUID)_Player, _Instance)
 AND
-DB_LLNWIZ_Naming_CommonWordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
+DB_LLNWIZ_Naming_WordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, _SelectFlag)
 AND

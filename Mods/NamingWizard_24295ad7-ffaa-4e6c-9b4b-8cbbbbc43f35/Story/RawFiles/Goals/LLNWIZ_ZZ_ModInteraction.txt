@@ -5,6 +5,7 @@ INITSECTION
 //StoryEvent: LLNWIZ_Events_OpenNamingWizard
 //StoryEvent: LLNWIZ_Events_OpenNamingWizard_PlayerOnly
 //StoryEvent: LLNWIZ_Events_NamingFinished
+//StoryEvent: LLNWIZ_Events_NamingWizardOpened - Dialog Opened
 //Inital text var on player: LLNWIZ_InitialText
 //Text after finishing: LLNWIZ_FinalText
 KBSECTION
@@ -38,6 +39,15 @@ DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
 THEN
 LLNWIZ_Naming_Words_AddPlayerWord(_Word);
 NOT DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word);
+
+IF
+DialogStarted(_DialogName, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_DialogName)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingWizardOpened");
 EXITSECTION
 
 ENDEXITSECTION

@@ -1,0 +1,1142 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+LLNWIZ_Naming_InitializeSettings();
+//DB_LLNWIZ_MenuDialog(_DialogName)
+//DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
+//DB_LLNWIZ_Wizard_LastGreeting(_Index)
+//DB_LLNWIZ_Temp_NextWizardGreeting(_Text)
+
+//DB_LLNWIZ_Naming_DialogVariables(_Shortname, _VariableName)
+
+//DB_LLNWIZ_Naming_StartText(_Text, _Player);
+//DB_LLNWIZ_Naming_VisibleText(_Text, _Instance);
+//DB_LLNWIZ_Naming_FinishedText(_Text, _Player, _Length);
+//DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length);
+//DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+
+//DB_LLNWIZ_Naming_Groups(_Index, _Group)
+//DB_LLNWIZ_Naming_CurrentGroup(_Index, _Instance)
+//DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
+//DB_LLNWIZ_Naming_CurrentCasing(_Group, _Instance)
+
+//DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+//DB_LLNWIZ_Naming_TextLength(_Length, _Instance);
+//DB_LLNWIZ_Naming_MaxLength(_MaxLength)
+
+//DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, _Length)
+//DB_LLNWIZ_Naming_Temp_FoundWord(_Text, _StartIndex, _StartLength, _StartIndex2, _StartLength2)
+//DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance)
+KBSECTION
+//REGION SETTINGS_CODEX
+PROC
+LLNWIZ_Naming_InitializeSettings()
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Groups", 2);
+DB_LLNWIZ_Naming_Groups(0, "Letters");
+DB_LLNWIZ_Naming_Groups(1, "Number");
+
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_GroupMax", 2);
+DB_LLNWIZ_Naming_GroupMax("Letters", 25);
+DB_LLNWIZ_Naming_GroupMax("Upper", 25);
+DB_LLNWIZ_Naming_GroupMax("Lower", 25);
+DB_LLNWIZ_Naming_GroupMax("Number", 9);
+
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Letters", 3);
+DB_LLNWIZ_Naming_Letters("Upper", 0, "A");
+DB_LLNWIZ_Naming_Letters("Upper", 1, "B");
+DB_LLNWIZ_Naming_Letters("Upper", 2, "C");
+DB_LLNWIZ_Naming_Letters("Upper", 3, "D");
+DB_LLNWIZ_Naming_Letters("Upper", 4, "E");
+DB_LLNWIZ_Naming_Letters("Upper", 5, "F");
+DB_LLNWIZ_Naming_Letters("Upper", 6, "G");
+DB_LLNWIZ_Naming_Letters("Upper", 7, "H");
+DB_LLNWIZ_Naming_Letters("Upper", 8, "I");
+DB_LLNWIZ_Naming_Letters("Upper", 9, "J");
+DB_LLNWIZ_Naming_Letters("Upper", 10, "K");
+DB_LLNWIZ_Naming_Letters("Upper", 11, "L");
+DB_LLNWIZ_Naming_Letters("Upper", 12, "M");
+DB_LLNWIZ_Naming_Letters("Upper", 13, "N");
+DB_LLNWIZ_Naming_Letters("Upper", 14, "O");
+DB_LLNWIZ_Naming_Letters("Upper", 15, "P");
+DB_LLNWIZ_Naming_Letters("Upper", 16, "Q");
+DB_LLNWIZ_Naming_Letters("Upper", 17, "R");
+DB_LLNWIZ_Naming_Letters("Upper", 18, "S");
+DB_LLNWIZ_Naming_Letters("Upper", 19, "T");
+DB_LLNWIZ_Naming_Letters("Upper", 20, "U");
+DB_LLNWIZ_Naming_Letters("Upper", 21, "V");
+DB_LLNWIZ_Naming_Letters("Upper", 22, "W");
+DB_LLNWIZ_Naming_Letters("Upper", 23, "X");
+DB_LLNWIZ_Naming_Letters("Upper", 24, "Y");
+DB_LLNWIZ_Naming_Letters("Upper", 25, "Z");
+
+DB_LLNWIZ_Naming_Letters("Lower", 0, "a");
+DB_LLNWIZ_Naming_Letters("Lower", 1, "b");
+DB_LLNWIZ_Naming_Letters("Lower", 2, "c");
+DB_LLNWIZ_Naming_Letters("Lower", 3, "d");
+DB_LLNWIZ_Naming_Letters("Lower", 4, "e");
+DB_LLNWIZ_Naming_Letters("Lower", 5, "f");
+DB_LLNWIZ_Naming_Letters("Lower", 6, "g");
+DB_LLNWIZ_Naming_Letters("Lower", 7, "h");
+DB_LLNWIZ_Naming_Letters("Lower", 8, "i");
+DB_LLNWIZ_Naming_Letters("Lower", 9, "j");
+DB_LLNWIZ_Naming_Letters("Lower", 10, "k");
+DB_LLNWIZ_Naming_Letters("Lower", 11, "l");
+DB_LLNWIZ_Naming_Letters("Lower", 12, "m");
+DB_LLNWIZ_Naming_Letters("Lower", 13, "n");
+DB_LLNWIZ_Naming_Letters("Lower", 14, "o");
+DB_LLNWIZ_Naming_Letters("Lower", 15, "p");
+DB_LLNWIZ_Naming_Letters("Lower", 16, "q");
+DB_LLNWIZ_Naming_Letters("Lower", 17, "r");
+DB_LLNWIZ_Naming_Letters("Lower", 18, "s");
+DB_LLNWIZ_Naming_Letters("Lower", 19, "t");
+DB_LLNWIZ_Naming_Letters("Lower", 20, "u");
+DB_LLNWIZ_Naming_Letters("Lower", 21, "v");
+DB_LLNWIZ_Naming_Letters("Lower", 22, "w");
+DB_LLNWIZ_Naming_Letters("Lower", 23, "x");
+DB_LLNWIZ_Naming_Letters("Lower", 24, "y");
+DB_LLNWIZ_Naming_Letters("Lower", 25, "z");
+
+DB_LLNWIZ_Naming_Letters("Number", 0, "0");
+DB_LLNWIZ_Naming_Letters("Number", 1, "1");
+DB_LLNWIZ_Naming_Letters("Number", 2, "2");
+DB_LLNWIZ_Naming_Letters("Number", 3, "3");
+DB_LLNWIZ_Naming_Letters("Number", 4, "4");
+DB_LLNWIZ_Naming_Letters("Number", 5, "5");
+DB_LLNWIZ_Naming_Letters("Number", 6, "6");
+DB_LLNWIZ_Naming_Letters("Number", 7, "7");
+DB_LLNWIZ_Naming_Letters("Number", 8, "8");
+DB_LLNWIZ_Naming_Letters("Number", 9, "9");
+//END_REGION
+
+//REGION SETTINGS_COUNTING
+PROC
+LLNWIZ_Naming_ConfigureCountingDatabase()
+AND
+DB_LLNWIZ_Naming_Init_CharStart(_Index)
+AND
+IntegerSum(_Index, 1, _NextIndex)
+AND
+_NextIndex <= 255
+THEN
+DB_LLNWIZ_Naming_CharIndex(_NextIndex);
+NOT DB_LLNWIZ_Naming_Init_CharStart(_Index);
+DB_LLNWIZ_Naming_Init_CharStart(_NextIndex);
+
+PROC
+LLNWIZ_Naming_InitializeSettings()
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_CharIndex", 1);
+DB_LLNWIZ_Naming_CharIndex(0);
+DB_LLNWIZ_Naming_Init_CharStart(0);
+TimerLaunch("LLNWIZ_Timers_CharIndexInit", 100);
+
+IF
+TimerFinished("LLNWIZ_Timers_CharIndexInit")
+AND
+DB_LLNWIZ_Naming_Init_CharStart(_Index)
+AND
+_Index < 256
+THEN
+LLNWIZ_Naming_ConfigureCountingDatabase();
+TimerLaunch("LLNWIZ_Timers_CharIndexInit", 100);
+
+IF
+TimerFinished("LLNWIZ_Timers_CharIndexInit")
+AND
+DB_LLNWIZ_Naming_Init_CharStart(_Index)
+AND
+_Index >= 256
+THEN
+NOT DB_LLNWIZ_Naming_Init_CharStart(_Index);
+//END_REGION
+
+//REGION SETTINGS_DIALOG_VARS
+PROC
+LLNWIZ_Naming_InitialzeDialogVariables()
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_DialogVariables", 2);
+DB_LLNWIZ_Naming_DialogVariables("RandomGreeting", "LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4");
+DB_LLNWIZ_Naming_DialogVariables("SpeakerIndex", "LLNWIZ_Menu_SpeakerIndex_a58be75c-66f9-4c4d-9edb-8c6422f47c7c");
+DB_LLNWIZ_Naming_DialogVariables("CurrentPage", "LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf");
+DB_LLNWIZ_Naming_DialogVariables("FinalText", "LLNWIZ_Naming_FinalText_4bfd6bc7-3afd-474a-92af-99b170d226cd");
+DB_LLNWIZ_Naming_DialogVariables("LastPage", "LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f");
+DB_LLNWIZ_Naming_DialogVariables("SelectedLetter", "LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c");
+DB_LLNWIZ_Naming_DialogVariables("Text", "LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4");
+DB_LLNWIZ_Naming_DialogVariables("LastWord", "LLNWIZ_Naming_LastWord_fcc4d39a-1009-4037-9848-3838066ee9b7");
+DB_LLNWIZ_Naming_DialogVariables("WordStateText", "LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4");
+//END_REGION
+
+//REGION SETTINGS_MAIN
+PROC
+LLNWIZ_Naming_SetMaxCharacterLength((INTEGER)_Max)
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_MaxLength", 1);
+DB_LLNWIZ_Naming_MaxLength(_Max);
+
+PROC
+LLNWIZ_Wizard_AddGreeting((STRING)_Text)
+AND
+SysCount("DB_LLNWIZ_Wizard_RandomGreeting", 2, _Index)
+THEN
+DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text);
+
+PROC
+LLNWIZ_Naming_InitializeSettings()
+THEN
+LLNWIZ_Naming_SetMaxCharacterLength(32);
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_StartText", 2);
+LLNWIZ_Naming_InitialzeDialogVariables();
+
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_RandomGreeting", 2);
+LLNWIZ_Wizard_AddGreeting("Welcome. What shall we name today?");
+LLNWIZ_Wizard_AddGreeting("Beep, boop. I am the Naming Wizard. How may I serv-o you today?");
+LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. *He laughs.* Can you imagine?");
+LLNWIZ_Wizard_AddGreeting("I'm the Wiz, and nobody can beat my prices!");
+LLNWIZ_Wizard_AddGreeting("Nameicas Combopulous. Your wish is my command.");
+
+PROC
+LLNWIZ_Naming_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_Naming_StartText", 2);
+SysClear("DB_LLNWIZ_Naming_VisibleText", 2);
+SysClear("DB_LLNWIZ_Naming_FinishedText", 3);
+SysClear("DB_LLNWIZ_Naming_LastFinishedText", 3);
+SysClear("DB_LLNWIZ_Naming_Letters", 3);
+SysClear("DB_LLNWIZ_Naming_Groups", 2);
+SysClear("DB_LLNWIZ_Naming_CurrentGroup", 2);
+SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
+SysClear("DB_LLNWIZ_Naming_CurrentCasing", 2);
+SysClear("DB_LLNWIZ_Naming_SelectedLetter", 3);
+SysClear("DB_LLNWIZ_Naming_TextLength", 2);
+SysClear("DB_LLNWIZ_Naming_MaxLength", 1);
+SysClear("DB_LLNWIZ_Naming_Temp_TextLength", 3);
+SysClear("DB_LLNWIZ_Naming_DialogVariables", 3);
+LLNWIZ_DebugLog("[NamingWizard] Naming databases cleared.");
+
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+LLNWIZ_Naming_InitializeSettings();
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+LLNWIZ_Naming_ClearDatabases();
+//END_REGION
+
+//REGION CLEAR
+PROC
+LLNWIZ_Naming_ClearSelectedLetter((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_ClearCurrentGroup((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_CurrentGroup(_Index, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_CurrentGroup(_Index, _Instance);
+
+PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_CurrentCasing(_ActualGroup, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_CurrentCasing(_ActualGroup, _Instance);
+
+PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+THEN
+LLNWIZ_Naming_ClearSelectedLetter(_Instance);
+
+PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_CanUndo");
+//END_REGION
+
+//REGION TEXT_SETTINGS
+PROC
+LLNWIZ_Naming_SetLastText((STRING)_Text, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance);
+
+PROC
+LLNWIZ_Naming_SetLastText((STRING)_Text, (INTEGER)_Instance)
+THEN
+DB_LLNWIZ_Naming_Temp_LastVisibleText(_Text, _Instance);
+
+PROC
+LLNWIZ_Naming_SetText((STRING)_Text, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_VisibleText(_, _Instance)
+THEN
+LLNWIZ_Naming_SetLastText("", _Instance);
+
+PROC
+LLNWIZ_Naming_SetText((STRING)_Text, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_CurrentText, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_VisibleText(_CurrentText, _Instance);
+LLNWIZ_Naming_SetLastText(_CurrentText, _Instance);
+
+PROC
+LLNWIZ_Naming_SetText((STRING)_Text, (INTEGER)_Instance)
+THEN
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance);
+
+PROC
+LLNWIZ_Naming_SetText((STRING)_Text, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_CurrentText, _Instance)
+AND
+DB_LLNWIZ_Naming_DialogVariables("Text", _VariableName)
+THEN
+DialogSetVariableStringForInstance(_Instance, _VariableName, _CurrentText);
+
+PROC
+LLNWIZ_Naming_SetLength((INTEGER)_Length, (INTEGER)_Instance)
+AND 
+DB_LLNWIZ_Naming_TextLength(_CurrentLength, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_TextLength(_CurrentLength, _Instance);
+
+PROC
+LLNWIZ_Naming_SetLength((INTEGER)_Length, (INTEGER)_Instance)
+THEN
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance);
+LLNWIZ_Naming_CheckMaxLength(_Instance);
+
+PROC
+LLNWIZ_Naming_IncrementLength((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+IntegerSum(_Length, 1, _NewLength)
+THEN
+LLNWIZ_Naming_SetLength(_NewLength, _Instance);
+
+PROC
+LLNWIZ_Naming_IncrementLength((INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_TextLength(_, _Instance)
+THEN
+LLNWIZ_Naming_SetLength(0, _Instance);
+
+QRY
+LLNWIZ_QRY_Naming_DecreaseLength((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+_Length > 0
+AND
+IntegerSubtract(_Length, 1, _NewLength)
+THEN
+LLNWIZ_Naming_SetLength(_NewLength, _Instance);
+
+QRY
+LLNWIZ_QRY_Naming_DecreaseLength((INTEGER)_Instance)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION LETTER_CHANGING
+PROC
+LLNWIZ_Naming_AppendLetter((STRING)_Letter, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+StringConcatenate(_Text, _Letter, _NextText)
+THEN
+LLNWIZ_Naming_SetText(_NextText, _Instance);
+LLNWIZ_Naming_IncrementLength(_Instance);
+
+PROC
+LLNWIZ_Naming_AppendLetter((STRING)_Letter, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_VisibleText(_,_Instance)
+THEN
+LLNWIZ_Naming_SetText(_Letter, _Instance);
+LLNWIZ_Naming_SetLength(1, _Instance);
+
+PROC
+LLNWIZ_Naming_RemoveLastLetter((INTEGER)_Instance)
+AND
+LLNWIZ_QRY_Naming_DecreaseLength(_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+StringSub(_Text, 0, _Length, _NewText)
+THEN
+LLNWIZ_Naming_SetText(_NewText, _Instance);
+
+//To do
+QRY
+LLNWIZ_QRY_Naming_FindWord((STRING)_Text, (STRING)_Word)
+THEN
+DB_LLNWIZ_Naming_Temp_FoundWord(_Text, 0, 0, 0, 0);
+
+PROC
+LLNWIZ_Naming_RemoveWord((INTEGER)_Instance, (STRING)_Word)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+StringContains(_Text, _Word, 1)
+AND
+LLNWIZ_QRY_Naming_FindWord(_Text, _Word)
+AND
+DB_LLNWIZ_Naming_Temp_FoundWord(_Text, _StartIndex, _StartLength, _StartIndex2, _StartLength2)
+AND
+StringSub(_Text, _StartIndex, _StartLength, _Str1)
+AND
+StringSub(_Text, _StartIndex2, _StartLength2, _Str2)
+AND
+StringConcatenate(_Str2, _Str2, _NewText)
+THEN
+LLNWIZ_Naming_SetText(_NewText, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+
+PROC
+LLNWIZ_Naming_UndoLast((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance)
+THEN
+LLNWIZ_Naming_SetText(_LastText, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+
+PROC
+LLNWIZ_Naming_AppendWord((STRING)_Word, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+StringConcatenate(_Text, _Word, _NextText)
+THEN
+LLNWIZ_Naming_SetText(_NextText, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+
+PROC
+LLNWIZ_Naming_AppendWord((STRING)_Word, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_VisibleText(_,_Instance)
+THEN
+LLNWIZ_Naming_SetText(_Word, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+//END_REGION
+
+//REGION LETTER_CYCLING
+QRY
+LLNWIZ_Naming_MoveGroupForward((INTEGER)_NextIndex, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_Groups(_NextIndex, _Group)
+THEN
+LLNWIZ_Naming_ClearCurrentGroup(_Instance);
+DB_LLNWIZ_Naming_CurrentGroup(_NextIndex, _Instance);
+
+QRY
+LLNWIZ_Naming_MoveGroupForward((INTEGER)_NextIndex, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_Groups(_NextIndex, _)
+THEN
+LLNWIZ_Naming_ClearCurrentGroup(_Instance);
+DB_LLNWIZ_Naming_CurrentGroup(0, _Instance);
+
+QRY
+LLNWIZ_Naming_MoveGroupForward((INTEGER)_NextIndex, (INTEGER)_Instance)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_Naming_MoveGroupBackward((INTEGER)_NextIndex, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_Groups(_NextIndex, _Group)
+THEN
+LLNWIZ_Naming_ClearCurrentGroup(_Instance);
+DB_LLNWIZ_Naming_CurrentGroup(_NextIndex, _Instance);
+
+QRY
+LLNWIZ_Naming_MoveGroupBackward((INTEGER)_NextIndex, (INTEGER)_Instance)
+AND
+_NextIndex < 0
+AND
+SysCount("DB_LLNWIZ_Naming_Groups", 2, _TotalGroups)
+AND
+IntegerSubtract(_TotalGroups, 1, _LastIndex)
+THEN
+LLNWIZ_Naming_ClearCurrentGroup(_Instance);
+DB_LLNWIZ_Naming_CurrentGroup(_LastIndex, _Instance);
+
+QRY
+LLNWIZ_Naming_MoveGroupBackward((INTEGER)_NextIndex, (INTEGER)_Instance)
+THEN
+DB_NOOP(1);
+
+PROC
+LLNWIZ_Naming_MoveLetterForward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
+AND
+_Index <= _Max
+AND
+DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_MoveLetterForward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
+AND
+_Index > _Max
+AND
+DB_LLNWIZ_Naming_CurrentGroup(_CurrentGroupIndex, _Instance)
+AND
+IntegerSum(_CurrentGroupIndex, 1, _NextGroupIndex)
+AND
+LLNWIZ_Naming_MoveGroupForward(_NextGroupIndex, _Instance)
+AND
+DB_LLNWIZ_Naming_CurrentGroup(_GroupIndex, _Instance)
+AND
+DB_LLNWIZ_Naming_Groups(_GroupIndex, _NextGroup)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(0, _NextGroup, _Instance);
+
+PROC
+LLNWIZ_Naming_MoveLetterBackward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+_Index >= 0
+AND
+DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_MoveLetterBackward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+_Index < 0
+AND
+DB_LLNWIZ_Naming_CurrentGroup(_CurrentGroupIndex, _Instance)
+AND
+IntegerSubtract(_CurrentGroupIndex, 1, _NextGroupIndex)
+AND
+LLNWIZ_Naming_MoveGroupBackward(_NextGroupIndex, _Instance)
+AND
+DB_LLNWIZ_Naming_CurrentGroup(_GroupIndex, _Instance)
+AND
+DB_LLNWIZ_Naming_Groups(_GroupIndex, _NextGroup)
+AND
+DB_LLNWIZ_Naming_GroupMax(_NextGroup, _Max)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Max, _NextGroup, _Instance);
+//END_REGION
+
+//REGION LETTER_COUNTING
+PROC
+LLNWIZ_Naming_CheckMaxLength((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+DB_LLNWIZ_Naming_MaxLength(_Max)
+AND
+_Length < _Max
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LimitReached", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_LimitReached");
+
+PROC
+LLNWIZ_Naming_CheckMaxLength((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+DB_LLNWIZ_Naming_MaxLength(_Max)
+AND
+_Length >= _Max // Keep it lean, keep it mean
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LimitReached", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_LimitReached");
+
+PROC
+LLNWIZ_Naming_FUNC_CharTotalIncrement((STRING)_Text, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, _Length)
+AND
+IntegerSum(_Length, 1, _NewLength)
+THEN
+NOT DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, _Length);
+DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, _NewLength);
+
+PROC
+LLNWIZ_Naming_FUNC_CharTotalIncrement((STRING)_Text, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, _)
+THEN
+DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, 1);
+
+QRY
+LLNWIZ_QRY_Naming_FUNC_CharCount((STRING)_Text, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_CharIndex(_Index)
+AND
+StringSub(_Text, _Index, 1, _Result)
+AND
+_Result != ""
+THEN
+LLNWIZ_Naming_FUNC_CharTotalIncrement(_Text, _Instance);
+
+QRY
+LLNWIZ_QRY_Naming_FUNC_CharCount((STRING)_Text, (INTEGER)_Instance)
+THEN
+DB_NOOP(1);
+
+PROC
+LLNWIZ_Naming_RecalculateTextLength((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+LLNWIZ_QRY_Naming_FUNC_CharCount(_Text, _Instance)
+AND
+DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length)
+THEN
+LLNWIZ_Naming_SetLength(_Length, _Instance);
+NOT DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length);
+//END_REGION
+
+//REGION NAMING_ACTIONS
+PROC
+LLNWIZ_Naming_SelectNextLetter((INTEGER)_Amount, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+IntegerSum(_Index, _Amount, _NextIndex)
+THEN
+LLNWIZ_Naming_MoveLetterForward(_NextIndex, _Group, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+PROC
+LLNWIZ_Naming_SelectPreviousLetter((INTEGER)_Amount, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+IntegerSubtract(_Index, _Amount, _NextIndex)
+THEN
+LLNWIZ_Naming_MoveLetterBackward(_NextIndex, _Group, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+PROC
+LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Max, _Group, _Instance)
+AND
+DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Max, _Group, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+PROC
+LLNWIZ_Naming_ChangeCasing((INTEGER)_Instance, "Upper")
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Index, "Lower", _Instance);
+
+PROC
+LLNWIZ_Naming_ChangeCasing((INTEGER)_Instance, "Lower")
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_Index, "Upper", _Instance);
+
+PROC
+LLNWIZ_Naming_ChangeCasing((INTEGER)_Instance, (STRING)_Current)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+DB_LLNWIZ_Naming_CurrentCasing(_CurrentGroup, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_CurrentCasing(_CurrentGroup, _Instance);
+DB_LLNWIZ_Naming_CurrentCasing(_Group, _Instance);
+
+PROC
+LLNWIZ_Naming_SetWordState((INTEGER)_Instance, (STRING)_ExtraText)
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+AND
+DB_LLNWIZ_Naming_MaxLength(_MaxLength)
+AND
+IntegertoString(_Length, _LStr)
+AND
+IntegertoString(_MaxLength, _MStr)
+AND
+StringConcatenate(_LStr, "/", _Str1)
+AND
+StringConcatenate(_Str1, _MStr, _Str2)
+AND
+StringConcatenate("Limit: ", _Str2, _Str3)
+AND
+StringConcatenate(_Str3, _ExtraText, _Text)
+AND
+DB_LLNWIZ_Naming_DialogVariables("WordStateText", _VariableName)
+THEN
+DialogSetVariableStringForInstance(_Instance, _VariableName, _Text);
+
+PROC
+LLNWIZ_Naming_SetLength((INTEGER)_Length, (INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LimitReached", 0)
+THEN
+LLNWIZ_Naming_SetWordState(_Instance, "");
+
+PROC
+LLNWIZ_Naming_SetLength((INTEGER)_Length, (INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LimitReached", 1)
+THEN
+LLNWIZ_Naming_SetWordState(_Instance, " - Max Character Limit Reached");
+
+PROC
+LLNWIZ_Naming_SetFinishedText((STRING)_Text, (CHARACTERGUID)_Player, (INTEGER)_Length)
+AND
+DB_LLNWIZ_Naming_FinishedText(_LastText, _Player, _LastLength)
+THEN
+NOT DB_LLNWIZ_Naming_FinishedText(_LastText, _Player, _LastLength);
+
+PROC
+LLNWIZ_Naming_SetFinishedText((STRING)_Text, (CHARACTERGUID)_Player, (INTEGER)_Length)
+AND
+DB_LLNWIZ_Naming_LastFinishedText(_LastText, _Player, _LastLength)
+THEN
+NOT DB_LLNWIZ_Naming_LastFinishedText(_LastText, _Player, _LastLength);
+
+PROC
+LLNWIZ_Naming_SetFinishedText((STRING)_Text, (CHARACTERGUID)_Player, (INTEGER)_Length)
+THEN
+DB_LLNWIZ_Naming_FinishedText(_Text, _Player, _Length);
+DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length);
+//DB_LLNWIZ_Naming_SavedText(_Text, _Player, _Length);
+//END_REGION
+
+//REGION FLAG_EVENTS
+IF
+ObjectFlagSet("LLNWIZ_Naming_AddSpace", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_AddSpace")
+THEN
+LLNWIZ_Naming_AppendLetter(" ", _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_AddLetter", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_AddLetter")
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+THEN
+LLNWIZ_Naming_AppendLetter(_Letter, _Instance);
+//DebugBreak("[LLNWIZ] User added letter.");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_RemoveLastLetter", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_RemoveLastLetter")
+THEN
+LLNWIZ_Naming_RemoveLastLetter(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_NextLetter", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_NextLetter")
+THEN
+LLNWIZ_Naming_SelectNextLetter(1, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_PreviousLetter", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_PreviousLetter")
+THEN
+LLNWIZ_Naming_SelectPreviousLetter(1, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_NextLetter5", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_NextLetter5")
+THEN
+LLNWIZ_Naming_SelectNextLetter(5, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_PreviousLetter5", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_PreviousLetter5")
+THEN
+LLNWIZ_Naming_SelectPreviousLetter(5, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_LetterEnd", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_LetterEnd")
+THEN
+LLNWIZ_Naming_SelectLastLetter(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_LetterStart", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_LetterStart")
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(0, _Group, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_ChangeCasing", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_ChangeCasing")
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+LLNWIZ_Naming_ChangeCasing(_Instance, _Group);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_ClearAll", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_ClearAll")
+THEN
+LLNWIZ_Naming_SetText("", _Instance);
+LLNWIZ_Naming_SetLength(0, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_RestoreLastName", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_RestoreLastName")
+AND
+DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length)
+THEN
+LLNWIZ_Naming_SetText(_Text, _Instance);
+LLNWIZ_Naming_SetLength(_Length, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_CountText", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_CountText")
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+LLNWIZ_QRY_Naming_FUNC_CharCount(_Text, _Instance)
+AND
+DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length)
+THEN
+LLNWIZ_Naming_SetLength(_Length, _Instance);
+NOT DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_UndoLast", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_UndoLast")
+THEN
+LLNWIZ_Naming_UndoLast(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SaveText", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveText")
+THEN
+LLNWIZ_Naming_OnNamingFinished(_Player, _Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_CancelNaming", (CHARACTERGUID)_Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_CancelNaming")
+THEN
+LLNWIZ_Naming_OnNamingCancelled(_Player, _Instance);
+
+IF
+DB_LLNWIZ_Naming_Temp_LastVisibleText((STRING)_LastText, (INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CanUndo");
+//END_REGION
+
+//REGION DIALOG_INITIAL_TEXT
+PROC
+LLNWIZ_Naming_SetInitialText((STRING)_Text, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_StartText(_PreviousText, _Player)
+THEN
+NOT DB_LLNWIZ_Naming_StartText(_Text, _Player);
+
+PROC
+LLNWIZ_Naming_SetInitialText((STRING)_Text, (CHARACTERGUID)_Player)
+THEN
+DB_LLNWIZ_Naming_StartText(_Text, _Player);
+
+PROC
+LLNWIZ_Naming_SetRandomGreeting(0)
+THEN
+DB_LLNWIZ_Temp_NextWizardGreeting("Naming Wizard Menu");
+
+PROC
+LLNWIZ_Naming_SetRandomGreeting(1)
+AND
+SysCount("DB_LLNWIZ_Wizard_RandomGreeting", 2, _TotalGreetings)
+AND
+IntegerSubtract(_TotalGreetings, 1, _MaxIndex)
+AND
+LLNWIZ_Random(_MaxIndex)
+AND
+DB_LLNWIZ_Temp_Rand(_Index)
+AND
+DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
+THEN
+DB_LLNWIZ_Temp_NextWizardGreeting(_Text);
+//DB_LLNWIZ_Wizard_LastGreeting(_Index);
+//END_REGION
+
+//REGION DIALOG_EVENTS
+PROC
+LLNWIZ_Naming_InitVariables((INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_CurrentCasing(_, _Instance)
+THEN
+DB_LLNWIZ_Naming_CurrentCasing("Upper", _Instance);
+
+PROC
+LLNWIZ_Naming_InitVariables((INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_SelectedLetter(_,_,_Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(0, "Upper", _Instance);
+LLNWIZ_Naming_ClearCurrentGroup(_Instance);
+DB_LLNWIZ_Naming_CurrentGroup(0, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+LLNWIZ_Naming_SetLength(0, _Instance);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+THEN
+LLNWIZ_Naming_InitVariables(_Instance);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Temp_NextWizardGreeting(_Text)
+AND
+DB_LLNWIZ_Naming_DialogVariables("RandomGreeting", _DialogVar)
+THEN
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
+NOT DB_LLNWIZ_Temp_NextWizardGreeting(_Text);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_StartText(_Text, _Player)
+THEN
+LLNWIZ_Naming_SetText(_Text, _Instance);
+LLNWIZ_Naming_RecalculateTextLength(_Instance);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_LastFinishedText(_,_Player,_)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LastNameExists", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_LastNameExists");
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+NOT DB_LLNWIZ_Naming_LastFinishedText(_,_Player,_)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LastNameExists", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_LastNameExists");
+
+IF
+DialogStarted(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+THEN
+LLNWIZ_Naming_InitMenu(_Instance);
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+THEN
+LLNWIZ_Naming_ClearInstanceVariables(_Instance);
+//END_REGION
+
+//REGION OPEN_ACTIONS
+PROC
+LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_MenuDialog(_DialogName)
+THEN
+Proc_StartDialog(0, _DialogName, _Player, _Player);
+LLNWIZ_Naming_SetRandomGreeting(0); // No Wizard
+
+PROC
+LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_MenuDialog(_DialogName)
+THEN
+Proc_StartDialog(0, _DialogName, _Wizard, _Player);
+LLNWIZ_Naming_SetRandomGreeting(1);
+//END_REGION
+
+//REGION LETTER_SETTING
+/*
+IF
+DB_LLNWIZ_Naming_SelectedLetter(_Index, "Letters", _Instance)
+AND
+DB_LLNWIZ_Naming_CurrentCasing(_ActualGroup, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_SelectedLetter(_Index, "Letters", _Instance);
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _ActualGroup, _Instance);
+*/
+
+PROC
+LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+_Group != "Letters"
+THEN
+LLNWIZ_Naming_ClearSelectedLetter(_Instance);
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, "Letters", (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_CurrentCasing(_Group, _Instance)
+THEN
+LLNWIZ_Naming_ClearSelectedLetter(_Instance);
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+_Group != "Number"
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_GroupIsLetter");
+
+PROC
+LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
+AND
+_Group == "Number"
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_GroupIsLetter");
+
+IF
+DB_LLNWIZ_Naming_VisibleText(_NextText, _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+_NextText == ""
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_NotEmpty", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_NotEmpty");
+
+IF
+DB_LLNWIZ_Naming_VisibleText(_NextText, _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+_NextText != ""
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_NotEmpty", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_NotEmpty");
+
+PROC
+LLNWIZ_Naming_UpdateSelectedLetterVariable((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+AND
+DB_LLNWIZ_Naming_DialogVariables("SelectedLetter", _VariableName)
+THEN
+DialogSetVariableStringForInstance(_Instance, _VariableName, _Letter);
+//END_REGION
+
+//REGION FINALIZING
+PROC
+LLNWIZ_Naming_OnNamingFinished((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+_Text != ""
+AND
+DB_LLNWIZ_Naming_TextLength(_Length, _Instance)
+THEN
+LLNWIZ_Naming_SetFinishedText(_Text, _Player, _Length);
+ObjectSetFlag(_Player, "LLNWIZ_Naming_TextSaved");
+SetVarString(_Player, "LLNWIZ_FinalText", _Text);
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingFinished");
+
+PROC
+LLNWIZ_Naming_OnNamingCancelled((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_TextSaved")
+THEN
+LLNWIZ_Naming_ClearInstanceVariables(_Instance);
+//END_REGION
+
+//REGION LIMIT_REACHED
+PROC
+LLNWIZ_Naming_AppendWord((STRING)_Word, (INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_LimitReached", 1)
+AND
+DB_LLNWIZ_Naming_MaxLength(_MaxLength)
+AND
+DB_LLNWIZ_Naming_VisibleText(_CurrentText, _Instance)
+AND
+StringSub(_CurrentText, 0, _MaxLength, _NewText)
+THEN
+LLNWIZ_Naming_SetText(_NewText, _Instance);
+LLNWIZ_Naming_SetLength(_MaxLength, _Instance);
+LLNWIZ_DebugLog("[NamingWizard] Max character limit reached. Trimmed text.");
+
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

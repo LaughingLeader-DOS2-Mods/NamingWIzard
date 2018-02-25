@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLNWIZ_Renamer", _)
+AND
+CharacterGetDisplayName(_Target, _Handle, _Name)
+THEN
+LLNWIZ_Naming_SetInitialText(_Name, _Player);
+LLNWIZ_Naming_OpenNamingWizard(_Player);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

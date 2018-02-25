@@ -1,0 +1,59 @@
+#TestLevel stuff. Nothing special here. Just a basic level.
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Globals/*
+Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
+
+#Story files that can be compiled by the user (only raw files needed).
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/meta.lsx
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/log.txt
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/goals.div
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/goals.raw
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story.div
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story.div.osi
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story_ac.dat
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_definitions.div
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_header.div
+
+#Assets
+Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/Effects/*
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/GUI/*
+
+#Log files, etc
+*.log
+*.ailog
+StatsEditorConfig.xml
+DockPanel.config
+EditorBrowserMetadata.*
+EffectEditorConfig.xml
+
+#Assets
+*.gr2
+*.dae
+*.swf
+*.bullet
+*.dds
+*.tga
+*.png
+*.ttf
+
+#Binary Files
+*.dat
+*.data
+*.bik
+*.bnk
+*.bshd
+*.cur
+*.fnt
+*.iggy
+*.iggytex
+*.lsb
+*.lsf
+*.lsfx
+*.osi
+*.patch
+*.tmpl
+
+# Dump files
+*.stackdump
+*.dmp

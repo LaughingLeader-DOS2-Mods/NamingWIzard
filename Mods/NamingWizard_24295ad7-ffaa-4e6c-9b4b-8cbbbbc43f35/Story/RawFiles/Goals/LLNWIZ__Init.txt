@@ -1,0 +1,217 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+//DB_LLNWIZ_MenuDialog(_DialogName)
+//DB_LLNWIZ_System_PlayerInitialized(_Val)
+
+//DB_LLNWIZ_Temp_OutVariable(_ID, _Value)
+//DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Value)
+//DB_LLNWIZ_Random_Seed(_Seed)
+//DB_LLNWIZ_Temp_Rand(_OldRand)
+
+LLNWIZ_System_InitializeSettings();
+KBSECTION
+//REGION DATABASE_HELPERS
+PROC
+LLNWIZ_System_ClearExistingDatabase((STRING)_DatabaseName, (INTEGER)_Arity)
+AND
+SysCount(_DatabaseName, _Arity, _Count)
+AND
+_Count > 0
+THEN
+SysClear(_DatabaseName, _Arity);
+
+PROC
+LLNWIZ_System_Debug_DatabaseCount((STRING)_DatabaseName, (INTEGER)_Arity)
+AND
+SysCount(_DatabaseName, _Arity, _Total)
+AND
+IntegertoString(_Total, _TotalStr)
+AND
+StringConcatenate("[Init] '", _DatabaseName, _Str1)
+AND
+StringConcatenate(_Str1, "' Total Entries: ", _Str2)
+AND
+StringConcatenate(_Str2, _TotalStr, _Str3)
+THEN
+LLNWIZ_DebugLog(_Str3);
+//END_REGION
+
+//REGION SETTINGS
+PROC
+LLNWIZ_System_InitializeSettings()
+THEN
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_MenuDialog(_DialogName", 1);
+DB_LLNWIZ_MenuDialog("LLNWIZ_NamingMenu");
+
+SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
+SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
+
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+LLNWIZ_System_InitializeSettings();
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_MenuDialog", 1);
+SysClear("DB_LLNWIZ_System_PlayerInitialized", 1);
+SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
+SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
+
+LLNWIZ_DebugLog("[Init] System databases cleared.");
+//END_REGION
+
+//REGION CHARACTER_TRACING
+QRY
+LLNWIZ_System_GetTracedCharacterValue((CHARACTERGUID)_Character, (STRING)_ValueName)
+AND
+DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Value)
+THEN
+NOT DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Value);
+
+QRY
+LLNWIZ_System_GetTracedCharacterValue((CHARACTERGUID)_Character, "nameref")
+AND
+CharacterGetDisplayName(_Character, _Handle, _Ref)
+THEN
+DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Ref);
+
+QRY
+LLNWIZ_System_GetTracedCharacterValue((CHARACTERGUID)_Character, "namehandle")
+AND
+CharacterGetDisplayName(_Character, _Handle, _Ref)
+THEN
+DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Handle);
+
+QRY
+LLNWIZ_System_GetTracedCharacterValue((CHARACTERGUID)_Character, "id")
+AND
+GetUUID(_Character, _ID)
+THEN
+DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _ID);
+
+QRY
+LLNWIZ_System_GetTracedCharacterValue((CHARACTERGUID)_Character, "template")
+AND
+GetTemplate(_Character, _Template)
+THEN
+DB_LLNWIZ_Temp_TracedCharacterValue(_Character, _Template);
+//END_REGION
+
+//REGION TEMP_VARIABLES
+PROC
+LLNWIZ_SetTemporaryVariable((STRING)_ID, (STRING)_Value)
+AND
+DB_LLNWIZ_Temp_OutVariable(_ID, _CurrentValue)
+THEN
+NOT DB_LLNWIZ_Temp_OutVariable(_ID, _CurrentValue);
+
+PROC
+LLNWIZ_SetTemporaryVariable((STRING)_ID, (STRING)_Value)
+THEN
+DB_LLNWIZ_Temp_OutVariable(_ID, _Value);
+
+QRY
+LLNWIZ_QRY_SetTemporaryVariable((STRING)_ID, (STRING)_Value)
+THEN
+LLNWIZ_SetTemporaryVariable(_ID, _Value);
+//END_REGION
+
+//REGION FLAG_HELPERS
+QRY
+LLNWIZ_QRY_ClearObjectFlag((GUIDSTRING)_Object, (STRING)_Flag)
+THEN
+ObjectClearFlag(_Object, _Flag);
+//END_REGION
+
+//REGION HOST_FLAGGING
+PROC
+LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
+AND
+CharacterGetHostCharacter(_Player)
+THEN
+UserSetFlag(_Player, "LLNWIZ_ISHOST");
+
+PROC
+LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
+AND
+NOT CharacterGetHostCharacter(_Player)
+AND
+UserGetFlag(_Player, "LLNWIZ_ISHOST", 1)
+THEN
+UserClearFlag(_Player, "LLNWIZ_ISHOST", 0);
+
+PROC
+LLNWIZ_System_ClearInitialization((CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_System_PlayerInitialized(_Player)
+THEN
+NOT DB_LLNWIZ_System_PlayerInitialized(_Player);
+
+PROC
+LLNWIZ_System_InitialSetup((CHARACTERGUID)_Player)
+AND
+NOT DB_LLNWIZ_System_PlayerInitialized(_Player)
+THEN
+DB_LLNWIZ_System_PlayerInitialized(_Player);
+
+IF
+GameStarted(_,_)
+AND
+DB_IsPlayer(_Player)
+THEN
+LLNWIZ_System_MarkHost(_Player);
+LLNWIZ_System_InitialSetup(_Player);
+//END_REGION
+
+//REGION RANDOM
+//Thanks to Norbyte for this chunk
+QRY
+LLNWIZ_Random((INTEGER)_Modulo)
+AND
+NOT DB_LLNWIZ_Random_Seed(_)
+AND
+Random(99999, _Seed)
+THEN
+DB_LLNWIZ_Random_Seed(_Seed);
+
+QRY
+LLNWIZ_Random((INTEGER)_Modulo)
+AND
+NOT DB_LLNWIZ_Temp_Rand(_)
+AND
+Random(99999, _OldRand)
+THEN
+DB_LLNWIZ_Temp_Rand(_OldRand);
+
+QRY
+LLNWIZ_Random((INTEGER)_Modulo)
+AND
+DB_LLNWIZ_Random_Seed(_Seed)
+AND
+IntegerProduct(_Seed, 1664525, _SeedLCG1)
+AND
+IntegerSum(_SeedLCG1, 1013904223, _SeedLCG2)
+AND
+IntegerModulo(_SeedLCG2, _Modulo, _Rand)
+AND
+DB_LLNWIZ_Temp_Rand(_OldRand)
+THEN
+NOT DB_LLNWIZ_Random_Seed(_Seed);
+DB_LLNWIZ_Random_Seed(_SeedLCG2);
+NOT DB_LLNWIZ_Temp_Rand(_OldRand);
+DB_LLNWIZ_Temp_Rand(_Rand);
+//END_REGION
+
+//REGION DEBUG
+IF
+CharacterUsedItem(_Player, ITEMGUID_LLNWIZ_Debug_MenuLever_e098b6e5-360d-45fd-99f0-bd415a9e6f0d)
+THEN
+LLNWIZ_Naming_OpenNamingWizard(_Player);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

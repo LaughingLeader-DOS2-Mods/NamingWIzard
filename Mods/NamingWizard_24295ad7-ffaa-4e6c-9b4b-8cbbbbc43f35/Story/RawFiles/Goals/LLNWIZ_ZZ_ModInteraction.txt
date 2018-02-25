@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+//Open Wizard
+//StoryEvent: LLNWIZ_Events_OpenNamingWizard
+//StoryEvent: LLNWIZ_Events_OpenNamingWizard_PlayerOnly
+//StoryEvent: LLNWIZ_Events_NamingFinished
+//Inital text var on player: LLNWIZ_InitialText
+//Text after finishing: LLNWIZ_FinalText
+KBSECTION
+PROC
+LLNWIZ_ModInteraction_SetInitialText((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_InitialText", _InitialText)
+THEN
+LLNWIZ_Naming_SetInitialText(_InitialText, _Player);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard_PlayerOnly")
+THEN
+LLNWIZ_ModInteraction_SetInitialText(_Player);
+LLNWIZ_Naming_OpenNamingWizard(_Player);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
+THEN
+LLNWIZ_ModInteraction_SetInitialText(_Player);
+LLNWIZ_Naming_OpenNamingWizard(_Player);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

@@ -1,0 +1,50 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+LLNWIZ_Updater_RegisterMod("0.9.0.0");
+KBSECTION
+//REGION MOD_UPDATING
+PROC
+LLNWIZ_Updater_ClearPreviousVersions()
+AND
+DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader")
+THEN
+NOT DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader");
+
+PROC
+LLNWIZ_Updater_RegisterMod((STRING)_Version)
+AND
+NOT DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader")
+THEN
+LLNWIZ_Updater_ClearPreviousVersions();
+DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader");
+
+QRY
+LLNWIZ_QRY_Updater_ModUpdateNeeded((STRING)_NewVersion)
+AND
+NOT DB_Mods_RegisteredMod("NamingWizard", _NewVersion, "LaughingLeader")
+THEN
+DB_NOOP(1);
+
+IF
+GameStarted(_,_)
+AND
+LLNWIZ_QRY_Updater_ModUpdateNeeded("0.9.0.0")
+THEN
+LLNWIZ_Updater_RegisterMod("0.9.0.0");
+LLNWIZ_System_UpdateDatabases();
+
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+LLNWIZ_DebugLog("[Updater] Databases updated.");
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+LLNWIZ_DebugLog("[Updater] Databases cleared.");
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

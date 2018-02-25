@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1519516937" />
+    <version major="3" minor="1" revision="6" build="0" />
+    <region id="DialogVariables">
+        <node id="root">
+            <children>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="1" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="a58be75c-66f9-4c4d-9edb-8c6422f47c7c" type="31" />
+                    <attribute id="name" value="LLNWIZ_Menu_SpeakerIndex" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="What shall we rename today?" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="7b3afe6c-373f-4586-8b62-06cd89b2efc4" type="31" />
+                    <attribute id="name" value="LLNWIZ_NamingWizard_RandomGreeting" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="90ca7bcc-e4c5-47d7-b055-0ac318380edf" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_CurrentPage" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="4bfd6bc7-3afd-474a-92af-99b170d226cd" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_FinalText" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="7a9befad-b178-478e-b374-f65e7efcf94f" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_LastPage" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="None" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="fcc4d39a-1009-4037-9848-3838066ee9b7" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_LastWord" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="5a8bb119-885b-4035-8690-e225a095687c" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_SelectedLetter" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value=" " type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="06c2ac76-9529-4cf4-979f-d37911d55ef4" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Text" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="e05055e1-d008-44c0-b6d2-f64d11ecf563" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word1" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="1db77bd2-f3a4-40c7-8a15-f0e0caf5ec6b" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word2" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="56f0192b-d33c-495a-a5fe-14fd72e3c766" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word3" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="2459bfdd-2c5f-4c1d-9f54-6b72ce2adde3" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word4" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="bd2f1c32-7ce3-4cfa-b6cd-f57632ac534c" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word5" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="c592657e-f33a-4759-bf1f-4be7c88ecc9f" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word6" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="c1daa983-8936-44da-9dcf-cf734026e32d" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word7" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="f73547bc-c893-4810-8ad9-9827ac2a2ea0" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word8" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="1521ba0f-dd1a-4f20-8a67-eee79b9ca96d" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_Word9" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="Displays information on the current character count / limit." type="23" />
+                    <attribute id="UUID" value="9d81dba3-e7bd-4209-a5b1-793491e80fc4" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_WordStateText" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

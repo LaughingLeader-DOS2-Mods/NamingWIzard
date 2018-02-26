@@ -887,6 +887,17 @@ AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 0)
 THEN
 ObjectSetFlag(_Player, "LLNWIZ_Naming_CanUndo");
+
+IF
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+DB_LLNWIZ_Naming_Temp_LastVisibleText(_Text, _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_CanUndo");
 //END_REGION
 
 //REGION DIALOG_INITIAL_TEXT

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <LastUsed>
+    <ResourceBank Type="LSFrameworkPlugin.VisualResource">
+      <Resource Id="fbecf39d-5c8f-431f-bba6-21507ef77933" />
+      <Resource Id="ab3230c4-c0f4-4767-9169-d7ef5f17a396" />
+      <Resource Id="9a8d2237-8cea-4921-9ce4-49103ea00ba0" />
+      <Resource Id="81cddfc2-23a7-447e-b143-e5c8f6538b98" />
+      <Resource Id="049249e8-11c8-4415-8129-c055787a4699" />
+      <Resource Id="57316f8e-1fb9-4687-8bec-92fd0c88f969" />
+    </ResourceBank>
+    <ResourceBank Type="LSFrameworkPlugin.MaterialResource">
+      <Resource Id="fdac2d22-6a8d-4000-b043-4c2dfdcfd148" />
+      <Resource Id="863876ef-0692-4fac-b191-f5ad0997a5b0" />
+    </ResourceBank>
+  </LastUsed>
+  <Favorite>
+    <ResourceBank Type="LSFrameworkPlugin.VisualResource" />
+    <ResourceBank Type="LSFrameworkPlugin.MaterialResource" />
+  </Favorite>
+</Root>

@@ -15,9 +15,9 @@ Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_defi
 Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_header.div
 
 #Assets
-Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/Effects/*
-Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
-Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/GUI/*
+#Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/Effects/*
+#Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
+#Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/GUI/*
 
 #Log files, etc
 *.log

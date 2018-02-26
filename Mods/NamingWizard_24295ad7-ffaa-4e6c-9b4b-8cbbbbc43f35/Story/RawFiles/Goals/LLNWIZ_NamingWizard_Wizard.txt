@@ -40,15 +40,31 @@ SysClear("DB_LLNWIZ_Temp_NextWizardGreeting", 1);
 
 PROC
 LLNWIZ_System_ClearDatabases()
+THEN
+LLNWIZ_Wizard_DeleteAllWizards();
+
+PROC
+LLNWIZ_Wizard_DeleteAllWizards()
 AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
+LLNWIZ_Wizard_DeleteWizard(_Wizard);
+
+PROC
+LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
 AND
 ObjectExists(_Wizard, 1)
 THEN
 SetOnStage(_Wizard, 0);
 CharacterDie(_Wizard, 0, "None");
-NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
 
+PROC
+LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
 //END_REGION
 
 //REGION GREETING
@@ -161,6 +177,7 @@ DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 AND
 GetPosition(_Target, _x,_y,_z)
 THEN
+ObjectClearFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
 TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 SetOnStage(_Wizard, 1);
 
@@ -177,33 +194,81 @@ LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "RS3_FX_GP_ScriptedEvent_Teleport_Gen
 LLNWIZ_Naming_OpenNamingWizard(_Player, _Wizard);
 
 //Menu Closed
-IF
-DialogEnded(_Dialog, _Instance)
-AND
-DB_LLNWIZ_MenuDialog(_Dialog)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
-AND
-DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+PROC
+LLNWIZ_Wizard_HideWizard((CHARACTERGUID)_Wizard)
 AND
 DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
+THEN
+StopLoopEffect(_Handle);
+NOT DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);
+
+PROC
+LLNWIZ_Wizard_HideWizard((CHARACTERGUID)_Wizard)
 AND
 GetUUID(_Wizard, _ID)
 AND
 StringConcatenate("LLNWIZ_Timers_Wizard_DisappearDelay_", _ID, _TimerName)
 THEN
-StopLoopEffect(_Handle);
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
 DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
-TimerLaunch(_TimerName, 1100);
+TimerLaunch(_TimerName, 1350);
+
+PROC
+LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
+LLNWIZ_Wizard_HideWizard(_Wizard);
 
 IF
 TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
 THEN
+ObjectClearFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
 LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
 SetOnStage(_Wizard, 0);
 NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
+
+//REGION HIDE_EVENTS
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+THEN
+LLNWIZ_Wizard_HideWizardByInstance(_Instance);
+
+IF
+StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_HideWizard")
+AND
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _)
+THEN
+LLNWIZ_DebugLog("[Wizard][ERROR] Target of event (LLNWIZ_Events_HideWizard) is not a registered naming wizard.");
+
+IF
+StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_HideWizard")
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+LLNWIZ_Wizard_HideWizard(_Wizard);
+LLNWIZ_DebugLog("[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.");
+
+//END_REGION
+
+//REGION ROGUE_WIZARDS
+IF
+CharacterSawCharacter(_Wizard, _Character)
+AND
+ObjectGetFlag(_Wizard, "LLNWIZ_Wizard_Hiding", 1)
+AND
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard,_)
+THEN
+LLNWIZ_DebugLog("[Wizard][ERROR] Rogue wizard detected (flagged for hiding). Wizard is unregistered. Attempting to remove.");
+LLNWIZ_Wizard_DeleteWizard(_Wizard);
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

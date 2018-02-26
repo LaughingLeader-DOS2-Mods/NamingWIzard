@@ -1,0 +1,16 @@
+INIT
+	CHARACTER:__Me
+	
+EVENTS
+
+EVENT Hide_Failsafe
+ON
+	OnActivate()
+	OnInit()
+ACTIONS
+IF "c1&!c2"
+	HasFlag(__Me, "LLNWIZ_Wizard_Hiding")
+	HasFlag(__Me, "LLNWIZ_Wizard_Disappearing")
+THEN
+	CharacterEvent(__Me, "LLNWIZ_Events_HideWizard")
+ENDIF

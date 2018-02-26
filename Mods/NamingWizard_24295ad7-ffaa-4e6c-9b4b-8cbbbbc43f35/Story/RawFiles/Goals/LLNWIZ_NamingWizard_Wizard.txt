@@ -211,6 +211,7 @@ THEN
 CharacterMoveToPosition(_Wizard, _x,_y,_z, 1, "LLNWIZ_Events_WizardArrived");
 //PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
 
+/*
 IF
 StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
 AND
@@ -218,7 +219,7 @@ DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 AND
 DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
 AND
-PlayLoopEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_01", "Dummy_OverheadFX", _Handle)
+PlayLoopEffect(_Target, "LLNWIZ_FX_NamingWIzard_Book_Root_01", "Dummy_OverheadFX", _Handle)
 AND
 GetUUID(_Wizard, _ID)
 AND
@@ -229,6 +230,22 @@ CharacterLookAt(_Wizard, _Player);
 //LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "LLNWIZ_FX_NamingWizard_Book_Teleport_01");
 DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
 TimerLaunch(_TimerName, 700);
+*/
+
+IF
+StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+AND
+GetUUID(_Wizard, _ID)
+AND
+StringConcatenate("LLNWIZ_Timers_Wizard_StartDelay_", _ID, _TimerName)
+THEN
+CharacterLookAt(_Wizard, _Player);
+DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
+TimerLaunch(_TimerName, 500);
 
 IF
 TimerFinished(_TimerName)
@@ -256,7 +273,15 @@ StringConcatenate("LLNWIZ_Timers_Wizard_DisappearDelay_", _ID, _TimerName)
 THEN
 ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
 DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
-TimerLaunch(_TimerName, 3000);
+TimerLaunch(_TimerName, 1000);
+
+PROC
+LLNWIZ_Wizard_HideWizard((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+THEN
+RemoveStatus(_Target, "LLNWIZ_RENAMING");
+NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
 
 PROC
 LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
@@ -267,16 +292,6 @@ DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 THEN
 ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
 LLNWIZ_Wizard_HideWizard(_Wizard);
-
-IF
-TimerFinished(_TimerName)
-AND
-DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
-AND
-DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
-THEN
-//PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
-NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
 
 IF
 TimerFinished(_TimerName)
@@ -310,6 +325,31 @@ THEN
 LLNWIZ_Wizard_HideWizard(_Wizard);
 LLNWIZ_DebugLog("[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.");
 
+//END_REGION
+
+//REGION STATUS_CLEANUP
+QRY
+LLNWIZ_QRY_Wizard_CleanupStatus((CHARACTERGUID)_Target)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_Wizard_CleanupStatus((CHARACTERGUID)_Target)
+AND
+NOT DB_LLNWIZ_Wizard_WizardTarget(_, _Target)
+AND
+HasActiveStatus(_Target, "LLNWIZ_RENAMING", 1)
+THEN
+RemoveStatus(_Target, "LLNWIZ_RENAMING");
+
+IF
+CharacterSawCharacter(_Char1, _Char2)
+AND
+LLNWIZ_QRY_Wizard_CleanupStatus(_Char1)
+AND
+LLNWIZ_QRY_Wizard_CleanupStatus(_Char2)
+THEN
+DB_NOOP(1);
 //END_REGION
 
 //REGION ROGUE_WIZARDS

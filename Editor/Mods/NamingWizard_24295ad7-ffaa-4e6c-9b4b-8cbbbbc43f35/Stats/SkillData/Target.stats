@@ -9,7 +9,7 @@
         <field name="Ability" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="4" enumeration_type_name="SkillAbility" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
         <field name="Cooldown" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="SkillProperties" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_RENAME,100,-1" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_RENAMING,100,-1" />
         <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="18" />
         <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
@@ -29,7 +29,7 @@
         <field name="FXScale" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="100" />
         <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_start" />
         <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_loop" />
-        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="RS3_FX_Items_Weapons_Prepare_Weapon_Root_01,KeepRot;RS3_FX_Items_Weapons_Prepare_Weapon_Hand_01:Dummy_L_HandFX" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Prepare_Loop_Root_01,KeepRot;LLNWIZ_FX_NamingWand_Prepare_Weapon_Root_01:Dummy_L_HandFX;LLNWIZ_FX_NamingWand_Prepare_Hand_Root_01,KeepRot:Dummy_L_HandFX" />
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_attack_projectile_01_cast" />
         <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_attack_projectile_01_cast" />
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="cast" />

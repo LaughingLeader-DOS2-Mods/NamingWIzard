@@ -2476,7 +2476,7 @@
         <id value="2" />
       </ids>
       <track name="Track" muted="False" locked="False" mutestateoverride="None">
-        <component class="Decal" start="0" end="2.165112" instancename="64fb3397-0b13-468c-8fd0-00709fde8293">
+        <component class="Decal" start="0" end="2.428531" instancename="64fb3397-0b13-468c-8fd0-00709fde8293">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
               <data>
@@ -2485,7 +2485,7 @@
             </property>
             <property id="035b5248-d0ca-44b7-853f-3acb84110e67">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,2.165112" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,2.428531" />
               </data>
             </property>
             <property id="d17bfe9f-c87a-4bc7-bd33-9a49197d6d6f">
@@ -2621,7 +2621,7 @@
                       <keyframes>
                         <keyframe time="0" value="8421631" />
                         <keyframe time="0.09808917" value="-8355585" />
-                        <keyframe time="0.899363" value="-8355585" />
+                        <keyframe time="0.6629994" value="-8355585" />
                         <keyframe time="1" value="8421631" />
                       </keyframes>
                     </rampchannel>
@@ -5826,8 +5826,8 @@
                     </rampchannel>
                     <rampchannel type="Linear" id="cb9067ce-aa7b-4fe3-bf25-2f7310aba284" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="0.2516128" />
-                        <keyframe time="1" value="0.2516128" />
+                        <keyframe time="0" value="0.5" />
+                        <keyframe time="1" value="0.5" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>
@@ -6812,7 +6812,7 @@
           </modules>
         </component>
       </track>
-      <track name="Track" muted="True" locked="False" mutestateoverride="None">
+      <track name="Track" muted="False" locked="False" mutestateoverride="None">
         <component class="TurbulenceForce" start="0" end="2.997454" instancename="2fbb0e1e-aaf9-4908-b06d-0b23aa66d0bb">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -6836,8 +6836,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="f8fa3295-5dd0-44e9-965a-4c3a0a9cf031" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="10" />
-                        <keyframe time="1" value="10" />
+                        <keyframe time="0" value="2" />
+                        <keyframe time="1" value="2" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>

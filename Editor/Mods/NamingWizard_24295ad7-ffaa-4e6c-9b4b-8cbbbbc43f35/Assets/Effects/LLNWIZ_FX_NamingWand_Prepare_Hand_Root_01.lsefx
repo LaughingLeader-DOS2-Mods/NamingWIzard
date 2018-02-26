@@ -2174,7 +2174,7 @@
       <ids>
         <id value="7" />
       </ids>
-      <track name="Track" muted="False" locked="False" mutestateoverride="None">
+      <track name="Track" muted="True" locked="False" mutestateoverride="None">
         <component class="OverlayMaterial" start="0" end="1.683921" instancename="e22eb636-4c5c-470a-a56d-53e19d35d117">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -2189,7 +2189,7 @@
             </property>
             <property id="c4298659-2875-4dca-bd1c-6eb147c17032">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="RS3_FX_Skills_Polymorph_Soul_ReplaceOverlay &lt;3c7db187-3791-4b91-8d65-125ad0a886f2&gt;" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="RS3_FX_OverlayMaterial_Glowing_01 &lt;c5cb595b-fd9a-4bcb-be6b-25bf9a7e207b&gt;" />
               </data>
             </property>
             <property id="73f523ee-4c6e-4e3d-9dd8-fc09a6501860">
@@ -2223,8 +2223,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="e1d97d7d-0f23-4be9-ae1b-84908a5a4c50" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="37.27419" />
-                        <keyframe time="1" value="37.27419" />
+                        <keyframe time="0" value="0.5" />
+                        <keyframe time="1" value="0.5" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>
@@ -2314,8 +2314,8 @@
       <ids>
         <id value="3" />
       </ids>
-      <track name="Track" muted="True" locked="False" mutestateoverride="None" />
-      <track name="Track" muted="True" locked="False" mutestateoverride="None">
+      <track name="Track" muted="False" locked="False" mutestateoverride="None" />
+      <track name="Track" muted="False" locked="False" mutestateoverride="None">
         <component class="ParticleSystem" start="0.5052263" end="1.505226" instancename="91891015-a6b6-407a-b7a9-e4e2421e902a">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -2334,8 +2334,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="93b34a52-eef2-4f88-80f6-19e3126188ca">
                       <keyframes>
-                        <keyframe time="0" value="-9654279" />
-                        <keyframe time="1" value="-9654279" />
+                        <keyframe time="0" value="-8323200" />
+                        <keyframe time="1" value="-8323200" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>
@@ -2349,8 +2349,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="352fac77-0097-47ec-908c-7c0d334fc161" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="1" />
-                        <keyframe time="1" value="1" />
+                        <keyframe time="0" value="3" />
+                        <keyframe time="1" value="3" />
                       </keyframes>
                     </rampchannel>
                     <rampchannel type="Linear" id="5d1a5586-f360-4f08-a609-e649c8731a38" selected="False">
@@ -2434,7 +2434,7 @@
             </property>
             <property id="21176254-19ca-43e0-a890-b20fd264cca3">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="100" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="200" />
               </data>
             </property>
             <property id="b16512bc-8157-4c11-bfde-732ec940b841">
@@ -2443,8 +2443,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="b16512bc-8157-4c11-bfde-732ec940b841" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="20" />
-                        <keyframe time="1" value="20" />
+                        <keyframe time="0" value="5" />
+                        <keyframe time="1" value="5" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>
@@ -2459,7 +2459,7 @@
             </property>
             <property id="726ea55f-d0f9-4176-9a22-c5539199a83a">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0.5,0" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,0" />
               </data>
             </property>
             <property id="5f042807-09d5-4841-846e-2b13f7a3d80d">
@@ -2736,14 +2736,29 @@
                 <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="10" />
               </data>
             </property>
-            <property id="b0a263d3-3d10-466d-8028-91be42b846e9">
+            <property id="6c6b4ae6-64cf-4db4-8ada-45f602dd7686">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="1" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="-1,-1" />
               </data>
             </property>
-            <property id="346b8050-9a4e-49ad-8d58-f9c92585aaa7">
+            <property id="18bbdfb0-2fc0-4f0d-943e-3d2b792bc713">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="1" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+              </data>
+            </property>
+            <property id="c9d2f8b5-4122-4ec8-9be3-4b536571e879">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="24" />
+              </data>
+            </property>
+            <property id="11522cb4-a43f-4a3d-924a-37191d74df1f">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+              </data>
+            </property>
+            <property id="2a830022-e27e-4620-8bfa-02ecae81c08b">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
               </data>
             </property>
             <property id="b10c884a-ff26-4a8b-a124-d9830381129a">
@@ -2758,22 +2773,6 @@
                     </rampchannel>
                   </rampchanneldata>
                 </datum>
-              </data>
-              <platformmetadata platform="00000000-0000-0000-0000-000000000000" expanded="True" />
-            </property>
-            <property id="2a830022-e27e-4620-8bfa-02ecae81c08b">
-              <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
-              </data>
-            </property>
-            <property id="11522cb4-a43f-4a3d-924a-37191d74df1f">
-              <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
-              </data>
-            </property>
-            <property id="c9d2f8b5-4122-4ec8-9be3-4b536571e879">
-              <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="24" />
               </data>
             </property>
             <property id="4d78b4b0-04ad-4590-953b-74d4dbce1043">
@@ -2898,9 +2897,9 @@
                 <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
               </data>
             </property>
-            <property id="18bbdfb0-2fc0-4f0d-943e-3d2b792bc713">
+            <property id="346b8050-9a4e-49ad-8d58-f9c92585aaa7">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="1" />
               </data>
             </property>
             <property id="0b3e3b0f-e0c6-492d-892c-a7100b2d9edd">
@@ -2946,7 +2945,7 @@
             </property>
             <property id="f01fec2b-558c-48b2-b8bc-0644cdb9fcca">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="FX_MP_Glow_A_Soft &lt;49bb648e-841e-4710-bfdc-7e9f4024185a&gt;" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="FX_MP_Glow_A &lt;c8d813bc-5279-4275-a491-332179fa97f5&gt;" />
               </data>
             </property>
             <property id="46a4220d-fdfc-4a4c-b0d5-a6f001c53a1e">
@@ -2960,8 +2959,8 @@
                   <rampchanneldata>
                     <rampchannel type="Linear" id="8874e7de-635d-4fee-9906-bbf928937e2f" selected="True">
                       <keyframes>
-                        <keyframe time="0" value="10" />
-                        <keyframe time="1" value="10" />
+                        <keyframe time="0" value="1" />
+                        <keyframe time="1" value="1" />
                       </keyframes>
                     </rampchannel>
                   </rampchanneldata>
@@ -3103,9 +3102,9 @@
               </data>
               <platformmetadata platform="00000000-0000-0000-0000-000000000000" expanded="True" />
             </property>
-            <property id="6c6b4ae6-64cf-4db4-8ada-45f602dd7686">
+            <property id="b0a263d3-3d10-466d-8028-91be42b846e9">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="-1,-1" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="1" />
               </data>
             </property>
             <property id="bb1e9c04-b4b9-4407-af31-effec5a9d46a">
@@ -3263,11 +3262,66 @@
             <module id="cb4f2a13-f7bf-4568-88ec-0211637c05cf" muted="False" index="3" />
             <module id="a9069163-3f1e-425e-aa9d-e99ae3c56153" muted="False" index="4" />
             <module id="e2afc256-8cf0-4fb7-94ab-88cfb02cc1f4" muted="False" index="5" />
+            <module id="65eb458e-ef51-4fbd-bd7f-bedacd59a02f" muted="False" index="6" />
+            <module id="77fcff12-c782-43bb-84c4-9626d2fd1575" muted="True" index="7">
+              <properties>
+                <property id="b0a263d3-3d10-466d-8028-91be42b846e9">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="12" />
+                  </data>
+                </property>
+                <property id="346b8050-9a4e-49ad-8d58-f9c92585aaa7">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="9" />
+                  </data>
+                </property>
+                <property id="b10c884a-ff26-4a8b-a124-d9830381129a">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000">
+                      <rampchanneldata>
+                        <rampchannel type="Linear" id="3b9b3898-6c5a-48ea-ba54-a847cc85461f" selected="True">
+                          <keyframes>
+                            <keyframe time="0" value="0" />
+                            <keyframe time="1" value="1" />
+                          </keyframes>
+                        </rampchannel>
+                      </rampchanneldata>
+                    </datum>
+                  </data>
+                  <platformmetadata platform="00000000-0000-0000-0000-000000000000" expanded="True" />
+                </property>
+                <property id="2a830022-e27e-4620-8bfa-02ecae81c08b">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="1" />
+                  </data>
+                </property>
+                <property id="11522cb4-a43f-4a3d-924a-37191d74df1f">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+                  </data>
+                </property>
+                <property id="c9d2f8b5-4122-4ec8-9be3-4b536571e879">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+                  </data>
+                </property>
+                <property id="18bbdfb0-2fc0-4f0d-943e-3d2b792bc713">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+                  </data>
+                </property>
+                <property id="6c6b4ae6-64cf-4db4-8ada-45f602dd7686">
+                  <data>
+                    <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="-1,-1" />
+                  </data>
+                </property>
+              </properties>
+            </module>
           </modules>
         </component>
       </track>
-      <track name="Track" muted="True" locked="False" mutestateoverride="None">
-        <component class="OrbitForce" start="0.4535554" end="2.026646" instancename="1a1d7240-5423-4c07-b8f1-5545fa262828">
+      <track name="Track" muted="False" locked="False" mutestateoverride="None">
+        <component class="OrbitForce" start="0.4535554" end="1.532902" instancename="1a1d7240-5423-4c07-b8f1-5545fa262828">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
               <data>
@@ -3276,12 +3330,12 @@
             </property>
             <property id="035b5248-d0ca-44b7-853f-3acb84110e67">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0.4535554,2.026646" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0.4535554,1.532902" />
               </data>
             </property>
             <property id="ab008548-c038-4110-ac22-cbb9fb501ded">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0.5,0" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,0" />
               </data>
             </property>
             <property id="eaad015a-d436-4eda-8461-fb6032d2e92c">
@@ -3333,8 +3387,98 @@
           </modules>
         </component>
       </track>
-      <track name="Track" muted="True" locked="False" mutestateoverride="None" />
-      <track name="Track" muted="True" locked="False" mutestateoverride="None" />
+      <track name="Track" muted="False" locked="False" mutestateoverride="None">
+        <component class="GravityForce" start="0.4248493" end="2.101282" instancename="c4ccca6e-3b5a-4f96-b1e5-bae3918d4798">
+          <properties>
+            <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="GravityForce" />
+              </data>
+            </property>
+            <property id="035b5248-d0ca-44b7-853f-3acb84110e67">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0.4248493,2.101282" />
+              </data>
+            </property>
+            <property id="5b80f982-c9f9-426c-8d35-cdcad8250e4b">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,0" />
+              </data>
+            </property>
+            <property id="7e7b19f5-6f86-410f-abb9-67695236e227">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000">
+                  <rampchanneldata>
+                    <rampchannel type="Linear" id="7e7b19f5-6f86-410f-abb9-67695236e227" selected="True">
+                      <keyframes>
+                        <keyframe time="0" value="4" />
+                        <keyframe time="1" value="4" />
+                      </keyframes>
+                    </rampchannel>
+                  </rampchanneldata>
+                </datum>
+              </data>
+              <platformmetadata platform="00000000-0000-0000-0000-000000000000" expanded="True" />
+            </property>
+            <property id="4b80d294-aeb1-490c-a8d9-95eab2923e71">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,1,0" />
+              </data>
+            </property>
+            <property id="dddbc8df-85ae-42fc-8808-9bd1b4b327ae">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000">
+                  <rampchanneldata>
+                    <rampchannel type="Linear" id="dddbc8df-85ae-42fc-8808-9bd1b4b327ae" selected="True">
+                      <keyframes>
+                        <keyframe time="0" value="50" />
+                        <keyframe time="1" value="50" />
+                      </keyframes>
+                    </rampchannel>
+                  </rampchanneldata>
+                </datum>
+              </data>
+              <platformmetadata platform="00000000-0000-0000-0000-000000000000" expanded="True" />
+            </property>
+            <property id="721afcae-d45c-4a53-a4fb-79878039ed69">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000">
+                  <rampchanneldata>
+                    <rampchannel type="Linear" id="dd9173c6-bc69-40a6-9553-0ba02703dcac" selected="True">
+                      <keyframes>
+                        <keyframe time="0" value="0" />
+                        <keyframe time="1" value="0" />
+                      </keyframes>
+                    </rampchannel>
+                    <rampchannel type="Linear" id="5694f678-b811-4da5-acf3-d57e350c98b3" selected="False">
+                      <keyframes>
+                        <keyframe time="0" value="0" />
+                        <keyframe time="1" value="0" />
+                      </keyframes>
+                    </rampchannel>
+                    <rampchannel type="Linear" id="df77c844-5d72-468a-880e-beffe3f3e6cd" selected="False">
+                      <keyframes>
+                        <keyframe time="0" value="0" />
+                        <keyframe time="1" value="0" />
+                      </keyframes>
+                    </rampchannel>
+                  </rampchanneldata>
+                </datum>
+              </data>
+            </property>
+            <property id="324b6513-313a-481c-bdd4-af5d055c01f5">
+              <data>
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0" />
+              </data>
+            </property>
+            <propertygroup id="e0ddb7a1-faac-4815-a36a-067b8a145e29" name="Property Group" collapsed="False" />
+          </properties>
+          <modules>
+            <module id="286df729-035e-4bb8-a210-c836ddbbbacc" muted="False" index="0" />
+          </modules>
+        </component>
+      </track>
+      <track name="Track" muted="False" locked="False" mutestateoverride="None" />
     </trackgroup>
   </trackgroups>
 </effect>

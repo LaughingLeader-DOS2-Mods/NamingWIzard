@@ -24,7 +24,7 @@
         <field name="Poison" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Piercing" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Physical" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename;Projectile_LLNWIZ_Rename" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename" />
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="InventoryTabs" />
         <field name="ItemColor" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="DefaultGray" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />

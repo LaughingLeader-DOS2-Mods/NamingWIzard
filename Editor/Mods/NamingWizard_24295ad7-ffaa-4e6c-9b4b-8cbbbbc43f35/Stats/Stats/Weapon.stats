@@ -29,7 +29,7 @@
         <field name="ItemColor" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="DefaultGray" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="RuneSlots_V1" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename;Projectile_LLNWIZ_Rename" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename" />
         <field name="Unique" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
         <field name="MaxLevel" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />

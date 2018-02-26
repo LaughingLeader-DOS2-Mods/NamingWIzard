@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <LastUsed>
+    <ResourceBank Type="LSFrameworkPlugin.MaterialResource">
+      <Resource Id="fdac2d22-6a8d-4000-b043-4c2dfdcfd148" />
+      <Resource Id="caf9306f-0a1c-41d9-8298-8bc3f2f9eb79" />
+      <Resource Id="7e6de55e-68c3-4e7b-966b-7232004e1cad" />
+      <Resource Id="d821f815-53f1-49aa-b180-0df4ae9fc371" />
+      <Resource Id="28ce282a-548d-4c9a-b013-da049515f7ab" />
+      <Resource Id="cad66e59-79e0-4ed2-8543-69465bf3caf0" />
+      <Resource Id="353e8ea8-45cf-46e3-91f1-76e8696b5321" />
+      <Resource Id="d7c8c4fd-a4af-4b1a-9ae6-039ca7e6a2b6" />
+      <Resource Id="6d12d4bd-30fb-4bcc-87ad-c120abb42c89" />
+      <Resource Id="5ada3b0d-4e78-43de-b683-ae299b921308" />
+      <Resource Id="cce9d60f-caa7-43f3-b8af-373b3607da6b" />
+      <Resource Id="5fb68469-0d77-48a6-a66a-0c32390f4fd2" />
+    </ResourceBank>
+    <ResourceBank Type="LSFrameworkPlugin.VisualResource">
+      <Resource Id="dee9eecc-1254-4f99-ad3c-453aa56bfec6" />
+    </ResourceBank>
+  </LastUsed>
+  <Favorite>
+    <ResourceBank Type="LSFrameworkPlugin.MaterialResource" />
+    <ResourceBank Type="LSFrameworkPlugin.VisualResource" />
+  </Favorite>
+</Root>

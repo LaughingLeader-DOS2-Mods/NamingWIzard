@@ -1,16 +1,35 @@
 INIT
 	CHARACTER:__Me
-	
+	INT:%TimerActive = 0
 EVENTS
 
-EVENT Hide_Failsafe
+EVENT Failsafe_TimerStart
 ON
 	OnActivate()
 	OnInit()
+	OnLoaded(_,_,_,_)
 ACTIONS
-IF "c1&!c2"
+IF "!c1"
+	IsEqual(%TimerActive, 1)
+THEN
+	StartTimer("LLNWIZ_NamingWizard_FailsafeTimer", 30, -1)
+	Set(%TimerActive, 1)
+ENDIF
+
+EVENT Hide_Failsafe
+ON
+	OnTimer("LLNWIZ_NamingWizard_FailsafeTimer")
+ACTIONS
+IF "!c1|(c2&!c3)"
+	HasFlag(__Me, "LLNWIZ_Wizard_NotRogue")
 	HasFlag(__Me, "LLNWIZ_Wizard_Hiding")
 	HasFlag(__Me, "LLNWIZ_Wizard_Disappearing")
 THEN
 	CharacterEvent(__Me, "LLNWIZ_Events_HideWizard")
+	CombatLogText(__Me, "I'm a rogue wizard!",0,2)
+ENDIF
+IF "c1"
+	IsEqual(%TimerActive, 1)
+THEN
+	StopTimer("LLNWIZ_NamingWizard_FailsafeTimer")
 ENDIF

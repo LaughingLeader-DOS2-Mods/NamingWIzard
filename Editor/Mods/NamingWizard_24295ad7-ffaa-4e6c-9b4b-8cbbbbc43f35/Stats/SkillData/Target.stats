@@ -22,7 +22,7 @@
         <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="Icon" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Item_WPN_Humans_Wand_1H_A" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Nameicus Renameicus" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Renameo Exacteo" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Tear apart the very fabric of reality to rename the target character." />
         <field name="StatsDescription" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Range: [1]" />
         <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="TargetRadius" />

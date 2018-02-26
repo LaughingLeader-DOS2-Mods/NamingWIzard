@@ -2,8 +2,10 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 //DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+//DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
 //DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
 //DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
+//DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player)
 //DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
 //DB_LLNWIZ_Wizard_LastGreeting(_Index)
 //DB_LLNWIZ_Temp_NextWizardGreeting(_Text)
@@ -28,7 +30,7 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_RandomGreeting", 2);
 LLNWIZ_Wizard_AddGreeting("Welcome. What shall we name today?");
 LLNWIZ_Wizard_AddGreeting("Beep, boop. I am the Naming Wizard. How may I serv-o you today?");
 LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. Can you imagine?");
-LLNWIZ_Wizard_AddGreeting("I'm the Wiz, and nobody can beat my prices!");
+LLNWIZ_Wizard_AddGreeting("Nameo Whocareseo. Whaddya want?");
 LLNWIZ_Wizard_AddGreeting("Renameo Exacteo. Your wish is my command.");
 LLNWIZ_Wizard_AddGreeting("Namelolocus Renamicus. Your wish is my command.");
 LLNWIZ_Wizard_AddGreeting("Names are power. Let's get crackin'.");
@@ -156,6 +158,18 @@ DB_LLNWIZ_Wizard_LastGreeting(_Index);
 
 //END_REGION
 
+PROC
+LLNQIZ_Wizard_SetTarget((CHARACTERGUID)_Wizard, (CHARACTERGUID)_Target)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _LastTarget)
+THEN
+NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _LastTarget);
+
+PROC
+LLNQIZ_Wizard_SetTarget((CHARACTERGUID)_Wizard, (CHARACTERGUID)_Target)
+THEN
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
+
 //Creation
 QRY
 LLNWIZ_QRY_Wizard_CreateWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
@@ -167,7 +181,9 @@ AND
 //TemporaryCharacterCreateAtPosition(_x,_y,_z, "LLNWIZ_NamingWizard_923ec2b9-f8c0-4fd9-8647-5459f6780b5a", 0, _Wizard)
 TemporaryCharacterCreateOutOfSightToObject("LLNWIZ_NamingWizard_923ec2b9-f8c0-4fd9-8647-5459f6780b5a", _Target, _Player, 0, "", _Wizard)
 THEN
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_NotRogue");
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
+LLNQIZ_Wizard_SetTarget(_Wizard, _Target);
 TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 
 QRY
@@ -178,6 +194,8 @@ AND
 GetPosition(_Target, _x,_y,_z)
 THEN
 ObjectClearFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_NotRogue");
+LLNQIZ_Wizard_SetTarget(_Wizard, _Target);
 TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 SetOnStage(_Wizard, 1);
 
@@ -186,11 +204,38 @@ StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardCreated")
 AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 AND
-PlayLoopEffect(_Wizard, "LLNWIZ_FX_NamingWIzard_Book_01", "Hand_BodyFX", _Handle)
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+AND
+GetPosition(_Target, _x,_y,_z)
+THEN
+CharacterMoveToPosition(_Wizard, _x,_y,_z, 1, "LLNWIZ_Events_WizardArrived");
+//PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
+
+IF
+StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+AND
+PlayLoopEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_01", "Dummy_OverheadFX", _Handle)
+AND
+GetUUID(_Wizard, _ID)
+AND
+StringConcatenate("LLNWIZ_Timers_Wizard_StartDelay_", _ID, _TimerName)
 THEN
 DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);
 CharacterLookAt(_Wizard, _Player);
-LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+//LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "LLNWIZ_FX_NamingWizard_Book_Teleport_01");
+DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
+TimerLaunch(_TimerName, 700);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player)
+THEN
+NOT DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard);
 LLNWIZ_Naming_OpenNamingWizard(_Player, _Wizard);
 
 //Menu Closed
@@ -211,7 +256,7 @@ StringConcatenate("LLNWIZ_Timers_Wizard_DisappearDelay_", _ID, _TimerName)
 THEN
 ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
 DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
-TimerLaunch(_TimerName, 1350);
+TimerLaunch(_TimerName, 3000);
 
 PROC
 LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
@@ -227,9 +272,18 @@ IF
 TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+THEN
+//PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
+NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
 THEN
 ObjectClearFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
-LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
 SetOnStage(_Wizard, 0);
 NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
 
@@ -259,15 +313,39 @@ LLNWIZ_DebugLog("[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.
 //END_REGION
 
 //REGION ROGUE_WIZARDS
-IF
-CharacterSawCharacter(_Wizard, _Character)
+QRY
+LLNWIZ_QRY_Wizard_CheckRogueFlags((CHARACTERGUID)_Wizard)
+AND
+ObjectGetFlag(_Wizard, "LLNWIZ_Wizard_NotRogue", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_Wizard_CheckRogueFlags((CHARACTERGUID)_Wizard)
 AND
 ObjectGetFlag(_Wizard, "LLNWIZ_Wizard_Hiding", 1)
 AND
-NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard,_)
+ObjectGetFlag(_Wizard, "LLNWIZ_Wizard_Disappearing", 0)
 THEN
-LLNWIZ_DebugLog("[Wizard][ERROR] Rogue wizard detected (flagged for hiding). Wizard is unregistered. Attempting to remove.");
+DB_NOOP(1);
+
+PROC
+LLNWIZ_Wizard_CheckRogue((CHARACTERGUID)_Wizard)
+AND
+GetTemplate(_Wizard, "LLNWIZ_NamingWizard_923ec2b9-f8c0-4fd9-8647-5459f6780b5a")
+AND
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard,_)
+AND
+LLNWIZ_QRY_Wizard_CheckRogueFlags(_Wizard)
+THEN
+LLNWIZ_DebugLog("[Wizard][ERROR] Rogue wizard detected (not in the database). Wizard is unregistered. Attempting to remove.");
 LLNWIZ_Wizard_DeleteWizard(_Wizard);
+
+IF
+CharacterSawCharacter(_Character1, _Character2)
+THEN
+LLNWIZ_Wizard_CheckRogue(_Character1);
+LLNWIZ_Wizard_CheckRogue(_Character2);
 //END_REGION
 EXITSECTION
 

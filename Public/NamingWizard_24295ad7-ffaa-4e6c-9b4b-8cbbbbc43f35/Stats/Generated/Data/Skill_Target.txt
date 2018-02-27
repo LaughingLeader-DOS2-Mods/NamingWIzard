@@ -38,10 +38,9 @@ data "PrepareEffect" "LLNWIZ_FX_NamingWand_Prepare_Loop_Root_01,KeepRot;LLNWIZ_F
 data "CastAnimation" "skill_attack_projectile_01_cast"
 data "CastSelfAnimation" "skill_attack_projectile_01_cast"
 data "CastTextEvent" "cast"
-data "CastEffect" "RS3_FX_Skills_Totem_Cast_Target_Totem_Shadow_Hand_01,detach:Dummy_CastFX:cast"
-data "TargetEffect" "RS3_FX_Skills_Totem_Impact_Target_Root_Shadow_01:Dummy_BodyFX:cast"
-data "TargetGroundEffect" "RS3_FX_Skills_Totem_Impact_Target_Root_Shadow_01:Dummy_BodyFX:cast"
-data "BeamEffect" "RS3_FX_GP_Beams_ShadowBeam_01:Dummy_L_HandFX:Dummy_BodyFX:cast"
+data "CastEffect" "LLNWIZ_FX_NamingWand_Cast_Hand_01,detach:Dummy_L_HandFX:cast"
+data "TargetEffect" "LLNWIZ_FX_NamingWand_Target_Impact_Root_01:Dummy_Root:cast"
+data "BeamEffect" "LLNWIZ_FX_NamingWand_Beam_01:Dummy_L_HandFX:Dummy_BodyFX:cast"
 data "IgnoreVisionBlock" "Yes"
 data "Stealth" "Yes"
 

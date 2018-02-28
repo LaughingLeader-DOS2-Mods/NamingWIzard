@@ -1,0 +1,28 @@
+INIT
+	ITEM:__Me
+	EXTERN STRING:%OverlayEffect = "RS3_FX_Items_Weapons_DamageType_Air_Overlay_01_Lvl05"
+	INT64:%OverlayFXHandle = 0
+
+EVENTS
+
+EVENT StartEffects
+VARS
+	CHARACTER:_Char
+ON
+	OnItemEquipped(_Char, __Me)
+	OnActivate()
+ACTIONS
+	ItemPlayLoopEffect(%OverlayFXHandle, __Me, %OverlayEffect, "Dummy_FX")
+	
+EVENT StopEffects
+VARS
+	CHARACTER:_Char
+ON
+	OnItemUnequipped(_Char, __Me)
+ACTIONS
+IF "!c1"
+	IsEqual(%OverlayFXHandle, 0)
+THEN
+	StopLoopEffect(%OverlayFXHandle)
+	Set(%OverlayFXHandle, 0)
+ENDIF

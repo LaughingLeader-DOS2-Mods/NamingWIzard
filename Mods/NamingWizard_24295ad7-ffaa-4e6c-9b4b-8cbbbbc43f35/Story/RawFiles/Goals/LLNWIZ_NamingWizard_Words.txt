@@ -5,6 +5,7 @@ LLNWIZ_Naming_Words_InitializeSettings();
 //Settings
 //DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
 //DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+//DB_LLNWIZ_Naming_PartyNames(_Index, _Name)
 //DB_LLNWIZ_Naming_ModWords(_Index, _Word)
 //DB_LLNWIZ_Naming_DialogVariables(_Shortname, _VariableName)
 //DB_LLNWIZ_Naming_WordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFlag)
@@ -39,9 +40,7 @@ LLNWIZ_Naming_Words_AddPlayerWord((STRING)_Word)
 AND
 NOT DB_LLNWIZ_Naming_PlayerWords(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Naming_PlayerWords", 2, _Count)
-AND
-IntegerSubtract(_Count, 1, _Index)
+SysCount("DB_LLNWIZ_Naming_PlayerWords", 2, _Index)
 THEN
 DB_LLNWIZ_Naming_PlayerWords(_Index, _Word);
 
@@ -50,11 +49,18 @@ LLNWIZ_Naming_Words_AddModWord((STRING)_Word)
 AND
 NOT DB_LLNWIZ_Naming_ModWords(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Naming_ModWords", 2, _Count)
-AND
-IntegerSubtract(_Count, 1, _Index)
+SysCount("DB_LLNWIZ_Naming_ModWords", 2, _Index)
 THEN
 DB_LLNWIZ_Naming_ModWords(_Index, _Word);
+
+PROC
+LLNWIZ_Naming_Words_AddPartyName((STRING)_Name)
+AND
+NOT DB_LLNWIZ_Naming_PartyNames(_, _Name)
+AND
+SysCount("DB_LLNWIZ_Naming_PartyNames", 2, _Index)
+THEN
+DB_LLNWIZ_Naming_PartyNames(_Index, _Name);
 
 PROC
 LLNWIZ_Naming_Words_InitializeSettings()
@@ -264,6 +270,29 @@ AND
 NOT DB_LLNWIZ_Naming_CurrentWordPage(_Player, _)
 THEN
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, 0);
+//END_REGION
+
+//REGION PARTY_NAMES
+/*
+PROC
+LLNWIZ_Naming_Words_GeneratePartyNames()
+THEN
+LLNWIZ_System_ClearExistingDatabase("LLNWIZ_Naming_Words_GeneratePartyNames", 2);
+*/
+
+PROC
+LLNWIZ_Naming_Words_GeneratePartyNames()
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterGetDisplayName(_Player, _Handle, _Name)
+THEN
+LLNWIZ_Naming_Words_AddPartyName(_Name);
+
+IF
+CharacterJoinedParty(_)
+THEN
+LLNWIZ_Naming_Words_GeneratePartyNames();
 //END_REGION
 
 //REGION PAGE_TURNING

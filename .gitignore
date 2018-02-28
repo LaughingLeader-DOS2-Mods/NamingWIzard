@@ -22,10 +22,17 @@ Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_head
 #Log files, etc
 *.log
 *.ailog
+log.txt
+dialoglog.txt
+errors.txt
+log.txt
 StatsEditorConfig.xml
 DockPanel.config
 EditorBrowserMetadata.*
 EffectEditorConfig.xml
+
+#Shaders
+*.shd
 
 #Assets
 *.gr2

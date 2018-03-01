@@ -3,6 +3,7 @@ INIT
 	INT:%TimerActive = 0
 EVENTS
 
+/*
 EVENT Failsafe_TimerStart
 ON
 	OnActivate()
@@ -33,3 +34,4 @@ IF "c1"
 THEN
 	StopTimer("LLNWIZ_NamingWizard_FailsafeTimer")
 ENDIF
+*/

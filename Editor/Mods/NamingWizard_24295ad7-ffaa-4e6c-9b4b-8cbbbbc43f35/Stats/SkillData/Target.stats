@@ -8,8 +8,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
         <field name="Ability" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="4" enumeration_type_name="SkillAbility" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
-        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="SkillProperties" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_RENAMING,100,-1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
         <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="18" />
         <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
@@ -17,15 +16,14 @@
         <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="TargetConditions" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Character" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Character;!Combat" />
         <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="Icon" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Item_WPN_Humans_Wand_1H_A" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Renameo Exacteo" />
-        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Tear apart the very fabric of reality to rename the target character." />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Activate the &lt;font color=&quot;#00FA9A&quot;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&quot;#DC143C&quot;&gt;Not usable on characters in combat.&lt;/font&gt;" />
         <field name="StatsDescription" type="TranslatedStringStatObjectFieldDefinition" clear_inherited_value="false" value="Range: [1]" />
-        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="TargetRadius" />
         <field name="FXScale" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="100" />
         <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_start" />
         <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="skill_prepare_weapon_01_loop" />
@@ -42,7 +40,7 @@
         <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
         <field name="Stealth" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
         <field name="AIFlags" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="AIFlags" />
-        <field name="CastEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Cast_Hand_01,detach:Dummy_L_HandFX:cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Cast_Hand_01:Dummy_L_HandFX:cast" />
         <field name="TargetEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Target_Impact_Root_01:Dummy_Root:cast" />
       </fields>
     </stat_object>

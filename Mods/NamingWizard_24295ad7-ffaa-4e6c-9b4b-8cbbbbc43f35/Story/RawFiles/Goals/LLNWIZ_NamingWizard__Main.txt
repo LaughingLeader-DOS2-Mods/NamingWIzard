@@ -1142,6 +1142,7 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_TextSaved")
 THEN
 LLNWIZ_Naming_ClearInstanceVariables(_Instance);
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingCancelled");
 
 IF
 DialogEnded(_Dialog, _Instance)
@@ -1152,7 +1153,7 @@ DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
 THEN
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingFinished");
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
 //END_REGION
 
 //REGION LIMIT_REACHED

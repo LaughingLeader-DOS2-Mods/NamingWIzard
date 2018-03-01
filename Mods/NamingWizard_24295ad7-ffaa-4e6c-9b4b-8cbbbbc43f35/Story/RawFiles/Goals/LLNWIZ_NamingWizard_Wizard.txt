@@ -1,16 +1,19 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+LLNWIZ_Wizard_InitializeSettings();
+
+//Variables
 //DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 //DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
 //DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
 //DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
 //DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player)
-//DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
 //DB_LLNWIZ_Wizard_LastGreeting(_Index)
 //DB_LLNWIZ_Temp_NextWizardGreeting(_Text)
 
-LLNWIZ_Wizard_InitializeSettings();
+//Settings
+//DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
 KBSECTION
 //REGION SETTINGS
 PROC
@@ -52,21 +55,6 @@ DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 THEN
 NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
 LLNWIZ_Wizard_DeleteWizard(_Wizard);
-
-PROC
-LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
-AND
-ObjectExists(_Wizard, 1)
-THEN
-SetOnStage(_Wizard, 0);
-CharacterDie(_Wizard, 0, "None");
-
-PROC
-LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
-AND
-DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
-THEN
-NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
 //END_REGION
 
 //REGION GREETING
@@ -170,15 +158,23 @@ LLNQIZ_Wizard_SetTarget((CHARACTERGUID)_Wizard, (CHARACTERGUID)_Target)
 THEN
 DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
 
-//Creation
+//REGION CREATION
+QRY
+LLNWIZ_QRY_Wizard_ValidWizardExists((CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+AND
+ObjectExists(_Wizard, 1)
+THEN
+DB_NOOP(1);
+
 QRY
 LLNWIZ_QRY_Wizard_CreateWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
 AND
-NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Player)
+NOT LLNWIZ_QRY_Wizard_ValidWizardExists(_Player)
 AND
 GetPosition(_Target, _x,_y,_z)
 AND
-//TemporaryCharacterCreateAtPosition(_x,_y,_z, "LLNWIZ_NamingWizard_923ec2b9-f8c0-4fd9-8647-5459f6780b5a", 0, _Wizard)
 TemporaryCharacterCreateOutOfSightToObject("LLNWIZ_NamingWizard_923ec2b9-f8c0-4fd9-8647-5459f6780b5a", _Target, _Player, 0, "", _Wizard)
 THEN
 ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_NotRogue");
@@ -188,6 +184,8 @@ TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 
 QRY
 LLNWIZ_QRY_Wizard_CreateWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+LLNWIZ_QRY_Wizard_ValidWizardExists(_Player)
 AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 AND
@@ -210,32 +208,15 @@ GetPosition(_Target, _x,_y,_z)
 THEN
 CharacterMoveToPosition(_Wizard, _x,_y,_z, 1, "LLNWIZ_Events_WizardArrived");
 //PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
+//END_REGION
 
-/*
+//REGION WIZARD_ARRIVED
 IF
 StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
 AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 AND
-DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
-AND
-PlayLoopEffect(_Target, "LLNWIZ_FX_NamingWIzard_Book_Root_01", "Dummy_OverheadFX", _Handle)
-AND
-GetUUID(_Wizard, _ID)
-AND
-StringConcatenate("LLNWIZ_Timers_Wizard_StartDelay_", _ID, _TimerName)
-THEN
-DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);
-CharacterLookAt(_Wizard, _Player);
-//LLNWIZ_PlayEffectAtTargetPosition(_Wizard, "LLNWIZ_FX_NamingWizard_Book_Teleport_01");
-DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
-TimerLaunch(_TimerName, 700);
-*/
-
-IF
-StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
-AND
-DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+NOT DB_LLNWIZ_Wizard_WizardStartTimer(_, _Wizard, _Player)
 AND
 DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
 AND
@@ -252,10 +233,11 @@ TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player)
 THEN
-NOT DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard);
+NOT DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
 LLNWIZ_Naming_OpenNamingWizard(_Player, _Wizard);
+//END_REGION
 
-//Menu Closed
+//REGION HIDE_WIZARD
 PROC
 LLNWIZ_Wizard_HideWizard((CHARACTERGUID)_Wizard)
 AND
@@ -284,6 +266,37 @@ RemoveStatus(_Target, "LLNWIZ_RENAMING");
 NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
 
 PROC
+LLNWIZ_Wizard_HideWizardByPlayer((CHARACTERGUID)_Target)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
+LLNWIZ_Wizard_HideWizard(_Wizard);
+
+PROC
+LLNWIZ_Wizard_HideWizardByPlayer((CHARACTERGUID)_Target)
+AND
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Target)
+THEN
+LLNWIZ_DebugLog("[Wizard:HideWizardByPlayer] Wizard does not exist for player!");
+
+PROC
+LLNWIZ_Wizard_HideWizardByTarget((CHARACTERGUID)_Target)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+THEN
+ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
+LLNWIZ_Wizard_HideWizard(_Wizard);
+
+PROC
+LLNWIZ_Wizard_HideWizardByTarget((CHARACTERGUID)_Target)
+AND
+NOT DB_LLNWIZ_Wizard_WizardTarget(_, _Target)
+THEN
+RemoveStatus(_Target, "LLNWIZ_RENAMING");
+LLNWIZ_DebugLog("[Wizard:HideWizardByTarget] Wizard does not exist for target!");
+
+PROC
 LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
@@ -293,6 +306,15 @@ THEN
 ObjectSetFlag(_Wizard, "LLNWIZ_Wizard_Hiding");
 LLNWIZ_Wizard_HideWizard(_Wizard);
 
+PROC
+LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Player)
+THEN
+LLNWIZ_DebugLog("[Wizard:HideWizardByInstance] Wizard does not exist for player!");
+
 IF
 TimerFinished(_TimerName)
 AND
@@ -301,8 +323,11 @@ THEN
 ObjectClearFlag(_Wizard, "LLNWIZ_Wizard_Disappearing");
 SetOnStage(_Wizard, 0);
 NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
+//END_REGION
 
 //REGION HIDE_EVENTS
+
+
 IF
 DialogEnded(_Dialog, _Instance)
 AND
@@ -327,7 +352,58 @@ LLNWIZ_DebugLog("[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.
 
 //END_REGION
 
-//REGION STATUS_CLEANUP
+//REGION CLEANUP
+PROC
+LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target)
+THEN
+NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
+
+PROC
+LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
+THEN
+StopLoopEffect(_Handle);
+NOT DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);
+
+PROC
+LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard)
+THEN
+TimerCancel(_TimerName);
+NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
+
+PROC
+LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player)
+THEN
+TimerCancel(_TimerName);
+NOT DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
+
+PROC
+LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+THEN
+NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player);
+
+PROC
+LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
+AND
+ObjectExists(_Wizard, 1)
+THEN
+SetOnStage(_Wizard, 0);
+CharacterDie(_Wizard, 0, "None", _Wizard);
+
+PROC
+LLNWIZ_Wizard_DeleteWizard((CHARACTERGUID)_Wizard)
+THEN
+LLNWIZ_Wizard_ClearVariables(_Wizard);
+
 QRY
 LLNWIZ_QRY_Wizard_CleanupStatus((CHARACTERGUID)_Target)
 THEN
@@ -342,6 +418,9 @@ HasActiveStatus(_Target, "LLNWIZ_RENAMING", 1)
 THEN
 RemoveStatus(_Target, "LLNWIZ_RENAMING");
 
+//END_REGION
+
+//REGION CLEANUP_EVENTS
 IF
 CharacterSawCharacter(_Char1, _Char2)
 AND
@@ -350,6 +429,24 @@ AND
 LLNWIZ_QRY_Wizard_CleanupStatus(_Char2)
 THEN
 DB_NOOP(1);
+
+/*
+HasActiveStatus(_Target, "LLNWIZ_RENAMING", 1)
+AND
+NOT DB_LLNWIZ_Wizard_WizardTarget(_, _Target)
+THEN
+RemoveStatus(_Target, "LLNWIZ_RENAMING");
+*/
+
+IF
+GameStarted(_,_)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+AND
+ObjectExists(_Wizard, 0)
+THEN
+LLNWIZ_Wizard_DeleteWizard(_Wizard);
+LLNWIZ_DebugLog("[Wizard] Pruned old wizards.");
 //END_REGION
 
 //REGION ROGUE_WIZARDS

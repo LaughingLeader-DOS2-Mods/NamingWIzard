@@ -4,7 +4,7 @@ INITSECTION
 //Open Wizard
 //StoryEvent: LLNWIZ_Events_OpenNamingWizard
 //StoryEvent: LLNWIZ_Events_OpenNamingWizard_PlayerOnly
-//StoryEvent: LLNWIZ_Events_NamingFinished
+//StoryEvent: LLNWIZ_Events_NamingComplete
 //StoryEvent: LLNWIZ_Events_NamingWizardOpened - Dialog Opened
 //Inital text var on player: LLNWIZ_InitialText
 //Text after finishing: LLNWIZ_FinalText

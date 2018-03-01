@@ -1,0 +1,17 @@
+INIT
+
+EVENTS
+
+EVENT LogMorale
+VARS
+	CHARACTER:_Character
+	FIXEDSTRING:_LogText
+ON
+	OnCharacterEvent(_Character, "LLNWIZ_Events_PlayerDebugCombatLog")
+ACTIONS
+IF "c1"
+	GetVar(_LogText, _Character, "LLNWIZ_Debug_CombatLogText")
+THEN
+	DisplayCombatInfoText(_Character, _LogText, 0)
+	DisplayText(_Character, "", 0)
+ENDIF

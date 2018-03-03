@@ -2,6 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Words_InitializeSettings();
+LLNWIZ_Words_InitializeWords(); // Only run on first load.
 //Settings
 //DB_LLNWIZ_Words_Common(_Index, _Word)
 //DB_LLNWIZ_Words_Name(_Index, _Name)
@@ -80,9 +81,10 @@ DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word);
 
 //REGION SETTINGS_WORDS
 PROC
-LLNWIZ_Words_InitializeSettings()
+LLNWIZ_Words_InitializeWords()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_Common", 2);
+ // Don't clear this since it may have been modified by a mod.
+//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_Common", 2);
 LLNWIZ_Words_AddWord("Aerothurge");
 LLNWIZ_Words_AddWord("Air");
 LLNWIZ_Words_AddWord("AoE");
@@ -180,8 +182,14 @@ LLNWIZ_Words_AddName("Ifan Ben-Mezd");
 LLNWIZ_Words_AddName("Lohse");
 LLNWIZ_Words_AddName("Sebille");
 LLNWIZ_Words_AddName("The Red Prince");
+
 LLNWIZ_Words_AddModWord("NamingWizard");
-LLNWIZ_Words_AddModWord("LaughingLeader");
+
+PROC
+LLNWIZ_Words_UpdateWords()
+THEN
+//For future word adding.
+DB_NOOP(1);
 //END_REGION
 
 //REGION SETTINGS
@@ -218,6 +226,7 @@ PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
 LLNWIZ_Words_InitializeSettings();
+LLNWIZ_Words_UpdateWords();
 
 PROC
 LLNWIZ_System_ClearDatabases()
@@ -656,7 +665,7 @@ LLNWIZ_Words_SetLastWord(_Player, _Word, _Instance);
 IF
 ObjectFlagSet("LLNWIZ_Naming_SaveAsWord", (CHARACTERGUID)_Player, _Instance)
 AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveAsWord")
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
@@ -664,17 +673,26 @@ NOT DB_LLNWIZ_Words_PlayerSaved(_, _Text)
 THEN
 LLNWIZ_Words_AddPlayerWord(_Text);
 LLNWIZ_Print(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Player-Saved Words</font>");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_SaveAsWord", (CHARACTERGUID)_Player, _Instance)
 AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveAsWord")
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
 DB_LLNWIZ_Words_PlayerSaved(_Index, _Text)
 THEN
 LLNWIZ_Print(_Player, "<font color='#F08080'>Word '",_Text,"' already saved to Player-Saved Words</font>");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SaveAsWord", (CHARACTERGUID)_Player, _Instance)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_ClearedSavedWords", (CHARACTERGUID)_Player, _Instance)

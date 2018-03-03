@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1519571183" />
+    <header version="2" time="1520118088" />
     <version major="3" minor="1" revision="6" build="0" />
     <region id="DialogVariables">
         <node id="root">
@@ -55,8 +55,8 @@
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
-                    <attribute id="DefaultValue" value="The name of the targeted character." type="23" />
-                    <attribute id="Description" value="" type="23" />
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="The name of the targeted character." type="23" />
                     <attribute id="UUID" value="36de6db5-815a-42c3-a8c9-6fe7c0ff1b35" type="31" />
                     <attribute id="name" value="LLNWIZ_Naming_TargetName" type="22" />
                     <attribute id="type" value="String" type="23" />

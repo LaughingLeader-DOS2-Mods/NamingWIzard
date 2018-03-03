@@ -32,21 +32,30 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_LastGreeting", 1);
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_RandomGreeting", 2);
 LLNWIZ_Wizard_AddGreeting("Welcome. What shall we name today?");
 LLNWIZ_Wizard_AddGreeting("Beep, boop. I am the Naming Wizard. How may I serv-o you today?");
-LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. Can you imagine?");
+LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. Hah! Can you imagine?");
 LLNWIZ_Wizard_AddGreeting("Nameo Whocareseo. Whaddya want?");
 LLNWIZ_Wizard_AddGreeting("Renameo Exacteo. Your wish is my command.");
 LLNWIZ_Wizard_AddGreeting("Namelolocus Renamicus. Your wish is my command.");
 LLNWIZ_Wizard_AddGreeting("Names are power. Let's get crackin'.");
-
-PROC
-LLNWIZ_System_ClearDatabases()
-THEN
-SysClear("DB_LLNWIZ_Temp_NextWizardGreeting", 1);
+LLNWIZ_Wizard_AddGreeting("Beeeep. This is the Naming Wizard. Press 1 to continue.");
+LLNWIZ_Wizard_AddGreeting("Where words fail, music speaks. Unfortunately, words are all I have!");
 
 PROC
 LLNWIZ_System_ClearDatabases()
 THEN
 LLNWIZ_Wizard_DeleteAllWizards();
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_Temp_NextWizardGreeting", 1);
+SysClear("DB_LLNWIZ_Wizard_CreatedWizard", 2);
+SysClear("DB_LLNWIZ_Wizard_WizardTarget", 2);
+SysClear("DB_LLNWIZ_Wizard_WizardFX", 2);
+SysClear("DB_LLNWIZ_Wizard_WizardDisappearTimer", 2);
+SysClear("DB_LLNWIZ_Wizard_WizardStartTimer", 3);
+SysClear("DB_LLNWIZ_Wizard_LastGreeting", 1);
+SysClear("DB_LLNWIZ_Wizard_RandomGreeting", 2);
 
 PROC
 LLNWIZ_Wizard_DeleteAllWizards()
@@ -329,7 +338,8 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Player)
 THEN
-LLNWIZ_DebugLog("[Wizard:HideWizardByInstance] Wizard does not exist for player!");
+//LLNWIZ_DebugLog("[Wizard:HideWizardByInstance] Wizard does not exist for player. Skipping.");
+DB_NOOP(1);
 
 IF
 TimerFinished(_TimerName)

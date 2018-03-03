@@ -111,12 +111,32 @@ StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
 THEN
 LLNWIZ_ModInteraction_SetInitialText(_Player);
 LLNWIZ_Naming_OpenNamingWizard(_Player);
+//END_REGION
 
+//REGION RENAMING_NO_WAND
 IF
 CharacterCharacterEvent((CHARACTERGUID)_Player, (CHARACTERGUID)_Target, "LLNWIZ_Events_RenameCharacter")
 THEN
+ApplyStatus(_Target, "LLNWIZ_RENAMING", -1.0, 1, _Player);
 DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
 LLWIZ_Wizard_Start(_Player, _Target);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+LLNWIZ_Naming_RenameCharacter(_Player, _Target);
+LLNWIZ_Naming_ClearSavedVariables(_Player);
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCanceled")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+LLNWIZ_Naming_ClearSavedVariables(_Player);
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
 //END_REGION
 
 //REGION EVENTS_SEND
@@ -150,9 +170,9 @@ DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 0)
 AND
-ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 0)
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CanceledSaving", 0)
 THEN
-ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
 
 IF
 DialogEnded(_Dialog, _Instance)
@@ -161,24 +181,9 @@ DB_LLNWIZ_MenuDialog(_Dialog)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND
-ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 1)
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CanceledSaving", 1)
 THEN
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingCancelled");
-
-IF
-StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
-AND
-DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
-THEN
-LLNWIZ_Naming_RenameCharacter(_Player, _Target);
-NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
-
-IF
-StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCancelled")
-AND
-DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
-THEN
-NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
 //END_REGION
 EXITSECTION
 

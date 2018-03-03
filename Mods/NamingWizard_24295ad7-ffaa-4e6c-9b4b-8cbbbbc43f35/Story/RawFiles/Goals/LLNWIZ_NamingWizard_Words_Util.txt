@@ -1,6 +1,8 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+//DB_LLNWIZ_Words_ReplacedWords(_Category, _OldWord, _NewWord);
+//DB_LLNWIZ_Words_RemovedWords(_Category, _Word);
 //DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
 
 //DB_LLNWIZ_Words_Common(_Index, _Word)			"Common"
@@ -19,6 +21,8 @@ PROC
 LLNWIZ_System_ClearDatabases()
 THEN
 SysClear("DB_LLNWIZ_Temp_IndexRebuilding", 4);
+SysClear("DB_LLNWIZ_Words_ReplacedWords", 3);
+SysClear("DB_LLNWIZ_Words_RemovedWords", 2);
 LLNWIZ_DebugLog("[Words_Utils] Databases cleared.");
 //END_REGION
 
@@ -57,6 +61,7 @@ AND
 DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
 THEN
 LLNWIZ_Words_RemoveFromDatabase(_Database, _Word, _Category);
+DB_LLNWIZ_Words_RemovedWords(_Category, _Word);
 
 PROC
 LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Common", (STRING)_Word, (STRING)_Category)
@@ -253,6 +258,13 @@ DB_LLNWIZ_Words_Mod(_Index, _Word)
 THEN
 NOT DB_LLNWIZ_Words_Mod(_Index, _Word);
 DB_LLNWIZ_Words_Mod(_Index, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceWord((STRING)_Category, (STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Words_CategoryToDatabase(_Category,_,_)
+THEN
+DB_LLNWIZ_Words_ReplacedWords(_Category, _Word, _NewWord);
 
 PROC
 LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)

@@ -8,6 +8,7 @@ LLNWIZ_NamingWand_InitializeSettings();
 //DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 //DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 KBSECTION
+//REGION Settings
 PROC
 LLNWIZ_NamingWand_InitializeSettings()
 THEN
@@ -16,6 +17,13 @@ DB_LLNWIZ_NamingWand_Skills("Target_LLNWIZ_Rename");
 
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NamingWand_TimerDelay", 2);
 DB_LLNWIZ_NamingWand_TimerDelay(3000, 700);
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_NamingWand_Skills", 1);
+SysClear("DB_LLNWIZ_NamingWand_TimerDelay", 2);
+//END_REGION
 
 PROC
 LLNWIZ_NamingWand_ClearPreviousTargets((CHARACTERGUID)_Player)
@@ -85,7 +93,7 @@ LLNWIZ_Naming_RenameCharacter(_Player, _Target);
 NOT DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
 
 IF
-StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCancelled")
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCanceled")
 THEN
 LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
 EXITSECTION

@@ -44,7 +44,23 @@ LLNWIZ_System_ClearDatabases()
 THEN
 LLNWIZ_DebugLog("[Updater] Databases cleared.");
 //END_REGION
-EXITSECTION
 
+//REGION UNINSTALLING
+PROC
+LLNWIZ_Updater_UnregisterMod()
+AND
+DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader")
+THEN
+NOT DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader");
+
+PROC
+LLNWIZ_Updater_UninstallMod()
+THEN
+LLNWIZ_DebugLog("[Updater] Uninstalling mod.");
+LLNWIZ_System_ClearDatabases();
+LLNWIZ_Updater_UnregisterMod();
+//END_REGION
+EXITSECTION
+LLNWIZ_Updater_UnregisterMod();
 ENDEXITSECTION
 ParentTargetEdge "LaughingLeader_NamingWizard"

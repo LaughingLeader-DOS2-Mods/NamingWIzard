@@ -6,10 +6,10 @@ INITSECTION
 //DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
 //DB_LLNWIZ_ModBridge_RegisterWord("Mod", _Word)
 
-//DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
-//DB_LLNWIZ_Naming_CharacterNames(_Index, _Name)
-//DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
-//DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+//DB_LLNWIZ_Words_Common(_Index, _Word)
+//DB_LLNWIZ_Words_Name(_Index, _Name)
+//DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+//DB_LLNWIZ_Words_Mod(_Index, _Word)
 KBSECTION
 PROC
 LLNWIZ_ModInteraction_SetInitialText((CHARACTERGUID)_Player)
@@ -23,22 +23,22 @@ LLNWIZ_Naming_SetInitialText(_InitialText, _Player);
 IF
 DB_LLNWIZ_ModBridge_RegisterWord("Common", (STRING)_Word)
 THEN
-LLNWIZ_Naming_Words_AddWord(_Word);
+LLNWIZ_Words_AddWord(_Word);
 
 IF
 DB_LLNWIZ_ModBridge_RegisterWord("Mod", (STRING)_Word)
 THEN
-LLNWIZ_Naming_Words_AddModWord(_Word);
+LLNWIZ_Words_AddModWord(_Word);
 
 IF
 DB_LLNWIZ_ModBridge_RegisterWord("Player", (STRING)_Word)
 THEN
-LLNWIZ_Naming_Words_AddPlayerWord(_Word);
+LLNWIZ_Words_AddPlayerWord(_Word);
 
 IF
 DB_LLNWIZ_ModBridge_RegisterWord("Name", (STRING)_Word)
 THEN
-LLNWIZ_Naming_Words_AddName(_Word);
+LLNWIZ_Words_AddName(_Word);
 
 IF
 DB_LLNWIZ_ModBridge_RegisterWord((STRING)_Category, (STRING)_Word)

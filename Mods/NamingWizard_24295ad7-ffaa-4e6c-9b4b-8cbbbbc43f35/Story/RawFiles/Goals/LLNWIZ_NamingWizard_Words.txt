@@ -1,12 +1,12 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LLNWIZ_Naming_Words_InitializeSettings();
+LLNWIZ_Words_InitializeSettings();
 //Settings
-//DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
-//DB_LLNWIZ_Naming_CharacterNames(_Index, _Name)
-//DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
-//DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+//DB_LLNWIZ_Words_Common(_Index, _Word)
+//DB_LLNWIZ_Words_Name(_Index, _Name)
+//DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+//DB_LLNWIZ_Words_Mod(_Index, _Word)
 //DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
 
 //DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word)
@@ -26,50 +26,50 @@ LLNWIZ_Naming_Words_InitializeSettings();
 KBSECTION
 //REGION WORD_ADDING
 PROC
-LLNWIZ_Naming_Words_AddWord((STRING)_Word)
+LLNWIZ_Words_AddWord((STRING)_Word)
 AND
-NOT DB_LLNWIZ_Naming_CommonWords(_,_)
+NOT DB_LLNWIZ_Words_Common(_,_)
 THEN
-DB_LLNWIZ_Naming_CommonWords(0, _Word);
+DB_LLNWIZ_Words_Common(0, _Word);
 
 PROC
-LLNWIZ_Naming_Words_AddWord((STRING)_Word)
+LLNWIZ_Words_AddWord((STRING)_Word)
 AND
-NOT DB_LLNWIZ_Naming_CommonWords(_,_Word)
+NOT DB_LLNWIZ_Words_Common(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Naming_CommonWords", 2, _Index)
+SysCount("DB_LLNWIZ_Words_Common", 2, _Index)
 THEN
-DB_LLNWIZ_Naming_CommonWords(_Index, _Word);
+DB_LLNWIZ_Words_Common(_Index, _Word);
 
 PROC
-LLNWIZ_Naming_Words_AddPlayerWord((STRING)_Word)
+LLNWIZ_Words_AddPlayerWord((STRING)_Word)
 AND
-NOT DB_LLNWIZ_Naming_PlayerWords(_,_Word)
+NOT DB_LLNWIZ_Words_PlayerSaved(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Naming_PlayerWords", 2, _Index)
+SysCount("DB_LLNWIZ_Words_PlayerSaved", 2, _Index)
 THEN
-DB_LLNWIZ_Naming_PlayerWords(_Index, _Word);
+DB_LLNWIZ_Words_PlayerSaved(_Index, _Word);
 
 PROC
-LLNWIZ_Naming_Words_AddModWord((STRING)_Word)
+LLNWIZ_Words_AddModWord((STRING)_Word)
 AND
-NOT DB_LLNWIZ_Naming_ModWords(_,_Word)
+NOT DB_LLNWIZ_Words_Mod(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Naming_ModWords", 2, _Index)
+SysCount("DB_LLNWIZ_Words_Mod", 2, _Index)
 THEN
-DB_LLNWIZ_Naming_ModWords(_Index, _Word);
+DB_LLNWIZ_Words_Mod(_Index, _Word);
 
 PROC
-LLNWIZ_Naming_Words_AddName((STRING)_Name)
+LLNWIZ_Words_AddName((STRING)_Name)
 AND
-NOT DB_LLNWIZ_Naming_CharacterNames(_, _Name)
+NOT DB_LLNWIZ_Words_Name(_, _Name)
 AND
-SysCount("DB_LLNWIZ_Naming_CharacterNames", 2, _Index)
+SysCount("DB_LLNWIZ_Words_Name", 2, _Index)
 THEN
-DB_LLNWIZ_Naming_CharacterNames(_Index, _Name);
+DB_LLNWIZ_Words_Name(_Index, _Name);
 
 PROC
-LLNWIZ_Naming_Words_AddDisplayedWord((STRING)_Word)
+LLNWIZ_Words_AddDisplayedWord((STRING)_Word)
 AND
 NOT DB_LLNWIZ_Naming_DisplayedWords(_,_Word)
 AND
@@ -80,113 +80,113 @@ DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word);
 
 //REGION SETTINGS_WORDS
 PROC
-LLNWIZ_Naming_Words_InitializeSettings()
+LLNWIZ_Words_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_CommonWords", 2);
-LLNWIZ_Naming_Words_AddWord("Aerothurge");
-LLNWIZ_Naming_Words_AddWord("Air");
-LLNWIZ_Naming_Words_AddWord("AoE");
-LLNWIZ_Naming_Words_AddWord("Armor");
-LLNWIZ_Naming_Words_AddWord("Axe");
-LLNWIZ_Naming_Words_AddWord("Barter");
-LLNWIZ_Naming_Words_AddWord("Battle");
-LLNWIZ_Naming_Words_AddWord("Beast");
-LLNWIZ_Naming_Words_AddWord("Bow");
-LLNWIZ_Naming_Words_AddWord("Charisma");
-LLNWIZ_Naming_Words_AddWord("Class");
-LLNWIZ_Naming_Words_AddWord("Cloth");
-LLNWIZ_Naming_Words_AddWord("Combat");
-LLNWIZ_Naming_Words_AddWord("Common");
-LLNWIZ_Naming_Words_AddWord("Crafting");
-LLNWIZ_Naming_Words_AddWord("Crossbow");
-LLNWIZ_Naming_Words_AddWord("Custom");
-LLNWIZ_Naming_Words_AddWord("DPS");
-LLNWIZ_Naming_Words_AddWord("DualWielding");
-LLNWIZ_Naming_Words_AddWord("Dwarven");
-LLNWIZ_Naming_Words_AddWord("Earth");
-LLNWIZ_Naming_Words_AddWord("Elven");
-LLNWIZ_Naming_Words_AddWord("Epic");
-LLNWIZ_Naming_Words_AddWord("Fane");
-LLNWIZ_Naming_Words_AddWord("Fire");
-LLNWIZ_Naming_Words_AddWord("Geomancer");
-LLNWIZ_Naming_Words_AddWord("Glass Cannon");
-LLNWIZ_Naming_Words_AddWord("Healer");
-LLNWIZ_Naming_Words_AddWord("Human");
-LLNWIZ_Naming_Words_AddWord("Huntsman");
-LLNWIZ_Naming_Words_AddWord("Hydrosophist");
-LLNWIZ_Naming_Words_AddWord("Ifan");
-LLNWIZ_Naming_Words_AddWord("Junk");
-LLNWIZ_Naming_Words_AddWord("Knight");
-LLNWIZ_Naming_Words_AddWord("Leader");
-LLNWIZ_Naming_Words_AddWord("Leadership");
-LLNWIZ_Naming_Words_AddWord("Leather");
-LLNWIZ_Naming_Words_AddWord("Legendary");
-LLNWIZ_Naming_Words_AddWord("Lifesteal");
-LLNWIZ_Naming_Words_AddWord("Lizard");
-LLNWIZ_Naming_Words_AddWord("Lockpicking");
-LLNWIZ_Naming_Words_AddWord("Lohse");
-LLNWIZ_Naming_Words_AddWord("Lone Wolf");
-LLNWIZ_Naming_Words_AddWord("Loremaster");
-LLNWIZ_Naming_Words_AddWord("Luck");
-LLNWIZ_Naming_Words_AddWord("Mace");
-LLNWIZ_Naming_Words_AddWord("Mage");
-LLNWIZ_Naming_Words_AddWord("Magic");
-LLNWIZ_Naming_Words_AddWord("Metal");
-LLNWIZ_Naming_Words_AddWord("Mod");
-LLNWIZ_Naming_Words_AddWord("Necromancy");
-LLNWIZ_Naming_Words_AddWord("Paladin");
-LLNWIZ_Naming_Words_AddWord("Perseverance");
-LLNWIZ_Naming_Words_AddWord("Persuasion");
-LLNWIZ_Naming_Words_AddWord("Physical");
-LLNWIZ_Naming_Words_AddWord("Pickpocket");
-LLNWIZ_Naming_Words_AddWord("Polymorph");
-LLNWIZ_Naming_Words_AddWord("Priest");
-LLNWIZ_Naming_Words_AddWord("Pyrokinetic");
-LLNWIZ_Naming_Words_AddWord("Ranged");
-LLNWIZ_Naming_Words_AddWord("Ranger");
-LLNWIZ_Naming_Words_AddWord("Rare");
-LLNWIZ_Naming_Words_AddWord("Retribution");
-LLNWIZ_Naming_Words_AddWord("Rogue");
-LLNWIZ_Naming_Words_AddWord("Rune");
-LLNWIZ_Naming_Words_AddWord("Running");
-LLNWIZ_Naming_Words_AddWord("Scoundrel");
-LLNWIZ_Naming_Words_AddWord("Sebille");
-LLNWIZ_Naming_Words_AddWord("Shield");
-LLNWIZ_Naming_Words_AddWord("SingleHanded");
-LLNWIZ_Naming_Words_AddWord("Sneaking");
-LLNWIZ_Naming_Words_AddWord("Source");
-LLNWIZ_Naming_Words_AddWord("Spear");
-LLNWIZ_Naming_Words_AddWord("Speed");
-LLNWIZ_Naming_Words_AddWord("Staff");
-LLNWIZ_Naming_Words_AddWord("Stealth");
-LLNWIZ_Naming_Words_AddWord("Summoning");
-LLNWIZ_Naming_Words_AddWord("Sword");
-LLNWIZ_Naming_Words_AddWord("Tank");
-LLNWIZ_Naming_Words_AddWord("Telekinesis");
-LLNWIZ_Naming_Words_AddWord("Thievery");
-LLNWIZ_Naming_Words_AddWord("Town");
-LLNWIZ_Naming_Words_AddWord("TwoHanded");
-LLNWIZ_Naming_Words_AddWord("Uncommon");
-LLNWIZ_Naming_Words_AddWord("Undead");
-LLNWIZ_Naming_Words_AddWord("Unique");
-LLNWIZ_Naming_Words_AddWord("Vitality");
-LLNWIZ_Naming_Words_AddWord("Wand");
-LLNWIZ_Naming_Words_AddWord("Warfare");
-LLNWIZ_Naming_Words_AddWord("Water");
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_Common", 2);
+LLNWIZ_Words_AddWord("Aerothurge");
+LLNWIZ_Words_AddWord("Air");
+LLNWIZ_Words_AddWord("AoE");
+LLNWIZ_Words_AddWord("Armor");
+LLNWIZ_Words_AddWord("Axe");
+LLNWIZ_Words_AddWord("Barter");
+LLNWIZ_Words_AddWord("Battle");
+LLNWIZ_Words_AddWord("Beast");
+LLNWIZ_Words_AddWord("Bow");
+LLNWIZ_Words_AddWord("Charisma");
+LLNWIZ_Words_AddWord("Class");
+LLNWIZ_Words_AddWord("Cloth");
+LLNWIZ_Words_AddWord("Combat");
+LLNWIZ_Words_AddWord("Common");
+LLNWIZ_Words_AddWord("Crafting");
+LLNWIZ_Words_AddWord("Crossbow");
+LLNWIZ_Words_AddWord("Custom");
+LLNWIZ_Words_AddWord("DPS");
+LLNWIZ_Words_AddWord("DualWielding");
+LLNWIZ_Words_AddWord("Dwarven");
+LLNWIZ_Words_AddWord("Earth");
+LLNWIZ_Words_AddWord("Elven");
+LLNWIZ_Words_AddWord("Epic");
+LLNWIZ_Words_AddWord("Fane");
+LLNWIZ_Words_AddWord("Fire");
+LLNWIZ_Words_AddWord("Geomancer");
+LLNWIZ_Words_AddWord("Glass Cannon");
+LLNWIZ_Words_AddWord("Healer");
+LLNWIZ_Words_AddWord("Human");
+LLNWIZ_Words_AddWord("Huntsman");
+LLNWIZ_Words_AddWord("Hydrosophist");
+LLNWIZ_Words_AddWord("Ifan");
+LLNWIZ_Words_AddWord("Junk");
+LLNWIZ_Words_AddWord("Knight");
+LLNWIZ_Words_AddWord("Leader");
+LLNWIZ_Words_AddWord("Leadership");
+LLNWIZ_Words_AddWord("Leather");
+LLNWIZ_Words_AddWord("Legendary");
+LLNWIZ_Words_AddWord("Lifesteal");
+LLNWIZ_Words_AddWord("Lizard");
+LLNWIZ_Words_AddWord("Lockpicking");
+LLNWIZ_Words_AddWord("Lohse");
+LLNWIZ_Words_AddWord("Lone Wolf");
+LLNWIZ_Words_AddWord("Loremaster");
+LLNWIZ_Words_AddWord("Luck");
+LLNWIZ_Words_AddWord("Mace");
+LLNWIZ_Words_AddWord("Mage");
+LLNWIZ_Words_AddWord("Magic");
+LLNWIZ_Words_AddWord("Metal");
+LLNWIZ_Words_AddWord("Mod");
+LLNWIZ_Words_AddWord("Necromancy");
+LLNWIZ_Words_AddWord("Paladin");
+LLNWIZ_Words_AddWord("Perseverance");
+LLNWIZ_Words_AddWord("Persuasion");
+LLNWIZ_Words_AddWord("Physical");
+LLNWIZ_Words_AddWord("Pickpocket");
+LLNWIZ_Words_AddWord("Polymorph");
+LLNWIZ_Words_AddWord("Priest");
+LLNWIZ_Words_AddWord("Pyrokinetic");
+LLNWIZ_Words_AddWord("Ranged");
+LLNWIZ_Words_AddWord("Ranger");
+LLNWIZ_Words_AddWord("Rare");
+LLNWIZ_Words_AddWord("Retribution");
+LLNWIZ_Words_AddWord("Rogue");
+LLNWIZ_Words_AddWord("Rune");
+LLNWIZ_Words_AddWord("Running");
+LLNWIZ_Words_AddWord("Scoundrel");
+LLNWIZ_Words_AddWord("Sebille");
+LLNWIZ_Words_AddWord("Shield");
+LLNWIZ_Words_AddWord("SingleHanded");
+LLNWIZ_Words_AddWord("Sneaking");
+LLNWIZ_Words_AddWord("Source");
+LLNWIZ_Words_AddWord("Spear");
+LLNWIZ_Words_AddWord("Speed");
+LLNWIZ_Words_AddWord("Staff");
+LLNWIZ_Words_AddWord("Stealth");
+LLNWIZ_Words_AddWord("Summoning");
+LLNWIZ_Words_AddWord("Sword");
+LLNWIZ_Words_AddWord("Tank");
+LLNWIZ_Words_AddWord("Telekinesis");
+LLNWIZ_Words_AddWord("Thievery");
+LLNWIZ_Words_AddWord("Town");
+LLNWIZ_Words_AddWord("TwoHanded");
+LLNWIZ_Words_AddWord("Uncommon");
+LLNWIZ_Words_AddWord("Undead");
+LLNWIZ_Words_AddWord("Unique");
+LLNWIZ_Words_AddWord("Vitality");
+LLNWIZ_Words_AddWord("Wand");
+LLNWIZ_Words_AddWord("Warfare");
+LLNWIZ_Words_AddWord("Water");
 
-LLNWIZ_Naming_Words_AddName("Beast");
-LLNWIZ_Naming_Words_AddName("Fane");
-LLNWIZ_Naming_Words_AddName("Ifan Ben-Mezd");
-LLNWIZ_Naming_Words_AddName("Lohse");
-LLNWIZ_Naming_Words_AddName("Sebille");
-LLNWIZ_Naming_Words_AddName("The Red Prince");
-LLNWIZ_Naming_Words_AddModWord("NamingWizard");
-LLNWIZ_Naming_Words_AddModWord("LaughingLeader");
+LLNWIZ_Words_AddName("Beast");
+LLNWIZ_Words_AddName("Fane");
+LLNWIZ_Words_AddName("Ifan Ben-Mezd");
+LLNWIZ_Words_AddName("Lohse");
+LLNWIZ_Words_AddName("Sebille");
+LLNWIZ_Words_AddName("The Red Prince");
+LLNWIZ_Words_AddModWord("NamingWizard");
+LLNWIZ_Words_AddModWord("LaughingLeader");
 //END_REGION
 
 //REGION SETTINGS
 PROC
-LLNWIZ_Naming_Words_InitializeSettings()
+LLNWIZ_Words_InitializeSettings()
 THEN
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_WordPageSettings", 1);
 DB_LLNWIZ_Naming_WordPageSettings(9);
@@ -203,26 +203,26 @@ DB_LLNWIZ_Naming_WordVariables(7, "LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9
 DB_LLNWIZ_Naming_WordVariables(8, "LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-eee79b9ca96d", "LLNWIZ_Naming_SelectedWord9", "LLNWIZ_Naming_Word9Empty");
 
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_WordPageFlags", 4);
-DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Common", "LLNWIZ_WordsMenu_Common_IsEnabled", "DB_LLNWIZ_Naming_CommonWords", 2);
-DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Custom", "LLNWIZ_WordsMenu_Custom_IsEnabled", "DB_LLNWIZ_Naming_PlayerWords", 2);
-DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Names", "LLNWIZ_WordsMenu_Names_IsEnabled", "DB_LLNWIZ_Naming_CharacterNames", 2);
-DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Mods", "LLNWIZ_WordsMenu_Mods_IsEnabled", "DB_LLNWIZ_Naming_ModWords", 2);
+DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Common", "LLNWIZ_WordsMenu_Common_IsEnabled", "DB_LLNWIZ_Words_Common", 2);
+DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Custom", "LLNWIZ_WordsMenu_Custom_IsEnabled", "DB_LLNWIZ_Words_PlayerSaved", 2);
+DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Names", "LLNWIZ_WordsMenu_Names_IsEnabled", "DB_LLNWIZ_Words_Name", 2);
+DB_LLNWIZ_Naming_WordPageFlags("LLNWIZ_WordsMenu_Mods", "LLNWIZ_WordsMenu_Mods_IsEnabled", "DB_LLNWIZ_Words_Mod", 2);
 
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_CategoryToDatabase", 3);
-DB_LLNWIZ_Words_CategoryToDatabase("Common", "DB_LLNWIZ_Naming_CommonWords", 2);
-DB_LLNWIZ_Words_CategoryToDatabase("Name", "DB_LLNWIZ_Naming_CharacterNames", 2);
-DB_LLNWIZ_Words_CategoryToDatabase("Player", "DB_LLNWIZ_Naming_PlayerWords", 2);
-DB_LLNWIZ_Words_CategoryToDatabase("Mod", "DB_LLNWIZ_Naming_ModWords", 2);
+DB_LLNWIZ_Words_CategoryToDatabase("Common", "DB_LLNWIZ_Words_Common", 2);
+DB_LLNWIZ_Words_CategoryToDatabase("Name", "DB_LLNWIZ_Words_Name", 2);
+DB_LLNWIZ_Words_CategoryToDatabase("Player", "DB_LLNWIZ_Words_PlayerSaved", 2);
+DB_LLNWIZ_Words_CategoryToDatabase("Mod", "DB_LLNWIZ_Words_Mod", 2);
 
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
-LLNWIZ_Naming_Words_InitializeSettings();
+LLNWIZ_Words_InitializeSettings();
 
 PROC
 LLNWIZ_System_ClearDatabases()
 THEN
-SysClear("DB_LLNWIZ_Naming_CommonWords", 2);
+SysClear("DB_LLNWIZ_Words_Common", 2);
 SysClear("DB_LLNWIZ_Naming_WordVariables", 4);
 SysClear("DB_LLNWIZ_Naming_WordPageSettings", 1);
 SysClear("DB_LLNWIZ_Naming_MaxWordPage", 3);
@@ -235,12 +235,12 @@ LLNWIZ_DebugLog("[Naming_Words] Databases cleared.");
 
 //REGION VARIABLE_INITIALIZATION
 PROC
-LLNWIZ_Naming_Words_CalculateMaxPage()
+LLNWIZ_Words_CalculateMaxPage()
 THEN
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_MaxWordPage", 3);
 
 PROC
-LLNWIZ_Naming_Words_CalculateMaxPage()
+LLNWIZ_Words_CalculateMaxPage()
 AND
 SysCount("DB_LLNWIZ_Naming_DisplayedWords", 2, _TotalWords)
 AND
@@ -283,39 +283,39 @@ THEN
 LLNWIZ_DebugLog(_Str6);
 
 PROC
-LLNWIZ_Naming_Words_CalculateMaxPage()
+LLNWIZ_Words_CalculateMaxPage()
 THEN
 LLNWIZ_System_Debug_DatabaseCount("DB_LLNWIZ_Naming_DisplayedWords", 2);
 LLNWIZ_System_Debug_DatabaseCount("DB_LLNWIZ_Naming_WordVariables", 4);
 */
 
 PROC
-LLNWIZ_Naming_Words_ToggleMenuFlag((STRING)_FlagName, (INTEGER)_Count)
+LLNWIZ_Words_ToggleMenuFlag((STRING)_FlagName, (INTEGER)_Count)
 AND
 _Count > 0
 THEN
 GlobalSetFlag(_FlagName);
 
 PROC
-LLNWIZ_Naming_Words_ToggleMenuFlag((STRING)_FlagName, (INTEGER)_Count)
+LLNWIZ_Words_ToggleMenuFlag((STRING)_FlagName, (INTEGER)_Count)
 AND
 _Count <= 0
 THEN
 GlobalClearFlag(_FlagName);
 
 PROC
-LLNWIZ_Naming_Words_CheckPageAvailability()
+LLNWIZ_Words_CheckPageAvailability()
 AND
 DB_LLNWIZ_Naming_WordPageFlags(_SetFlag, _EnabledFlag, _DatabaseName, _Arity)
 AND
 SysCount(_DatabaseName, _Arity, _Count)
 THEN
-LLNWIZ_Naming_Words_ToggleMenuFlag(_EnabledFlag, _Count);
+LLNWIZ_Words_ToggleMenuFlag(_EnabledFlag, _Count);
 //END_REGION
 
 //REGION CLEAR
 PROC
-LLNWIZ_Naming_Words_ResetPlayerPage((CHARACTERGUID)_Player)
+LLNWIZ_Words_ResetPlayerPage((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, _Page)
 THEN
@@ -323,7 +323,7 @@ NOT DB_LLNWIZ_Naming_CurrentWordPage(_Player, _Page);
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, 0);
 
 PROC
-LLNWIZ_Naming_Words_ResetPlayerPage((CHARACTERGUID)_Player)
+LLNWIZ_Words_ResetPlayerPage((CHARACTERGUID)_Player)
 AND
 NOT DB_LLNWIZ_Naming_CurrentWordPage(_Player, _)
 THEN
@@ -332,19 +332,19 @@ DB_LLNWIZ_Naming_CurrentWordPage(_Player, 0);
 
 //REGION PAGE_TURNING
 PROC
-LLNWIZ_Naming_Words_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
+LLNWIZ_Words_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, _CurrentPage)
 THEN
 NOT DB_LLNWIZ_Naming_CurrentWordPage(_Player, _CurrentPage);
 
 PROC
-LLNWIZ_Naming_Words_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
+LLNWIZ_Words_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
 THEN
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, _Page);
 
 PROC
-LLNWIZ_Naming_Words_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance)
 AND
@@ -356,11 +356,11 @@ _Page < _LastPageIndex
 AND
 IntegerSum(_Page, 1, _NextPage)
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, _NextPage, _Instance);
+LLNWIZ_Words_SetPage(_Player, _NextPage, _Instance);
 NOT DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
 
 PROC
-LLNWIZ_Naming_Words_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance)
 AND
@@ -370,11 +370,11 @@ DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
 _Page >= _LastPageIndex
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, 0, _Instance);
+LLNWIZ_Words_SetPage(_Player, 0, _Instance);
 NOT DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
 
 PROC
-LLNWIZ_Naming_Words_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance)
 AND
@@ -384,11 +384,11 @@ _Page <= 0
 AND
 DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, _LastPageIndex, _Instance);
+LLNWIZ_Words_SetPage(_Player, _LastPageIndex, _Instance);
 NOT DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
 
 PROC
-LLNWIZ_Naming_Words_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance)
 AND
@@ -400,13 +400,13 @@ DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
 IntegerSubtract(_Page, 1, _NextPage)
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, _NextPage, _Instance);
+LLNWIZ_Words_SetPage(_Player, _NextPage, _Instance);
 NOT DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
 //END_REGION
 
 //REGION PAGE_VARIABLES
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_Naming_CurrentWordPage(_Player, _)
 THEN
@@ -414,22 +414,22 @@ DB_LLNWIZ_Naming_CurrentWordPage(_Player, 0);
 LLNWIZ_DebugLog("[Naming_Words][ERROR] Page not set for some reason. Setting to page 0.");
 
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_Naming_MaxWordPage(_,_,_)
 THEN
 LLNWIZ_DebugLog("[Naming_Words][ERROR] Max page settings not set. Reconfiguring.");
-LLNWIZ_Naming_Words_CalculateMaxPage();
+LLNWIZ_Words_CalculateMaxPage();
 
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _Word)
 THEN
 NOT DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _Word);
 
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, _Page)
 AND
@@ -456,7 +456,7 @@ DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _Word);
 //LLNWIZ_DebugLog("Word[",_WordIndexStr,"|",_IndexStr,"] = ",_Word," | Var = ", _DialogVar);
 
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
@@ -465,7 +465,7 @@ THEN
 DialogSetVariableIntForInstance(_Instance, _VariableName, _MaxPage);
 
 PROC
-LLNWIZ_Naming_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_CurrentWordPage(_Player, _Page)
 AND
@@ -499,54 +499,54 @@ THEN
 DB_NOOP(1);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords((STRING)_SelectPageFlag)
+LLNWIZ_Words_LoadWords((STRING)_SelectPageFlag)
 THEN
 SysClear("DB_LLNWIZ_Naming_DisplayedWords", 2);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords("DB_LLNWIZ_Naming_CommonWords")
+LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Common")
 AND
-DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+DB_LLNWIZ_Words_Common(_Index, _Word)
 THEN
-LLNWIZ_Naming_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Word);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords("DB_LLNWIZ_Naming_CharacterNames")
+LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Name")
 AND
-DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
-LLNWIZ_Naming_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Word);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords("DB_LLNWIZ_Naming_PlayerWords")
+LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_PlayerSaved")
 AND
-DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
 THEN
-LLNWIZ_Naming_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Word);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords("DB_LLNWIZ_Naming_ModWords")
+LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Mod")
 AND
-DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+DB_LLNWIZ_Words_Mod(_Index, _Word)
 THEN
-LLNWIZ_Naming_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Word);
 
 PROC
-LLNWIZ_Naming_Words_LoadWords((STRING)_SelectPageFlag)
+LLNWIZ_Words_LoadWords((STRING)_SelectPageFlag)
 THEN
-LLNWIZ_Naming_Words_CalculateMaxPage();
+LLNWIZ_Words_CalculateMaxPage();
 //END_REGION
 
 //REGION HELPERS
 PROC
-LLNWIZ_Naming_Words_SetLastWord((CHARACTERGUID)_Player, (STRING)_Word, (INTEGER)_Instance)
+LLNWIZ_Words_SetLastWord((CHARACTERGUID)_Player, (STRING)_Word, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_LastWord(_Player, _LastWord)
 THEN
 NOT DB_LLNWIZ_Naming_LastWord(_Player, _LastWord);
 
 PROC
-LLNWIZ_Naming_Words_SetLastWord((CHARACTERGUID)_Player, (STRING)_Word, (INTEGER)_Instance)
+LLNWIZ_Words_SetLastWord((CHARACTERGUID)_Player, (STRING)_Word, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_DialogVariables("LastWord", _VariableName)
 THEN
@@ -555,7 +555,7 @@ DialogSetVariableStringForInstance(_Instance, _VariableName, _Word);
 ObjectSetFlag(_Player, "LLNWIZ_Naming_LastWordExists");
 
 PROC
-LLNWIZ_Naming_Words_LoadLastWord((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadLastWord((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_LastWord(_Player, _Word)
 AND
@@ -565,7 +565,7 @@ DialogSetVariableStringForInstance(_Instance, _VariableName, _Word);
 ObjectSetFlag(_Player, "LLNWIZ_Naming_LastWordExists");
 
 PROC
-LLNWIZ_Naming_Words_LoadLastWord((CHARACTERGUID)_Player, (INTEGER)_Instance)
+LLNWIZ_Words_LoadLastWord((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_Naming_LastWord(_Player, _)
 AND
@@ -581,8 +581,8 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_NextWordPage")
 THEN
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
-LLNWIZ_Naming_Words_NextPage(_Player, _Instance);
-LLNWIZ_Naming_Words_LoadPageVariables(_Player, _Instance);
+LLNWIZ_Words_NextPage(_Player, _Instance);
+LLNWIZ_Words_LoadPageVariables(_Player, _Instance);
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_PreviousWordPage", (CHARACTERGUID)_Player, _Instance)
@@ -590,16 +590,16 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_PreviousWordPage")
 THEN
 DB_LLNQIZ_Naming_ChangingPage(_Player, _Instance);
-LLNWIZ_Naming_Words_PreviousPage(_Player, _Instance);
-LLNWIZ_Naming_Words_LoadPageVariables(_Player, _Instance);
+LLNWIZ_Words_PreviousPage(_Player, _Instance);
+LLNWIZ_Words_LoadPageVariables(_Player, _Instance);
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_FirstWordPage", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_FirstWordPage")
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, 0, _Instance);
-LLNWIZ_Naming_Words_LoadPageVariables(_Player, _Instance);
+LLNWIZ_Words_SetPage(_Player, 0, _Instance);
+LLNWIZ_Words_LoadPageVariables(_Player, _Instance);
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_LastWordPage", (CHARACTERGUID)_Player, _Instance)
@@ -608,17 +608,17 @@ LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_LastWordPage")
 AND
 DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 THEN
-LLNWIZ_Naming_Words_SetPage(_Player, _LastPageIndex, _Instance);
-LLNWIZ_Naming_Words_LoadPageVariables(_Player, _Instance);
+LLNWIZ_Words_SetPage(_Player, _LastPageIndex, _Instance);
+LLNWIZ_Words_LoadPageVariables(_Player, _Instance);
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_LoadWords", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_LoadWords")
 THEN
-LLNWIZ_Naming_Words_ResetPlayerPage(_Player);
-LLNWIZ_Naming_Words_LoadPageVariables(_Player, _Instance);
-LLNWIZ_Naming_Words_LoadLastWord(_Player, _Instance);
+LLNWIZ_Words_ResetPlayerPage(_Player);
+LLNWIZ_Words_LoadPageVariables(_Player, _Instance);
+LLNWIZ_Words_LoadLastWord(_Player, _Instance);
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_SelectedLastWord", (CHARACTERGUID)_Player, _Instance)
@@ -650,7 +650,7 @@ AND
 DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _Word)
 THEN
 LLNWIZ_Naming_AppendWord(_Word, _Instance);
-LLNWIZ_Naming_Words_SetLastWord(_Player, _Word, _Instance);
+LLNWIZ_Words_SetLastWord(_Player, _Word, _Instance);
 //DebugBreak("[LLNWIZ] User appended word.");
 
 IF
@@ -660,9 +660,9 @@ LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveAsWord")
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
-NOT DB_LLNWIZ_Naming_PlayerWords(_, _Text)
+NOT DB_LLNWIZ_Words_PlayerSaved(_, _Text)
 THEN
-LLNWIZ_Naming_Words_AddPlayerWord(_Text);
+LLNWIZ_Words_AddPlayerWord(_Text);
 LLNWIZ_Print(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Player-Saved Words</font>");
 
 IF
@@ -672,7 +672,7 @@ LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_SaveAsWord")
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
-DB_LLNWIZ_Naming_PlayerWords(_Index, _Text)
+DB_LLNWIZ_Words_PlayerSaved(_Index, _Text)
 THEN
 LLNWIZ_Print(_Player, "<font color='#F08080'>Word '",_Text,"' already saved to Player-Saved Words</font>");
 
@@ -681,7 +681,7 @@ ObjectFlagSet("LLNWIZ_Naming_ClearedSavedWords", (CHARACTERGUID)_Player, _Instan
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_ClearedSavedWords")
 THEN
-SysClear("DB_LLNWIZ_Naming_PlayerWords", 2);
+SysClear("DB_LLNWIZ_Words_PlayerSaved", 2);
 //END_REGION
 
 //REGION MENU_FLAGS
@@ -690,18 +690,18 @@ ObjectFlagSet("LLNWIZ_WordsMenu_CheckWords", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_WordsMenu_CheckWords")
 THEN
-LLNWIZ_Naming_Words_CheckPageAvailability();
+LLNWIZ_Words_CheckPageAvailability();
 
 IF
 ObjectFlagSet(_SelectPageFlag, (CHARACTERGUID)_Player, _Instance)
 AND
 DB_LLNWIZ_Naming_WordPageFlags(_SelectPageFlag, _EnabledFlag, _DatabaseName, _Arity)
 THEN
-LLNWIZ_Naming_Words_LoadWords(_DatabaseName);
-LLNWIZ_Naming_Words_CheckPageCount(_Player);
+LLNWIZ_Words_LoadWords(_DatabaseName);
+LLNWIZ_Words_CheckPageCount(_Player);
 
 PROC
-LLNWIZ_Naming_Words_CheckPageCount((CHARACTERGUID)_Player)
+LLNWIZ_Words_CheckPageCount((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
@@ -710,7 +710,7 @@ THEN
 ObjectSetFlag(_Player, "LLNWIZ_Naming_HasMultiplePages");
 
 PROC
-LLNWIZ_Naming_Words_CheckPageCount((CHARACTERGUID)_Player)
+LLNWIZ_Words_CheckPageCount((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_MaxWordPage(_LastIndex, _LastPageIndex, _MaxPage)
 AND
@@ -728,7 +728,7 @@ _Player != NULL_00000000-0000-0000-0000-000000000000
 AND
 CharacterGetDisplayName(_Player, _Handle, _Name)
 THEN
-LLNWIZ_Naming_Words_AddName(_Name);
+LLNWIZ_Words_AddName(_Name);
 //END_REGION
 EXITSECTION
 

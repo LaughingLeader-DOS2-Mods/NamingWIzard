@@ -15,6 +15,7 @@ LLNWIZ_Naming_InitializeSettings();
 //DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length);
 //DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
 //DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+//DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
 
 //DB_LLNWIZ_Naming_Groups(_Index, _Group)
 //DB_LLNWIZ_Naming_CurrentGroup(_Index, _Instance)
@@ -260,6 +261,15 @@ DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 THEN
 NOT DB_LLNWIZ_Naming_TargetName(_Player, _Name);
 ObjectClearFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
+
+PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
+THEN
+NOT DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName);
 //END_REGION
 
 //REGION TEXT_SETTINGS
@@ -918,6 +928,20 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
 LLNWIZ_Naming_SetInitialText("", _Player);
 
 PROC
+LLNWIZ_Naming_SetTargetCustomName((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
+THEN
+NOT DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName);
+
+PROC
+LLNWIZ_Naming_SetTargetCustomName((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+GetVarString(_Target, "LLNWIZ_CustomName", _CustomName)
+THEN
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName);
+
+PROC
 LLNWIZ_Naming_SetInitialText((STRING)_Text, (CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_StartText(_PreviousText, _Player)
@@ -971,9 +995,32 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 AND
+NOT DB_LLNWIZ_Naming_TargetCustomName(_Player,_)
+AND
 DB_LLNWIZ_Naming_DialogVariables("TargetName", _DialogVar)
 AND
 StringConcatenate("Target: ", _Name, _Text)
+THEN
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+AND
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
+AND
+DB_LLNWIZ_Naming_DialogVariables("TargetName", _DialogVar)
+AND
+StringConcatenate("Target: ", _CustomName, _Str1)
+AND
+StringConcatenate(_Str1, " (", _Str2)
+AND
+StringConcatenate(_Str2, _Name, _Str3)
+AND
+StringConcatenate(_Str3, ")", _Text)
 THEN
 DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
 

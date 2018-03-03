@@ -210,6 +210,7 @@ AND
 CharacterGetDisplayName(_Target,_,_TargetName)
 THEN
 LLNWIZ_Naming_SetTargetName(_TargetName, _Player);
+LLNWIZ_Naming_SetTargetCustomName(_Player, _Target);
 //END_REGION
 
 //REGION WIZARD_CREATION_EVENTS

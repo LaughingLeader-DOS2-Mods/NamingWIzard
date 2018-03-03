@@ -1,13 +1,15 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-//Open Wizard
-//StoryEvent: LLNWIZ_Events_OpenNamingWizard
-//StoryEvent: LLNWIZ_Events_OpenNamingWizard_PlayerOnly
-//StoryEvent: LLNWIZ_Events_NamingComplete
-//StoryEvent: LLNWIZ_Events_NamingWizardOpened - Dialog Opened
-//Inital text var on player: LLNWIZ_InitialText
-//Text after finishing: LLNWIZ_FinalText
+//DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Name", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Mod", _Word)
+
+//DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+//DB_LLNWIZ_Naming_CharacterNames(_Index, _Name)
+//DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+//DB_LLNWIZ_Naming_ModWords(_Index, _Word)
 KBSECTION
 PROC
 LLNWIZ_ModInteraction_SetInitialText((CHARACTERGUID)_Player)
@@ -16,12 +18,94 @@ GetVarString(_Player, "LLNWIZ_InitialText", _InitialText)
 THEN
 LLNWIZ_Naming_SetInitialText(_InitialText, _Player);
 
+//REGION REGISTER_WORD
+//Add
 IF
-StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard_PlayerOnly")
+DB_LLNWIZ_ModBridge_RegisterWord("Common", (STRING)_Word)
 THEN
-LLNWIZ_ModInteraction_SetInitialText(_Player);
-LLNWIZ_Naming_OpenNamingWizard(_Player);
+LLNWIZ_Naming_Words_AddWord(_Word);
 
+IF
+DB_LLNWIZ_ModBridge_RegisterWord("Mod", (STRING)_Word)
+THEN
+LLNWIZ_Naming_Words_AddModWord(_Word);
+
+IF
+DB_LLNWIZ_ModBridge_RegisterWord("Player", (STRING)_Word)
+THEN
+LLNWIZ_Naming_Words_AddPlayerWord(_Word);
+
+IF
+DB_LLNWIZ_ModBridge_RegisterWord("Name", (STRING)_Word)
+THEN
+LLNWIZ_Naming_Words_AddName(_Word);
+
+IF
+DB_LLNWIZ_ModBridge_RegisterWord((STRING)_Category, (STRING)_Word)
+THEN
+NOT DB_LLNWIZ_ModBridge_RegisterWord(_Category, _Word);
+//END_REGION
+
+//REGION REPLACE_WORD
+IF
+DB_LLNWIZ_ModBridge_ReplaceWord((STRING)_Category, (STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceWord(_Category, _Word, _NewWord);
+NOT DB_LLNWIZ_ModBridge_ReplaceWord(_Category, _Word, _NewWord);
+
+IF
+DB_LLNWIZ_ModBridge_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceAllWords(_Word, _NewWord);
+NOT DB_LLNWIZ_ModBridge_ReplaceAllWords(_Word, _NewWord);
+//END_REGION
+
+//REGION REBUILD_INDEXES
+IF
+DB_LLNWIZ_ModBridge_RebuildIndex((STRING)_Category)
+THEN
+
+NOT DB_LLNWIZ_ModBridge_RebuildIndex(_Category);
+//END_REGION
+
+//REGION REMOVE_WORD
+IF
+DB_LLNWIZ_ModBridge_RemoveWord((STRING)_Category, (STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveWord(_Category, _Word);
+NOT DB_LLNWIZ_ModBridge_RemoveWord(_Category, _Word);
+
+IF
+DB_LLNWIZ_ModBridge_RemoveAllWords((STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveAllWords(_Word);
+NOT DB_LLNWIZ_ModBridge_RemoveAllWords(_Word);
+//END_REGION
+
+//REGION API_MAX_LENGTH
+IF
+DB_LLNWIZ_ModBridge_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length <= 255
+THEN
+LLNWIZ_Naming_SetMaxCharacterLength(_Length);
+
+IF
+DB_LLNWIZ_ModBridge_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length > 255
+AND
+IntegertoString(_Length, _IntStr)
+THEN
+LLNWIZ_DebugLog("[ModInteraction] Character limit (",_IntStr,") is too large! Max character length is 255.");
+
+IF
+DB_LLNWIZ_ModBridge_MaxCharacterLength((INTEGER)_Length)
+THEN
+NOT DB_LLNWIZ_ModBridge_MaxCharacterLength(_Length);
+//END_REGION
+
+//REGION EVENTS_LISTEN
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
 THEN
@@ -29,17 +113,13 @@ LLNWIZ_ModInteraction_SetInitialText(_Player);
 LLNWIZ_Naming_OpenNamingWizard(_Player);
 
 IF
-DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word)
+CharacterCharacterEvent((CHARACTERGUID)_Player, (CHARACTERGUID)_Target, "LLNWIZ_Events_RenameCharacter")
 THEN
-LLNWIZ_Naming_Words_AddModWord(_Word);
-NOT DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word);
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+LLWIZ_Wizard_Start(_Player, _Target);
+//END_REGION
 
-IF
-DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
-THEN
-LLNWIZ_Naming_Words_AddPlayerWord(_Word);
-NOT DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word);
-
+//REGION EVENTS_SEND
 IF
 DialogStarted(_DialogName, _Instance)
 AND
@@ -48,6 +128,58 @@ AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
 SetStoryEvent(_Player, "LLNWIZ_Events_NamingWizardOpened");
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
+
+//In case the dialog is ended through some other means (combat).
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 0)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_MenuDialog(_Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingCancelled");
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+LLNWIZ_Naming_RenameCharacter(_Player, _Target);
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCancelled")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

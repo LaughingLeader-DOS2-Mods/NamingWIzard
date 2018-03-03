@@ -73,28 +73,16 @@ IF
 TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
-AND
-CharacterGetDisplayName(_Target, _Handle, _Name)
-AND
-LLNWIZ_QRY_Wizard_CreateWizard(_Player, _Target)
-AND
-DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 THEN
-LLNWIZ_Naming_SetTargetName(_Name, _Player);
+LLWIZ_Wizard_Start(_Player, _Target);
 
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
-AND
-ObjectExists(_Target, 1)
-AND
-GetVarString(_Player, "LLNWIZ_FinalText", _Name)
 THEN
-CharacterSetCustomName(_Target, _Name);
-ClearVarObject(_Player, "LLNWIZ_FinalText");
+LLNWIZ_Naming_RenameCharacter(_Player, _Target);
 NOT DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
-ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCancelled")

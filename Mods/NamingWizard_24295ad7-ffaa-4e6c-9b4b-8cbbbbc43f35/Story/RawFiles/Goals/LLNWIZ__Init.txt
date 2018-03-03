@@ -175,6 +175,47 @@ THEN
 PlayEffectAtPosition(_Effect, _x, _y, _z);
 //END_REGION
 
+//REGION EVENT_HELPERS
+PROC
+LLNWIZ_SendStoryEvent((STRING)_Event)
+AND
+DB_IsPlayer(_Player)
+AND
+NOT DB_LLNWIZ_Temp_FiringEvent(_Event)
+THEN
+DB_LLNWIZ_Temp_FiringEvent(_Event);
+SetStoryEvent(_Player, _Event);
+LLNWIZ_DebugLog("[System] Firing general story event [",_Event,"]");
+
+PROC
+LLNWIZ_SendStoryEvent((STRING)_Event)
+AND
+NOT DB_IsPlayer(_)
+AND
+NOT DB_LLNWIZ_Temp_FiringEventWorkaround(_Event)
+THEN
+DB_LLNWIZ_Temp_FiringEventWorkaround(_Event);
+LLNWIZ_DebugLog("[System][ERROR] Error firing story event [",_Event,"]: Can't find a player! Using [CharacterLaunchIterator] as a workaround.");
+CharacterLaunchIterator("LLNWIZ_Events_System_FindCharacter");
+
+IF
+StoryEvent(_Character,"LLNWIZ_Events_System_FindCharacter")
+AND
+DB_LLNWIZ_Temp_FiringEventWorkaround(_Event)
+THEN
+DB_LLNWIZ_Temp_FiringEvent(_Event);
+SetStoryEvent(_Character, _Event);
+NOT DB_LLNWIZ_Temp_FiringEventWorkaround(_Event);
+
+IF
+StoryEvent(_,_Event)
+AND
+DB_LLNWIZ_Temp_FiringEvent(_Event)
+THEN
+NOT DB_LLNWIZ_Temp_FiringEvent(_Event);
+LLNWIZ_DebugLog("[System] Finished firing story event [",_Event,"]");
+//END_REGION
+
 //REGION RANDOM
 //Thanks to Norbyte for this chunk
 QRY
@@ -218,7 +259,14 @@ DB_LLNWIZ_Temp_Rand(_Rand);
 IF
 CharacterUsedItem(_Player, ITEMGUID_LLNWIZ_Debug_MenuLever_e098b6e5-360d-45fd-99f0-bd415a9e6f0d)
 THEN
-LLNWIZ_Naming_OpenNamingWizard(_Player);
+//LLNWIZ_Naming_OpenNamingWizard(_Player);
+LLNWIZ_Debug_PrintWords("Common");
+LLNWIZ_Words_RemoveAllWords("Human");
+
+IF
+StoryEvent(_,"LLNWIZ_Events_WordIndexRebuildingComplete")
+THEN
+LLNWIZ_Debug_PrintWords("Common");
 //END_REGION
 EXITSECTION
 

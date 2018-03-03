@@ -172,6 +172,8 @@ DB_LLNWIZ_Naming_DialogVariables("TargetName", "LLNWIZ_Naming_TargetName_36de6db
 //REGION SETTINGS_MAIN
 PROC
 LLNWIZ_Naming_SetMaxCharacterLength((INTEGER)_Max)
+AND
+_Max < 256
 THEN
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_MaxLength", 1);
 DB_LLNWIZ_Naming_MaxLength(_Max);
@@ -179,7 +181,7 @@ DB_LLNWIZ_Naming_MaxLength(_Max);
 PROC
 LLNWIZ_Naming_InitializeSettings()
 THEN
-LLNWIZ_Naming_SetMaxCharacterLength(32);
+LLNWIZ_Naming_SetMaxCharacterLength(70);
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_StartText", 2);
 LLNWIZ_Naming_InitialzeDialogVariables();
 
@@ -1138,22 +1140,23 @@ SetVarString(_Player, "LLNWIZ_FinalText", _Text);
 
 PROC
 LLNWIZ_Naming_OnNamingCancelled((CHARACTERGUID)_Player, (INTEGER)_Instance)
-AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_TextSaved")
 THEN
-LLNWIZ_Naming_ClearInstanceVariables(_Instance);
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingCancelled");
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
+ClearVarObject(_Player, "LLNWIZ_FinalText");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
+//SetStoryEvent(_Player, "LLNWIZ_Events_NamingCancelled");
+//END_REGION
 
-IF
-DialogEnded(_Dialog, _Instance)
+//REGION RENAMING
+PROC
+LLNWIZ_Naming_RenameCharacter((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, _Player)
-AND
-ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+GetVarString(_Player, "LLNWIZ_FinalText", _Name)
 THEN
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
+CharacterSetCustomName(_Target, _Name);
+SetVarString(_Target, "LLNWIZ_CustomName", _Name);
+//ClearVarObject(_Player, "LLNWIZ_FinalText");
+//ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 //END_REGION
 
 //REGION LIMIT_REACHED

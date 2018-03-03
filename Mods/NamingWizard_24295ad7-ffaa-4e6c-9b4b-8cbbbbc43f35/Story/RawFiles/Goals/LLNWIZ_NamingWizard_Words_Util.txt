@@ -1,0 +1,333 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+//DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
+
+//DB_LLNWIZ_Naming_CommonWords(_Index, _Word)			"Common"
+//DB_LLNWIZ_Naming_CharacterNames(_Index, _Name)		"Name"
+//DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)			"Player"
+//DB_LLNWIZ_Naming_ModWords(_Index, _Word)				"Mod"
+//DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+KBSECTION
+//REGION SETTINGS
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+DB_NOOP(1);
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_Temp_IndexRebuilding", 4);
+LLNWIZ_DebugLog("[Words_Utils] Databases cleared.");
+//END_REGION
+
+//REGION REMOVE_WORD
+PROC
+LLNWIZ_Words_RemoveAllWords((STRING)_Word)
+AND
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+THEN
+LLNWIZ_Words_RemoveWord("Common", _Word);
+
+PROC
+LLNWIZ_Words_RemoveAllWords((STRING)_Word)
+AND
+DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+THEN
+LLNWIZ_Words_RemoveWord("Name", _Word);
+
+PROC
+LLNWIZ_Words_RemoveAllWords((STRING)_Word)
+AND
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+THEN
+LLNWIZ_Words_RemoveWord("Player", _Word);
+
+PROC
+LLNWIZ_Words_RemoveAllWords((STRING)_Word)
+AND
+DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+THEN
+LLNWIZ_Words_RemoveWord("Mod", _Word);
+
+PROC
+LLNWIZ_Words_RemoveWord((STRING)_Category, (STRING)_Word)
+AND
+DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+THEN
+LLNWIZ_Words_RemoveFromDatabase(_Database, _Word, _Category);
+
+PROC
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Naming_CommonWords", (STRING)_Word, (STRING)_Category)
+AND
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+NOT DB_LLNWIZ_Naming_CommonWords(_Index, _Word);
+LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Naming_CommonWords.");
+LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+
+PROC
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Naming_CharacterNames", (STRING)_Word, (STRING)_Category)
+AND
+DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+NOT DB_LLNWIZ_Naming_CharacterNames(_Index, _Word);
+LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Naming_CharacterNames.");
+LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+
+PROC
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Naming_PlayerWords", (STRING)_Word, (STRING)_Category)
+AND
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+NOT DB_LLNWIZ_Naming_PlayerWords(_Index, _Word);
+LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Naming_PlayerWords.");
+LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+
+PROC
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Naming_ModWords", (STRING)_Word, (STRING)_Category)
+AND
+DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+NOT DB_LLNWIZ_Naming_ModWords(_Index, _Word);
+LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Naming_ModWords.");
+LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+
+//END_REGION
+
+//REGION WORD_INDEX_REBUILDING_START
+PROC
+LLNWIZ_Words_Internal_RebuildIndex((STRING)_Category, (INTEGER)_StartIndex)
+AND
+IntegertoString(_StartIndex, _IndexStr)
+THEN
+LLNWIZ_DebugLog("[Words_Util] Rebuilding word index for category [",_Category,"], starting at index [",_IndexStr,"]");
+
+PROC
+LLNWIZ_Words_Internal_RebuildIndex((STRING)_Category, (INTEGER)_StartIndex)
+AND
+DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+AND
+SysCount(_Database, _Arity, _Total)
+AND
+LLNWIZ_Random(100)
+AND
+DB_LLNWIZ_Temp_Rand(_Rand)
+AND
+IntegertoString(_Rand, _RanStr)
+AND
+StringConcatenate("LLNWIZ_Timers_IndexRebuildIterator_", _Category, _Str1)
+AND
+StringConcatenate(_Str1, _RanStr, _TimerName)
+THEN
+DB_LLNWIZ_Temp_IndexRebuilding(_Category, _StartIndex, _StartIndex, _Total, _TimerName);
+TimerLaunch(_TimerName, 1);
+//END_REGION
+
+//REGION WORD_INDEX_REBUILDING
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Temp_IndexRebuilding("Common", _CurrentIndex, _StartIndex, _Total, _TimerName)
+AND
+_CurrentIndex < _Total
+AND
+IntegerSum(_CurrentIndex, 1, _NextIndex)
+AND
+DB_LLNWIZ_Naming_CommonWords(_NextIndex, _Word)
+AND
+IntegertoString(_CurrentIndex, _CurrentIndexStr)
+AND
+IntegertoString(_NextIndex, _NextIndexStr)
+THEN
+//LLNWIZ_DebugLog("Set word[",_Word,"] at index ", _NextIndexStr, " to new index of ", _CurrentIndexStr);
+NOT DB_LLNWIZ_Naming_CommonWords(_NextIndex, _Word);
+DB_LLNWIZ_Naming_CommonWords(_CurrentIndex, _Word);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Common", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Common", _NextIndex, _StartIndex, _Total, _TimerName);
+TimerLaunch(_TimerName, 1);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Temp_IndexRebuilding("Name", _CurrentIndex, _StartIndex, _Total, _TimerName)
+AND
+_CurrentIndex < _Total
+AND
+IntegerSum(_CurrentIndex, 1, _NextIndex)
+AND
+DB_LLNWIZ_Naming_CharacterNames(_NextIndex, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_CharacterNames(_NextIndex, _Word);
+DB_LLNWIZ_Naming_CharacterNames(_CurrentIndex, _Word);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Name", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Name", _NextIndex, _StartIndex, _Total, _TimerName);
+TimerLaunch(_TimerName, 1);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Temp_IndexRebuilding("Player", _CurrentIndex, _StartIndex, _Total, _TimerName)
+AND
+_CurrentIndex < _Total
+AND
+IntegerSum(_CurrentIndex, 1, _NextIndex)
+AND
+DB_LLNWIZ_Naming_PlayerWords(_NextIndex, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_PlayerWords(_NextIndex, _Word);
+DB_LLNWIZ_Naming_PlayerWords(_CurrentIndex, _Word);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Player", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Player", _NextIndex, _StartIndex, _Total, _TimerName);
+TimerLaunch(_TimerName, 1);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Temp_IndexRebuilding("Mod", _CurrentIndex, _StartIndex, _Total, _TimerName)
+AND
+_CurrentIndex < _Total
+AND
+IntegerSum(_CurrentIndex, 1, _NextIndex)
+AND
+DB_LLNWIZ_Naming_ModWords(_NextIndex, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_ModWords(_NextIndex, _Word);
+DB_LLNWIZ_Naming_ModWords(_CurrentIndex, _Word);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Mod", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Mod", _NextIndex, _StartIndex, _Total, _TimerName);
+TimerLaunch(_TimerName, 1);
+//END_REGION
+
+//REGION INDEX_REBUILDING_END
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
+AND
+_CurrentIndex >= _Total
+THEN
+NOT DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName);
+LLNWIZ_DebugLog("[Words_Util] Index rebuilding for word list [",_Category,"] complete.");
+LLNWIZ_SendStoryEvent("LLNWIZ_Events_WordIndexRebuildingComplete");
+//END_REGION
+
+//REGION REPLACE_WORD
+PROC
+LLNWIZ_Words_ReplaceWord("Common", (STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_CommonWords(_Index, _Word);
+DB_LLNWIZ_Naming_CommonWords(_Index, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceWord("Name", (STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_CharacterNames(_Index, _Word);
+DB_LLNWIZ_Naming_CharacterNames(_Index, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceWord("Player", (STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_PlayerWords(_Index, _Word);
+DB_LLNWIZ_Naming_PlayerWords(_Index, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceWord("Mod", (STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+THEN
+NOT DB_LLNWIZ_Naming_ModWords(_Index, _Word);
+DB_LLNWIZ_Naming_ModWords(_Index, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+THEN
+LLNWIZ_Words_ReplaceWord("Common", _Word, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+THEN
+LLNWIZ_Words_ReplaceWord("Name", _Word, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+THEN
+LLNWIZ_Words_ReplaceWord("Player", _Word, _NewWord);
+
+PROC
+LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+AND
+DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+THEN
+LLNWIZ_Words_ReplaceWord("Mod", _Word, _NewWord);
+//END_REGION
+
+//REGION DEBUG
+PROC
+LLNWIZ_Debug_PrintWords("All")
+AND
+DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+THEN
+LLNWIZ_Debug_PrintWords(_Category);
+
+PROC
+LLNWIZ_Debug_PrintWords("Common")
+AND
+DB_LLNWIZ_Naming_CommonWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+LLNWIZ_DebugLog("[Words:Common][",_IndexStr,"] = ", _Word);
+
+PROC
+LLNWIZ_Debug_PrintWords("Name")
+AND
+DB_LLNWIZ_Naming_CharacterNames(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+LLNWIZ_DebugLog("[Words:Name][",_IndexStr,"] = ", _Word);
+
+PROC
+LLNWIZ_Debug_PrintWords("Player")
+AND
+DB_LLNWIZ_Naming_PlayerWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+LLNWIZ_DebugLog("[Words:Player][",_IndexStr,"] = ", _Word);
+
+PROC
+LLNWIZ_Debug_PrintWords("Mod")
+AND
+DB_LLNWIZ_Naming_ModWords(_Index, _Word)
+AND
+IntegertoString(_Index, _IndexStr)
+THEN
+LLNWIZ_DebugLog("[Words:Mod][",_IndexStr,"] = ", _Word);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

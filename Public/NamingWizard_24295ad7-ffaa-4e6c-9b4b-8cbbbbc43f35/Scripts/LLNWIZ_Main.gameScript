@@ -2,7 +2,7 @@ INIT
 
 EVENTS
 
-EVENT LogMorale
+EVENT LLNWIZ_LogMessage
 VARS
 	CHARACTER:_Character
 	FIXEDSTRING:_LogText

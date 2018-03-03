@@ -146,6 +146,7 @@ DB_LLNWIZ_Wizard_LastGreeting(_Index);
 
 //END_REGION
 
+//REGION HELPERS
 PROC
 LLNQIZ_Wizard_SetTarget((CHARACTERGUID)_Wizard, (CHARACTERGUID)_Target)
 AND
@@ -157,6 +158,8 @@ PROC
 LLNQIZ_Wizard_SetTarget((CHARACTERGUID)_Wizard, (CHARACTERGUID)_Target)
 THEN
 DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
+
+//END_REGION
 
 //REGION CREATION
 QRY
@@ -197,6 +200,19 @@ LLNQIZ_Wizard_SetTarget(_Wizard, _Target);
 TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 SetOnStage(_Wizard, 1);
 
+PROC
+LLWIZ_Wizard_Start((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+LLNWIZ_QRY_Wizard_CreateWizard(_Player, _Target)
+AND
+DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
+AND
+CharacterGetDisplayName(_Target,_,_TargetName)
+THEN
+LLNWIZ_Naming_SetTargetName(_TargetName, _Player);
+//END_REGION
+
+//REGION WIZARD_CREATION_EVENTS
 IF
 StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardCreated")
 AND
@@ -208,9 +224,7 @@ GetPosition(_Target, _x,_y,_z)
 THEN
 CharacterMoveToPosition(_Wizard, _x,_y,_z, 1, "LLNWIZ_Events_WizardArrived");
 //PlayEffect(_Target, "LLNWIZ_FX_NamingWizard_Book_Teleport_01", "Dummy_OverheadFX");
-//END_REGION
 
-//REGION WIZARD_ARRIVED
 IF
 StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_WizardArrived")
 AND
@@ -225,6 +239,7 @@ AND
 StringConcatenate("LLNWIZ_Timers_Wizard_StartDelay_", _ID, _TimerName)
 THEN
 CharacterLookAt(_Wizard, _Player);
+CharacterFollowCharacter(_Wizard, _Target);
 DB_LLNWIZ_Wizard_WizardStartTimer(_TimerName, _Wizard, _Player);
 TimerLaunch(_TimerName, 500);
 
@@ -326,8 +341,6 @@ NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
 //END_REGION
 
 //REGION HIDE_EVENTS
-
-
 IF
 DialogEnded(_Dialog, _Instance)
 AND

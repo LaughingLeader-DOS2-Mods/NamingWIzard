@@ -26,7 +26,7 @@
         <field name="Physical" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Skills" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target_LLNWIZ_Rename" />
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="InventoryTabs" />
-        <field name="ItemColor" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="DefaultGray" />
+        <field name="ItemColor" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_NamingWand" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="RuneSlots_V1" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Unique" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />

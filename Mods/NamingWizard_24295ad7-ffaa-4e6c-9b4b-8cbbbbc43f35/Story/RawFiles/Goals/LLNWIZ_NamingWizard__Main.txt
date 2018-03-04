@@ -170,6 +170,8 @@ DB_LLNWIZ_Naming_DialogVariables("Text", "LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-
 DB_LLNWIZ_Naming_DialogVariables("LastWord", "LLNWIZ_Naming_LastWord_fcc4d39a-1009-4037-9848-3838066ee9b7");
 DB_LLNWIZ_Naming_DialogVariables("WordStateText", "LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4");
 DB_LLNWIZ_Naming_DialogVariables("TargetName", "LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35");
+DB_LLNWIZ_Naming_DialogVariables("OriginalName", "LLNWIZ_Naming_OriginalCharacterName_c4ae7eac-1cd4-48ad-a48d-ab2a1a299319");
+DB_LLNWIZ_Naming_DialogVariables("LastConfirmedText", "LLNWIZ_Naming_LastConfirmedText_27064f2f-b14b-4038-b853-edaf2cc1b480");
 //END_REGION
 
 //REGION SETTINGS_MAIN
@@ -876,9 +878,9 @@ LLNWIZ_Naming_SetText("", _Instance);
 LLNWIZ_Naming_SetLength(0, _Instance);
 
 IF
-ObjectFlagSet("LLNWIZ_Naming_RestoreLastName", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLNWIZ_Naming_RestoreLastText", (CHARACTERGUID)_Player, _Instance)
 AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_RestoreLastName")
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_RestoreLastText")
 AND
 DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length)
 THEN
@@ -1048,13 +1050,9 @@ LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
-DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length)
 AND
-NOT DB_LLNWIZ_Naming_TargetCustomName(_Player,_)
-AND
-DB_LLNWIZ_Naming_DialogVariables("TargetName", _DialogVar)
-AND
-StringConcatenate("Target: ", _Name, _Text)
+DB_LLNWIZ_Naming_DialogVariables("LastConfirmedText", _DialogVar)
 THEN
 DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
 
@@ -1065,9 +1063,35 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 AND
+DB_LLNWIZ_Naming_DialogVariables("OriginalName", _OriginalNameVar)
+THEN
+DialogSetVariableStringForInstance(_Instance, _OriginalNameVar, _Name);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+AND
+NOT DB_LLNWIZ_Naming_TargetCustomName(_Player,_)
+AND
+DB_LLNWIZ_Naming_DialogVariables("TargetName", _TargetNameVar)
+AND
+StringConcatenate("Target: ", _Name, _TargetNameVal)
+THEN
+DialogSetVariableStringForInstance(_Instance, _TargetNameVar, _TargetNameVal);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+AND
 DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
 AND
-DB_LLNWIZ_Naming_DialogVariables("TargetName", _DialogVar)
+DB_LLNWIZ_Naming_DialogVariables("TargetName", _TargetNameVar)
 AND
 StringConcatenate("Target: ", _CustomName, _Str1)
 AND
@@ -1075,9 +1099,9 @@ StringConcatenate(_Str1, " (", _Str2)
 AND
 StringConcatenate(_Str2, _Name, _Str3)
 AND
-StringConcatenate(_Str3, ")", _Text)
+StringConcatenate(_Str3, ")", _TargetNameVal)
 THEN
-DialogSetVariableStringForInstance(_Instance, _DialogVar, _Text);
+DialogSetVariableStringForInstance(_Instance, _TargetNameVar, _TargetNameVal);
 
 PROC
 LLNWIZ_Naming_InitMenu((INTEGER)_Instance)

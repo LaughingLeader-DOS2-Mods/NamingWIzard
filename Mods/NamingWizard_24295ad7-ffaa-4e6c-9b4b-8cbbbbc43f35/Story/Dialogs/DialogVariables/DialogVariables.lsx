@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1520118088" />
+    <header version="2" time="1520148608" />
     <version major="3" minor="1" revision="6" build="0" />
     <region id="DialogVariables">
         <node id="root">
@@ -34,6 +34,13 @@
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="27064f2f-b14b-4038-b853-edaf2cc1b480" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_LastConfirmedText" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
                     <attribute id="DefaultValue" value="0" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="7a9befad-b178-478e-b374-f65e7efcf94f" type="31" />
@@ -45,6 +52,13 @@
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="fcc4d39a-1009-4037-9848-3838066ee9b7" type="31" />
                     <attribute id="name" value="LLNWIZ_Naming_LastWord" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="c4ae7eac-1cd4-48ad-a48d-ab2a1a299319" type="31" />
+                    <attribute id="name" value="LLNWIZ_Naming_OriginalCharacterName" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">

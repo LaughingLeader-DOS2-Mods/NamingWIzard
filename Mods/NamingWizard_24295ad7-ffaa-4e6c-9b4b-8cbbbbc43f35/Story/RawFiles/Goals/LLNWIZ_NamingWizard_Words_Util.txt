@@ -265,6 +265,7 @@ AND
 DB_LLNWIZ_Words_CategoryToDatabase(_Category,_,_)
 THEN
 DB_LLNWIZ_Words_ReplacedWords(_Category, _Word, _NewWord);
+LLNWIZ_DebugLog("[Words:Util] Replaced ",_Word," with ",_NewWord," in category [",_Category,"].");
 
 PROC
 LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)

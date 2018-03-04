@@ -70,13 +70,17 @@ THEN
 DB_LLNWIZ_Words_Name(_Index, _Name);
 
 PROC
+LLNWIZ_Words_AddDisplayedWord((INTEGER)_Index, (STRING)_Word)
+THEN
+DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word);
+/*
+PROC
 LLNWIZ_Words_AddDisplayedWord((STRING)_Word)
-AND
-NOT DB_LLNWIZ_Naming_DisplayedWords(_,_Word)
 AND
 SysCount("DB_LLNWIZ_Naming_DisplayedWords", 2, _Index)
 THEN
 DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word);
+*/
 //END_REGION
 
 //REGION SETTINGS_WORDS
@@ -93,6 +97,7 @@ LLNWIZ_Words_AddWord("Axe");
 LLNWIZ_Words_AddWord("Barter");
 LLNWIZ_Words_AddWord("Battle");
 LLNWIZ_Words_AddWord("Beast");
+LLNWIZ_Words_AddWord("Black");
 LLNWIZ_Words_AddWord("Bow");
 LLNWIZ_Words_AddWord("Charisma");
 LLNWIZ_Words_AddWord("Class");
@@ -102,6 +107,7 @@ LLNWIZ_Words_AddWord("Common");
 LLNWIZ_Words_AddWord("Crafting");
 LLNWIZ_Words_AddWord("Crossbow");
 LLNWIZ_Words_AddWord("Custom");
+LLNWIZ_Words_AddWord("Dark");
 LLNWIZ_Words_AddWord("DPS");
 LLNWIZ_Words_AddWord("DualWielding");
 LLNWIZ_Words_AddWord("Dwarven");
@@ -517,28 +523,28 @@ LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Common")
 AND
 DB_LLNWIZ_Words_Common(_Index, _Word)
 THEN
-LLNWIZ_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Index, _Word);
 
 PROC
 LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Name")
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
-LLNWIZ_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Index, _Word);
 
 PROC
 LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_PlayerSaved")
 AND
 DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
 THEN
-LLNWIZ_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Index, _Word);
 
 PROC
 LLNWIZ_Words_LoadWords("DB_LLNWIZ_Words_Mod")
 AND
 DB_LLNWIZ_Words_Mod(_Index, _Word)
 THEN
-LLNWIZ_Words_AddDisplayedWord(_Word);
+LLNWIZ_Words_AddDisplayedWord(_Index, _Word);
 
 PROC
 LLNWIZ_Words_LoadWords((STRING)_SelectPageFlag)
@@ -693,6 +699,38 @@ AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SaveAsName", (CHARACTERGUID)_Player, _Instance)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsName", 1)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+NOT DB_LLNWIZ_Words_Name(_, _Text)
+THEN
+LLNWIZ_Words_AddName(_Text);
+LLNWIZ_Print(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Names</font>");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsName");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SaveAsName", (CHARACTERGUID)_Player, _Instance)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsName", 1)
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+DB_LLNWIZ_Words_Name(_Index, _Text)
+THEN
+LLNWIZ_Print(_Player, "<font color='#F08080'>Name '",_Text,"' already saved to Names</font>");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsName");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SaveAsName", (CHARACTERGUID)_Player, _Instance)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsName", 1)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsName");
 
 IF
 ObjectFlagSet("LLNWIZ_Naming_ClearedSavedWords", (CHARACTERGUID)_Player, _Instance)

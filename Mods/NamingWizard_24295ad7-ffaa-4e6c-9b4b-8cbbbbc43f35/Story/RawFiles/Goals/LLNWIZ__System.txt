@@ -2,6 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 //DB_LLNWIZ_MenuDialog(_DialogName)
+//DB_LLNWIZ_ItemTemplates(_Name, _Template)
 //DB_LLNWIZ_System_PlayerInitialized(_Val)
 
 //DB_LLNWIZ_Temp_OutVariable(_ID, _Value)
@@ -41,8 +42,11 @@ LLNWIZ_DebugLog(_Str3);
 PROC
 LLNWIZ_System_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_MenuDialog(_DialogName", 1);
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_MenuDialog", 1);
 DB_LLNWIZ_MenuDialog("LLNWIZ_NamingMenu");
+
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_ItemTemplates", 2);
+DB_LLNWIZ_ItemTemplates("RenameWand", "WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683");
 
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
 SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
@@ -56,6 +60,7 @@ PROC
 LLNWIZ_System_ClearDatabases()
 THEN
 SysClear("DB_LLNWIZ_MenuDialog", 1);
+SysClear("DB_LLNWIZ_ItemTemplates", 2);
 SysClear("DB_LLNWIZ_System_PlayerInitialized", 1);
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
 SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);

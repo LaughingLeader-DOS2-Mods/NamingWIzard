@@ -456,19 +456,26 @@ DB_LLNWIZ_Naming_WordVariables(_WordIndex, _DialogVar, _SelectFlag, _DisabledFla
 AND
 IntegerSum(_WordIndex, _StartIndex, _Index)
 AND
-IntegertoString(_Index, _IndexStr)
-AND
-IntegertoString(_WordIndex, _WordIndexStr)
-AND
 LLNWIZ_QRY_Naming_DisableWordIfNotAvailable(_Player, _Index, _DisabledFlag)
 AND
 DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word)
 AND
 NOT DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _) // Failsafe
+/*
+AND
+IntegerSum(_Index, 1, _DisplayedIndex)
+AND
+IntegertoString(_DisplayedIndex, _DisplayedIndexStr)
+AND
+StringConcatenate("[", _DisplayedIndexStr, _Str1)
+AND
+StringConcatenate(_Str1, "] ", _Str2)
+AND
+StringConcatenate(_Str2, _Word, _DisplayedWordText)
+*/
 THEN
 DialogSetVariableStringForInstance(_Instance, _DialogVar, _Word);
 DB_LLNWIZ_Temp_WordVariableValue(_WordIndex, _Word);
-//LLNWIZ_DebugLog("Word[",_WordIndexStr,"|",_IndexStr,"] = ",_Word," | Var = ", _DialogVar);
 
 PROC
 LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)

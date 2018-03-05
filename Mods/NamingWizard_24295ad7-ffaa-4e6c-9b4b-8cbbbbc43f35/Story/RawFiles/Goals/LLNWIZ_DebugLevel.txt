@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+GlobalSetFlag("LLNWIZ_DEBUGLOG_ENABLED");
 KBSECTION
 //REGION Levers
 IF
@@ -28,12 +28,85 @@ DB_LLNWIZ_ModBridge_ReplaceWord("Name", "Sebille", "Sassy Elf");
 DB_LLNWIZ_ModBridge_ReplaceAllWords("Beast", "The Hero We Need");
 DB_LLNWIZ_ModBridge_RemoveWord("Mod", "NamingWizard");
 
+/*
 IF
 StoryEvent(_,"LLNWIZ_Events_WordIndexRebuildingComplete")
 THEN
 LLNWIZ_Debug_PrintWords("Common");
+*/
+//END_REGION
+
+//REGION TEXT_EVENTS
+//Workaround
+IF
+TextEventSet(_Event)
+AND
+GetTextEventParamString(1, "LLNWIZ_AddWand") // What was formerly the text event name
+AND
+GetTextEventParamUUID(1, _Target)
+THEN
+ItemTemplateAddTo("WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683", _Target, 1);
+
+//Param currently bugged
+/*
+IF
+TextEventSet("LLNWIZ_AddWand")
+AND
+GetTextEventParamUUID(1, _Target)
+THEN
+ItemTemplateAddTo("WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683", _Target, 1);
+*/
+
+/*
+IF
+TextEventSet("LLNWIZ_AddWand")
+AND
+GetTextEventParamInteger(1, _Int)
+AND
+IntegertoString(_Int, _IntStr)
+THEN
+LLNWIZ_DebugLog("LLNWIZ_AddWand [Int]: ", _IntStr);
+
+IF
+TextEventSet("LLNWIZ_AddWand")
+AND
+GetTextEventParamReal(1, _Real)
+AND
+Integer(_Real, _Int)
+AND
+IntegertoString(_Int, _IntStr)
+THEN
+LLNWIZ_DebugLog("LLNWIZ_AddWand [Real]: ", _IntStr);
+
+IF
+TextEventSet("LLNWIZ_AddWand")
+AND
+GetTextEventParamString(1, _Str)
+THEN
+LLNWIZ_DebugLog("LLNWIZ_AddWand [Str]: ", _Str);
+
+IF
+TextEventSet("LLNWIZ_AddWand")
+AND
+GetTextEventParamUUID(1, _Target)
+AND
+GetUUID(_Target, _Str)
+THEN
+LLNWIZ_DebugLog("LLNWIZ_AddWand [UUID]: ", _Str);
+*/
+
+/*
+IF
+TextEventSet(_Event)
+AND
+GetTextEventParamUUID(1, _Target)
+AND
+GetUUID(_Target, _Str)
+THEN
+LLNWIZ_DebugLog("Test command [UUID]: ", _Str);
+*/
 //END_REGION
 EXITSECTION
-
+GlobalClearFlag("LLNWIZ_DEBUGLOG_ENABLED");
 ENDEXITSECTION
 ParentTargetEdge "LaughingLeader_NamingWizard"

@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1520148617,
+         "time" : 1520200197,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -168,7 +168,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "335;1986"}
+                                    "val" : {"type" : 23, "value" : "1615;1767"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -223,7 +223,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Cancelling and exiting all menus..."
+                                                   "value" : "Cancelling and exiting Naming Wizard..."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -920,7 +920,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Save Text As Player-Saved Word"
+                                                   "value" : "Save Text As Word in Saved Words"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -962,7 +962,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "-305;2205"}
+                                    "val" : {"type" : 23, "value" : "975;1986"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1171,7 +1171,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "5775;672"}
+                                    "val" : {"type" : 23, "value" : "5775;4176"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1553,7 +1553,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "-305;2424"}
+                                    "val" : {"type" : 23, "value" : "975;2205"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2379,7 +2379,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "5775;4395"}
+                                    "val" : {"type" : 23, "value" : "5775;4614"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2416,7 +2416,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6415;4176"}
+                                    "val" : {"type" : 23, "value" : "6415;4395"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2712,7 +2712,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Character Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
+                                                   "value" : "<i>Character Menu</i><br>Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -3111,7 +3111,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6735;4176"}
+                                    "val" : {"type" : 23, "value" : "6735;4395"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -3376,7 +3376,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6415;672"}
+                                    "val" : {"type" : 23, "value" : "6415;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -3473,7 +3473,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6735;4395"}
+                                    "val" : {"type" : 23, "value" : "6735;4614"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -3587,7 +3587,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6415;4395"}
+                                    "val" : {"type" : 23, "value" : "6415;4614"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -3685,7 +3685,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "5775;4833"}
+                                    "val" : {"type" : 23, "value" : "5775;5052"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5575,7 +5575,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6095;4833"}
+                                    "val" : {"type" : 23, "value" : "6095;5052"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5672,7 +5672,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6095;672"}
+                                    "val" : {"type" : 23, "value" : "6095;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5868,7 +5868,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "-305;1986"}
+                                    "val" : {"type" : 23, "value" : "975;1767"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5996,7 +5996,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<b>[CONFIRM] Finish Naming</b>"
+                                                   "value" : "<b>[CONFIRM] Save & Exit</b>"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -6332,7 +6332,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Loading Equipment Set Menu..."
+                                                   "value" : "Closing Naming Wizard..."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -6464,7 +6464,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "15;2205"}
+                                    "val" : {"type" : 23, "value" : "1295;1986"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -7385,7 +7385,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "5775;4176"}
+                                    "val" : {"type" : 23, "value" : "5775;4395"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -7829,7 +7829,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "6095;4176"}
+                                    "val" : {"type" : 23, "value" : "6095;4395"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -7902,7 +7902,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Words Submenu<br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>Page [LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf]/[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
+                                                   "value" : "Words Submenu<br>Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>Page [LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf]/[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -7928,9 +7928,6 @@
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "5ac4eaa8-703f-4051-928b-f706e9730920"}
-                                 },
-                                 {
-                                    "UUID" : {"type" : 22, "value" : "19f00e80-72f2-4fe7-b9be-43fe979b8e8a"}
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "aa42f6d1-ff7e-41fe-990d-f0f27dd31fe6"}
@@ -7970,6 +7967,9 @@
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "6344d1e4-0718-45f2-a974-75cb818ae83a"}
+                                 },
+                                 {
+                                    "UUID" : {"type" : 22, "value" : "19f00e80-72f2-4fe7-b9be-43fe979b8e8a"}
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "c7005cb4-8036-4101-b9b0-718e6ac3eb8a"}
@@ -8192,7 +8192,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "<i>Main Menu</i><br>Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
+                                                   "value" : "<i>Main Menu</i><br>Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]<br>[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]<br>[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -8715,7 +8715,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "7055;4395"}
+                                    "val" : {"type" : 23, "value" : "7055;4614"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},

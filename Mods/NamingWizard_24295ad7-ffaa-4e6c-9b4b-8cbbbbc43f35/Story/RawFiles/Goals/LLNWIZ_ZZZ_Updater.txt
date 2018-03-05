@@ -54,11 +54,25 @@ THEN
 NOT DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader");
 
 PROC
+LLNWIZ_Updater_UnregisterMod()
+THEN
+GlobalClearFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
+
+PROC
 LLNWIZ_Updater_UninstallMod()
 THEN
 LLNWIZ_DebugLog("[Updater] Uninstalling mod.");
 LLNWIZ_System_ClearDatabases();
 LLNWIZ_Updater_UnregisterMod();
+//END_REGION
+
+//REGION ACTIVE_FLAG
+IF
+GameStarted(_,_)
+AND
+GlobalGetFlag("LLNWIZ_NAMING_WIZARD_ACTIVE", 0)
+THEN
+GlobalSetFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
 //END_REGION
 EXITSECTION
 LLNWIZ_Updater_UnregisterMod();

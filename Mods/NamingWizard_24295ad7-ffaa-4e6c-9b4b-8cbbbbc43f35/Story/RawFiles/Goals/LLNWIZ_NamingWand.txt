@@ -25,6 +25,44 @@ SysClear("DB_LLNWIZ_NamingWand_Skills", 1);
 SysClear("DB_LLNWIZ_NamingWand_TimerDelay", 2);
 //END_REGION
 
+//REGION PERMISSIONS
+QRY
+LLNWIZ_QRY_UserMatch((CHARACTERGUID)_Char1, (CHARACTERGUID)_Char2)
+AND
+CharacterGetReservedUserID(_Char1, _ID)
+AND
+CharacterGetReservedUserID(_Char2, _ID)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_NamingWand_CanRename((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+CharacterIsPlayer(_Target, 1)
+AND
+LLNWIZ_QRY_UserMatch(_Player, _Target)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_NamingWand_CanRename((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+CharacterIsPlayer(_Target, 1)
+AND
+NOT LLNWIZ_QRY_UserMatch(_Player, _Target)
+AND
+GlobalGetFlag("LLNWIZ_Settings_CrossPlayerRenamingEnabled", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_NamingWand_CanRename((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+CharacterIsPlayer(_Target, 0)
+THEN
+DB_NOOP(1);
+//END_REGION
+
 PROC
 LLNWIZ_NamingWand_ClearPreviousTargets((CHARACTERGUID)_Player)
 AND
@@ -51,10 +89,36 @@ CharacterStatusText(_Player, "<font color='#FF0000'>Renaming Failed!</font>");
 LLNWIZ_Wizard_HideWizardByTarget(_Target);
 NOT DB_LLNWIZ_NamingWand_FailTimer(_TimerName, _Player, _Target);
 
+//REGION SKILL_USE
 IF
 CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
 AND
 DB_LLNWIZ_NamingWand_Skills(_Skill)
+AND
+GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 1)
+THEN
+CharacterStatusText(_Player, "<font color='#FF0000'>Wand of Renaming is Disabled (NamingWizard Settings)</font>");
+
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+AND
+DB_LLNWIZ_NamingWand_Skills(_Skill)
+AND
+GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 0)
+AND
+NOT LLNWIZ_QRY_NamingWand_CanRename(_Player, _Target)
+THEN
+CharacterStatusText(_Player, "<font color='#FF0000'>Unable to Rename Target</font>");
+CharacterStatusText(_Target, "<font color='#DC143C'>Renaming Resisted</font>");
+
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+AND
+DB_LLNWIZ_NamingWand_Skills(_Skill)
+AND
+GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 0)
+AND
+LLNWIZ_QRY_NamingWand_CanRename(_Player, _Target)
 AND
 GetUUID(_Player, _ID)
 AND
@@ -84,12 +148,15 @@ DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 THEN
 LLWIZ_Wizard_Start(_Player, _Target);
 
+//END_REGION
+
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 THEN
 LLNWIZ_Naming_RenameCharacter(_Player, _Target);
+LLNWIZ_Naming_ClearSessionVariables(_Player);
 NOT DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
 
 IF

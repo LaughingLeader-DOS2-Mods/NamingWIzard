@@ -212,6 +212,14 @@ SysClear("DB_LLNWIZ_Naming_Temp_FoundWord", 5);
 SysClear("DB_LLNWIZ_Naming_Temp_LastVisibleText", 2);
 LLNWIZ_DebugLog("[NamingWizard] Naming databases cleared.");
 
+PROC
+LLNWIZ_Naming_ClearDatabases()
+AND
+DB_IsPlayer(_Player)
+THEN
+//Clear global variables set on the player
+LLNWIZ_Naming_ClearSessionVariables(_Player);
+
 //Stop on-going Naming Wizard dialogs if updating
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -304,13 +312,13 @@ THEN
 NOT DB_LLNWIZ_Naming_StartText(_Text, _Player);
 
 PROC
-LLNWIZ_Naming_ClearSavedVariables((CHARACTERGUID)_Player)
+LLNWIZ_Naming_ClearSessionVariables((CHARACTERGUID)_Player)
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
 ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 SetVarString(_Player, "LLNWIZ_FinalText", "");
 LLNWIZ_Naming_ClearPlayerVariables(_Player);
-LLNWIZ_DebugLog("[NamingWizard] Cleared saved player variables.");
+LLNWIZ_DebugLog("[NamingWizard] Cleared saved session variables for player.");
 //END_REGION
 
 //REGION TEXT_SETTINGS
@@ -1279,11 +1287,10 @@ SetVarString(_Player, "LLNWIZ_FinalText", _Text);
 PROC
 LLNWIZ_Naming_OnNamingCanceled((CHARACTERGUID)_Player, (INTEGER)_Instance)
 THEN
+LLNWIZ_Naming_ClearSessionVariables(_Player);
 ObjectSetFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
-SetVarString(_Player, "LLNWIZ_FinalText", "");
-ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
-LLNWIZ_DebugLog("[NamingWizard] Player canceled text saving.");
 //SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
+//LLNWIZ_DebugLog("[NamingWizard] Player canceled text saving.");
 //END_REGION
 
 //REGION RENAMING

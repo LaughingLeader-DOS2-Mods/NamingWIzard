@@ -111,6 +111,11 @@ StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
 THEN
 LLNWIZ_ModInteraction_SetInitialText(_Player);
 LLNWIZ_Naming_OpenNamingWizard(_Player);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_ClearSessionVariables")
+THEN
+LLNWIZ_Naming_ClearSessionVariables(_Player);
 //END_REGION
 
 //REGION RENAMING_NO_WAND
@@ -127,7 +132,7 @@ AND
 DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
 THEN
 LLNWIZ_Naming_RenameCharacter(_Player, _Target);
-LLNWIZ_Naming_ClearSavedVariables(_Player);
+LLNWIZ_Naming_ClearSessionVariables(_Player);
 NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
 
 IF
@@ -135,7 +140,7 @@ StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCanceled")
 AND
 DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
 THEN
-LLNWIZ_Naming_ClearSavedVariables(_Player);
+LLNWIZ_Naming_ClearSessionVariables(_Player);
 NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
 //END_REGION
 

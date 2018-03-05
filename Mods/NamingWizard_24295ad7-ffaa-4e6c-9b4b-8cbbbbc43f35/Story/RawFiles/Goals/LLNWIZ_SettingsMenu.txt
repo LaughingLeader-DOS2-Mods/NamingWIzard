@@ -1,0 +1,19 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+
+IF
+ObjectFlagSet("LLNWIZ_Commands_AddWand", _Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_AddWand")
+AND
+DB_LLNWIZ_ItemTemplates("RenameWand", _Template)
+THEN
+ItemTemplateAddTo(_Template, _Target, 1, 1);
+CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font>");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

@@ -2,7 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Words_InitializeSettings();
-LLNWIZ_Words_InitializeWords(); // Only run on first load.
+
 //Settings
 //DB_LLNWIZ_Words_Common(_Index, _Word)
 //DB_LLNWIZ_Words_Name(_Index, _Name)
@@ -83,121 +83,6 @@ DB_LLNWIZ_Naming_DisplayedWords(_Index, _Word);
 */
 //END_REGION
 
-//REGION SETTINGS_WORDS
-PROC
-LLNWIZ_Words_InitializeWords()
-THEN
- // Don't clear this since it may have been modified by a mod.
-//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_Common", 2);
-LLNWIZ_Words_AddWord("Aerothurge");
-LLNWIZ_Words_AddWord("Air");
-LLNWIZ_Words_AddWord("AoE");
-LLNWIZ_Words_AddWord("Armor");
-LLNWIZ_Words_AddWord("Axe");
-LLNWIZ_Words_AddWord("Barter");
-LLNWIZ_Words_AddWord("Battle");
-LLNWIZ_Words_AddWord("Beast");
-LLNWIZ_Words_AddWord("Black");
-LLNWIZ_Words_AddWord("Bow");
-LLNWIZ_Words_AddWord("Charisma");
-LLNWIZ_Words_AddWord("Class");
-LLNWIZ_Words_AddWord("Cloth");
-LLNWIZ_Words_AddWord("Combat");
-LLNWIZ_Words_AddWord("Common");
-LLNWIZ_Words_AddWord("Crafting");
-LLNWIZ_Words_AddWord("Crossbow");
-LLNWIZ_Words_AddWord("Custom");
-LLNWIZ_Words_AddWord("Dark");
-LLNWIZ_Words_AddWord("DPS");
-LLNWIZ_Words_AddWord("DualWielding");
-LLNWIZ_Words_AddWord("Dwarven");
-LLNWIZ_Words_AddWord("Earth");
-LLNWIZ_Words_AddWord("Elven");
-LLNWIZ_Words_AddWord("Epic");
-LLNWIZ_Words_AddWord("Fane");
-LLNWIZ_Words_AddWord("Fire");
-LLNWIZ_Words_AddWord("Geomancer");
-LLNWIZ_Words_AddWord("Glass Cannon");
-LLNWIZ_Words_AddWord("Healer");
-LLNWIZ_Words_AddWord("Human");
-LLNWIZ_Words_AddWord("Huntsman");
-LLNWIZ_Words_AddWord("Hydrosophist");
-LLNWIZ_Words_AddWord("Ifan");
-LLNWIZ_Words_AddWord("Junk");
-LLNWIZ_Words_AddWord("Knight");
-LLNWIZ_Words_AddWord("Leader");
-LLNWIZ_Words_AddWord("Leadership");
-LLNWIZ_Words_AddWord("Leather");
-LLNWIZ_Words_AddWord("Legendary");
-LLNWIZ_Words_AddWord("Lifesteal");
-LLNWIZ_Words_AddWord("Lizard");
-LLNWIZ_Words_AddWord("Lockpicking");
-LLNWIZ_Words_AddWord("Lohse");
-LLNWIZ_Words_AddWord("Lone Wolf");
-LLNWIZ_Words_AddWord("Loremaster");
-LLNWIZ_Words_AddWord("Luck");
-LLNWIZ_Words_AddWord("Mace");
-LLNWIZ_Words_AddWord("Mage");
-LLNWIZ_Words_AddWord("Magic");
-LLNWIZ_Words_AddWord("Metal");
-LLNWIZ_Words_AddWord("Mod");
-LLNWIZ_Words_AddWord("Necromancy");
-LLNWIZ_Words_AddWord("Paladin");
-LLNWIZ_Words_AddWord("Perseverance");
-LLNWIZ_Words_AddWord("Persuasion");
-LLNWIZ_Words_AddWord("Physical");
-LLNWIZ_Words_AddWord("Pickpocket");
-LLNWIZ_Words_AddWord("Polymorph");
-LLNWIZ_Words_AddWord("Priest");
-LLNWIZ_Words_AddWord("Pyrokinetic");
-LLNWIZ_Words_AddWord("Ranged");
-LLNWIZ_Words_AddWord("Ranger");
-LLNWIZ_Words_AddWord("Rare");
-LLNWIZ_Words_AddWord("Retribution");
-LLNWIZ_Words_AddWord("Rogue");
-LLNWIZ_Words_AddWord("Rune");
-LLNWIZ_Words_AddWord("Running");
-LLNWIZ_Words_AddWord("Scoundrel");
-LLNWIZ_Words_AddWord("Sebille");
-LLNWIZ_Words_AddWord("Shield");
-LLNWIZ_Words_AddWord("SingleHanded");
-LLNWIZ_Words_AddWord("Sneaking");
-LLNWIZ_Words_AddWord("Source");
-LLNWIZ_Words_AddWord("Spear");
-LLNWIZ_Words_AddWord("Speed");
-LLNWIZ_Words_AddWord("Staff");
-LLNWIZ_Words_AddWord("Stealth");
-LLNWIZ_Words_AddWord("Summoning");
-LLNWIZ_Words_AddWord("Sword");
-LLNWIZ_Words_AddWord("Tank");
-LLNWIZ_Words_AddWord("Telekinesis");
-LLNWIZ_Words_AddWord("Thievery");
-LLNWIZ_Words_AddWord("Town");
-LLNWIZ_Words_AddWord("TwoHanded");
-LLNWIZ_Words_AddWord("Uncommon");
-LLNWIZ_Words_AddWord("Undead");
-LLNWIZ_Words_AddWord("Unique");
-LLNWIZ_Words_AddWord("Vitality");
-LLNWIZ_Words_AddWord("Wand");
-LLNWIZ_Words_AddWord("Warfare");
-LLNWIZ_Words_AddWord("Water");
-
-LLNWIZ_Words_AddName("Beast");
-LLNWIZ_Words_AddName("Fane");
-LLNWIZ_Words_AddName("Ifan Ben-Mezd");
-LLNWIZ_Words_AddName("Lohse");
-LLNWIZ_Words_AddName("Sebille");
-LLNWIZ_Words_AddName("The Red Prince");
-
-LLNWIZ_Words_AddModWord("NamingWizard");
-
-PROC
-LLNWIZ_Words_UpdateWords()
-THEN
-//For future word adding.
-DB_NOOP(1);
-//END_REGION
-
 //REGION SETTINGS
 PROC
 LLNWIZ_Words_InitializeSettings()
@@ -232,7 +117,6 @@ PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
 LLNWIZ_Words_InitializeSettings();
-LLNWIZ_Words_UpdateWords();
 
 PROC
 LLNWIZ_System_ClearDatabases()
@@ -781,7 +665,6 @@ _MaxPage <= 1
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_HasMultiplePages");
 //END_REGION
-
 
 //REGION PARTY_NAMES
 IF

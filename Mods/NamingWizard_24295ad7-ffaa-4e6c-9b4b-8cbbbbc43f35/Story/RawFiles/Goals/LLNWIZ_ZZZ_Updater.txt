@@ -26,14 +26,6 @@ NOT DB_Mods_RegisteredMod("NamingWizard", _NewVersion, "LaughingLeader")
 THEN
 DB_NOOP(1);
 
-IF
-GameStarted(_,_)
-AND
-LLNWIZ_QRY_Updater_ModUpdateNeeded("0.9.0.0")
-THEN
-LLNWIZ_Updater_RegisterMod("0.9.0.0");
-LLNWIZ_System_UpdateDatabases();
-
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
@@ -43,6 +35,24 @@ PROC
 LLNWIZ_System_ClearDatabases()
 THEN
 LLNWIZ_DebugLog("[Updater] Databases cleared.");
+
+PROC
+LLNWIZ_Updater_ResetDatabases()
+THEN
+LLNWIZ_System_ClearDatabases();
+//LLNWIZ_Updater_RegisterMod("0.9.0.0");
+LLNWIZ_System_UpdateDatabases();
+LLNWIZ_DebugLog("[Updater] Databases cleared and re-initialized.");
+//END_REGION
+
+//REGION UPDATE_EVENT
+IF
+GameStarted(_,_)
+AND
+LLNWIZ_QRY_Updater_ModUpdateNeeded("0.9.0.0")
+THEN
+LLNWIZ_Updater_RegisterMod("0.9.0.0");
+LLNWIZ_System_UpdateDatabases();
 //END_REGION
 
 //REGION UNINSTALLING
@@ -61,9 +71,63 @@ GlobalClearFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
 PROC
 LLNWIZ_Updater_UninstallMod()
 THEN
-LLNWIZ_DebugLog("[Updater] Uninstalling mod.");
+LLNWIZ_DebugLog("[Updater:Uninstaller] Uninstalling Naming Wizard.");
+LLNWIZ_DebugLog("[Updater:Uninstaller] Attempting to end all Naming Wizard dialogs. Resuming in 2 seconds.");
+LLNWIZ_Updater_CloseAllNamingWizardDialogs();
+TimerLaunch("LLNWIZ_Timers_Updater_UninstallerPhase2", 2000);
+
+IF
+TimerFinished("LLNWIZ_Timers_Updater_UninstallerPhase2")
+THEN
+LLNWIZ_DebugLog("[Updater:Uninstaller] Clearing all flags.");
+LLNWIZ_Updater_ClearFlags();
+LLNWIZ_DebugLog("[Updater:Uninstaller] Destroying all Naming Wizard items.");
+LLNWIZ_Updater_DestroyNamingWizardItems();
+LLNWIZ_DebugLog("[Updater:Uninstaller] Clearing databases.");
 LLNWIZ_System_ClearDatabases();
+LLNWIZ_DebugLog("[Updater:Uninstaller] Unregistering Naming Wizard.");
 LLNWIZ_Updater_UnregisterMod();
+
+PROC
+LLNWIZ_Updater_CloseAllNamingWizardDialogs()
+AND
+DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+THEN
+DialogRequestStop(_Player);
+
+PROC
+LLNWIZ_Updater_ClearFlags()
+THEN
+LLNWIZ_Settings_ClearGlobalFlags();
+
+PROC
+LLNWIZ_Updater_ClearFlags()
+AND
+DB_IsPlayer(_Player)
+THEN
+LLNWIZ_Settings_ClearObjectFlags(_Player);
+LLNWIZ_Settings_ClearUserFlags(_Player);
+
+PROC
+LLNWIZ_Updater_UnequipNamingWizardItem((CHARACTERGUID)_Player, (ITEMGUID)_Item)
+AND
+ItemIsEquipable(_Item, 1)
+THEN
+CharacterUnequipItem(_Player, _Item);
+
+PROC
+LLNWIZ_Updater_DestroyNamingWizardItems()
+AND
+DB_IsPlayer(_Player)
+AND
+DB_LLNWIZ_ItemTemplates(_Name, _Template)
+AND
+GetItemForItemTemplateInInventory(_Player, _Template, _Item)
+THEN
+LLNWIZ_Updater_UnequipNamingWizardItem(_Player, _Item);
+ItemDestroy(_Item);
 //END_REGION
 
 //REGION ACTIVE_FLAG

@@ -15,7 +15,7 @@ LLNWIZ_Naming_SetMaxCharacterLength(70);
 //DB_LLNWIZ_Naming_VisibleText(_Text, _Instance);
 //DB_LLNWIZ_Naming_FinishedText(_Text, _Player, _Length);
 //DB_LLNWIZ_Naming_LastFinishedText(_Text, _Player, _Length);
-//DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+//DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 //DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 //DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
 
@@ -32,87 +32,6 @@ LLNWIZ_Naming_SetMaxCharacterLength(70);
 //DB_LLNWIZ_Naming_Temp_FoundWord(_Text, _StartIndex, _StartLength, _StartIndex2, _StartLength2)
 //DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance)
 KBSECTION
-//REGION SETTINGS_CODEX
-PROC
-LLNWIZ_Naming_InitializeSettings()
-THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Groups", 2);
-DB_LLNWIZ_Naming_Groups(0, "Letters");
-DB_LLNWIZ_Naming_Groups(1, "Number");
-
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_GroupMax", 2);
-DB_LLNWIZ_Naming_GroupMax("Letters", 25);
-DB_LLNWIZ_Naming_GroupMax("Upper", 25);
-DB_LLNWIZ_Naming_GroupMax("Lower", 25);
-DB_LLNWIZ_Naming_GroupMax("Number", 9);
-
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Letters", 3);
-DB_LLNWIZ_Naming_Letters("Upper", 0, "A");
-DB_LLNWIZ_Naming_Letters("Upper", 1, "B");
-DB_LLNWIZ_Naming_Letters("Upper", 2, "C");
-DB_LLNWIZ_Naming_Letters("Upper", 3, "D");
-DB_LLNWIZ_Naming_Letters("Upper", 4, "E");
-DB_LLNWIZ_Naming_Letters("Upper", 5, "F");
-DB_LLNWIZ_Naming_Letters("Upper", 6, "G");
-DB_LLNWIZ_Naming_Letters("Upper", 7, "H");
-DB_LLNWIZ_Naming_Letters("Upper", 8, "I");
-DB_LLNWIZ_Naming_Letters("Upper", 9, "J");
-DB_LLNWIZ_Naming_Letters("Upper", 10, "K");
-DB_LLNWIZ_Naming_Letters("Upper", 11, "L");
-DB_LLNWIZ_Naming_Letters("Upper", 12, "M");
-DB_LLNWIZ_Naming_Letters("Upper", 13, "N");
-DB_LLNWIZ_Naming_Letters("Upper", 14, "O");
-DB_LLNWIZ_Naming_Letters("Upper", 15, "P");
-DB_LLNWIZ_Naming_Letters("Upper", 16, "Q");
-DB_LLNWIZ_Naming_Letters("Upper", 17, "R");
-DB_LLNWIZ_Naming_Letters("Upper", 18, "S");
-DB_LLNWIZ_Naming_Letters("Upper", 19, "T");
-DB_LLNWIZ_Naming_Letters("Upper", 20, "U");
-DB_LLNWIZ_Naming_Letters("Upper", 21, "V");
-DB_LLNWIZ_Naming_Letters("Upper", 22, "W");
-DB_LLNWIZ_Naming_Letters("Upper", 23, "X");
-DB_LLNWIZ_Naming_Letters("Upper", 24, "Y");
-DB_LLNWIZ_Naming_Letters("Upper", 25, "Z");
-
-DB_LLNWIZ_Naming_Letters("Lower", 0, "a");
-DB_LLNWIZ_Naming_Letters("Lower", 1, "b");
-DB_LLNWIZ_Naming_Letters("Lower", 2, "c");
-DB_LLNWIZ_Naming_Letters("Lower", 3, "d");
-DB_LLNWIZ_Naming_Letters("Lower", 4, "e");
-DB_LLNWIZ_Naming_Letters("Lower", 5, "f");
-DB_LLNWIZ_Naming_Letters("Lower", 6, "g");
-DB_LLNWIZ_Naming_Letters("Lower", 7, "h");
-DB_LLNWIZ_Naming_Letters("Lower", 8, "i");
-DB_LLNWIZ_Naming_Letters("Lower", 9, "j");
-DB_LLNWIZ_Naming_Letters("Lower", 10, "k");
-DB_LLNWIZ_Naming_Letters("Lower", 11, "l");
-DB_LLNWIZ_Naming_Letters("Lower", 12, "m");
-DB_LLNWIZ_Naming_Letters("Lower", 13, "n");
-DB_LLNWIZ_Naming_Letters("Lower", 14, "o");
-DB_LLNWIZ_Naming_Letters("Lower", 15, "p");
-DB_LLNWIZ_Naming_Letters("Lower", 16, "q");
-DB_LLNWIZ_Naming_Letters("Lower", 17, "r");
-DB_LLNWIZ_Naming_Letters("Lower", 18, "s");
-DB_LLNWIZ_Naming_Letters("Lower", 19, "t");
-DB_LLNWIZ_Naming_Letters("Lower", 20, "u");
-DB_LLNWIZ_Naming_Letters("Lower", 21, "v");
-DB_LLNWIZ_Naming_Letters("Lower", 22, "w");
-DB_LLNWIZ_Naming_Letters("Lower", 23, "x");
-DB_LLNWIZ_Naming_Letters("Lower", 24, "y");
-DB_LLNWIZ_Naming_Letters("Lower", 25, "z");
-
-DB_LLNWIZ_Naming_Letters("Number", 0, "0");
-DB_LLNWIZ_Naming_Letters("Number", 1, "1");
-DB_LLNWIZ_Naming_Letters("Number", 2, "2");
-DB_LLNWIZ_Naming_Letters("Number", 3, "3");
-DB_LLNWIZ_Naming_Letters("Number", 4, "4");
-DB_LLNWIZ_Naming_Letters("Number", 5, "5");
-DB_LLNWIZ_Naming_Letters("Number", 6, "6");
-DB_LLNWIZ_Naming_Letters("Number", 7, "7");
-DB_LLNWIZ_Naming_Letters("Number", 8, "8");
-DB_LLNWIZ_Naming_Letters("Number", 9, "9");
-//END_REGION
-
 //REGION SETTINGS_COUNTING
 PROC
 LLNWIZ_Naming_ConfigureCountingDatabase()
@@ -197,10 +116,7 @@ SysClear("DB_LLNWIZ_Naming_StartText", 2);
 SysClear("DB_LLNWIZ_Naming_VisibleText", 2);
 SysClear("DB_LLNWIZ_Naming_FinishedText", 3);
 SysClear("DB_LLNWIZ_Naming_LastFinishedText", 3);
-SysClear("DB_LLNWIZ_Naming_Letters", 3);
-SysClear("DB_LLNWIZ_Naming_Groups", 2);
 SysClear("DB_LLNWIZ_Naming_CurrentGroup", 2);
-SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
 SysClear("DB_LLNWIZ_Naming_CurrentCasing", 2);
 SysClear("DB_LLNWIZ_Naming_SelectedLetter", 3);
 SysClear("DB_LLNWIZ_Naming_TextLength", 2);
@@ -548,7 +464,7 @@ DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
 AND
 _Index <= _Max
 AND
-DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
 
@@ -576,7 +492,7 @@ LLNWIZ_Naming_MoveLetterBackward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Inst
 AND
 _Index >= 0
 AND
-DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
 
@@ -810,7 +726,7 @@ LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_AddLetter")
 AND
 DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
 AND
-DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 THEN
 LLNWIZ_Naming_AppendLetter(_Letter, _Instance);
 //DebugBreak("[LLNWIZ] User added letter.");
@@ -1263,7 +1179,7 @@ LLNWIZ_Naming_UpdateSelectedLetterVariable((INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
 AND
-DB_LLNWIZ_Naming_Letters(_Group, _Index, _Letter)
+DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 AND
 DB_LLNWIZ_Naming_DialogVariables("SelectedLetter", _VariableName)
 THEN

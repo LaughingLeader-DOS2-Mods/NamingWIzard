@@ -3,16 +3,31 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-
 IF
-ObjectFlagSet("LLNWIZ_Commands_AddWand", _Player, _Instance)
+ObjectFlagSet("LLNWIZ_Commands_AddRenamingWand", (CHARACTERGUID)_Player, _Instance)
 AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_AddWand")
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_AddRenamingWand")
 AND
 DB_LLNWIZ_ItemTemplates("RenameWand", _Template)
 THEN
-ItemTemplateAddTo(_Template, _Target, 1, 1);
+ItemTemplateAddTo(_Template, _Player, 1, 1);
 CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font>");
+
+//REGION DEBUG_COMMANDS
+IF
+ObjectFlagSet("LLNWIZ_Commands_Debug_ResetDatabases", _Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_ResetDatabases")
+THEN
+LLNWIZ_Updater_ResetDatabases();
+
+IF
+ObjectFlagSet("LLNWIZ_Commands_Debug_UninstallMod", _Player, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_UninstallMod")
+THEN
+LLNWIZ_Updater_UninstallMod();
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

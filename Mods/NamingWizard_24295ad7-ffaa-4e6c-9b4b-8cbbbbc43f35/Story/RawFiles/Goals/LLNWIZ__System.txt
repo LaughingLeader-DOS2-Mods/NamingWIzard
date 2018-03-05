@@ -139,16 +139,16 @@ LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
 AND
 CharacterGetHostCharacter(_Player)
 THEN
-UserSetFlag(_Player, "LLNWIZ_ISHOST");
+UserSetFlag(_Player, "LLNWIZ_IsHost");
 
 PROC
 LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
 AND
 NOT CharacterGetHostCharacter(_Player)
 AND
-UserGetFlag(_Player, "LLNWIZ_ISHOST", 1)
+UserGetFlag(_Player, "LLNWIZ_IsHost", 1)
 THEN
-UserClearFlag(_Player, "LLNWIZ_ISHOST", 0);
+UserClearFlag(_Player, "LLNWIZ_IsHost", 0);
 
 PROC
 LLNWIZ_System_ClearInitialization((CHARACTERGUID)_Player)

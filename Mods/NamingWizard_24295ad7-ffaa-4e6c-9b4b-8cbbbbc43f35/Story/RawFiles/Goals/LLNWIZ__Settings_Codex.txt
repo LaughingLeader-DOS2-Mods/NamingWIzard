@@ -1,0 +1,101 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+LLNWIZ_Settings_InitializeCodex();
+KBSECTION
+//REGION SETTINGS_CODEX
+PROC
+LLNWIZ_Settings_InitializeCodex()
+THEN
+//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Groups", 2);
+DB_LLNWIZ_Naming_Groups(0, "Letters");
+DB_LLNWIZ_Naming_Groups(1, "Number");
+
+//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_GroupMax", 2);
+DB_LLNWIZ_Naming_GroupMax("Letters", 25);
+DB_LLNWIZ_Naming_GroupMax("Upper", 25);
+DB_LLNWIZ_Naming_GroupMax("Lower", 25);
+DB_LLNWIZ_Naming_GroupMax("Number", 9);
+
+//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Codex", 3);
+DB_LLNWIZ_Naming_Codex("Upper", 0, "A");
+DB_LLNWIZ_Naming_Codex("Upper", 1, "B");
+DB_LLNWIZ_Naming_Codex("Upper", 2, "C");
+DB_LLNWIZ_Naming_Codex("Upper", 3, "D");
+DB_LLNWIZ_Naming_Codex("Upper", 4, "E");
+DB_LLNWIZ_Naming_Codex("Upper", 5, "F");
+DB_LLNWIZ_Naming_Codex("Upper", 6, "G");
+DB_LLNWIZ_Naming_Codex("Upper", 7, "H");
+DB_LLNWIZ_Naming_Codex("Upper", 8, "I");
+DB_LLNWIZ_Naming_Codex("Upper", 9, "J");
+DB_LLNWIZ_Naming_Codex("Upper", 10, "K");
+DB_LLNWIZ_Naming_Codex("Upper", 11, "L");
+DB_LLNWIZ_Naming_Codex("Upper", 12, "M");
+DB_LLNWIZ_Naming_Codex("Upper", 13, "N");
+DB_LLNWIZ_Naming_Codex("Upper", 14, "O");
+DB_LLNWIZ_Naming_Codex("Upper", 15, "P");
+DB_LLNWIZ_Naming_Codex("Upper", 16, "Q");
+DB_LLNWIZ_Naming_Codex("Upper", 17, "R");
+DB_LLNWIZ_Naming_Codex("Upper", 18, "S");
+DB_LLNWIZ_Naming_Codex("Upper", 19, "T");
+DB_LLNWIZ_Naming_Codex("Upper", 20, "U");
+DB_LLNWIZ_Naming_Codex("Upper", 21, "V");
+DB_LLNWIZ_Naming_Codex("Upper", 22, "W");
+DB_LLNWIZ_Naming_Codex("Upper", 23, "X");
+DB_LLNWIZ_Naming_Codex("Upper", 24, "Y");
+DB_LLNWIZ_Naming_Codex("Upper", 25, "Z");
+
+DB_LLNWIZ_Naming_Codex("Lower", 0, "a");
+DB_LLNWIZ_Naming_Codex("Lower", 1, "b");
+DB_LLNWIZ_Naming_Codex("Lower", 2, "c");
+DB_LLNWIZ_Naming_Codex("Lower", 3, "d");
+DB_LLNWIZ_Naming_Codex("Lower", 4, "e");
+DB_LLNWIZ_Naming_Codex("Lower", 5, "f");
+DB_LLNWIZ_Naming_Codex("Lower", 6, "g");
+DB_LLNWIZ_Naming_Codex("Lower", 7, "h");
+DB_LLNWIZ_Naming_Codex("Lower", 8, "i");
+DB_LLNWIZ_Naming_Codex("Lower", 9, "j");
+DB_LLNWIZ_Naming_Codex("Lower", 10, "k");
+DB_LLNWIZ_Naming_Codex("Lower", 11, "l");
+DB_LLNWIZ_Naming_Codex("Lower", 12, "m");
+DB_LLNWIZ_Naming_Codex("Lower", 13, "n");
+DB_LLNWIZ_Naming_Codex("Lower", 14, "o");
+DB_LLNWIZ_Naming_Codex("Lower", 15, "p");
+DB_LLNWIZ_Naming_Codex("Lower", 16, "q");
+DB_LLNWIZ_Naming_Codex("Lower", 17, "r");
+DB_LLNWIZ_Naming_Codex("Lower", 18, "s");
+DB_LLNWIZ_Naming_Codex("Lower", 19, "t");
+DB_LLNWIZ_Naming_Codex("Lower", 20, "u");
+DB_LLNWIZ_Naming_Codex("Lower", 21, "v");
+DB_LLNWIZ_Naming_Codex("Lower", 22, "w");
+DB_LLNWIZ_Naming_Codex("Lower", 23, "x");
+DB_LLNWIZ_Naming_Codex("Lower", 24, "y");
+DB_LLNWIZ_Naming_Codex("Lower", 25, "z");
+
+DB_LLNWIZ_Naming_Codex("Number", 0, "0");
+DB_LLNWIZ_Naming_Codex("Number", 1, "1");
+DB_LLNWIZ_Naming_Codex("Number", 2, "2");
+DB_LLNWIZ_Naming_Codex("Number", 3, "3");
+DB_LLNWIZ_Naming_Codex("Number", 4, "4");
+DB_LLNWIZ_Naming_Codex("Number", 5, "5");
+DB_LLNWIZ_Naming_Codex("Number", 6, "6");
+DB_LLNWIZ_Naming_Codex("Number", 7, "7");
+DB_LLNWIZ_Naming_Codex("Number", 8, "8");
+DB_LLNWIZ_Naming_Codex("Number", 9, "9");
+//END_REGION
+
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+LLNWIZ_Settings_InitializeCodex();
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_Naming_Codex", 3);
+SysClear("DB_LLNWIZ_Naming_Groups", 2);
+SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

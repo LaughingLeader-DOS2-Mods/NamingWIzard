@@ -13,6 +13,15 @@ INITSECTION
 LLNWIZ_System_InitializeSettings();
 KBSECTION
 //REGION DATABASE_HELPERS
+QRY
+LLNWIZ_QRY_System_DatabaseExists((STRING)_DatabaseName, (INTEGER)_Arity)
+AND
+SysCount(_DatabaseName, _Arity, _Count)
+AND
+_Count > 0
+THEN
+DB_NOOP(1);
+
 PROC
 LLNWIZ_System_ClearExistingDatabase((STRING)_DatabaseName, (INTEGER)_Arity)
 AND

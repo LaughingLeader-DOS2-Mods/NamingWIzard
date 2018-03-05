@@ -617,12 +617,28 @@ LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
 PROC
 LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
 AND
-DB_LLNWIZ_Naming_SelectedLetter(_Max, _Group, _Instance)
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
 AND
 DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Max, _Group, _Instance);
 LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+PROC
+LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_SelectedLetter(_, _, _Instance)
+THEN
+LLNWIZ_DebugLog("[NamingWizard][ERROR] No selected letter set for instance!");
+
+PROC
+LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+NOT DB_LLNWIZ_Naming_GroupMax(_Group, _)
+THEN
+LLNWIZ_DebugLog("[NamingWizard][ERROR] No max amount set for group [",_Group,"]!");
 
 PROC
 LLNWIZ_Naming_ChangeCasing((INTEGER)_Instance, "Upper")

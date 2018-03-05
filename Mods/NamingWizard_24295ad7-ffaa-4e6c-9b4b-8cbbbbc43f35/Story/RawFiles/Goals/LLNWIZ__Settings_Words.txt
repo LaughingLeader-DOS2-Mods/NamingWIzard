@@ -3,6 +3,49 @@ SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Settings_InitializeWords();
 KBSECTION
+//REGION WORD_ADDING
+PROC
+LLNWIZ_Words_AddWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Words_Common(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Words_Common", 2, _Index)
+THEN
+DB_LLNWIZ_Words_Common(_Index, _Word);
+
+PROC
+LLNWIZ_Words_AddPlayerWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Words_PlayerSaved(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Words_PlayerSaved", 2, _Index)
+THEN
+DB_LLNWIZ_Words_PlayerSaved(_Index, _Word);
+
+PROC
+LLNWIZ_Words_AddModWord((STRING)_Word)
+AND
+NOT DB_LLNWIZ_Words_Mod(_,_Word)
+AND
+SysCount("DB_LLNWIZ_Words_Mod", 2, _Index)
+THEN
+DB_LLNWIZ_Words_Mod(_Index, _Word);
+
+PROC
+LLNWIZ_Words_AddName((STRING)_Name)
+AND
+NOT DB_LLNWIZ_Words_Name(_, _Name)
+AND
+SysCount("DB_LLNWIZ_Words_Name", 2, _Index)
+THEN
+DB_LLNWIZ_Words_Name(_Index, _Name);
+
+PROC
+LLNWIZ_Words_AddDisplayedWord((INTEGER)_Index, (STRING)_Word)
+THEN
+DB_LLNWIZ_Words_Displayed(_Index, _Word);
+//END_REGION
+
 //REGION DEFAULT_WORDS
 PROC
 LLNWIZ_Settings_InitializeWords()
@@ -123,6 +166,16 @@ LLNWIZ_System_UpdateDatabases()
 THEN
 //LLNWIZ_Settings_InitializeWords(); Should only be initialized when the goal first runs, in case a mod changes default words.
 LLNWIZ_Settings_UpdateWords();
+LLNWIZ_DebugLog("[Settings:Words] Updated words.");
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_LLNWIZ_Words_Common", 2);
+SysClear("DB_LLNWIZ_Words_Name", 2);
+SysClear("DB_LLNWIZ_Words_PlayerSaved", 2);
+SysClear("DB_LLNWIZ_Words_Mod", 2);
+SysClear("DB_LLNWIZ_Words_Displayed", 2);
 EXITSECTION
 
 ENDEXITSECTION

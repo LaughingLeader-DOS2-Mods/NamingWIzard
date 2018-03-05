@@ -56,6 +56,7 @@ DB_LLNWIZ_MenuDialog("LLNWIZ_NamingMenu");
 
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_ItemTemplates", 2);
 DB_LLNWIZ_ItemTemplates("RenameWand", "WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683");
+DB_LLNWIZ_ItemTemplates("SettingsBook", "BOOK_LLNWIZ_Settings_a66e3eae-8ea3-43b1-8db7-0e736ad53336");
 
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
 SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
@@ -144,42 +145,23 @@ ObjectClearFlag(_Object, _Flag);
 
 //REGION HOST_FLAGGING
 PROC
-LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
+LLNWIZ_System_FlagHost()
+AND
+DB_IsPlayer(_Player)
+THEN
+UserClearFlag(_Player, "LLNWIZ_IsHost", 0);
+
+PROC
+LLNWIZ_System_FlagHost()
 AND
 CharacterGetHostCharacter(_Player)
 THEN
 UserSetFlag(_Player, "LLNWIZ_IsHost");
 
-PROC
-LLNWIZ_System_MarkHost((CHARACTERGUID)_Player)
-AND
-NOT CharacterGetHostCharacter(_Player)
-AND
-UserGetFlag(_Player, "LLNWIZ_IsHost", 1)
-THEN
-UserClearFlag(_Player, "LLNWIZ_IsHost", 0);
-
-PROC
-LLNWIZ_System_ClearInitialization((CHARACTERGUID)_Player)
-AND
-DB_LLNWIZ_System_PlayerInitialized(_Player)
-THEN
-NOT DB_LLNWIZ_System_PlayerInitialized(_Player);
-
-PROC
-LLNWIZ_System_InitialSetup((CHARACTERGUID)_Player)
-AND
-NOT DB_LLNWIZ_System_PlayerInitialized(_Player)
-THEN
-DB_LLNWIZ_System_PlayerInitialized(_Player);
-
 IF
 GameStarted(_,_)
-AND
-DB_IsPlayer(_Player)
 THEN
-LLNWIZ_System_MarkHost(_Player);
-LLNWIZ_System_InitialSetup(_Player);
+LLNWIZ_System_FlagHost();
 //END_REGION
 
 //REGION FX_HELPERS

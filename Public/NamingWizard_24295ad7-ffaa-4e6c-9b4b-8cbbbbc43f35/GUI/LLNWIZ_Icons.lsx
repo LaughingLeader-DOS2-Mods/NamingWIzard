@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1519579349" />
+    <header version="2" time="1520289061" />
     <version major="3" minor="1" revision="6" build="0" />
     <region id="IconUVList">
-        <node id="root" />
+        <node id="root">
+            <children>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="LLNWIZ_SettingsBook" type="22" />
+                    <attribute id="U1" value="0.000976563" type="6" />
+                    <attribute id="U2" value="0.124023" type="6" />
+                    <attribute id="V1" value="0.000976563" type="6" />
+                    <attribute id="V2" value="0.124023" type="6" />
+                </node>
+            </children>
+        </node>
     </region>
     <region id="TextureAtlasInfo">
         <node id="root">

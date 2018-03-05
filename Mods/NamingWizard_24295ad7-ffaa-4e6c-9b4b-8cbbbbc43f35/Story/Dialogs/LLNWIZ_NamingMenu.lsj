@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1520200197,
+         "time" : 1520287495,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -1880,7 +1880,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Revert to Original Name"
+                                                   "value" : "Set to Original Name"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -8414,7 +8414,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Last Confirmed Text"
+                                                   "value" : "Set to Last Confirmed Text"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }

@@ -106,6 +106,34 @@ THEN
 LLNWIZ_DebugLog("Test command [UUID]: ", _Str);
 */
 //END_REGION
+
+IF
+GameStarted("LLNWIZ_DebugLevel", 1)
+AND
+NOT DB_IsPlayer(_)
+AND
+CharacterGetHostCharacter(_Host)
+THEN
+DB_IsPlayer(_Host);
+LLNWIZ_DebugLog("[DebugLevel] Added host to DB_IsPlayer.");
+
+/*
+IF
+RegionStarted("LLNWIZ_DebugLevel")
+AND
+NOT DB_IsPlayer(_)
+THEN
+CharacterLaunchIterator("LLNWIZ_Debug_AddPlayers");
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Debug_AddPlayers")
+AND
+CharacterIsPlayer(_Player, 1)
+AND
+NOT DB_IsPlayer(_Player)
+THEN
+DB_IsPlayer(_Player);
+*/
 EXITSECTION
 GlobalClearFlag("LLNWIZ_DEBUGLOG_ENABLED");
 ENDEXITSECTION

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e078e210-b9ba-48e5-afe3-c5eb91ba8545">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" clear_inherited_value="false" value="BOOK_LLNWIZ_Settings" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" clear_inherited_value="false" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" clear_inherited_value="false" value="a66e3eae-8ea3-43b1-8db7-0e736ad53336" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Unique" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

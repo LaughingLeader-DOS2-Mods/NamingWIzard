@@ -1,0 +1,11 @@
+new entry "BOOK_LLNWIZ_Settings"
+type "Object"
+using "_Generics"
+data "RootTemplate" "a66e3eae-8ea3-43b1-8db7-0e736ad53336"
+data "Act part" "0"
+data "Value" "0"
+data "Weight" "0"
+data "MinAmount" "1"
+data "MaxAmount" "1"
+data "Unique" "1"
+

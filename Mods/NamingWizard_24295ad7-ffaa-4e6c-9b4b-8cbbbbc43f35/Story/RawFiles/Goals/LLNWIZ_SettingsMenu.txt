@@ -1,8 +1,29 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+LLNWIZ_SettingsMenu_InitializeSettings();
 
+//DB_Temp_SettingsMenuBookTimerActive(_Active)
 KBSECTION
+//REGION SETTINGS
+PROC
+LLNWIZ_SettingsMenu_InitializeSettings()
+THEN
+DB_NOOP(1);
+
+PROC
+LLNWIZ_System_UpdateDatabases()
+THEN
+SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
+LLNWIZ_SettingsMenu_InitializeSettings();
+
+PROC
+LLNWIZ_System_ClearDatabases()
+THEN
+SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
+//END_REGION
+
+//REGION COMMAND_FLAGS
 IF
 ObjectFlagSet("LLNWIZ_Commands_AddRenamingWand", (CHARACTERGUID)_Player, _Instance)
 AND
@@ -13,7 +34,9 @@ THEN
 ItemTemplateAddTo(_Template, _Player, 1, 1);
 CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font>");
 
-//REGION DEBUG_COMMANDS
+//END_REGION
+
+//REGION DEBUG_COMMAND_FLAGS
 IF
 ObjectFlagSet("LLNWIZ_Commands_Debug_ResetDatabases", _Player, _Instance)
 AND
@@ -27,6 +50,34 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_UninstallMod")
 THEN
 LLNWIZ_Updater_UninstallMod();
+//END_REGION
+
+//REGION BOOK_SPAWNING
+IF
+GameStarted(_,_)
+AND
+NOT DB_Temp_SettingsMenuBookTimerActive(_)
+THEN
+DB_Temp_SettingsMenuBookTimerActive(1);
+TimerLaunch("LLNWIZ_Timers_CheckForSettingsBook", 3000);
+
+IF
+TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
+AND
+DB_Temp_SettingsMenuBookTimerActive(1)
+AND
+DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
+AND
+CharacterGetHostCharacter(_Host)
+AND
+NOT GetItemForItemTemplateInPartyInventory(_Host, _Template, _)
+THEN
+ItemTemplateAddTo(_Template, _Host, 1, 1);
+
+IF
+TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
+THEN
+NOT DB_Temp_SettingsMenuBookTimerActive(1);
 //END_REGION
 EXITSECTION
 

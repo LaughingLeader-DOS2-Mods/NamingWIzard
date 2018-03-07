@@ -3,13 +3,22 @@ SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_SettingsMenu_InitializeSettings();
 
+//DB_Temp_InSettingsMenu(_Player);
+//DB_SettingsMenu_FlagSetMessage(_Flag, _Message);
+//DB_SettingsMenu_FlagClearedMessage(_Flag, _Message);
 //DB_Temp_SettingsMenuBookTimerActive(_Active)
 KBSECTION
 //REGION SETTINGS
 PROC
 LLNWIZ_SettingsMenu_InitializeSettings()
 THEN
-DB_NOOP(1);
+LLNWIZ_System_ClearExistingDatabase("DB_SettingsMenu_FlagSetMessage", 2);
+LLNWIZ_System_ClearExistingDatabase("DB_SettingsMenu_FlagClearedMessage", 2);
+DB_SettingsMenu_FlagSetMessage("LLNWIZ_DisplayHostPermissionMessage", "<font color='#FF0000'>Only the Host player may access this.</font>");
+DB_SettingsMenu_FlagSetMessage("LLNWIZ_Settings_RenameWandDisabled", "<font color='#00FF00'>Wand of Renaming Enabled</font>");
+DB_SettingsMenu_FlagClearedMessage("LLNWIZ_Settings_RenameWandDisabled", "<font color='#FF4500'>Wand of Renaming Disabled</font>");
+DB_SettingsMenu_FlagSetMessage("LLNWIZ_Settings_CrossPlayerRenamingEnabled", "<font color='#FF4500'>Cross-User Player Renaming Enabled. </font><font color='#FF00FF' size='23'>Chaos reigns.</font>");
+DB_SettingsMenu_FlagClearedMessage("LLNWIZ_Settings_CrossPlayerRenamingEnabled", "<font color='#00FF00'>Cross-User Player Renaming Disabled. </font><font color='#00FFFF' size='23'>Peace is restored.</font>");
 
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -20,7 +29,49 @@ LLNWIZ_SettingsMenu_InitializeSettings();
 PROC
 LLNWIZ_System_ClearDatabases()
 THEN
+SysClear("DB_SettingsMenu_FlagSetMessage", 2);
+SysClear("DB_SettingsMenu_FlagClearedMessage", 2);
+SysClear("DB_Temp_InSettingsMenu", 1);
 SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
+//END_REGION
+
+//REGION FLAGS
+IF
+ObjectFlagSet(_Flag, (CHARACTERGUID)_Player, _Instance)
+AND
+DB_SettingsMenu_FlagSetMessage(_Flag, _Message)
+THEN
+CharacterStatusText(_Player, _Message);
+
+IF
+ObjectFlagCleared(_Flag, (CHARACTERGUID)_Player, _Instance)
+AND
+DB_SettingsMenu_FlagClearedMessage(_Flag, _Message)
+THEN
+CharacterStatusText(_Player, _Message);
+
+IF
+GlobalFlagSet(_Flag)
+AND
+DB_SettingsMenu_FlagSetMessage(_Flag, _Message)
+AND
+DB_Temp_InSettingsMenu(_Player)
+THEN
+CharacterStatusText(_Player, _Message);
+
+IF
+GlobalFlagCleared(_Flag)
+AND
+DB_SettingsMenu_FlagClearedMessage(_Flag, _Message)
+AND
+DB_Temp_InSettingsMenu(_Player)
+THEN
+CharacterStatusText(_Player, _Message);
+
+IF
+ObjectFlagSet("LLNWIZ_DisplayHostPermissionMessage", _Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLNWIZ_DisplayHostPermissionMessage");
 //END_REGION
 
 //REGION COMMAND_FLAGS
@@ -38,18 +89,20 @@ CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font
 
 //REGION DEBUG_COMMAND_FLAGS
 IF
-ObjectFlagSet("LLNWIZ_Commands_Debug_ResetDatabases", _Player, _Instance)
+ObjectFlagSet("LLNWIZ_Commands_Debug_ResetDatabases", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_ResetDatabases")
 THEN
 LLNWIZ_Updater_ResetDatabases();
+CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Databases Reset</font>");
 
 IF
-ObjectFlagSet("LLNWIZ_Commands_Debug_UninstallMod", _Player, _Instance)
+ObjectFlagSet("LLNWIZ_Commands_Debug_UninstallMod", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_UninstallMod")
 THEN
 LLNWIZ_Updater_UninstallMod();
+CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Uninstalled. Good luck, adventurerer.</font>");
 //END_REGION
 
 //REGION BOOK_SPAWNING
@@ -78,6 +131,54 @@ IF
 TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 THEN
 NOT DB_Temp_SettingsMenuBookTimerActive(1);
+//END_REGION
+
+//REGION DIALOG
+IF
+CharacterUsedItemTemplate(_Player, _Template, _Book)
+AND
+DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
+THEN
+LLNWIZ_Settings_OpenMenu(_Player);
+
+IF
+DialogStarted(_DialogName, _Instance)
+AND
+DB_LLNWIZ_Dialog("Settings", _DialogName)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+NOT DB_Temp_InSettingsMenu(_Player)
+THEN
+DB_Temp_InSettingsMenu(_Player);
+
+IF
+DialogEnded(_DialogName, _Instance)
+AND
+DB_LLNWIZ_Dialog("Settings", _DialogName)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_Temp_InSettingsMenu(_Player)
+THEN
+NOT DB_Temp_InSettingsMenu(_Player);
+
+PROC
+LLNWIZ_Settings_OpenMenu((CHARACTERGUID)_Player)
+AND
+CharacterIsInCombat(_Player, 0)
+AND
+DB_LLNWIZ_Dialog("Settings", _DialogName)
+THEN
+LLNWIZ_System_FlagHost();
+Proc_StartDialog(0, _DialogName, _Player, _Player);
+
+PROC
+LLNWIZ_Settings_OpenMenu((CHARACTERGUID)_Player)
+AND
+CharacterIsInCombat(_Player, 1)
+THEN
+CharacterStatusText(_Player, "<font color='#FF0000'>Unable to Open NamingWizard Settings While In Combat</font>");
 //END_REGION
 EXITSECTION
 

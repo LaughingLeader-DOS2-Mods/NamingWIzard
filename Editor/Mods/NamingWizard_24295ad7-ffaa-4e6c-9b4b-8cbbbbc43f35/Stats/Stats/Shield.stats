@@ -6,13 +6,13 @@
         <field name="Name" type="NameStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_NamingTool" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Act" />
-        <field name="Act part" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="ActPart" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="ActPart" />
         <field name="Armor Defense Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Magic Armor Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Blocking" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Durability" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="DurabilityDegradeSpeed" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Qualifier" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="-1" />
         <field name="Weight" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="500" />
         <field name="Movement" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Initiative" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />

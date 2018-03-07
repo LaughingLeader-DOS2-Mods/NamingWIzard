@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-//DB_LLNWIZ_MenuDialog(_DialogName)
+//DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
 //DB_LLNWIZ_ItemTemplates(_Name, _Template)
 //DB_LLNWIZ_System_PlayerInitialized(_Val)
 
@@ -51,8 +51,9 @@ LLNWIZ_DebugLog(_Str3);
 PROC
 LLNWIZ_System_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_MenuDialog", 1);
-DB_LLNWIZ_MenuDialog("LLNWIZ_NamingMenu");
+LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Dialog", 1);
+DB_LLNWIZ_Dialog("NamingWizard", "LLNWIZ_NamingWizard");
+DB_LLNWIZ_Dialog("Settings", "LLNWIZ_NamingWizardSettings");
 
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_ItemTemplates", 2);
 DB_LLNWIZ_ItemTemplates("RenameWand", "WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683");
@@ -69,7 +70,7 @@ LLNWIZ_System_InitializeSettings();
 PROC
 LLNWIZ_System_ClearDatabases()
 THEN
-SysClear("DB_LLNWIZ_MenuDialog", 1);
+SysClear("DB_LLNWIZ_Dialog", 1);
 SysClear("DB_LLNWIZ_ItemTemplates", 2);
 SysClear("DB_LLNWIZ_System_PlayerInitialized", 1);
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
@@ -78,6 +79,17 @@ SysClear("DB_LLNWIZ_Random_Seed", 1);
 SysClear("DB_LLNWIZ_Temp_Rand", 1);
 
 LLNWIZ_DebugLog("[Init] System databases cleared.");
+//END_REGION
+
+//REGION QUERIES
+QRY
+LLNWIZ_QRY_UserMatch((CHARACTERGUID)_Char1, (CHARACTERGUID)_Char2)
+AND
+CharacterGetReservedUserID(_Char1, _ID)
+AND
+CharacterGetReservedUserID(_Char2, _ID)
+THEN
+DB_NOOP(1);
 //END_REGION
 
 //REGION CHARACTER_TRACING
@@ -148,6 +160,8 @@ PROC
 LLNWIZ_System_FlagHost()
 AND
 DB_IsPlayer(_Player)
+AND
+NOT CharacterGetHostCharacter(_Player)
 THEN
 UserClearFlag(_Player, "LLNWIZ_IsHost", 0);
 
@@ -155,6 +169,8 @@ PROC
 LLNWIZ_System_FlagHost()
 AND
 CharacterGetHostCharacter(_Player)
+AND
+UserGetFlag(_Player, "LLNWIZ_IsHost", 0)
 THEN
 UserSetFlag(_Player, "LLNWIZ_IsHost");
 

@@ -4,7 +4,7 @@ INITSECTION
 LLNWIZ_Naming_InitializeSettings();
 LLNWIZ_Naming_SetMaxCharacterLength(70);
 
-//DB_LLNWIZ_MenuDialog(_DialogName)
+//DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
 //DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text)
 //DB_LLNWIZ_Wizard_LastGreeting(_Index)
 //DB_LLNWIZ_Temp_NextWizardGreeting(_Text)
@@ -1088,14 +1088,14 @@ ObjectClearFlag(_Player, "LLNWIZ_Naming_LastNameExists");
 IF
 DialogStarted(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 THEN
 LLNWIZ_Naming_InitMenu(_Instance);
 
 IF
 DialogEnded(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
@@ -1107,7 +1107,7 @@ LLNWIZ_Naming_ClearPlayerVariables(_Player);
 PROC
 LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player)
 AND
-DB_LLNWIZ_MenuDialog(_DialogName)
+DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_WizardPresent");
 Proc_StartDialog(0, _DialogName, _Player, _Player);
@@ -1116,7 +1116,7 @@ LLNWIZ_Wizard_SetRandomGreeting(0); // No Wizard
 PROC
 LLNWIZ_Naming_OpenNamingWizard((CHARACTERGUID)_Player, (CHARACTERGUID)_Wizard)
 AND
-DB_LLNWIZ_MenuDialog(_DialogName)
+DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
 THEN
 ObjectSetFlag(_Player, "LLNWIZ_Naming_WizardPresent");
 Proc_StartDialog(0, _DialogName, _Wizard, _Player);

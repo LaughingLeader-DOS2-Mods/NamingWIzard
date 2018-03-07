@@ -355,7 +355,7 @@ NOT DB_LLNWIZ_Wizard_WizardDisappearTimer(_TimerName, _Wizard);
 IF
 DialogEnded(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 THEN
 LLNWIZ_Wizard_HideWizardByInstance(_Instance);
 

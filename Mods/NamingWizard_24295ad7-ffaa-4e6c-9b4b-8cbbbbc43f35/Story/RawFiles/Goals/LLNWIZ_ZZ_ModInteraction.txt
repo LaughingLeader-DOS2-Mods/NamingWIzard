@@ -148,7 +148,7 @@ NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
 IF
 DialogStarted(_DialogName, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_DialogName)
+DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
@@ -157,7 +157,7 @@ SetStoryEvent(_Player, "LLNWIZ_Events_NamingWizardOpened");
 IF
 DialogEnded(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND
@@ -169,7 +169,7 @@ SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
 IF
 DialogEnded(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND
@@ -182,7 +182,7 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
 IF
 DialogEnded(_Dialog, _Instance)
 AND
-DB_LLNWIZ_MenuDialog(_Dialog)
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 AND

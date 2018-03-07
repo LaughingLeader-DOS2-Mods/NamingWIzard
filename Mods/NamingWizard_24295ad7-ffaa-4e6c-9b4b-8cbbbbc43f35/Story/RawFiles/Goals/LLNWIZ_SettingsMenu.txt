@@ -107,7 +107,9 @@ CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Uninstalled. G
 
 //REGION BOOK_SPAWNING
 IF
-GameStarted(_,_)
+GameStarted(_Level,_)
+AND
+IsCharacterCreationLevel(_Level, 0)
 AND
 NOT DB_Temp_SettingsMenuBookTimerActive(_)
 THEN

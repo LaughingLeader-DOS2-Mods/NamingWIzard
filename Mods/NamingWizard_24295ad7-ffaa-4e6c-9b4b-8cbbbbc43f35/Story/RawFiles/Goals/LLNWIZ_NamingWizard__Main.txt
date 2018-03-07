@@ -938,6 +938,7 @@ DB_LLNWIZ_Naming_StartText(_Text, _Player);
 //END_REGION
 
 //REGION DIALOG_EVENTS
+/*
 PROC
 LLNWIZ_Naming_InitVariables((INTEGER)_Instance)
 AND
@@ -945,12 +946,13 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
 AND
-GetVarString(_Player, "LLNWIZ_FinalText", _Text)
+GetVarString(_Player, "LLNWIZ_InitialText", _Text)
 AND
 _Text != ""
 THEN
 LLNWIZ_Naming_SetInitialText(_Text, _Player);
-LLNWIZ_DebugLog("[NamingWizard:Main] Found FinalText on Player. Setting to initial text.");
+LLNWIZ_DebugLog("[NamingWizard:Main] Found LLNWIZ_InitialText on Player. Setting to initial text.");
+*/
 
 PROC
 LLNWIZ_Naming_InitVariables((INTEGER)_Instance)

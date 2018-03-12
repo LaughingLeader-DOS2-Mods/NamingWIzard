@@ -3,6 +3,11 @@ INIT
 	INT:%TimerActive = 0
 EVENTS
 
+EVENT SetInvulnerability
+ON
+	OnInit()
+ACTIONS
+	SetInvulnerable(__Me, 1)
 /*
 EVENT Failsafe_TimerStart
 ON

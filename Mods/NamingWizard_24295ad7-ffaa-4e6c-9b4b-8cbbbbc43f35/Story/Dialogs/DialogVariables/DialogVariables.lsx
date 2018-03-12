@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1520872485" />
+    <header version="2" time="1520878082" />
     <version major="3" minor="1" revision="7" build="0" />
     <region id="DialogVariables">
         <node id="root">
@@ -156,49 +156,49 @@
                     <attribute id="DefaultValue" value="1" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="0204b2c4-711d-4b65-b3cf-8f96efde3b0e" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_CurrentPage" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_CurrentPage" type="22" />
                     <attribute id="type" value="Int" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="1" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="bf67a72f-3829-48ce-bcfc-c9b40ef0b093" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_LastPage" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_LastPage" type="22" />
                     <attribute id="type" value="Int" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="8aeeb251-be1d-44ee-9cf6-189a54674982" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_MenuName1" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_MenuName1" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="f31e98c3-674c-4469-8922-c427c40252f9" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_MenuName2" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_MenuName2" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="107d30f4-9e67-4620-abc6-e594db88109e" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_MenuName3" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_MenuName3" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="b3f45779-4710-4152-97ce-39aa20961a3f" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_MenuName4" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_MenuName4" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">
                     <attribute id="DefaultValue" value="" type="23" />
                     <attribute id="Description" value="" type="23" />
                     <attribute id="UUID" value="9b51d734-099e-4c29-bfd5-48b4b8d30b35" type="31" />
-                    <attribute id="name" value="LLNWIZ_WordsMenu_MenuName5" type="22" />
+                    <attribute id="name" value="LLNWIZ_WordMenus_MenuName5" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
             </children>

@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1520876885,
+         "time" : 1520878192,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -591,7 +591,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_HasMultiplePages"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HasMultiplePages"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -644,7 +644,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_NextPage"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_NextPage"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -2909,13 +2909,13 @@
                                              {
                                                 "DialogVariables" : [
                                                    {
-                                                      "DialogVariables" : {"type" : 22, "value" : "8aeeb251-be1d-44ee-9cf6-189a54674982"}
+                                                      "DialogVariables" : {"type" : 22, "value" : "9b51d734-099e-4c29-bfd5-48b4b8d30b35"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[LLNWIZ_WordsMenu_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
+                                                   "value" : "[LLNWIZ_WordMenus_MenuName5_9b51d734-099e-4c29-bfd5-48b4b8d30b35]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -2935,7 +2935,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_Menu5Empty"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_Menu5Empty"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -2988,7 +2988,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_SelectedMenu5"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_SelectedMenu5"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -5057,7 +5057,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Words Menu<br>Page [LLNWIZ_WordsMenu_CurrentPage_0204b2c4-711d-4b65-b3cf-8f96efde3b0e]/[LLNWIZ_WordsMenu_LastPage_bf67a72f-3829-48ce-bcfc-c9b40ef0b093]"
+                                                   "value" : "Word Menus<br>Page [LLNWIZ_WordMenus_CurrentPage_0204b2c4-711d-4b65-b3cf-8f96efde3b0e]/[LLNWIZ_WordMenus_LastPage_bf67a72f-3829-48ce-bcfc-c9b40ef0b093]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -5287,7 +5287,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[W] Words Menu"
+                                                   "value" : "[W] Word Menus"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -5347,7 +5347,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_LoadMenus"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_LoadMenus"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -7266,7 +7266,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[LLNWIZ_WordsMenu_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
+                                                   "value" : "[LLNWIZ_WordMenus_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -7286,7 +7286,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_Menu1Empty"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_Menu1Empty"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -7339,7 +7339,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_SelectedMenu1"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_SelectedMenu1"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -7970,7 +7970,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_HasMultiplePages"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HasMultiplePages"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -8023,7 +8023,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_PreviousPage"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_PreviousPage"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -8282,13 +8282,13 @@
                                              {
                                                 "DialogVariables" : [
                                                    {
-                                                      "DialogVariables" : {"type" : 22, "value" : "8aeeb251-be1d-44ee-9cf6-189a54674982"}
+                                                      "DialogVariables" : {"type" : 22, "value" : "f31e98c3-674c-4469-8922-c427c40252f9"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[LLNWIZ_WordsMenu_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
+                                                   "value" : "[LLNWIZ_WordMenus_MenuName2_f31e98c3-674c-4469-8922-c427c40252f9]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -8308,7 +8308,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_Menu2Empty"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_Menu2Empty"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -8361,7 +8361,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_SelectedMenu2"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_SelectedMenu2"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -9198,13 +9198,13 @@
                                              {
                                                 "DialogVariables" : [
                                                    {
-                                                      "DialogVariables" : {"type" : 22, "value" : "8aeeb251-be1d-44ee-9cf6-189a54674982"}
+                                                      "DialogVariables" : {"type" : 22, "value" : "b3f45779-4710-4152-97ce-39aa20961a3f"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[LLNWIZ_WordsMenu_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
+                                                   "value" : "[LLNWIZ_WordMenus_MenuName4_b3f45779-4710-4152-97ce-39aa20961a3f]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -9224,7 +9224,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_Menu4Empty"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_Menu4Empty"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -9277,7 +9277,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_SelectedMenu4"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_SelectedMenu4"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -11044,13 +11044,13 @@
                                              {
                                                 "DialogVariables" : [
                                                    {
-                                                      "DialogVariables" : {"type" : 22, "value" : "8aeeb251-be1d-44ee-9cf6-189a54674982"}
+                                                      "DialogVariables" : {"type" : 22, "value" : "107d30f4-9e67-4620-abc6-e594db88109e"}
                                                    }
                                                 ],
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[LLNWIZ_WordsMenu_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]"
+                                                   "value" : "[LLNWIZ_WordMenus_MenuName3_107d30f4-9e67-4620-abc6-e594db88109e]"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -11070,7 +11070,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_Menu3Empty"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_Menu3Empty"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -11123,7 +11123,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordsMenu_SelectedMenu3"},
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_SelectedMenu3"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }

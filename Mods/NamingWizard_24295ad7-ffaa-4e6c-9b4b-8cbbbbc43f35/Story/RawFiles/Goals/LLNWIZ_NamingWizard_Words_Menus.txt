@@ -54,14 +54,6 @@ LLNWIZ_WordMenus_RegisterWordMenu("Common", "Common Words", "DB_LLNWIZ_Words_Com
 LLNWIZ_WordMenus_RegisterWordMenu("Names", "Names", "DB_LLNWIZ_Words_Name", 2);
 LLNWIZ_WordMenus_RegisterWordMenu("Saved", "Saved Words", "DB_LLNWIZ_Words_Saved", 2);
 LLNWIZ_WordMenus_RegisterWordMenu("Mod", "Mod Words", "DB_LLNWIZ_Words_Mod", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("Test1", "Test1", "DB_LLNWIZ_Test", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("Test2", "Test2", "DB_LLNWIZ_Test", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("Test3", "Test3", "DB_LLNWIZ_Test", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("Test4", "Test4", "DB_LLNWIZ_Test", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("Test5", "Test5", "DB_LLNWIZ_Test", 2);
-
-//DB_LLNWIZ_Test(0, "TestWord");
-//DB_LLNWIZ_Test(1, "TestWord");
 
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -313,10 +305,8 @@ PROC
 LLNWIZ_WordMenus_SetMenuName((INTEGER)_Instance, (STRING)_DialogVar, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
 AND
 LLNWIZ_QRY_WordMenus_InvalidDatabase(_DatabaseName, _Arity)
-AND
-StringConcatenate(_DisplayName, " (0)", _NewDisplayName)
 THEN
-DialogSetVariableStringForInstance(_Instance, _DialogVar, _NewDisplayName);
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _DisplayName);
 
 PROC
 LLNWIZ_WordMenus_SetMenuName((INTEGER)_Instance, (STRING)_DialogVar, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)

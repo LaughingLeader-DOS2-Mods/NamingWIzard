@@ -117,6 +117,34 @@ THEN
 DB_IsPlayer(_Host);
 LLNWIZ_DebugLog("[DebugLevel] Added host to DB_IsPlayer.");
 
+IF
+GameStarted("LLNWIZ_DebugLevel", 1)
+THEN
+LLNWIZ_WordMenus_RegisterWordMenu("Test1", "Test1", "DB_LLNWIZ_Test1", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test2", "Test2");
+LLNWIZ_WordMenus_RegisterWordMenu("Test3", "Test3", "DB_LLNWIZ_Test_None", 0);
+LLNWIZ_WordMenus_RegisterWordMenu("Test4", "Test4", "DB_LLNWIZ_Test2", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test5", "Test5", "DB_LLNWIZ_Test_None", 10);
+DB_LLNWIZ_Test1(0, "TestWord1");
+DB_LLNWIZ_Test1(1, "TestWord2");
+DB_LLNWIZ_Test2(0, "TestWordA");
+DB_LLNWIZ_Test2(1, "TestWordB");
+DB_LLNWIZ_Test2(2, "TestWordC");
+
+PROC
+LLNWIZ_WordMenus_LoadWords("Test1")
+AND
+DB_LLNWIZ_Test1(_Index, _Word)
+THEN
+DB_LLNWIZ_Words_Displayed(_Index, _Word);
+
+PROC
+LLNWIZ_WordMenus_LoadWords("Test4")
+AND
+DB_LLNWIZ_Test2(_Index, _Word)
+THEN
+DB_LLNWIZ_Words_Displayed(_Index, _Word);
+
 /*
 IF
 RegionStarted("LLNWIZ_DebugLevel")

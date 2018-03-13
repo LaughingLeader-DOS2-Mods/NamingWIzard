@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1520878192,
+         "time" : 1520932525,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -594,6 +594,11 @@
                                           "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HasMultiplePages"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
+                                       },
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HideNextPageButton"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 0}
                                        }
                                     ],"type" : {"type" : 22, "value" : "Character"}}
                               ]
@@ -626,7 +631,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;1329"}
+                                    "val" : {"type" : 23, "value" : "4495;234"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2970,7 +2975,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;1110"}
+                                    "val" : {"type" : 23, "value" : "4495;1548"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -5076,6 +5081,12 @@
                            {
                               "child" : [
                                  {
+                                    "UUID" : {"type" : 22, "value" : "07cc97e3-0e68-4712-839f-42babc5fc7f0"}
+                                 },
+                                 {
+                                    "UUID" : {"type" : 22, "value" : "c7b9e435-6752-43b6-980f-476e7786f26c"}
+                                 },
+                                 {
                                     "UUID" : {"type" : 22, "value" : "b0a2fb66-dd24-4a94-ab96-395bd0bc287a"}
                                  },
                                  {
@@ -5089,12 +5100,6 @@
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "3946af7f-4601-4892-a6ec-1cdfbf78c032"}
-                                 },
-                                 {
-                                    "UUID" : {"type" : 22, "value" : "07cc97e3-0e68-4712-839f-42babc5fc7f0"}
-                                 },
-                                 {
-                                    "UUID" : {"type" : 22, "value" : "c7b9e435-6752-43b6-980f-476e7786f26c"}
                                  },
                                  {
                                     "UUID" : {"type" : 22, "value" : "d03271ce-b8ac-4f4e-9222-1e6eacc80499"}
@@ -7321,7 +7326,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;234"}
+                                    "val" : {"type" : 23, "value" : "4495;672"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -7561,7 +7566,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4815;234"}
+                                    "val" : {"type" : 23, "value" : "4815;672"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -7973,6 +7978,11 @@
                                           "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HasMultiplePages"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
+                                       },
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_WordMenus_HidePreviousPageButton"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 0}
                                        }
                                     ],"type" : {"type" : 22, "value" : "Character"}}
                               ]
@@ -8005,7 +8015,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;1548"}
+                                    "val" : {"type" : 23, "value" : "4495;453"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -8343,7 +8353,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;453"}
+                                    "val" : {"type" : 23, "value" : "4495;891"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -8787,7 +8797,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "5135;1329"}
+                                    "val" : {"type" : 23, "value" : "5135;234"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -9259,7 +9269,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;891"}
+                                    "val" : {"type" : 23, "value" : "4495;1329"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -10452,7 +10462,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4815;1329"}
+                                    "val" : {"type" : 23, "value" : "4815;234"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -11105,7 +11115,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "4495;672"}
+                                    "val" : {"type" : 23, "value" : "4495;1110"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},

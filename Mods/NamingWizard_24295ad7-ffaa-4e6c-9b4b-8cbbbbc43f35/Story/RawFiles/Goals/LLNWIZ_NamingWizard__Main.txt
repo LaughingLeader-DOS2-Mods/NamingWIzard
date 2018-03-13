@@ -230,7 +230,7 @@ NOT DB_LLNWIZ_Naming_StartText(_Text, _Player);
 PROC
 LLNWIZ_Naming_ClearSessionVariables((CHARACTERGUID)_Player)
 THEN
-ObjectClearFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
+ObjectClearFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 SetVarString(_Player, "LLNWIZ_FinalText", "");
 LLNWIZ_Naming_ClearPlayerVariables(_Player);
@@ -1222,7 +1222,7 @@ PROC
 LLNWIZ_Naming_OnNamingCanceled((CHARACTERGUID)_Player, (INTEGER)_Instance)
 THEN
 LLNWIZ_Naming_ClearSessionVariables(_Player);
-ObjectSetFlag(_Player, "LLNWIZ_Naming_CanceledSaving");
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 //SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
 //LLNWIZ_DebugLog("[NamingWizard] Player canceled text saving.");
 //END_REGION

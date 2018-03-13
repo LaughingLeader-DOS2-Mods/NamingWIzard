@@ -9,11 +9,11 @@ LLNWIZ_WordMenus_InitializeSettings();
 //DB_LLNWIZ_WordMenus_MenusPerPage(_MenusPerPage)
 
 //Dynamic
-//DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _Arity)
-//DB_LLNWIZ_WordsMenu_CurrentPageIndex(_Player, _CurrentPage)
-//DB_LLNWIZ_WordsMenu_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
+//DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
+//DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _CurrentPage)
+//DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
 
-//DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance)
+//DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance)
 //DB_LLNWIZ_Temp_MenuVariableValue(_MenuIndex, _MenuID)
 KBSECTION
 //REGION REGISTERING
@@ -50,10 +50,19 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_WordMenus_DialogVariables", 2);
 DB_LLNWIZ_WordMenus_DialogVariables("CurrentPage", "LLNWIZ_WordMenus_CurrentPage_0204b2c4-711d-4b65-b3cf-8f96efde3b0e");
 DB_LLNWIZ_WordMenus_DialogVariables("LastPage", "LLNWIZ_WordMenus_LastPage_bf67a72f-3829-48ce-bcfc-c9b40ef0b093");
 
-LLNWIZ_WordMenus_RegisterWordMenu("LLNWIZ_Words_Common", "Common Words", "DB_LLNWIZ_Words_Common", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("LLNWIZ_Words_Name", "Names", "DB_LLNWIZ_Words_Name", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("LLNWIZ_Words_PlayerSaved", "Saved Words", "DB_LLNWIZ_Words_PlayerSaved", 2);
-LLNWIZ_WordMenus_RegisterWordMenu("LLNWIZ_Words_Mod", "Mod Words", "DB_LLNWIZ_Words_Mod", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Common", "Common Words", "DB_LLNWIZ_Words_Common", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Names", "Names", "DB_LLNWIZ_Words_Name", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Saved", "Saved Words", "DB_LLNWIZ_Words_Saved", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Mod", "Mod Words", "DB_LLNWIZ_Words_Mod", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test1", "Test1", "DB_LLNWIZ_Test", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test2", "Test2", "DB_LLNWIZ_Test", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test3", "Test3", "DB_LLNWIZ_Test", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test4", "Test4", "DB_LLNWIZ_Test", 2);
+LLNWIZ_WordMenus_RegisterWordMenu("Test5", "Test5", "DB_LLNWIZ_Test", 2);
+
+//DB_LLNWIZ_Test(0, "TestWord");
+//DB_LLNWIZ_Test(1, "TestWord");
+
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
@@ -96,19 +105,18 @@ DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage);
 
 //REGION CLEAR
 PROC
-LLNWIZ_WordMenus_ResetPlayerPage((CHARACTERGUID)_Player)
+LLNWIZ_WordMenus_ResetPlayerPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page)
 THEN
 NOT DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page);
-DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, 0);
 
 PROC
-LLNWIZ_WordMenus_ResetPlayerPage((CHARACTERGUID)_Player)
+LLNWIZ_WordMenus_ResetPlayerPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _)
 THEN
-DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, 0);
+LLNWIZ_WordMenus_SetPage(_Player, 0, _Instance);
 //END_REGION
 
 //REGION PAGE_TURNING
@@ -123,11 +131,47 @@ PROC
 LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
 THEN
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page);
+ObjectClearFlag(_Player, "LLNWIZ_WordMenus_HideNextPageButton");
+ObjectClearFlag(_Player, "LLNWIZ_WordMenus_HidePreviousPageButton");
+
+PROC
+LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
+AND
+_Page >= _LastPageIndex
+AND
+_MaxPage == 2
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_WordMenus_HideNextPageButton", _Instance);
+LLNWIZ_DebugLog("Hid next page button");
+
+PROC
+LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
+AND
+IntegertoString(_LastPageIndex, _LastIndexStr)
+AND
+IntegertoString(_MaxPage, _MaxPageStr)
+THEN
+LLNWIZ_DebugLog("Test: LastIndex: ", _LastIndexStr," | Max: ",_MaxPageStr);
+
+PROC
+LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
+AND
+DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
+AND
+_Page <= 0
+AND
+_MaxPage == 2
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_WordMenus_HidePreviousPageButton", _Instance);
 
 PROC
 LLNWIZ_WordMenus_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
-DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance)
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance)
 AND
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page)
 AND
@@ -138,12 +182,12 @@ AND
 IntegerSum(_Page, 1, _NextPage)
 THEN
 LLNWIZ_WordMenus_SetPage(_Player, _NextPage, _Instance);
-NOT DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance);
+NOT DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 
 PROC
 LLNWIZ_WordMenus_NextPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
-DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance)
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance)
 AND
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page)
 AND
@@ -152,12 +196,12 @@ AND
 _Page >= _LastPageIndex
 THEN
 LLNWIZ_WordMenus_SetPage(_Player, 0, _Instance);
-NOT DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance);
+NOT DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 
 PROC
 LLNWIZ_WordMenus_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
-DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance)
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance)
 AND
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page)
 AND
@@ -166,12 +210,12 @@ AND
 DB_LLNWIZ_WordMenus_PageMax(_LastIndex, _LastPageIndex, _MaxPage)
 THEN
 LLNWIZ_WordMenus_SetPage(_Player, _LastPageIndex, _Instance);
-NOT DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance);
+NOT DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 
 PROC
 LLNWIZ_WordMenus_PreviousPage((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
-DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance)
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance)
 AND
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _Page)
 AND
@@ -182,7 +226,7 @@ AND
 IntegerSubtract(_Page, 1, _NextPage)
 THEN
 LLNWIZ_WordMenus_SetPage(_Player, _NextPage, _Instance);
-NOT DB_LLNWIZ_Temp_IsChangingWordsMenuPage(_Player, _Instance);
+NOT DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 //END_REGION
 
 //REGION PAGE_VARIABLES
@@ -222,7 +266,7 @@ DB_LLNWIZ_WordMenus_DynamicMenuVars(_MenuIndex, _DialogVar, _SelectFlag, _Disabl
 AND
 IntegerSum(_MenuIndex, _StartIndex, _Index)
 AND
-LLNWIZ_QRY_WordsMenu_DisableMenuIfNotAvailable(_Player, _Index, _DisabledFlag)
+LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable(_Player, _Index, _DisabledFlag)
 AND
 DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 AND
@@ -247,12 +291,32 @@ _Arity <= 0
 THEN
 DB_NOOP(1);
 
+QRY
+LLNWIZ_QRY_WordMenus_InvalidDatabase((STRING)_DatabaseName, (INTEGER)_Arity)
+AND
+_DatabaseName != ""
+AND
+_Arity > 0
+AND
+NOT LLNWIZ_QRY_WordMenus_DatabaseExists(_DatabaseName, _Arity)
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_QRY_WordMenus_DatabaseExists((STRING)_DatabaseName, (INTEGER)_Arity)
+AND
+SysCount(_DatabaseName, _Arity, _Count)
+THEN
+DB_NOOP(1);
+
 PROC
 LLNWIZ_WordMenus_SetMenuName((INTEGER)_Instance, (STRING)_DialogVar, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
 AND
 LLNWIZ_QRY_WordMenus_InvalidDatabase(_DatabaseName, _Arity)
+AND
+StringConcatenate(_DisplayName, " (0)", _NewDisplayName)
 THEN
-DialogSetVariableStringForInstance(_Instance, _DialogVar, _DisplayName);
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _NewDisplayName);
 
 PROC
 LLNWIZ_WordMenus_SetMenuName((INTEGER)_Instance, (STRING)_DialogVar, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
@@ -292,7 +356,7 @@ THEN
 DialogSetVariableIntForInstance(_Instance, _VariableName, _DisplayedPage);
 
 QRY
-LLNWIZ_QRY_WordsMenu_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
+LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
 AND
 NOT DB_LLNWIZ_WordMenus_RegisteredMenu(_Index,_,_,_,_)
 AND
@@ -301,7 +365,7 @@ THEN
 ObjectSetFlag(_Player, _DisabledFlag);
 
 QRY
-LLNWIZ_QRY_WordsMenu_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
+LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
 AND
 DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 AND
@@ -310,7 +374,7 @@ THEN
 ObjectClearFlag(_Player, _DisabledFlag);
 
 QRY
-LLNWIZ_QRY_WordsMenu_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
+LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
 THEN
 DB_NOOP(1);
 
@@ -335,28 +399,28 @@ ObjectClearFlag(_Player, "LLNWIZ_WordMenus_HasMultiplePages");
 
 //REGION LOADING_WORDS
 PROC
-LLNWIZ_WordMenus_LoadWords("LLNWIZ_Words_Common")
+LLNWIZ_WordMenus_LoadWords("Common")
 AND
 DB_LLNWIZ_Words_Common(_Index, _Word)
 THEN
 DB_LLNWIZ_Words_Displayed(_Index, _Word);
 
 PROC
-LLNWIZ_WordMenus_LoadWords("LLNWIZ_Words_Name")
+LLNWIZ_WordMenus_LoadWords("Names")
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
 DB_LLNWIZ_Words_Displayed(_Index, _Word);
 
 PROC
-LLNWIZ_WordMenus_LoadWords("LLNWIZ_Words_PlayerSaved")
+LLNWIZ_WordMenus_LoadWords("Saved")
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 THEN
 DB_LLNWIZ_Words_Displayed(_Index, _Word);
 
 PROC
-LLNWIZ_WordMenus_LoadWords("LLNWIZ_Words_Mod")
+LLNWIZ_WordMenus_LoadWords("Mod")
 AND
 DB_LLNWIZ_Words_Mod(_Index, _Word)
 THEN
@@ -393,7 +457,8 @@ ObjectFlagSet("LLNWIZ_WordMenus_NextPage", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_WordMenus_NextPage")
 THEN
-DB_LLNWIZ_Temp_IsChangingPage(_Player, _Instance);
+LLNWIZ_DebugLog("Next page");
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 LLNWIZ_WordMenus_NextPage(_Player, _Instance);
 LLNWIZ_WordMenus_LoadPageVariables(_Player, _Instance);
 
@@ -402,7 +467,7 @@ ObjectFlagSet("LLNWIZ_WordMenus_PreviousPage", (CHARACTERGUID)_Player, _Instance
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_WordMenus_PreviousPage")
 THEN
-DB_LLNWIZ_Temp_IsChangingPage(_Player, _Instance);
+DB_LLNWIZ_Temp_IsChangingWordMenusPage(_Player, _Instance);
 LLNWIZ_WordMenus_PreviousPage(_Player, _Instance);
 LLNWIZ_WordMenus_LoadPageVariables(_Player, _Instance);
 
@@ -430,7 +495,7 @@ AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_WordMenus_LoadMenus")
 THEN
 LLNWIZ_WordMenus_CalculateMaxPage();
-LLNWIZ_WordMenus_ResetPlayerPage(_Player);
+LLNWIZ_WordMenus_ResetPlayerPage(_Player, _Instance);
 LLNWIZ_WordMenus_LoadPageVariables(_Player, _Instance);
 LLNWIZ_WordMenus_CheckPageCount(_Player);
 //END_REGION

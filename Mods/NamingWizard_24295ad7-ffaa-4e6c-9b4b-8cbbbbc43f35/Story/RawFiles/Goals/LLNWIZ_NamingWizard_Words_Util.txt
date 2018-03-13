@@ -7,7 +7,7 @@ INITSECTION
 
 //DB_LLNWIZ_Words_Common(_Index, _Word)			"Common"
 //DB_LLNWIZ_Words_Name(_Index, _Name)		"Name"
-//DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)			"Player"
+//DB_LLNWIZ_Words_Saved(_Index, _Word)			"Player"
 //DB_LLNWIZ_Words_Mod(_Index, _Word)				"Mod"
 //DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
 KBSECTION
@@ -39,14 +39,14 @@ LLNWIZ_Words_RemoveAllWords((STRING)_Word)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
-LLNWIZ_Words_RemoveWord("Name", _Word);
+LLNWIZ_Words_RemoveWord("Names", _Word);
 
 PROC
 LLNWIZ_Words_RemoveAllWords((STRING)_Word)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 THEN
-LLNWIZ_Words_RemoveWord("Player", _Word);
+LLNWIZ_Words_RemoveWord("Saved", _Word);
 
 PROC
 LLNWIZ_Words_RemoveAllWords((STRING)_Word)
@@ -56,15 +56,15 @@ THEN
 LLNWIZ_Words_RemoveWord("Mod", _Word);
 
 PROC
-LLNWIZ_Words_RemoveWord((STRING)_Category, (STRING)_Word)
+LLNWIZ_Words_RemoveWord((STRING)_MenuID, (STRING)_Word)
 AND
-DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 THEN
-LLNWIZ_Words_RemoveFromDatabase(_Database, _Word, _Category);
-DB_LLNWIZ_Words_RemovedWords(_Category, _Word);
+LLNWIZ_Words_RemoveFromDatabase(_DatabaseName, _Word, _MenuID);
+DB_LLNWIZ_Words_RemovedWords(_MenuID, _Word);
 
 PROC
-LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Common", (STRING)_Word, (STRING)_Category)
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Common", (STRING)_Word, (STRING)_MenuID)
 AND
 DB_LLNWIZ_Words_Common(_Index, _Word)
 AND
@@ -72,10 +72,10 @@ IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Common(_Index, _Word);
 LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Common.");
-LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
-LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Name", (STRING)_Word, (STRING)_Category)
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Name", (STRING)_Word, (STRING)_MenuID)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 AND
@@ -83,21 +83,21 @@ IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Name(_Index, _Word);
 LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Name.");
-LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
-LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_PlayerSaved", (STRING)_Word, (STRING)_Category)
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Saved", (STRING)_Word, (STRING)_MenuID)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 AND
 IntegertoString(_Index, _IndexStr)
 THEN
-NOT DB_LLNWIZ_Words_PlayerSaved(_Index, _Word);
-LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_PlayerSaved.");
-LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+NOT DB_LLNWIZ_Words_Saved(_Index, _Word);
+LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Saved.");
+LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
-LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Mod", (STRING)_Word, (STRING)_Category)
+LLNWIZ_Words_RemoveFromDatabase("DB_LLNWIZ_Words_Mod", (STRING)_Word, (STRING)_MenuID)
 AND
 DB_LLNWIZ_Words_Mod(_Index, _Word)
 AND
@@ -105,24 +105,24 @@ IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Mod(_Index, _Word);
 LLNWIZ_DebugLog("[Words_Util] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Mod.");
-LLNWIZ_Words_Internal_RebuildIndex(_Category, _Index);
+LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 //END_REGION
 
 //REGION WORD_INDEX_REBUILDING_START
 PROC
-LLNWIZ_Words_Internal_RebuildIndex((STRING)_Category, (INTEGER)_StartIndex)
+LLNWIZ_Words_Internal_RebuildIndex((STRING)_MenuID, (INTEGER)_StartIndex)
 AND
 IntegertoString(_StartIndex, _IndexStr)
 THEN
-LLNWIZ_DebugLog("[Words_Util] Rebuilding word index for category [",_Category,"], starting at index [",_IndexStr,"]");
+LLNWIZ_DebugLog("[Words_Util] Rebuilding word index for category [",_MenuID,"], starting at index [",_IndexStr,"]");
 
 PROC
-LLNWIZ_Words_Internal_RebuildIndex((STRING)_Category, (INTEGER)_StartIndex)
+LLNWIZ_Words_Internal_RebuildIndex((STRING)_MenuID, (INTEGER)_StartIndex)
 AND
-DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 AND
-SysCount(_Database, _Arity, _Total)
+SysCount(_DatabaseName, _Arity, _Total)
 AND
 LLNWIZ_Random(100)
 AND
@@ -130,11 +130,11 @@ DB_LLNWIZ_Temp_Rand(_Rand)
 AND
 IntegertoString(_Rand, _RanStr)
 AND
-StringConcatenate("LLNWIZ_Timers_IndexRebuildIterator_", _Category, _Str1)
+StringConcatenate("LLNWIZ_Timers_IndexRebuildIterator_", _MenuID, _Str1)
 AND
 StringConcatenate(_Str1, _RanStr, _TimerName)
 THEN
-DB_LLNWIZ_Temp_IndexRebuilding(_Category, _StartIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding(_MenuID, _StartIndex, _StartIndex, _Total, _TimerName);
 TimerLaunch(_TimerName, 1);
 //END_REGION
 
@@ -164,7 +164,7 @@ TimerLaunch(_TimerName, 1);
 IF
 TimerFinished(_TimerName)
 AND
-DB_LLNWIZ_Temp_IndexRebuilding("Name", _CurrentIndex, _StartIndex, _Total, _TimerName)
+DB_LLNWIZ_Temp_IndexRebuilding("Names", _CurrentIndex, _StartIndex, _Total, _TimerName)
 AND
 _CurrentIndex < _Total
 AND
@@ -174,25 +174,25 @@ DB_LLNWIZ_Words_Name(_NextIndex, _Word)
 THEN
 NOT DB_LLNWIZ_Words_Name(_NextIndex, _Word);
 DB_LLNWIZ_Words_Name(_CurrentIndex, _Word);
-NOT DB_LLNWIZ_Temp_IndexRebuilding("Name", _CurrentIndex, _StartIndex, _Total, _TimerName);
-DB_LLNWIZ_Temp_IndexRebuilding("Name", _NextIndex, _StartIndex, _Total, _TimerName);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Names", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Names", _NextIndex, _StartIndex, _Total, _TimerName);
 TimerLaunch(_TimerName, 1);
 
 IF
 TimerFinished(_TimerName)
 AND
-DB_LLNWIZ_Temp_IndexRebuilding("Player", _CurrentIndex, _StartIndex, _Total, _TimerName)
+DB_LLNWIZ_Temp_IndexRebuilding("Saved", _CurrentIndex, _StartIndex, _Total, _TimerName)
 AND
 _CurrentIndex < _Total
 AND
 IntegerSum(_CurrentIndex, 1, _NextIndex)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_NextIndex, _Word)
+DB_LLNWIZ_Words_Saved(_NextIndex, _Word)
 THEN
-NOT DB_LLNWIZ_Words_PlayerSaved(_NextIndex, _Word);
-DB_LLNWIZ_Words_PlayerSaved(_CurrentIndex, _Word);
-NOT DB_LLNWIZ_Temp_IndexRebuilding("Player", _CurrentIndex, _StartIndex, _Total, _TimerName);
-DB_LLNWIZ_Temp_IndexRebuilding("Player", _NextIndex, _StartIndex, _Total, _TimerName);
+NOT DB_LLNWIZ_Words_Saved(_NextIndex, _Word);
+DB_LLNWIZ_Words_Saved(_CurrentIndex, _Word);
+NOT DB_LLNWIZ_Temp_IndexRebuilding("Saved", _CurrentIndex, _StartIndex, _Total, _TimerName);
+DB_LLNWIZ_Temp_IndexRebuilding("Saved", _NextIndex, _StartIndex, _Total, _TimerName);
 TimerLaunch(_TimerName, 1);
 
 IF
@@ -217,12 +217,12 @@ TimerLaunch(_TimerName, 1);
 IF
 TimerFinished(_TimerName)
 AND
-DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
+DB_LLNWIZ_Temp_IndexRebuilding(_MenuID, _CurrentIndex, _StartIndex, _Total, _TimerName)
 AND
 _CurrentIndex >= _Total
 THEN
-NOT DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName);
-LLNWIZ_DebugLog("[Words_Util] Index rebuilding for word list [",_Category,"] complete.");
+NOT DB_LLNWIZ_Temp_IndexRebuilding(_MenuID, _CurrentIndex, _StartIndex, _Total, _TimerName);
+LLNWIZ_DebugLog("[Words_Util] Index rebuilding for word list [",_MenuID,"] complete.");
 LLNWIZ_SendStoryEvent("LLNWIZ_Events_WordIndexRebuildingComplete");
 //END_REGION
 
@@ -236,7 +236,7 @@ NOT DB_LLNWIZ_Words_Common(_Index, _Word);
 DB_LLNWIZ_Words_Common(_Index, _NewWord);
 
 PROC
-LLNWIZ_Words_ReplaceWord("Name", (STRING)_Word, (STRING)_NewWord)
+LLNWIZ_Words_ReplaceWord("Names", (STRING)_Word, (STRING)_NewWord)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
@@ -244,12 +244,12 @@ NOT DB_LLNWIZ_Words_Name(_Index, _Word);
 DB_LLNWIZ_Words_Name(_Index, _NewWord);
 
 PROC
-LLNWIZ_Words_ReplaceWord("Player", (STRING)_Word, (STRING)_NewWord)
+LLNWIZ_Words_ReplaceWord("Saved", (STRING)_Word, (STRING)_NewWord)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 THEN
-NOT DB_LLNWIZ_Words_PlayerSaved(_Index, _Word);
-DB_LLNWIZ_Words_PlayerSaved(_Index, _NewWord);
+NOT DB_LLNWIZ_Words_Saved(_Index, _Word);
+DB_LLNWIZ_Words_Saved(_Index, _NewWord);
 
 PROC
 LLNWIZ_Words_ReplaceWord("Mod", (STRING)_Word, (STRING)_NewWord)
@@ -260,12 +260,12 @@ NOT DB_LLNWIZ_Words_Mod(_Index, _Word);
 DB_LLNWIZ_Words_Mod(_Index, _NewWord);
 
 PROC
-LLNWIZ_Words_ReplaceWord((STRING)_Category, (STRING)_Word, (STRING)_NewWord)
+LLNWIZ_Words_ReplaceWord((STRING)_MenuID, (STRING)_Word, (STRING)_NewWord)
 AND
-DB_LLNWIZ_Words_CategoryToDatabase(_Category,_,_)
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 THEN
-DB_LLNWIZ_Words_ReplacedWords(_Category, _Word, _NewWord);
-LLNWIZ_DebugLog("[Words:Util] Replaced ",_Word," with ",_NewWord," in category [",_Category,"].");
+DB_LLNWIZ_Words_ReplacedWords(_MenuID, _Word, _NewWord);
+LLNWIZ_DebugLog("[Words:Util] Replaced ",_Word," with ",_NewWord," in menu [",_MenuID,"].");
 
 PROC
 LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
@@ -279,14 +279,14 @@ LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
-LLNWIZ_Words_ReplaceWord("Name", _Word, _NewWord);
+LLNWIZ_Words_ReplaceWord("Names", _Word, _NewWord);
 
 PROC
 LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 THEN
-LLNWIZ_Words_ReplaceWord("Player", _Word, _NewWord);
+LLNWIZ_Words_ReplaceWord("Saved", _Word, _NewWord);
 
 PROC
 LLNWIZ_Words_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
@@ -300,9 +300,9 @@ LLNWIZ_Words_ReplaceWord("Mod", _Word, _NewWord);
 PROC
 LLNWIZ_Debug_PrintWords("All")
 AND
-DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 THEN
-LLNWIZ_Debug_PrintWords(_Category);
+LLNWIZ_Debug_PrintWords(_MenuID);
 
 PROC
 LLNWIZ_Debug_PrintWords("Common")
@@ -314,7 +314,7 @@ THEN
 LLNWIZ_DebugLog("[Words:Common][",_IndexStr,"] = ", _Word);
 
 PROC
-LLNWIZ_Debug_PrintWords("Name")
+LLNWIZ_Debug_PrintWords("Names")
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 AND
@@ -323,9 +323,9 @@ THEN
 LLNWIZ_DebugLog("[Words:Name][",_IndexStr,"] = ", _Word);
 
 PROC
-LLNWIZ_Debug_PrintWords("Player")
+LLNWIZ_Debug_PrintWords("Saved")
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+DB_LLNWIZ_Words_Saved(_Index, _Word)
 AND
 IntegertoString(_Index, _IndexStr)
 THEN

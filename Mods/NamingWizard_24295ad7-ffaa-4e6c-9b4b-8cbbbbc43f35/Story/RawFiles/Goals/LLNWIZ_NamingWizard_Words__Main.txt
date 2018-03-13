@@ -6,7 +6,7 @@ LLNWIZ_Words_InitializeSettings();
 //Settings
 //DB_LLNWIZ_Words_Common(_Index, _Word)
 //DB_LLNWIZ_Words_Name(_Index, _Name)
-//DB_LLNWIZ_Words_PlayerSaved(_Index, _Word)
+//DB_LLNWIZ_Words_Saved(_Index, _Word)
 //DB_LLNWIZ_Words_Mod(_Index, _Word)
 //DB_LLNWIZ_Words_Displayed(_Index, _Word)
 
@@ -45,17 +45,19 @@ DB_LLNWIZ_Words_DialogVariables(8, "LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-
 
 /*
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_PageFlags", 4);
-DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordsMenu_Common", "LLNWIZ_WordsMenu_Common_IsEnabled", "DB_LLNWIZ_Words_Common", 2);
-DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordsMenu_Custom", "LLNWIZ_WordsMenu_Custom_IsEnabled", "DB_LLNWIZ_Words_PlayerSaved", 2);
-DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordsMenu_Names", "LLNWIZ_WordsMenu_Names_IsEnabled", "DB_LLNWIZ_Words_Name", 2);
-DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordsMenu_Mods", "LLNWIZ_WordsMenu_Mods_IsEnabled", "DB_LLNWIZ_Words_Mod", 2);
+DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordMenus_Common", "LLNWIZ_WordMenus_Common_IsEnabled", "DB_LLNWIZ_Words_Common", 2);
+DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordMenus_Custom", "LLNWIZ_WordMenus_Custom_IsEnabled", "DB_LLNWIZ_Words_Saved", 2);
+DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordMenus_Names", "LLNWIZ_WordMenus_Names_IsEnabled", "DB_LLNWIZ_Words_Name", 2);
+DB_LLNWIZ_Words_PageFlags("LLNWIZ_WordMenus_Mods", "LLNWIZ_WordMenus_Mods_IsEnabled", "DB_LLNWIZ_Words_Mod", 2);
 */
 
+/*
 LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_CategoryToDatabase", 3);
 DB_LLNWIZ_Words_CategoryToDatabase("Common", "DB_LLNWIZ_Words_Common", 2);
 DB_LLNWIZ_Words_CategoryToDatabase("Name", "DB_LLNWIZ_Words_Name", 2);
-DB_LLNWIZ_Words_CategoryToDatabase("Player", "DB_LLNWIZ_Words_PlayerSaved", 2);
+DB_LLNWIZ_Words_CategoryToDatabase("Player", "DB_LLNWIZ_Words_Saved", 2);
 DB_LLNWIZ_Words_CategoryToDatabase("Mod", "DB_LLNWIZ_Words_Mod", 2);
+*/
 
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -464,7 +466,7 @@ ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
-NOT DB_LLNWIZ_Words_PlayerSaved(_, _Text)
+NOT DB_LLNWIZ_Words_Saved(_, _Text)
 THEN
 LLNWIZ_Words_AddPlayerWord(_Text);
 LLNWIZ_Print(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Player-Saved Words</font>");
@@ -477,7 +479,7 @@ ObjectGetFlag(_Player, "LLNWIZ_Naming_SaveAsWord", 1)
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Text)
+DB_LLNWIZ_Words_Saved(_Index, _Text)
 THEN
 LLNWIZ_Print(_Player, "<font color='#F08080'>Word '",_Text,"' already saved to Player-Saved Words</font>");
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
@@ -526,7 +528,7 @@ ObjectFlagSet("LLNWIZ_Naming_ClearedSavedWords", (CHARACTERGUID)_Player, _Instan
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_ClearedSavedWords")
 THEN
-SysClear("DB_LLNWIZ_Words_PlayerSaved", 2);
+SysClear("DB_LLNWIZ_Words_Saved", 2);
 //END_REGION
 
 //REGION MENU_FLAGS

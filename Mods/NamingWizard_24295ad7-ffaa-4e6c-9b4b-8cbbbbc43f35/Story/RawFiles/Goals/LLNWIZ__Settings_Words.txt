@@ -4,6 +4,27 @@ INITSECTION
 LLNWIZ_Settings_InitializeWords();
 KBSECTION
 //REGION WORD_ADDING
+//LLNWIZ_Words_AddWordToMenu((STRING)_MenuID, (STRING)_Word)
+PROC
+LLNWIZ_Words_AddWordToMenu("Common", (STRING)_Word)
+THEN
+LLNWIZ_Words_AddWord(_Word);
+
+PROC
+LLNWIZ_Words_AddWordToMenu("Names", (STRING)_Word)
+THEN
+LLNWIZ_Words_AddName(_Word);
+
+PROC
+LLNWIZ_Words_AddWordToMenu("Saved", (STRING)_Word)
+THEN
+LLNWIZ_Words_AddPlayerWord(_Word);
+
+PROC
+LLNWIZ_Words_AddWordToMenu("Mod", (STRING)_Word)
+THEN
+LLNWIZ_Words_AddModWord(_Word);
+
 PROC
 LLNWIZ_Words_AddWord((STRING)_Word)
 AND
@@ -16,11 +37,11 @@ DB_LLNWIZ_Words_Common(_Index, _Word);
 PROC
 LLNWIZ_Words_AddPlayerWord((STRING)_Word)
 AND
-NOT DB_LLNWIZ_Words_PlayerSaved(_,_Word)
+NOT DB_LLNWIZ_Words_Saved(_,_Word)
 AND
-SysCount("DB_LLNWIZ_Words_PlayerSaved", 2, _Index)
+SysCount("DB_LLNWIZ_Words_Saved", 2, _Index)
 THEN
-DB_LLNWIZ_Words_PlayerSaved(_Index, _Word);
+DB_LLNWIZ_Words_Saved(_Index, _Word);
 
 PROC
 LLNWIZ_Words_AddModWord((STRING)_Word)
@@ -173,7 +194,7 @@ LLNWIZ_System_ClearDatabases()
 THEN
 SysClear("DB_LLNWIZ_Words_Common", 2);
 SysClear("DB_LLNWIZ_Words_Name", 2);
-SysClear("DB_LLNWIZ_Words_PlayerSaved", 2);
+SysClear("DB_LLNWIZ_Words_Saved", 2);
 SysClear("DB_LLNWIZ_Words_Mod", 2);
 SysClear("DB_LLNWIZ_Words_Displayed", 2);
 EXITSECTION

@@ -303,7 +303,7 @@ LLNWIZ_Wizard_HideWizardByPlayer((CHARACTERGUID)_Target)
 AND
 NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Target)
 THEN
-LLNWIZ_DebugLog("[Wizard:HideWizardByPlayer] Wizard does not exist for player!");
+LeaderLog_Debug("[LLNWIZ] ", "[Wizard:HideWizardByPlayer] Wizard does not exist for player!");
 
 PROC
 LLNWIZ_Wizard_HideWizardByTarget((CHARACTERGUID)_Target)
@@ -319,7 +319,7 @@ AND
 NOT DB_LLNWIZ_Wizard_WizardTarget(_, _Target)
 THEN
 RemoveStatus(_Target, "LLNWIZ_RENAMING");
-LLNWIZ_DebugLog("[Wizard:HideWizardByTarget] Wizard does not exist for target!");
+LeaderLog_Debug("[LLNWIZ] ", "[Wizard:HideWizardByTarget] Wizard does not exist for target!");
 
 PROC
 LLNWIZ_Wizard_HideWizardByInstance((INTEGER)_Instance)
@@ -338,7 +338,7 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 NOT DB_LLNWIZ_Wizard_CreatedWizard(_, _Player)
 THEN
-//LLNWIZ_DebugLog("[Wizard:HideWizardByInstance] Wizard does not exist for player. Skipping.");
+//LeaderLog_Debug("[LLNWIZ] ", "[Wizard:HideWizardByInstance] Wizard does not exist for player. Skipping.");
 DB_NOOP(1);
 
 IF
@@ -364,7 +364,7 @@ StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_HideWizard")
 AND
 NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _)
 THEN
-LLNWIZ_DebugLog("[Wizard][ERROR] Target of event (LLNWIZ_Events_HideWizard) is not a registered naming wizard.");
+LeaderLog_Debug("[LLNWIZ]", "[Wizard][ERROR] Target of event (LLNWIZ_Events_HideWizard) is not a registered naming wizard.");
 
 IF
 StoryEvent((CHARACTERGUID)_Wizard, "LLNWIZ_Events_HideWizard")
@@ -372,7 +372,7 @@ AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 THEN
 LLNWIZ_Wizard_HideWizard(_Wizard);
-LLNWIZ_DebugLog("[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.");
+LeaderLog_Debug("[LLNWIZ]", "[Wizard] Event (LLNWIZ_Events_HideWizard) fired. Hiding wizard.");
 
 //END_REGION
 
@@ -470,7 +470,7 @@ AND
 ObjectExists(_Wizard, 0)
 THEN
 LLNWIZ_Wizard_DeleteWizard(_Wizard);
-LLNWIZ_DebugLog("[Wizard] Pruned old wizards.");
+LeaderLog_Debug("[LLNWIZ]", "[Wizard] Pruned old wizards.");
 //END_REGION
 
 //REGION ROGUE_WIZARDS
@@ -499,7 +499,7 @@ NOT DB_LLNWIZ_Wizard_CreatedWizard(_Wizard,_)
 AND
 LLNWIZ_QRY_Wizard_CheckRogueFlags(_Wizard)
 THEN
-LLNWIZ_DebugLog("[Wizard][ERROR] Rogue wizard detected (not in the database). Wizard is unregistered. Attempting to remove.");
+LeaderLog_Debug("[LLNWIZ]", "[Wizard][ERROR] Rogue wizard detected (not in the database). Wizard is unregistered. Attempting to remove.");
 LLNWIZ_Wizard_DeleteWizard(_Wizard);
 
 IF

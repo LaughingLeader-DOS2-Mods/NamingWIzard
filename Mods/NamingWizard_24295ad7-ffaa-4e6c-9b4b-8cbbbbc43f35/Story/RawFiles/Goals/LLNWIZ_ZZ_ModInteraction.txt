@@ -104,7 +104,7 @@ _Length > 255
 AND
 IntegertoString(_Length, _IntStr)
 THEN
-LLNWIZ_DebugLog("[ModInteraction] Character limit (",_IntStr,") is too large! Max character length is 255.");
+LeaderLog_Debug("[LLNWIZ][ModInteraction] Character limit (",_IntStr,") is too large! Max character length is 255.");
 
 IF
 DB_LLNWIZ_ModBridge_MaxCharacterLength((INTEGER)_Length)

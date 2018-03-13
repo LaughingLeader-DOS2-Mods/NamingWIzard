@@ -126,7 +126,7 @@ SysClear("DB_LLNWIZ_Naming_TargetName", 2);
 SysClear("DB_LLNWIZ_Naming_TargetCustomName", 2);
 SysClear("DB_LLNWIZ_Naming_Temp_FoundWord", 5);
 SysClear("DB_LLNWIZ_Naming_Temp_LastVisibleText", 2);
-LLNWIZ_DebugLog("[NamingWizard] Naming databases cleared.");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard] Naming databases cleared.");
 
 PROC
 LLNWIZ_Naming_ClearDatabases()
@@ -234,7 +234,7 @@ ObjectClearFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 ObjectClearFlag(_Player, "LLNWIZ_Naming_TextSaved");
 SetVarString(_Player, "LLNWIZ_FinalText", "");
 LLNWIZ_Naming_ClearPlayerVariables(_Player);
-LLNWIZ_DebugLog("[NamingWizard] Cleared saved session variables for player.");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard] Cleared saved session variables for player.");
 //END_REGION
 
 //REGION TEXT_SETTINGS
@@ -629,7 +629,7 @@ LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_Naming_SelectedLetter(_, _, _Instance)
 THEN
-LLNWIZ_DebugLog("[NamingWizard][ERROR] No selected letter set for instance!");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard][ERROR] No selected letter set for instance!");
 
 PROC
 LLNWIZ_Naming_SelectLastLetter((INTEGER)_Instance)
@@ -638,7 +638,7 @@ DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
 AND
 NOT DB_LLNWIZ_Naming_GroupMax(_Group, _)
 THEN
-LLNWIZ_DebugLog("[NamingWizard][ERROR] No max amount set for group [",_Group,"]!");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard][ERROR] No max amount set for group [",_Group,"]!");
 
 PROC
 LLNWIZ_Naming_ChangeCasing((INTEGER)_Instance, "Upper")
@@ -951,7 +951,7 @@ AND
 _Text != ""
 THEN
 LLNWIZ_Naming_SetInitialText(_Text, _Player);
-LLNWIZ_DebugLog("[NamingWizard:Main] Found LLNWIZ_InitialText on Player. Setting to initial text.");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard:Main] Found LLNWIZ_InitialText on Player. Setting to initial text.");
 */
 
 PROC
@@ -1224,7 +1224,7 @@ THEN
 LLNWIZ_Naming_ClearSessionVariables(_Player);
 ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 //SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
-//LLNWIZ_DebugLog("[NamingWizard] Player canceled text saving.");
+//LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard] Player canceled text saving.");
 //END_REGION
 
 //REGION RENAMING
@@ -1273,7 +1273,7 @@ StringSub(_CurrentText, 0, _MaxLength, _NewText)
 THEN
 LLNWIZ_Naming_SetText(_NewText, _Instance);
 LLNWIZ_Naming_SetLength(_MaxLength, _Instance);
-LLNWIZ_DebugLog("[NamingWizard] Max character limit reached. Trimmed text.");
+LeaderLog_Debug("[LLNWIZ] ", "[NamingWizard] Max character limit reached. Trimmed text.");
 
 //END_REGION
 EXITSECTION

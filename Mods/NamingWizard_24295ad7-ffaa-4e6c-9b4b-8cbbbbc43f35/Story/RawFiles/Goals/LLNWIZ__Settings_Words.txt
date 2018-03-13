@@ -187,7 +187,7 @@ LLNWIZ_System_UpdateDatabases()
 THEN
 //LLNWIZ_Settings_InitializeWords(); Should only be initialized when the goal first runs, in case a mod changes default words.
 LLNWIZ_Settings_UpdateWords();
-LLNWIZ_DebugLog("[Settings:Words] Updated words.");
+LeaderLog_Debug("[LLNWIZ] ", "[Settings:Words] Updated words.");
 
 PROC
 LLNWIZ_System_ClearDatabases()

@@ -65,7 +65,7 @@ GetTextEventParamInteger(1, _Int)
 AND
 IntegertoString(_Int, _IntStr)
 THEN
-LLNWIZ_DebugLog("LLNWIZ_AddWand [Int]: ", _IntStr);
+LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Int]: ", _IntStr);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
@@ -76,14 +76,14 @@ Integer(_Real, _Int)
 AND
 IntegertoString(_Int, _IntStr)
 THEN
-LLNWIZ_DebugLog("LLNWIZ_AddWand [Real]: ", _IntStr);
+LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Real]: ", _IntStr);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
 AND
 GetTextEventParamString(1, _Str)
 THEN
-LLNWIZ_DebugLog("LLNWIZ_AddWand [Str]: ", _Str);
+LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Str]: ", _Str);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
@@ -92,7 +92,7 @@ GetTextEventParamUUID(1, _Target)
 AND
 GetUUID(_Target, _Str)
 THEN
-LLNWIZ_DebugLog("LLNWIZ_AddWand [UUID]: ", _Str);
+LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [UUID]: ", _Str);
 */
 
 /*
@@ -103,7 +103,7 @@ GetTextEventParamUUID(1, _Target)
 AND
 GetUUID(_Target, _Str)
 THEN
-LLNWIZ_DebugLog("Test command [UUID]: ", _Str);
+LeaderLog_Debug("[LLNWIZ] ", "Test command [UUID]: ", _Str);
 */
 //END_REGION
 
@@ -115,7 +115,7 @@ AND
 CharacterGetHostCharacter(_Host)
 THEN
 DB_IsPlayer(_Host);
-LLNWIZ_DebugLog("[DebugLevel] Added host to DB_IsPlayer.");
+LeaderLog_Debug("[LLNWIZ] ", "[DebugLevel] Added host to DB_IsPlayer.");
 
 IF
 GameStarted("LLNWIZ_DebugLevel", 1)

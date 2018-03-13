@@ -97,7 +97,7 @@ PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
 LLNWIZ_Settings_InitializeFlags();
-LLNWIZ_DebugLog("[Settings:Flags] Updated flag databases.");
+LeaderLog_Debug("[LLNWIZ] ", "[Settings:Flags] Updated flag databases.");
 
 PROC
 LLNWIZ_System_ClearDatabases()

@@ -44,7 +44,7 @@ StringConcatenate(_Str1, "' Total Entries: ", _Str2)
 AND
 StringConcatenate(_Str2, _TotalStr, _Str3)
 THEN
-LLNWIZ_DebugLog(_Str3);
+LeaderLog_Debug("[LLNWIZ] ", _Str3);
 //END_REGION
 
 //REGION SETTINGS
@@ -78,7 +78,7 @@ SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
 SysClear("DB_LLNWIZ_Random_Seed", 1);
 SysClear("DB_LLNWIZ_Temp_Rand", 1);
 
-LLNWIZ_DebugLog("[Init] System databases cleared.");
+LeaderLog_Debug("[LLNWIZ] ", "[Init] System databases cleared.");
 //END_REGION
 
 //REGION QUERIES
@@ -199,7 +199,7 @@ NOT DB_LLNWIZ_Temp_FiringEvent(_Event)
 THEN
 DB_LLNWIZ_Temp_FiringEvent(_Event);
 SetStoryEvent(_Player, _Event);
-LLNWIZ_DebugLog("[System] Firing general story event [",_Event,"]");
+LeaderLog_Debug("[LLNWIZ] ", "[System] Firing general story event [",_Event,"]");
 
 PROC
 LLNWIZ_SendStoryEvent((STRING)_Event)
@@ -209,7 +209,7 @@ AND
 NOT DB_LLNWIZ_Temp_FiringEventWorkaround(_Event)
 THEN
 DB_LLNWIZ_Temp_FiringEventWorkaround(_Event);
-LLNWIZ_DebugLog("[System][ERROR] Error firing story event [",_Event,"]: Can't find a player! Using [CharacterLaunchIterator] as a workaround.");
+LeaderLog_Debug("[LLNWIZ] ", "[System][ERROR] Error firing story event [",_Event,"]: Can't find a player! Using [CharacterLaunchIterator] as a workaround.");
 CharacterLaunchIterator("LLNWIZ_Events_System_FindCharacter");
 
 IF
@@ -227,7 +227,7 @@ AND
 DB_LLNWIZ_Temp_FiringEvent(_Event)
 THEN
 NOT DB_LLNWIZ_Temp_FiringEvent(_Event);
-LLNWIZ_DebugLog("[System] Finished firing story event [",_Event,"]");
+LeaderLog_Debug("[LLNWIZ] ", "[System] Finished firing story event [",_Event,"]");
 //END_REGION
 
 //REGION RANDOM
@@ -276,7 +276,7 @@ AND
 NOT SysIsActive("LLNWIZ_DebugLevel")
 THEN
 SysActivateGoal("LLNWIZ_DebugLevel");
-LLNWIZ_DebugLog("[System] Debug level starting. Activating LLNWIZ_DebugLevel.");
+LeaderLog_Debug("[LLNWIZ] ", "[System] Debug level starting. Activating LLNWIZ_DebugLevel.");
 
 IF
 GameStarted(_Level, 0)
@@ -286,7 +286,7 @@ AND
 SysIsActive("LLNWIZ_DebugLevel")
 THEN
 SysCompleteGoal("LLNWIZ_DebugLevel");
-LLNWIZ_DebugLog("[System] Debug level ending. Deactivating LLNWIZ_DebugLevel.");
+LeaderLog_Debug("[LLNWIZ] ", "[System] Debug level ending. Deactivating LLNWIZ_DebugLevel.");
 //END_REGION
 EXITSECTION
 

@@ -121,6 +121,8 @@ TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 AND
 DB_Temp_SettingsMenuBookTimerActive(1)
 AND
+GlobalGetFlag("LEADERLIB_ACTIVE", 0)
+AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 AND
 CharacterGetHostCharacter(_Host)

@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1520384568,
+         "time" : 1521730883,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -75,9 +75,6 @@
                               "child" : [
                                  {
                                     "UUID" : {"type" : 22, "value" : "e5947d48-ad4a-47d2-975d-7ddb2b4ac5c8"}
-                                 },
-                                 {
-                                    "UUID" : {"type" : 22, "value" : "ce51b2c1-ab84-46c5-8acd-f0ac923d0305"}
                                  }
                               ]
                            }
@@ -201,7 +198,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2575;2643"}
+                                    "val" : {"type" : 23, "value" : "2575;2862"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -238,7 +235,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "3855;2643"}
+                                    "val" : {"type" : 23, "value" : "3855;2862"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -338,7 +335,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2575;3081"}
+                                    "val" : {"type" : 23, "value" : "2575;3300"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -562,7 +559,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "3535;3081"}
+                                    "val" : {"type" : 23, "value" : "3535;3300"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -660,7 +657,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2895;2643"}
+                                    "val" : {"type" : 23, "value" : "2895;2862"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1036,7 +1033,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "3535;2862"}
+                                    "val" : {"type" : 23, "value" : "3535;3081"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1219,7 +1216,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2895;1986"}
+                                    "val" : {"type" : 23, "value" : "2895;2643"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1316,7 +1313,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2255;3081"}
+                                    "val" : {"type" : 23, "value" : "2255;3300"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1649,7 +1646,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2895;2862"}
+                                    "val" : {"type" : 23, "value" : "2895;3081"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -1768,7 +1765,20 @@
                         "Tags" : [ {} ],
                         "UUID" : {"type" : 22, "value" : "76e8cbf2-59cb-467a-8eb7-10013e299fa1"},
                         "addressedspeaker" : {"type" : 4, "value" : -1},
-                        "checkflags" : [ {} ],
+                        "checkflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLLNWIZ_Settings_CommandsAvailable"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}}
+                              ]
+                           }
+                        ],
                         "children" : [
                            {
                               "child" : [
@@ -1930,7 +1940,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "3215;3081"}
+                                    "val" : {"type" : 23, "value" : "3215;3300"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2154,7 +2164,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2895;3081"}
+                                    "val" : {"type" : 23, "value" : "2895;3300"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2265,7 +2275,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "3215;2862"}
+                                    "val" : {"type" : 23, "value" : "3215;3081"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2717,6 +2727,9 @@
                                     "UUID" : {"type" : 22, "value" : "e12d3833-5566-4829-bfdb-7aad94e1d27e"}
                                  },
                                  {
+                                    "UUID" : {"type" : 22, "value" : "ce51b2c1-ab84-46c5-8acd-f0ac923d0305"}
+                                 },
+                                 {
                                     "UUID" : {"type" : 22, "value" : "f06c1f7a-64ea-41aa-b1c1-55c664c863fe"}
                                  },
                                  {
@@ -2841,7 +2854,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2575;1986"}
+                                    "val" : {"type" : 23, "value" : "2575;2643"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -2939,7 +2952,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2255;1986"}
+                                    "val" : {"type" : 23, "value" : "2255;2643"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},
@@ -3455,7 +3468,7 @@
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "position"},
-                                    "val" : {"type" : 23, "value" : "2255;2643"}
+                                    "val" : {"type" : 23, "value" : "2255;2862"}
                                  },
                                  {
                                     "key" : {"type" : 22, "value" : "sourcetemplate"},

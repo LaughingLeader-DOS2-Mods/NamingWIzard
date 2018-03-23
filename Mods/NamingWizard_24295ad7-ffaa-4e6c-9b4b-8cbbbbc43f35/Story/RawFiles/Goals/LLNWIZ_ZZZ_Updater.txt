@@ -2,6 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LeaderUpdater_RegisterMod("NamingWizard", "0.9.0.0", "LaughingLeader");
+
 KBSECTION
 //REGION MOD_UPDATING
 PROC
@@ -36,10 +37,8 @@ LLNWIZ_System_UpdateDatabases();
 //REGION UNINSTALLING
 PROC
 LLNWIZ_Updater_UnregisterMod()
-AND
-DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader")
 THEN
-NOT DB_Mods_RegisteredMod("NamingWizard", _Version, "LaughingLeader");
+LeaderUpdater_UnregisterMod("NamingWizard", "LaughingLeader");
 
 PROC
 LLNWIZ_Updater_UnregisterMod()

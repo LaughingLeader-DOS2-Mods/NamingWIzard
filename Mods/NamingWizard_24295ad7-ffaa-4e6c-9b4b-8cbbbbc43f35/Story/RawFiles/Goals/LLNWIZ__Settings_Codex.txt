@@ -102,13 +102,13 @@ THEN
 SysClear("DB_LLNWIZ_Naming_Codex", 3);
 SysClear("DB_LLNWIZ_Naming_Groups", 2);
 SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
-LeaderLog_Debug("[LLNWIZ] ", "[Settings:Codex] Cleared codex.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Settings:Codex] Cleared codex.");
 
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
 LLNWIZ_Settings_InitializeCodex();
-LeaderLog_Debug("[LLNWIZ] ", "[Settings:Codex] Updated codex databases.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Settings:Codex] Updated codex databases.");
 
 PROC
 LLNWIZ_System_ClearDatabases()

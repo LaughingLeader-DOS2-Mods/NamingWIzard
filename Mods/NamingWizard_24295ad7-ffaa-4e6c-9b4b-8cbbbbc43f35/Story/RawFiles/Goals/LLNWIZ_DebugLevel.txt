@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-GlobalSetFlag("LLNWIZ_DEBUGLOG_ENABLED");
+GlobalClearFlag("LEADERLOG_DEBUG_DISABLED");
 KBSECTION
 //REGION Levers
 IF
@@ -65,7 +65,7 @@ GetTextEventParamInteger(1, _Int)
 AND
 IntegertoString(_Int, _IntStr)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Int]: ", _IntStr);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "LLNWIZ_AddWand [Int]: ", _IntStr);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
@@ -76,14 +76,14 @@ Integer(_Real, _Int)
 AND
 IntegertoString(_Int, _IntStr)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Real]: ", _IntStr);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "LLNWIZ_AddWand [Real]: ", _IntStr);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
 AND
 GetTextEventParamString(1, _Str)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [Str]: ", _Str);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "LLNWIZ_AddWand [Str]: ", _Str);
 
 IF
 TextEventSet("LLNWIZ_AddWand")
@@ -92,7 +92,7 @@ GetTextEventParamUUID(1, _Target)
 AND
 GetUUID(_Target, _Str)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "LLNWIZ_AddWand [UUID]: ", _Str);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "LLNWIZ_AddWand [UUID]: ", _Str);
 */
 
 /*
@@ -103,7 +103,7 @@ GetTextEventParamUUID(1, _Target)
 AND
 GetUUID(_Target, _Str)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "Test command [UUID]: ", _Str);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "Test command [UUID]: ", _Str);
 */
 //END_REGION
 
@@ -115,7 +115,7 @@ AND
 CharacterGetHostCharacter(_Host)
 THEN
 DB_IsPlayer(_Host);
-LeaderLog_Debug("[LLNWIZ] ", "[DebugLevel] Added host to DB_IsPlayer.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[DebugLevel] Added host to DB_IsPlayer.");
 
 IF
 GameStarted("LLNWIZ_DebugLevel", 1)

@@ -76,7 +76,7 @@ SysClear("DB_LLNWIZ_Words_LastWord", 2);
 SysClear("DB_LLNWIZ_Words_CurrentPageIndex", 2);
 SysClear("DB_LLNWIZ_Temp_IsChangingPage", 2);
 SysClear("DB_LLNWIZ_Temp_WordVariableValue", 2);
-LeaderLog_Debug("[LLNWIZ] ", "[Naming:Words] Databases cleared.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Naming:Words] Databases cleared.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION
@@ -217,14 +217,14 @@ AND
 NOT DB_LLNWIZ_Words_CurrentPageIndex(_Player, _)
 THEN
 DB_LLNWIZ_Words_CurrentPageIndex(_Player, 0);
-LeaderLog_Debug("[LLNWIZ] ", "[Naming:Words][ERROR] Page not set for some reason. Setting to page 0.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Naming:Words][ERROR] Page not set for some reason. Setting to page 0.");
 
 PROC
 LLNWIZ_Words_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_Words_PageMax(_,_,_)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "[Naming:Words][ERROR] Max page settings not set. Reconfiguring.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Naming:Words][ERROR] Max page settings not set. Reconfiguring.");
 LLNWIZ_Words_CalculateMaxPage();
 
 PROC
@@ -438,7 +438,9 @@ AND
 NOT DB_LLNWIZ_Words_Saved(_, _Text)
 THEN
 LLNWIZ_Words_AddPlayerWord(_Text);
-LeaderLog_Status(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Player-Saved Words</font>");
+LeaderLog_SetTarget(_Player);
+LeaderLog_Log("STATUS", "<font color='#00FF7F'>Saved '",_Text,"' to Player-Saved Words</font>");
+LeaderLog_ClearTarget(_Player);
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
 
 IF
@@ -450,7 +452,9 @@ DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
 DB_LLNWIZ_Words_Saved(_Index, _Text)
 THEN
-LeaderLog_Status(_Player, "<font color='#F08080'>Word '",_Text,"' already saved to Saved Words</font>");
+LeaderLog_SetTarget(_Player);
+LeaderLog_Log("STATUS", "<font color='#F08080'>Word '",_Text,"' already saved to Saved Words</font>");
+LeaderLog_ClearTarget(_Player);
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsWord");
 
 IF
@@ -470,7 +474,9 @@ AND
 NOT DB_LLNWIZ_Words_Name(_, _Text)
 THEN
 LLNWIZ_Words_AddName(_Text);
-LeaderLog_Status(_Player, "<font color='#00FF7F'>Saved '",_Text,"' to Names</font>");
+LeaderLog_SetTarget(_Player);
+LeaderLog_Log("STATUS", "<font color='#00FF7F'>Saved '",_Text,"' to Names</font>");
+LeaderLog_ClearTarget(_Player);
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsName");
 
 IF
@@ -482,7 +488,9 @@ DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Text)
 THEN
-LeaderLog_Status(_Player, "<font color='#F08080'>Name '",_Text,"' already saved to Names</font>");
+LeaderLog_SetTarget(_Player);
+LeaderLog_Log("STATUS", "<font color='#F08080'>Name '",_Text,"' already saved to Names</font>");
+LeaderLog_ClearTarget(_Player);
 ObjectClearFlag(_Player, "LLNWIZ_Naming_SaveAsName");
 
 IF

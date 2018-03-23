@@ -66,7 +66,7 @@ THEN
 SysClear("DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
 SysClear("DB_LLNWIZ_WordMenus_DialogVariables", 2);
 SysClear("DB_LLNWIZ_WordMenus_MenusPerPage", 1);
-LeaderLog_Debug("[LLNWIZ] ", "[Naming:Words:Menus] Databases cleared.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Naming:Words:Menus] Databases cleared.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION
@@ -136,7 +136,7 @@ AND
 _MaxPage == 2
 THEN
 ObjectSetFlag(_Player, "LLNWIZ_WordMenus_HideNextPageButton", _Instance);
-LeaderLog_Debug("[LLNWIZ] ", "Hid next page button");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "Hid next page button");
 
 PROC
 LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
@@ -147,7 +147,7 @@ IntegertoString(_LastPageIndex, _LastIndexStr)
 AND
 IntegertoString(_MaxPage, _MaxPageStr)
 THEN
-LeaderLog_Debug("[LLNWIZ] ", "Test: LastIndex: ", _LastIndexStr," | Max: ",_MaxPageStr);
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "Test: LastIndex: ", _LastIndexStr," | Max: ",_MaxPageStr);
 
 PROC
 LLNWIZ_WordMenus_SetPage((CHARACTERGUID)_Player, (INTEGER)_Page, (INTEGER)_Instance)
@@ -228,14 +228,14 @@ AND
 NOT DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, _)
 THEN
 DB_LLNWIZ_WordMenus_CurrentPageIndex(_Player, 0);
-LeaderLog_Debug("[LLNWIZ][Naming:Words:Menus][ERROR] ", "Page not set for some reason. Setting to page 0.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Naming:Words:Menus][ERROR] ", "Page not set for some reason. Setting to page 0.");
 
 PROC
 LLNWIZ_WordMenus_LoadPageVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 NOT DB_LLNWIZ_WordMenus_PageMax(_,_,_)
 THEN
-LeaderLog_Debug("[LLNWIZ][Naming:Words:Menus][ERROR] ", "Max page settings not set. Reconfiguring.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Naming:Words:Menus][ERROR] ", "Max page settings not set. Reconfiguring.");
 LLNWIZ_WordMenus_CalculateMaxPage();
 
 PROC
@@ -434,7 +434,7 @@ DB_LLNWIZ_Temp_MenuVariableValue(_MenuIndex, _MenuID)
 AND
 DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 THEN
-//LeaderLog_Debug("[LLNWIZ] Loading words for ", _MenuID);
+//LeaderLog_Log("DEBUG", "[LLNWIZ] Loading words for ", _MenuID);
 SysClear("DB_LLNWIZ_Words_Displayed", 2);
 LLNWIZ_WordMenus_LoadWords(_MenuID);
 LLNWIZ_Words_CalculateMaxPage();

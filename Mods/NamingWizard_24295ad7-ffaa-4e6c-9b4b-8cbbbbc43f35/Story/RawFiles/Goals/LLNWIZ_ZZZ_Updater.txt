@@ -7,12 +7,12 @@ KBSECTION
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
-LeaderLog_Debug("[LLNWIZ][Updater] Databases updated.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases updated.");
 
 PROC
 LLNWIZ_System_ClearDatabases()
 THEN
-LeaderLog_Debug("[LLNWIZ][Updater] Databases cleared.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases cleared.");
 
 PROC
 LLNWIZ_Updater_ResetDatabases()
@@ -20,7 +20,7 @@ THEN
 LLNWIZ_System_ClearDatabases();
 //LLNWIZ_Updater_RegisterMod("0.9.0.0");
 LLNWIZ_System_UpdateDatabases();
-LeaderLog_Debug("[LLNWIZ] ", "[Updater] Databases cleared and re-initialized.");
+LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Updater] Databases cleared and re-initialized.");
 //END_REGION
 
 //REGION UPDATE_EVENT
@@ -49,21 +49,21 @@ GlobalClearFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
 PROC
 LLNWIZ_Updater_UninstallMod()
 THEN
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Uninstalling Naming Wizard.");
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Attempting to end all Naming Wizard dialogs. Resuming in 2 seconds.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Uninstalling Naming Wizard.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Attempting to end all Naming Wizard dialogs. Resuming in 2 seconds.");
 LLNWIZ_Updater_CloseAllNamingWizardDialogs();
 TimerLaunch("LLNWIZ_Timers_Updater_UninstallerPhase2", 2000);
 
 IF
 TimerFinished("LLNWIZ_Timers_Updater_UninstallerPhase2")
 THEN
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Clearing all flags.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Clearing all flags.");
 LLNWIZ_Updater_ClearFlags();
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Destroying all Naming Wizard items.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Destroying all Naming Wizard items.");
 LLNWIZ_Updater_DestroyNamingWizardItems();
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Clearing databases.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Clearing databases.");
 LLNWIZ_System_ClearDatabases();
-LeaderLog_Debug("[LLNWIZ][Updater:Uninstaller] Unregistering Naming Wizard.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Unregistering Naming Wizard.");
 LLNWIZ_Updater_UnregisterMod();
 
 PROC

@@ -16,8 +16,8 @@ LLLNWIZ_LeaderLib_RegisterSettings()
 AND
 DB_LLNWIZ_Dialog("Settings", _DialogName)
 THEN
-LeaderLib_RegisterModMenu("LaughingLeader_NamingWizard", "[Naming Wizard] Settings", _DialogName);
-LeaderUpdater_RegisterModActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_LeaderLib");
+LeaderLib_RegisterModMenu("LaughingLeader_NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
+
 
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()

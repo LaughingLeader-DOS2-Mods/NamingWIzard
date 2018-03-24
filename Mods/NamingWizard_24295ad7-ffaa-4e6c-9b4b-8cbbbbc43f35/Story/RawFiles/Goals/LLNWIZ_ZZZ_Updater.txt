@@ -2,7 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LeaderUpdater_RegisterMod("NamingWizard", "0.9.0.0", "LaughingLeader");
-
+LeaderUpdater_RegisterActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
 KBSECTION
 //REGION MOD_UPDATING
 PROC

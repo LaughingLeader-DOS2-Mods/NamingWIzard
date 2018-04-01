@@ -2,6 +2,10 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Settings_InitializeCodex();
+
+//DB_LLNWIZ_Naming_Codex(_Group, _Index, _Char)
+//DB_LLNWIZ_Naming_Groups(Index, _Group)
+//DB_LLNWIZ_Naming_GroupMax(_Group, _Max)
 KBSECTION
 //REGION SETTINGS_CODEX
 PROC
@@ -102,18 +106,21 @@ THEN
 SysClear("DB_LLNWIZ_Naming_Codex", 3);
 SysClear("DB_LLNWIZ_Naming_Groups", 2);
 SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Settings:Codex] Cleared codex.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Cleared codex.");
 
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
 LLNWIZ_Settings_InitializeCodex();
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Settings:Codex] Updated codex databases.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Updated codex databases.");
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-LLNWIZ_Settings_ClearCodex();
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Codex", 3);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Groups", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_GroupMax", 2);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Databases registered.");
 EXITSECTION
 
 ENDEXITSECTION

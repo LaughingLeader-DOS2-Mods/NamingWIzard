@@ -61,12 +61,12 @@ THEN
 LLNWIZ_WordMenus_InitializeSettings();
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-SysClear("DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
-SysClear("DB_LLNWIZ_WordMenus_DialogVariables", 2);
-SysClear("DB_LLNWIZ_WordMenus_MenusPerPage", 1);
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Naming:Words:Menus] Databases cleared.");
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_DialogVariables", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_MenusPerPage", 1);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Naming:Words:Menus] Databases registered.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION

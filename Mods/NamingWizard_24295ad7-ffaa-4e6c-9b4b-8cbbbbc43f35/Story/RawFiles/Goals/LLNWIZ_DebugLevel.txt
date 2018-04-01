@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-GlobalClearFlag("LEADERLOG_DEBUG_DISABLED");
+GlobalClearFlag("LeaderLog_Debug_Disabled");
 KBSECTION
 //REGION Levers
 IF
@@ -115,7 +115,7 @@ AND
 CharacterGetHostCharacter(_Host)
 THEN
 DB_IsPlayer(_Host);
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[DebugLevel] Added host to DB_IsPlayer.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:DebugLevel] Added host to DB_IsPlayer.");
 
 IF
 GameStarted("LLNWIZ_DebugLevel", 1)

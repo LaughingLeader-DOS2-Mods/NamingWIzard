@@ -187,16 +187,16 @@ LLNWIZ_System_UpdateDatabases()
 THEN
 //LLNWIZ_Settings_InitializeWords(); Should only be initialized when the goal first runs, in case a mod changes default words.
 LLNWIZ_Settings_UpdateWords();
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Settings:Words] Updated words.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Words] Updated words.");
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-SysClear("DB_LLNWIZ_Words_Common", 2);
-SysClear("DB_LLNWIZ_Words_Name", 2);
-SysClear("DB_LLNWIZ_Words_Saved", 2);
-SysClear("DB_LLNWIZ_Words_Mod", 2);
-SysClear("DB_LLNWIZ_Words_Displayed", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Common", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Name", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Saved", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Mod", 2);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Words] Databases registered.");
 EXITSECTION
 
 ENDEXITSECTION

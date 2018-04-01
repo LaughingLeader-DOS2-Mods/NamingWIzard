@@ -1,8 +1,8 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LeaderUpdater_RegisterMod("NamingWizard", "0.9.0.0", "LaughingLeader");
-LeaderUpdater_RegisterActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.0.0");
+LeaderUpdater_Register_ActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
 KBSECTION
 //REGION MOD_UPDATING
 PROC
@@ -11,40 +11,29 @@ THEN
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases updated.");
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases cleared.");
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases registered.");
 
 PROC
 LLNWIZ_Updater_ResetDatabases()
 THEN
-LLNWIZ_System_ClearDatabases();
-//LLNWIZ_Updater_RegisterMod("0.9.0.0");
+LeaderUpdater_Clear_AllDatabases("NamingWizard", "LaughingLeader");
 LLNWIZ_System_UpdateDatabases();
-LeaderLog_Log("DEBUG", "[LLNWIZ] ", "[Updater] Databases cleared and re-initialized.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases cleared and re-initialized.");
 //END_REGION
 
 //REGION UPDATE_EVENT
 IF
 GameStarted(_,_)
 AND
-LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "0.9.0.0", "LaughingLeader")
+LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", "0.9.0.0")
 THEN
-LeaderUpdater_RegisterMod("NamingWizard", "0.9.0.0", "LaughingLeader");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.0.0");
 LLNWIZ_System_UpdateDatabases();
 //END_REGION
 
 //REGION UNINSTALLING
-PROC
-LLNWIZ_Updater_UnregisterMod()
-THEN
-LeaderUpdater_UnregisterMod("NamingWizard", "LaughingLeader");
-
-PROC
-LLNWIZ_Updater_UnregisterMod()
-THEN
-GlobalClearFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
-
 PROC
 LLNWIZ_Updater_UninstallMod()
 THEN
@@ -60,10 +49,15 @@ LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Clearing all flags.");
 LLNWIZ_Updater_ClearFlags();
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Destroying all Naming Wizard items.");
 LLNWIZ_Updater_DestroyNamingWizardItems();
+LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Destroying active wizards.");
+LLNWIZ_Wizard_DeleteAllWizards();
+LeaderLog_Log("DEBUG", "[LLLIB:Updater:Uninstaller] Clearing player variables.");
+LLLNIW_Updater_ClearPlayerVariables();
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Clearing databases.");
-LLNWIZ_System_ClearDatabases();
+LeaderUpdater_Clear_AllDatabases("NamingWizard", "LaughingLeader");
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Unregistering Naming Wizard.");
-LLNWIZ_Updater_UnregisterMod();
+LeaderUpdater_Clear_AllRegisteredData("NamingWizard", "LaughingLeader");
+GlobalClearFlag("NamingWizard_Active");
 
 PROC
 LLNWIZ_Updater_CloseAllNamingWizardDialogs()
@@ -111,11 +105,11 @@ ItemDestroy(_Item);
 IF
 GameStarted(_,_)
 AND
-GlobalGetFlag("LLNWIZ_NAMING_WIZARD_ACTIVE", 0)
+GlobalGetFlag("NamingWizard_Active", 0)
 THEN
-GlobalSetFlag("LLNWIZ_NAMING_WIZARD_ACTIVE");
+GlobalSetFlag("NamingWizard_Active");
 //END_REGION
 EXITSECTION
-LLNWIZ_Updater_UnregisterMod();
+
 ENDEXITSECTION
 ParentTargetEdge "LaughingLeader_NamingWizard"

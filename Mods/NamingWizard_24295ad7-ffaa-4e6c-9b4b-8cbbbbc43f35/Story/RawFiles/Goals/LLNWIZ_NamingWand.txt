@@ -19,10 +19,11 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NamingWand_TimerDelay", 2);
 DB_LLNWIZ_NamingWand_TimerDelay(3000, 700);
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-SysClear("DB_LLNWIZ_NamingWand_Skills", 1);
-SysClear("DB_LLNWIZ_NamingWand_TimerDelay", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_Skills", 1);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_TimerDelay", 2);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:NamingWand] Databases registered.");
 //END_REGION
 
 //REGION PERMISSIONS

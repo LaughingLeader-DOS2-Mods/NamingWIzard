@@ -6,9 +6,9 @@ INITSECTION
 //DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
 
 //DB_LLNWIZ_Words_Common(_Index, _Word)			"Common"
-//DB_LLNWIZ_Words_Name(_Index, _Name)		"Name"
+//DB_LLNWIZ_Words_Name(_Index, _Name)			"Name"
 //DB_LLNWIZ_Words_Saved(_Index, _Word)			"Player"
-//DB_LLNWIZ_Words_Mod(_Index, _Word)				"Mod"
+//DB_LLNWIZ_Words_Mod(_Index, _Word)			"Mod"
 //DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
 KBSECTION
 //REGION SETTINGS
@@ -18,12 +18,12 @@ THEN
 DB_NOOP(1);
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-SysClear("DB_LLNWIZ_Temp_IndexRebuilding", 4);
-SysClear("DB_LLNWIZ_Words_ReplacedWords", 3);
-SysClear("DB_LLNWIZ_Words_RemovedWords", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Databases cleared.");
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Temp_IndexRebuilding", 4);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_ReplacedWords", 3);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_RemovedWords", 2);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Databases registered.");
 //END_REGION
 
 //REGION REMOVE_WORD
@@ -71,7 +71,7 @@ AND
 IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Common(_Index, _Word);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Common.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Common.");
 LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
@@ -82,7 +82,7 @@ AND
 IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Name(_Index, _Word);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Name.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Name.");
 LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
@@ -93,7 +93,7 @@ AND
 IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Saved(_Index, _Word);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Saved.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Saved.");
 LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 PROC
@@ -104,7 +104,7 @@ AND
 IntegertoString(_Index, _IndexStr)
 THEN
 NOT DB_LLNWIZ_Words_Mod(_Index, _Word);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Mod.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Removed word [",_Word,"] at index [",_IndexStr,"] from DB_LLNWIZ_Words_Mod.");
 LLNWIZ_Words_Internal_RebuildIndex(_MenuID, _Index);
 
 //END_REGION
@@ -115,7 +115,7 @@ LLNWIZ_Words_Internal_RebuildIndex((STRING)_MenuID, (INTEGER)_StartIndex)
 AND
 IntegertoString(_StartIndex, _IndexStr)
 THEN
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Rebuilding word index for category [",_MenuID,"], starting at index [",_IndexStr,"]");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Rebuilding word index for category [",_MenuID,"], starting at index [",_IndexStr,"]");
 
 PROC
 LLNWIZ_Words_Internal_RebuildIndex((STRING)_MenuID, (INTEGER)_StartIndex)
@@ -222,7 +222,7 @@ AND
 _CurrentIndex >= _Total
 THEN
 NOT DB_LLNWIZ_Temp_IndexRebuilding(_MenuID, _CurrentIndex, _StartIndex, _Total, _TimerName);
-LeaderLog_Log("DEBUG", "[LLNWIZ][Words:Utils] Index rebuilding for word list [",_MenuID,"] complete.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Index rebuilding for word list [",_MenuID,"] complete.");
 LLNWIZ_SendStoryEvent("LLNWIZ_Events_WordIndexRebuildingComplete");
 //END_REGION
 

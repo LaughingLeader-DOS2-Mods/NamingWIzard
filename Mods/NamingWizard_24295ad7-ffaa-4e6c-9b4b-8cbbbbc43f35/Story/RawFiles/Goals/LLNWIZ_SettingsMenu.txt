@@ -27,12 +27,13 @@ SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
 LLNWIZ_SettingsMenu_InitializeSettings();
 
 PROC
-LLNWIZ_System_ClearDatabases()
+LLNWIZ_System_RegisterDatabases()
 THEN
-SysClear("DB_SettingsMenu_FlagSetMessage", 2);
-SysClear("DB_SettingsMenu_FlagClearedMessage", 2);
-SysClear("DB_Temp_InSettingsMenu", 1);
-SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_SettingsMenu_FlagSetMessage", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_SettingsMenu_FlagClearedMessage", 2);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_InSettingsMenu", 1);
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_SettingsMenuBookTimerActive", 1);
+LeaderLog_Log("DEBUG", "[LLNWIZ:SettingsMenu] Databases registered.");
 //END_REGION
 
 //REGION FLAGS

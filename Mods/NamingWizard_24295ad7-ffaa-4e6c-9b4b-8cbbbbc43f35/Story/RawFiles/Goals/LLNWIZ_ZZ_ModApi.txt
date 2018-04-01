@@ -1,0 +1,335 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+//DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Name", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
+//DB_LLNWIZ_ModBridge_RegisterWord("Mod", _Word)
+
+//DB_LLNWIZ_Words_Common(_Index, _Word)
+//DB_LLNWIZ_Words_Name(_Index, _Name)
+//DB_LLNWIZ_Words_Saved(_Index, _Word)
+//DB_LLNWIZ_Words_Mod(_Index, _Word)
+KBSECTION
+PROC
+LLNWIZ_ModInteraction_SetInitialText((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_InitialText", _InitialText)
+THEN
+LLNWIZ_Naming_SetInitialText(_InitialText, _Player);
+
+//REGION DATABASE_MODAPI
+/*REGISTER_MENU*/
+IF
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
+THEN
+LLNWIZ_WordMenus_RegisterWordMenu(_MenuID, _DisplayName, _DatabaseName, _Arity);
+
+IF
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterMenu(_MenuID, _DisplayName, _DatabaseName, _Arity);
+
+IF
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName)
+THEN
+LLNWIZ_WordMenus_RegisterWordMenu(_MenuID, _DisplayName, "", -1);
+
+IF
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterMenu(_MenuID, _DisplayName);
+
+/*REGISTER_WORD*/
+IF
+DB_LLNWIZ_ModApi_RegisterWord((STRING)_MenuID, (STRING)_Word)
+THEN
+LLNWIZ_Words_AddWordToMenu(_MenuID, _Word);
+NOT DB_LLNWIZ_ModApi_RegisterWord(_MenuID, _Word);
+
+IF
+DB_LLNWIZ_ModApi_RegisterWord((STRING)_MenuID, (STRING)_Word)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterWord(_MenuID, _Word);
+
+/*REPLACE_WORD*/
+IF
+DB_LLNWIZ_ModApi_ReplaceWord((STRING)_MenuID, (STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceWord(_MenuID, _Word, _NewWord);
+NOT DB_LLNWIZ_ModApi_ReplaceWord(_MenuID, _Word, _NewWord);
+
+IF
+DB_LLNWIZ_ModApi_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceAllWords(_Word, _NewWord);
+NOT DB_LLNWIZ_ModApi_ReplaceAllWords(_Word, _NewWord);
+
+/*REBUILD_INDEXES*/
+IF
+DB_LLNWIZ_ModApi_RebuildIndex((STRING)_MenuID)
+THEN
+//Not implemented yet
+NOT DB_LLNWIZ_ModApi_RebuildIndex(_MenuID);
+
+/*REMOVE_WORD*/
+IF
+DB_LLNWIZ_ModApi_RemoveWord((STRING)_MenuID, (STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveWord(_MenuID, _Word);
+NOT DB_LLNWIZ_ModApi_RemoveWord(_MenuID, _Word);
+
+IF
+DB_LLNWIZ_ModApi_RemoveAllWords((STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveAllWords(_Word);
+NOT DB_LLNWIZ_ModApi_RemoveAllWords(_Word);
+
+/*API_MAX_LENGTH*/
+IF
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length <= 255
+THEN
+LLNWIZ_Naming_SetMaxCharacterLength(_Length);
+
+IF
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length > 255
+AND
+IntegertoString(_Length, _IntStr)
+THEN
+LeaderLog_Log("DEBUG", "[LLNWIZ][ModInteraction] Character limit (",_IntStr,") is too large! Max character length is 255.");
+
+IF
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+THEN
+NOT DB_LLNWIZ_ModApi_MaxCharacterLength(_Length);
+//END_REGION
+
+//REGION EVENTS_LISTEN
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_OpenNamingWizard")
+THEN
+LLNWIZ_ModInteraction_SetInitialText(_Player);
+LLNWIZ_Naming_OpenNamingWizard(_Player);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_ClearSessionVariables")
+THEN
+LLNWIZ_Naming_ClearSessionVariables(_Player);
+//END_REGION
+
+//REGION RENAMING_NO_WAND
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Player, (CHARACTERGUID)_Target, "LLNWIZ_Events_RenameCharacter")
+THEN
+ApplyStatus(_Target, "LLNWIZ_RENAMING", -1.0, 1, _Player);
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+LLWIZ_Wizard_Start(_Player, _Target);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+LLNWIZ_Naming_RenameCharacter(_Player, _Target);
+LLNWIZ_Naming_ClearSessionVariables(_Player);
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCanceled")
+AND
+DB_LLNWIZ_Naming_CustomRename(_Player, _Target)
+THEN
+LLNWIZ_Naming_ClearSessionVariables(_Player);
+NOT DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
+//END_REGION
+
+//REGION EVENTS_SEND
+IF
+DialogStarted(_DialogName, _Instance)
+AND
+DB_LLNWIZ_Dialog("NamingWizard", _DialogName)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingWizardOpened");
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
+
+//In case the dialog is ended through some other means (combat).
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 0)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 0)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
+
+IF
+DialogEnded(_Dialog, _Instance)
+AND
+DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
+//END_REGION
+
+//REGION LATE_DATABASES
+IF
+StoryEvent(_, "LeaderLib_Initialized")
+THEN
+TimerLaunch("LLNWIZ_Timers_ModApi_CleanupDatabases", 200);
+
+/* In the event that any of these databases were set without LeaderLib installed, run through them again. */
+IF
+TimerFinished("LLNWIZ_Timers_ModApi_CleanupDatabases")
+THEN
+LLLIB_ModApi_RunCleanup();
+
+PROC
+LLLIB_ModApi_RunCleanup()
+THEN
+LeaderLog_Log("DEBUG", "[LLNWIZ:ModAPI] ModApi cleanup started. Running ModAPI databases.");
+//END_REGION
+
+//REGION DB_CLEANUP
+/*REGISTER_MENU*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
+THEN
+LLNWIZ_WordMenus_RegisterWordMenu(_MenuID, _DisplayName, _DatabaseName, _Arity);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName, (STRING)_DatabaseName, (INTEGER)_Arity)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterMenu(_MenuID, _DisplayName, _DatabaseName, _Arity);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName)
+THEN
+LLNWIZ_WordMenus_RegisterWordMenu(_MenuID, _DisplayName, "", -1);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterMenu((STRING)_MenuID, (STRING)_DisplayName)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterMenu(_MenuID, _DisplayName);
+
+/*REGISTER_WORD*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterWord((STRING)_MenuID, (STRING)_Word)
+THEN
+LLNWIZ_Words_AddWordToMenu(_MenuID, _Word);
+NOT DB_LLNWIZ_ModApi_RegisterWord(_MenuID, _Word);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RegisterWord((STRING)_MenuID, (STRING)_Word)
+THEN
+NOT DB_LLNWIZ_ModApi_RegisterWord(_MenuID, _Word);
+
+/*REPLACE_WORD*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_ReplaceWord((STRING)_MenuID, (STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceWord(_MenuID, _Word, _NewWord);
+NOT DB_LLNWIZ_ModApi_ReplaceWord(_MenuID, _Word, _NewWord);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_ReplaceAllWords((STRING)_Word, (STRING)_NewWord)
+THEN
+LLNWIZ_Words_ReplaceAllWords(_Word, _NewWord);
+NOT DB_LLNWIZ_ModApi_ReplaceAllWords(_Word, _NewWord);
+
+/*REBUILD_INDEXES*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RebuildIndex((STRING)_MenuID)
+THEN
+//Not implemented yet
+NOT DB_LLNWIZ_ModApi_RebuildIndex(_MenuID);
+
+/*REMOVE_WORD*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RemoveWord((STRING)_MenuID, (STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveWord(_MenuID, _Word);
+NOT DB_LLNWIZ_ModApi_RemoveWord(_MenuID, _Word);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_RemoveAllWords((STRING)_Word)
+THEN
+LLNWIZ_Words_RemoveAllWords(_Word);
+NOT DB_LLNWIZ_ModApi_RemoveAllWords(_Word);
+
+/*API_MAX_LENGTH*/
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length <= 255
+THEN
+LLNWIZ_Naming_SetMaxCharacterLength(_Length);
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+AND
+_Length > 255
+AND
+IntegertoString(_Length, _IntStr)
+THEN
+LeaderLog_Log("DEBUG", "[LLNWIZ][ModInteraction] Character limit (",_IntStr,") is too large! Max character length is 255.");
+
+PROC
+LLNWIZ_ModApi_RunCleanup()
+AND
+DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
+THEN
+NOT DB_LLNWIZ_ModApi_MaxCharacterLength(_Length);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_NamingWizard"

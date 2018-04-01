@@ -115,14 +115,14 @@ AND
 NOT DB_Temp_SettingsMenuBookTimerActive(_)
 THEN
 DB_Temp_SettingsMenuBookTimerActive(1);
-TimerLaunch("LLNWIZ_Timers_CheckForSettingsBook", 3000);
+TimerLaunch("LLNWIZ_Timers_CheckForSettingsBook", 5000);
 
 IF
 TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 AND
 DB_Temp_SettingsMenuBookTimerActive(1)
 AND
-GlobalGetFlag("LEADERLIB_ACTIVE", 0)
+GlobalGetFlag("LeaderLib_Active", 0)
 AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 AND

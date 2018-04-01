@@ -3,17 +3,27 @@ SubGoalCombiner SGC_AND
 INITSECTION
 LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.0.0");
 LeaderUpdater_Register_ActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
+LLNWIZ_Updater_RegisterDatabasesOnce();
 KBSECTION
 //REGION MOD_UPDATING
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN
-LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases updated.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases updated.");
+
+PROC
+LLNWIZ_Updater_RegisterDatabasesOnce()
+AND
+NOT DB_LLNWIZ_Updater_RegisteredDatabases(_)
+THEN
+LLNWIZ_System_RegisterDatabases();
+DB_LLNWIZ_Updater_RegisteredDatabases(1);
 
 PROC
 LLNWIZ_System_RegisterDatabases()
 THEN
-LeaderLog_Log("DEBUG", "[LLNWIZ][Updater] Databases registered.");
+LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Updater", "DB_LLNWIZ_Updater_RegisteredDatabases", 1);
+LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases registered.");
 
 PROC
 LLNWIZ_Updater_ResetDatabases()

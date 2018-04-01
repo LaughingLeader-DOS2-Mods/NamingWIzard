@@ -61,7 +61,9 @@ DB_LLNWIZ_ItemTemplates("SettingsBook", "BOOK_LLNWIZ_Settings_a66e3eae-8ea3-43b1
 
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
 SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
+//END_REGION
 
+//REGION UPDATER
 PROC
 LLNWIZ_System_UpdateDatabases()
 THEN

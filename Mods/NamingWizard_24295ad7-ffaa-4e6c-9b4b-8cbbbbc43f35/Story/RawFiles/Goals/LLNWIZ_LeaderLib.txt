@@ -28,14 +28,12 @@ LLLIB_Treasure_AddTreasureItemTemplate("LLNWIZ_LeaderTrader_NamingWand", _Templa
 LLLIB_Treasure_Configure_AddMaxAmount("LLNWIZ_LeaderTrader_NamingWand", _Template, 4);
 //LLLIB_Treasure_Configure_GenerationType("LLNWIZ_LeaderTrader_NamingWand", _Template, "DIALOG_STARTED");
 
-/* Not needed since the Mod Settings Book exists
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()
 AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 THEN
 LLLIB_Treasure_AddTreasureItemTemplate("LLLIB_LeaderTrader_ModBooks", _Template, 1);
-*/
 
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()

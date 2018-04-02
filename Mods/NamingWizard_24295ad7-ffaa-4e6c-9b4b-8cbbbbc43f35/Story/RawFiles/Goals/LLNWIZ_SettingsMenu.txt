@@ -107,6 +107,8 @@ CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Uninstalled. G
 //END_REGION
 
 //REGION BOOK_SPAWNING
+//Basically deprecated due to the Mod Settings Menu
+/*
 IF
 GameStarted(_Level,_)
 AND
@@ -115,14 +117,14 @@ AND
 NOT DB_Temp_SettingsMenuBookTimerActive(_)
 THEN
 DB_Temp_SettingsMenuBookTimerActive(1);
-TimerLaunch("LLNWIZ_Timers_CheckForSettingsBook", 5000);
+TimerLaunch("LLNWIZ_Timers_CheckForSettingsBook", 2000);
 
 IF
 TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 AND
 DB_Temp_SettingsMenuBookTimerActive(1)
 AND
-GlobalGetFlag("LeaderLib_Active", 0)
+NOT GlobalGetFlag("LeaderLib_Active", 1)
 AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 AND
@@ -136,6 +138,7 @@ IF
 TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 THEN
 NOT DB_Temp_SettingsMenuBookTimerActive(1);
+*/
 //END_REGION
 
 //REGION DIALOG

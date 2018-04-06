@@ -8,6 +8,7 @@ StoryEvent(_, "LeaderLib_Initialized")
 AND
 NOT DB_LLNWIZ_RegisteredLeaderLibSettings(_)
 THEN
+LeaderLog_Log("DEBUG", "[LLNWIZ:LeaderLib] Registering LeaderLib settings.");
 LLLNWIZ_LeaderLib_RegisterSettings();
 DB_LLNWIZ_RegisteredLeaderLibSettings(1);
 
@@ -16,7 +17,7 @@ LLLNWIZ_LeaderLib_RegisterSettings()
 AND
 DB_LLNWIZ_Dialog("Settings", _DialogName)
 THEN
-LeaderLib_RegisterModMenu("LaughingLeader_NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
+LeaderLib_Register_ModMenu("LaughingLeader_NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
 
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()
@@ -26,7 +27,7 @@ THEN
 LLLIB_Treasure_Register_TreasureToTrader("LLNWIZ_LeaderTrader_NamingWand", "LLLIB_LeaderTrader");
 LLLIB_Treasure_AddTreasureItemTemplate("LLNWIZ_LeaderTrader_NamingWand", _Template, 1);
 LLLIB_Treasure_Configure_AddMaxAmount("LLNWIZ_LeaderTrader_NamingWand", _Template, 4);
-//LLLIB_Treasure_Configure_GenerationType("LLNWIZ_LeaderTrader_NamingWand", _Template, "DIALOG_STARTED");
+LLLIB_Treasure_Configure_GenerationType("LLNWIZ_LeaderTrader_NamingWand", _Template, "DIALOG_STARTED");
 
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()
@@ -34,6 +35,7 @@ AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 THEN
 LLLIB_Treasure_AddTreasureItemTemplate("LLLIB_LeaderTrader_ModBooks", _Template, 1);
+LLLIB_Treasure_Configure_AddMaxAmount("LLLIB_LeaderTrader_ModBooks", _Template, 1);
 
 PROC
 LLLNWIZ_LeaderLib_RegisterSettings()

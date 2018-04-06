@@ -178,7 +178,6 @@ CharacterIsInCombat(_Player, 0)
 AND
 DB_LLNWIZ_Dialog("Settings", _DialogName)
 THEN
-LLNWIZ_System_FlagHost();
 Proc_StartDialog(0, _DialogName, _Player, _Player);
 
 PROC

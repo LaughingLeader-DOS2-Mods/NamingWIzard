@@ -28,7 +28,7 @@ LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases registered.");
 PROC
 LLNWIZ_Updater_ResetDatabases()
 THEN
-LeaderUpdater_Clear_AllDatabases("NamingWizard", "LaughingLeader");
+LeaderUpdater_SysClear_AllDatabases("NamingWizard", "LaughingLeader");
 LLNWIZ_System_UpdateDatabases();
 LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases cleared and re-initialized.");
 //END_REGION
@@ -72,7 +72,7 @@ LLNWIZ_Wizard_DeleteAllWizards();
 LeaderLog_Log("DEBUG", "[LLLIB:Updater:Uninstaller] Clearing player variables.");
 LLLNIW_Updater_ClearPlayerVariables();
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Clearing databases.");
-LeaderUpdater_Clear_AllDatabases("NamingWizard", "LaughingLeader");
+LeaderUpdater_SysClear_AllDatabases("NamingWizard", "LaughingLeader");
 LeaderLog_Log("DEBUG", "[LLNWIZ][Updater:Uninstaller] Unregistering Naming Wizard.");
 LeaderUpdater_Clear_AllRegisteredData("NamingWizard", "LaughingLeader");
 GlobalClearFlag("NamingWizard_Active");

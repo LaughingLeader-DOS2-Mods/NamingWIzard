@@ -156,31 +156,6 @@ THEN
 ObjectClearFlag(_Object, _Flag);
 //END_REGION
 
-//REGION HOST_FLAGGING
-PROC
-LLNWIZ_System_FlagHost()
-AND
-DB_IsPlayer(_Player)
-AND
-NOT CharacterGetHostCharacter(_Player)
-THEN
-UserClearFlag(_Player, "LLNWIZ_IsHost", 0);
-
-PROC
-LLNWIZ_System_FlagHost()
-AND
-CharacterGetHostCharacter(_Player)
-AND
-UserGetFlag(_Player, "LLNWIZ_IsHost", 0)
-THEN
-UserSetFlag(_Player, "LLNWIZ_IsHost");
-
-IF
-GameStarted(_,_)
-THEN
-LLNWIZ_System_FlagHost();
-//END_REGION
-
 //REGION FX_HELPERS
 PROC
 LLNWIZ_PlayEffectAtTargetPosition((CHARACTERGUID)_Target, (STRING)_Effect)
@@ -274,20 +249,20 @@ DB_LLNWIZ_Temp_Rand(_Rand);
 IF
 GameStarted("LLNWIZ_DebugLevel", _)
 AND
-NOT SysIsActive("LLNWIZ_DebugLevel")
+NOT SysIsActive("LLNWIZ_Debug")
 THEN
-SysActivateGoal("LLNWIZ_DebugLevel");
-LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level starting. Activating LLNWIZ_DebugLevel.");
+SysActivateGoal("LLNWIZ_Debug");
+LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level starting. Activating LLNWIZ_Debug.");
 
 IF
 GameStarted(_Level, 0)
 AND
-_Level != "LLNWIZ_DebugLevel"
+_Level != "LLNWIZ_Debug"
 AND
-SysIsActive("LLNWIZ_DebugLevel")
+SysIsActive("LLNWIZ_Debug")
 THEN
-SysCompleteGoal("LLNWIZ_DebugLevel");
-LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level ending. Deactivating LLNWIZ_DebugLevel.");
+SysCompleteGoal("LLNWIZ_Debug");
+LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level ending. Deactivating LLNWIZ_Debug.");
 //END_REGION
 EXITSECTION
 

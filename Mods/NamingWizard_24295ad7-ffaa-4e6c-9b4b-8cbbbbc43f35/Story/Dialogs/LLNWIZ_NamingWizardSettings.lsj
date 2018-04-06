@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1521730883,
+         "time" : 1522948062,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -416,7 +416,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -890,7 +890,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -1285,7 +1285,25 @@
                         "Tags" : [ {} ],
                         "UUID" : {"type" : 22, "value" : "62033235-f12b-4d9b-96f2-e8da2ae1b15a"},
                         "addressedspeaker" : {"type" : 4, "value" : -1},
-                        "checkflags" : [ {} ],
+                        "checkflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LLNWIZ_Settings_CanUninstall"},"value" : {"type" : 19, "value" : 1}}
+                                    ],"type" : {"type" : 22, "value" : "Global"}},
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
+                                          "paramval" : {"type" : 4, "value" : 1},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "User"}}
+                              ]
+                           }
+                        ],
                         "children" : [
                            {
                               "child" : [
@@ -1487,7 +1505,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -1611,7 +1629,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -2021,7 +2039,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -2356,7 +2374,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }
@@ -2477,7 +2495,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -2601,7 +2619,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 0}
                                        }
@@ -3335,7 +3353,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "LLNWIZ_IsHost"},
+                                          "name" : {"type" : 22, "value" : "LeaderLib_IsHost"},
                                           "paramval" : {"type" : 4, "value" : 1},
                                           "value" : {"type" : 19, "value" : 1}
                                        }

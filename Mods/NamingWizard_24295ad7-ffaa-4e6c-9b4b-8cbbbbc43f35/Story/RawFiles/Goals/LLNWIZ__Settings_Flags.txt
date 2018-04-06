@@ -80,8 +80,8 @@ DB_LLNWIZ_ObjectFlags("LLNWIZ_Wizard_NotRogue");
 PROC
 LLNWIZ_Settings_InitializeFlags()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_UserFlags", 1);
-DB_LLNWIZ_UserFlags("LLNWIZ_IsHost");
+//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_UserFlags", 1);
+DB_NOOP(1);
 //END_REGION
 
 //REGION GLOBAL_FLAGS
@@ -92,6 +92,7 @@ LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_GlobalFlags", 1);
 DB_LLNWIZ_GlobalFlags("NamingWizard_Active");
 DB_LLNWIZ_GlobalFlags("LLNWIZ_Settings_RenameWandDisabled");
 DB_LLNWIZ_GlobalFlags("LLNWIZ_Settings_CrossPlayerRenamingEnabled");
+DB_LLNWIZ_GlobalFlags("LLNWIZ_Settings_CanUninstall");
 //END_REGION
 PROC
 LLNWIZ_System_UpdateDatabases()
@@ -124,7 +125,7 @@ ObjectClearFlag(_Player, _Flag);
 PROC
 LLNWIZ_Settings_ClearUserFlags((CHARACTERGUID)_Player)
 AND
-DB_LLNWIZ_UserFlags(_Flag)
+DB_LLNWIZ_UserFlags((STRING)_Flag)
 THEN
 UserClearFlag(_Player, _Flag, 0);
 EXITSECTION

@@ -65,6 +65,13 @@ THEN
 LLNWIZ_Words_ReplaceAllWords(_Word, _NewWord);
 NOT DB_LLNWIZ_ModApi_ReplaceAllWords(_Word, _NewWord);
 
+/*SORT_MENU*/
+IF
+DB_LLNWIZ_ModApi_SortMenu((STRING)_MenuID)
+THEN
+LLNWIZ_Words_SortMenu(_MenuID);
+NOT DB_LLNWIZ_ModApi_SortMenu(_MenuID);
+
 /*REBUILD_INDEXES*/
 IF
 DB_LLNWIZ_ModApi_RebuildIndex((STRING)_MenuID)

@@ -2,6 +2,10 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 LLNWIZ_Settings_InitializeWords();
+//DB_LLNWIZ_Words_Common(_Index, _Word)
+//DB_LLNWIZ_Words_Name(_Index, _Name)
+//DB_LLNWIZ_Words_Saved(_Index, _Word)
+//DB_LLNWIZ_Words_Mod(_Index, _Word)
 KBSECTION
 //REGION WORD_ADDING
 //LLNWIZ_Words_AddWordToMenu((STRING)_MenuID, (STRING)_Word)
@@ -91,9 +95,10 @@ LLNWIZ_Words_AddWord("Common");
 LLNWIZ_Words_AddWord("Crafting");
 LLNWIZ_Words_AddWord("Crossbow");
 LLNWIZ_Words_AddWord("Custom");
+LLNWIZ_Words_AddWord("Dagger");
 LLNWIZ_Words_AddWord("Dark");
 LLNWIZ_Words_AddWord("DPS");
-LLNWIZ_Words_AddWord("DualWielding");
+LLNWIZ_Words_AddWord("Dual Wielding");
 LLNWIZ_Words_AddWord("Dwarven");
 LLNWIZ_Words_AddWord("Earth");
 LLNWIZ_Words_AddWord("Elven");
@@ -173,7 +178,8 @@ LLNWIZ_Words_AddName("Lohse");
 LLNWIZ_Words_AddName("Sebille");
 LLNWIZ_Words_AddName("The Red Prince");
 
-LLNWIZ_Words_AddModWord("NamingWizard");
+LLNWIZ_Words_AddModWord("LeaderLib");
+LLNWIZ_Words_AddModWord("Naming Wizard");
 
 PROC
 LLNWIZ_Settings_UpdateWords()

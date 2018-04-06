@@ -1,6 +1,10 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+/*SORTING*/
+//DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent)
+//DB_LLNWIZ_Words_CurrentlySorting(_MenuID)
+/**/
 //DB_LLNWIZ_Words_ReplacedWords(_Category, _OldWord, _NewWord);
 //DB_LLNWIZ_Words_RemovedWords(_Category, _Word);
 //DB_LLNWIZ_Temp_IndexRebuilding(_Category, _CurrentIndex, _StartIndex, _Total, _TimerName)
@@ -24,6 +28,99 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_ReplacedWords", 3);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_RemovedWords", 2);
 LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Databases registered.");
+//END_REGION
+
+//REGION SORTING
+PROC
+LLNWIZ_Words_SortMenu((STRING)_MenuID)
+AND
+NOT DB_LLNWIZ_Words_Temp_ActiveSort(_, _MenuID, _)
+AND
+StringConcatenate("LLNWIZ_Words_SortingMenu_", _MenuID, _DictionaryID)
+AND
+StringConcatenate("LLNWIZ_Events_OnMenuSortComplete_", _MenuID, _CompletionEvent)
+THEN
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent);
+
+PROC
+LLNWIZ_Words_SortMenu("Common")
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Common", _CompletionEvent)
+AND
+DB_LLNWIZ_Words_Common(_Index, _Word)
+THEN
+LLLIB_DictionarySort_AddString(_DictionaryID, "Common", _Word);
+
+PROC
+LLNWIZ_Words_SortMenu("Names")
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Names", _CompletionEvent)
+AND
+DB_LLNWIZ_Words_Name(_Index, _Word)
+THEN
+LLLIB_DictionarySort_AddString(_DictionaryID, "Names", _Word);
+
+PROC
+LLNWIZ_Words_SortMenu("Saved")
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Saved", _CompletionEvent)
+AND
+DB_LLNWIZ_Words_Saved(_Index, _Word)
+THEN
+LLLIB_DictionarySort_AddString(_DictionaryID, "Saved", _Word);
+
+PROC
+LLNWIZ_Words_SortMenu("Mod")
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Mod", _CompletionEvent)
+AND
+DB_LLNWIZ_Words_Mod(_Index, _Word)
+AND
+NOT DB_LLLIB_DictionarySort_Temp_StringQueue(_DictionaryID, _, _Word)
+THEN
+LLLIB_DictionarySort_AddString(_DictionaryID, "Mod", _Word);
+//LeaderLog_Log("DEBUG", "[LLNWIZ:Sorting] Adding [",_Word,"] to sorting queue.");
+
+PROC
+LLNWIZ_Words_SortMenu((STRING)_MenuID)
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent)
+AND
+NOT LLLIB_DictionarySort_QRY_QueueEmpty(_DictionaryID)
+THEN
+DB_LLNWIZ_Words_CurrentlySorting(_MenuID);
+LLLIB_DictionarySort_StartSorting(_DictionaryID, 1, _CompletionEvent, 0);
+
+IF
+StoryEvent(_, _CompletionEvent)
+AND
+DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent)
+THEN
+NOT DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent);
+LLNWIZ_Words_OnSortComplete(_DictionaryID, _MenuID);
+
+PROC
+LLNWIZ_Words_OnSortComplete((STRING)_DictionaryID, (STRING)_MenuID)
+AND
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
+THEN
+SysClear(_DatabaseName, _Arity);
+
+PROC
+LLNWIZ_Words_OnSortComplete((STRING)_DictionaryID, (STRING)_MenuID)
+AND
+DB_LLLIB_Array_Iterator(_DictionaryID, _Index)
+AND
+DB_LLLIB_Dictionary_Data(_DictionaryID, _Index, _MenuID, _Value)
+THEN
+//LeaderLog_Log("DEBUG", "[LLNWIZ:Sorting] Adding word [",_Value,"] to menu [",_MenuID,"]");
+LLNWIZ_Words_AddWordToMenu(_MenuID, _Value);
+
+PROC
+LLNWIZ_Words_OnSortComplete((STRING)_DictionaryID, (STRING)_MenuID)
+THEN
+LLLIB_Array_ClearDictionary(_DictionaryID);
+NOT DB_LLNWIZ_Words_CurrentlySorting(_MenuID);
 //END_REGION
 
 //REGION REMOVE_WORD

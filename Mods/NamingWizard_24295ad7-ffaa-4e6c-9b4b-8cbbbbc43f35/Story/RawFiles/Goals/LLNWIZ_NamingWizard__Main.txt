@@ -225,6 +225,26 @@ LLNWIZ_Naming_ClearPlayerVariables(_Player);
 LeaderLog_Log("DEBUG", "[LLNWIZ:NamingWizard] Cleared saved session variables for player.");
 //END_REGION
 
+//REGION QUERIES
+QRY
+LLNWIZ_Naming_QRY_TargetNameVariableSet((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_TargetName", _Name)
+AND
+_Name != ""
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_Naming_QRY_CustomNameVariableSet((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_CustomName", _Name)
+AND
+_Name != ""
+THEN
+DB_NOOP(1);
+//END_REGION
+
 //REGION TEXT_SETTINGS
 PROC
 LLNWIZ_Naming_SetLastText((STRING)_Text, (INTEGER)_Instance)
@@ -840,6 +860,11 @@ IF
 ObjectFlagSet("LLNWIZ_Naming_RevertToTargetName", (CHARACTERGUID)_Player, _Instance)
 AND
 LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Naming_RevertToTargetName")
+THEN
+LLNWIZ_Naming_RevertToTargetName(_Player, _Instance);
+
+PROC
+LLNWIZ_Naming_RevertToTargetName((CHARACTERGUID)_Player, (INTEGER)_Instance)
 AND
 DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 THEN
@@ -961,9 +986,38 @@ LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
 LLNWIZ_Naming_SetLength(0, _Instance);
 
 PROC
+LLNWIZ_Naming_InitPlayerVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_TargetName(_Player, _)
+AND
+LLNWIZ_Naming_QRY_TargetNameVariableSet(_Player)
+AND
+GetVarString(_Player, "LLNWIZ_TargetName", _Name)
+THEN
+DB_LLNWIZ_Naming_TargetName(_Player, _Name);
+
+PROC
+LLNWIZ_Naming_InitPlayerVariables((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+NOT DB_LLNWIZ_Naming_TargetCustomName(_Player, _)
+AND
+LLNWIZ_Naming_QRY_CustomNameVariableSet(_Player)
+AND
+GetVarString(_Player, "LLNWIZ_CustomName", _Name)
+THEN
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _Name);
+
+PROC
 LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
 THEN
 LLNWIZ_Naming_InitVariables(_Instance);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+THEN
+LLNWIZ_Naming_InitPlayerVariables(_Player, _Instance);
 
 PROC
 LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
@@ -995,6 +1049,7 @@ DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 AND
 DB_LLNWIZ_Naming_DialogVariables("OriginalName", _OriginalNameVar)
 THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
 DialogSetVariableStringForInstance(_Instance, _OriginalNameVar, _Name);
 
 PROC
@@ -1003,8 +1058,6 @@ AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_TargetName(_Player, _Name)
-AND
-NOT DB_LLNWIZ_Naming_TargetCustomName(_Player,_)
 AND
 DB_LLNWIZ_Naming_DialogVariables("TargetName", _TargetNameVar)
 AND

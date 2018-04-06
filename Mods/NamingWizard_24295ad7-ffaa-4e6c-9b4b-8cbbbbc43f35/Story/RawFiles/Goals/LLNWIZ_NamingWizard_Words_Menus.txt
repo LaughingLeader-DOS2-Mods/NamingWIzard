@@ -323,6 +323,7 @@ StringConcatenate(_Str1, _CountStr, _Str2)
 AND
 StringConcatenate(_Str2, ")", _NewDisplayName)
 THEN
+LeaderLog_Log("DEBUG", "[LLNWIZ:WordsMenus:SetMenuName] Counted database [",_DatabaseName,"] and found [",_CountStr,"] words.");
 DialogSetVariableStringForInstance(_Instance, _DialogVar, _NewDisplayName);
 
 PROC
@@ -348,18 +349,35 @@ DialogSetVariableIntForInstance(_Instance, _VariableName, _DisplayedPage);
 QRY
 LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
 AND
-NOT DB_LLNWIZ_WordMenus_RegisteredMenu(_Index,_,_,_,_)
-AND
 ObjectGetFlag(_Player, _DisabledFlag, 0)
+AND
+NOT DB_LLNWIZ_WordMenus_RegisteredMenu(_Index,_,_,_,_)
 THEN
 ObjectSetFlag(_Player, _DisabledFlag);
 
 QRY
 LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
 AND
+ObjectGetFlag(_Player, _DisabledFlag, 0)
+AND
 DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
 AND
+SysCount(_DatabaseName, _Arity, _Count)
+AND
+_Count <= 0
+THEN
+ObjectSetFlag(_Player, _DisabledFlag);
+
+QRY
+LLNWIZ_QRY_WordMenus_DisableMenuIfNotAvailable((CHARACTERGUID)_Player, (INTEGER)_Index, (STRING)_DisabledFlag)
+AND
 ObjectGetFlag(_Player, _DisabledFlag, 1)
+AND
+DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName, _Arity)
+AND
+SysCount(_DatabaseName, _Arity, _Count)
+AND
+_Count > 0
 THEN
 ObjectClearFlag(_Player, _DisabledFlag);
 
@@ -417,7 +435,7 @@ THEN
 DB_LLNWIZ_Words_Displayed(_Index, _Word);
 //END_REGION
 
-//REGION CHECKING
+//REGION LOADING_WORDS_EVENT
 IF
 ObjectFlagSet("LLNWIZ_WordMenus_CheckMenus", (CHARACTERGUID)_Player, _Instance)
 AND
@@ -429,6 +447,8 @@ IF
 ObjectFlagSet(_SelectFlag, (CHARACTERGUID)_Player, _Instance)
 AND
 DB_LLNWIZ_WordMenus_DynamicMenuVars(_MenuIndex, _DialogVar, _SelectFlag, _DisabledFlag)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Player, _SelectFlag)
 AND
 DB_LLNWIZ_Temp_MenuVariableValue(_MenuIndex, _MenuID)
 AND

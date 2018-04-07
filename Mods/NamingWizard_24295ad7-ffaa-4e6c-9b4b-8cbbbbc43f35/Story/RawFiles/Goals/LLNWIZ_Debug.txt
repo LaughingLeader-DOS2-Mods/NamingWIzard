@@ -20,13 +20,13 @@ CharacterCharacterSetEvent(_Player, _Player, "LLNWIZ_Events_RenameCharacter");
 IF
 CharacterUsedItem(_Player, ITEMGUID_LLNWIZ_Lever_DebugTest2_587005fc-025e-4716-b836-69ecb9cf83c1)
 THEN
-DB_LLNWIZ_ModBridge_RegisterWord("Common", "NewWord");
-DB_LLNWIZ_ModBridge_RegisterWord("Name", "Godus, the Mindbender");
-DB_LLNWIZ_ModBridge_RegisterWord("Mod", "SuperBestMod");
-DB_LLNWIZ_ModBridge_RegisterWord("Player", "Uhauhuhauhahai");
-DB_LLNWIZ_ModBridge_ReplaceWord("Name", "Sebille", "Sassy Elf");
-DB_LLNWIZ_ModBridge_ReplaceAllWords("Beast", "The Hero We Need");
-DB_LLNWIZ_ModBridge_RemoveWord("Mod", "NamingWizard");
+DB_LLNWIZ_ModApi_RegisterWord("Common", "NewWord");
+DB_LLNWIZ_ModApi_RegisterWord("Name", "Godus, the Mindbender");
+DB_LLNWIZ_ModApi_RegisterWord("Mod", "SuperBestMod");
+DB_LLNWIZ_ModApi_RegisterWord("Player", "Uhauhuhauhahai");
+DB_LLNWIZ_ModApi_ReplaceWord("Name", "Sebille", "Sassy Elf");
+DB_LLNWIZ_ModApi_ReplaceAllWords("Beast", "The Hero We Need");
+DB_LLNWIZ_ModApi_RemoveWord("Mod", "NamingWizard");
 
 /*
 IF

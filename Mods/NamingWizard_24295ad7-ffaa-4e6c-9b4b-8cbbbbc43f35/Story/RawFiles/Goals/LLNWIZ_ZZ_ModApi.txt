@@ -1,10 +1,10 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-//DB_LLNWIZ_ModBridge_RegisterWord("Common", _Word)
-//DB_LLNWIZ_ModBridge_RegisterWord("Name", _Word)
-//DB_LLNWIZ_ModBridge_RegisterWord("Player", _Word)
-//DB_LLNWIZ_ModBridge_RegisterWord("Mod", _Word)
+//DB_LLNWIZ_ModApi_RegisterWord("Common", _Word)
+//DB_LLNWIZ_ModApi_RegisterWord("Name", _Word)
+//DB_LLNWIZ_ModApi_RegisterWord("Player", _Word)
+//DB_LLNWIZ_ModApi_RegisterWord("Mod", _Word)
 
 //DB_LLNWIZ_Words_Common(_Index, _Word)
 //DB_LLNWIZ_Words_Name(_Index, _Name)
@@ -113,6 +113,14 @@ IF
 DB_LLNWIZ_ModApi_MaxCharacterLength((INTEGER)_Length)
 THEN
 NOT DB_LLNWIZ_ModApi_MaxCharacterLength(_Length);
+//END_REGION
+
+//REGION CLEARING_MODAPI
+IF
+DB_LLNWIZ_ModApi_ClearSessionVariables((CHARACTERGUID)_Player)
+THEN
+LLNWIZ_Naming_ClearSessionVariables((CHARACTERGUID)_Player);
+NOT DB_LLNWIZ_ModApi_ClearSessionVariables(_Player);
 //END_REGION
 
 //REGION EVENTS_LISTEN

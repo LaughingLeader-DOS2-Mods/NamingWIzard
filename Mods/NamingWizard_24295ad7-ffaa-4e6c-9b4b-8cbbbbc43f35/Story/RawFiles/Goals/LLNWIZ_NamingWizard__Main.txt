@@ -142,7 +142,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard"
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_Temp_FoundWord", 5);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_Temp_LastVisibleText", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_NamingWand_TimerDelay", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:NamingWizard] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:NamingWizard] Databases registered.");
 //END_REGION
 
 //REGION CLEAR

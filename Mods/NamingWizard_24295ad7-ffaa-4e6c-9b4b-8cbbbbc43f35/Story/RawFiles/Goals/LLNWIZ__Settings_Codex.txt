@@ -120,7 +120,7 @@ THEN
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Codex", 3);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Groups", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_GroupMax", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Codex] Databases registered.");
 EXITSECTION
 
 ENDEXITSECTION

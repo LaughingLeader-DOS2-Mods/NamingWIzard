@@ -33,7 +33,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu"
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_SettingsMenu_FlagClearedMessage", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_InSettingsMenu", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_SettingsMenuBookTimerActive", 1);
-LeaderLog_Log("DEBUG", "[LLNWIZ:SettingsMenu] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:SettingsMenu] Databases registered.");
 //END_REGION
 
 //REGION FLAGS

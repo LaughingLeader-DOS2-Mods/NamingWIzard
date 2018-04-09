@@ -27,7 +27,7 @@ THEN
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Temp_IndexRebuilding", 4);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_ReplacedWords", 3);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_RemovedWords", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Words:Utils] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Words:Utils] Databases registered.");
 //END_REGION
 
 //REGION SORTING

@@ -79,7 +79,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Temp_TracedCharacterValue", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Random_Seed", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Temp_Rand", 1);
-LeaderLog_Log("DEBUG", "[LLNWIZ:System] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:System] Databases registered.");
 //END_REGION
 
 //REGION QUERIES

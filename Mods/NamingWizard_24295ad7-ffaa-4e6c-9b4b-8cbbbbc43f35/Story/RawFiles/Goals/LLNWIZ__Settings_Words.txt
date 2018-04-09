@@ -202,7 +202,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_L
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Name", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Saved", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Words", "DB_LLNWIZ_Words_Mod", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Words] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Words] Databases registered.");
 EXITSECTION
 
 ENDEXITSECTION

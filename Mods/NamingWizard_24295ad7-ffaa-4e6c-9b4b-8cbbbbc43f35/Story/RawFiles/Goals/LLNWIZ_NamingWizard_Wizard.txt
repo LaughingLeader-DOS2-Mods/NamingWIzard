@@ -51,7 +51,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_WizardStartTimer", 3);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_LastGreeting", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_RandomGreeting", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Wizard] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Wizard] Databases registered.");
 
 PROC
 LLNWIZ_Wizard_DeleteAllWizards()

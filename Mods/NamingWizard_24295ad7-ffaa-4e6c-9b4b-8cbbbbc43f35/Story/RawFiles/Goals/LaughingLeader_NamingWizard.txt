@@ -1,13 +1,18 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LLNWIZ_Internal_StartNamingWizard();
+
 KBSECTION
 PROC
 LLNWIZ_Internal_StartNamingWizard()
 THEN
 DebugBreak("[LLNWIZ] Naming Wizard starting.");
 GoalCompleted;
+
+IF
+GameEventSet("GAMEEVENT_GameStarted")
+THEN
+LLNWIZ_Internal_StartNamingWizard();
 EXITSECTION
 
 ENDEXITSECTION

@@ -23,7 +23,7 @@ PROC
 LLNWIZ_System_RegisterDatabases()
 THEN
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Updater", "DB_LLNWIZ_Updater_RegisteredDatabases", 1);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Updater] Databases registered.");
 
 PROC
 LLNWIZ_Updater_ResetDatabases()

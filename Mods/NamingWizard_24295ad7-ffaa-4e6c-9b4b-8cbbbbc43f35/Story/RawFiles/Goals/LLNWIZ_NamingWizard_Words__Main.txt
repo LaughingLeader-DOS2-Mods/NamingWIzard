@@ -60,7 +60,7 @@ LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_CurrentPageIndex", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Temp_IsChangingPage", 2);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Temp_WordVariableValue", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Naming:Words] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Naming:Words] Databases registered.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION

@@ -23,7 +23,7 @@ LLNWIZ_System_RegisterDatabases()
 THEN
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_Skills", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_TimerDelay", 2);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:NamingWand] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:NamingWand] Databases registered.");
 //END_REGION
 
 //REGION PERMISSIONS

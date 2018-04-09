@@ -106,7 +106,7 @@ THEN
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Flags", "DB_LLNWIZ_ObjectFlags", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Flags", "DB_LLNWIZ_GlobalFlags", 1);
 LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Flags", "DB_LLNWIZ_UserFlags", 1);
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Flags] Databases registered.");
+LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Flags] Databases registered.");
 
 PROC
 LLNWIZ_Settings_ClearGlobalFlags()

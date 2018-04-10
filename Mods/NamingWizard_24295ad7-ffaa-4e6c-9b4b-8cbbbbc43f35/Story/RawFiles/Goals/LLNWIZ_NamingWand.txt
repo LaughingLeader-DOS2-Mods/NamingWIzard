@@ -8,7 +8,7 @@ LLNWIZ_NamingWand_InitializeSettings();
 //DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 //DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
 KBSECTION
-//REGION Settings
+//REGION SETTINGS
 PROC
 LLNWIZ_NamingWand_InitializeSettings()
 THEN
@@ -60,6 +60,7 @@ LLNWIZ_NamingWand_ClearPreviousTargets((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 THEN
+LLNWIZ_NamingWand_RemoveBlockTag(_Target);
 NOT DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
 
 PROC
@@ -120,6 +121,8 @@ DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 THEN
 LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
+LLNWIZ_NamingWand_SetBlockTag(_Player);
+LLNWIZ_NamingWand_SetBlockTag(_Target);
 TimerLaunch(_TimerName, _SkillUseDelay); // Failsafe, in case the skill never reaches a "cast"
 
 IF
@@ -150,11 +153,33 @@ THEN
 LLNWIZ_Naming_RenameCharacter(_Player, _Target);
 LLNWIZ_Naming_ClearSessionVariables(_Player);
 NOT DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
+LLNWIZ_NamingWand_RemoveBlockTag(_Player);
+LLNWIZ_NamingWand_RemoveBlockTag(_Target);
 
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingCanceled")
 THEN
 LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
+LLNWIZ_NamingWand_RemoveBlockTag(_Player);
+
+//REGION TAGGING
+PROC
+LLNWIZ_NamingWand_SetBlockTag((CHARACTERGUID)_Target)
+AND
+IsTagged(_Target, "NAMINGWIZARD_BLOCK_RENAMING", 0)
+THEN
+SetTag(_Target, "NAMINGWIZARD_BLOCK_RENAMING");
+DB_LLNWIZ_NamingWand_TaggedTarget(_Target);
+
+// Only remove the block tag if it was set by these procs originally
+PROC
+LLNWIZ_NamingWand_RemoveBlockTag((CHARACTERGUID)_Target)
+AND
+DB_LLNWIZ_NamingWand_TaggedTarget(_Target)
+THEN
+ClearTag(_Target, "NAMINGWIZARD_BLOCK_RENAMING");
+NOT DB_LLNWIZ_NamingWand_TaggedTarget(_Target);
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

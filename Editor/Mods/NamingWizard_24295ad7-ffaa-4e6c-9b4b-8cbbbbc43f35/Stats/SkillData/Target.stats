@@ -5,7 +5,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_Rename" />
         <field name="SkillType" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Target" />
-        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="Ability" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="4" enumeration_type_name="SkillAbility" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
         <field name="Cooldown" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="1" />
@@ -16,7 +16,7 @@
         <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="TargetConditions" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Character;!Combat" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="Character&amp;!Combat&amp;!Tagged:NAMINGWIZARD_BLOCK_RENAMING" />
         <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
         <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
@@ -33,15 +33,13 @@
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="cast" />
         <field name="BeamEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Beam_01:Dummy_L_HandFX:Dummy_BodyFX:cast" />
         <field name="Requirement" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="5" enumeration_type_name="SkillRequirement" />
-        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" clear_inherited_value="false" value="0" />
-        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="Damage Type" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="!Combat" />
         <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
         <field name="Stealth" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="1" enumeration_type_name="YesNo" />
         <field name="AIFlags" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="AIFlags" />
         <field name="CastEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Cast_Hand_01:Dummy_L_HandFX:cast" />
         <field name="TargetEffect" type="StringStatObjectFieldDefinition" clear_inherited_value="false" value="LLNWIZ_FX_NamingWand_Target_Impact_Root_01:Dummy_Root:cast" />
+        <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" clear_inherited_value="false" value="0" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
   </stat_objects>

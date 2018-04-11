@@ -17,7 +17,7 @@
       <ids>
         <id value="1" />
       </ids>
-      <track name="Track" muted="False" locked="False" mutestateoverride="Muted">
+      <track name="Track" muted="False" locked="False" mutestateoverride="Unmuted">
         <component class="BoundingSphere" start="0" end="2.912088" instancename="78f74b72-ce74-43f5-b2e2-805468365a24">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -37,7 +37,7 @@
             </property>
             <property id="ba2ee0f9-d369-4d36-bd63-30d4c8c46a0a">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="50" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0.25" />
               </data>
             </property>
             <propertygroup id="b56beba6-09b9-4487-93ef-6a0e38c4b191" name="Property Group" collapsed="False" />
@@ -47,7 +47,7 @@
           </modules>
         </component>
       </track>
-      <track name="Track" muted="True" locked="False" mutestateoverride="Unmuted">
+      <track name="Track" muted="True" locked="False" mutestateoverride="Muted">
         <component class="Model" start="0" end="3.960127" instancename="baa75766-d4f1-49d3-aee5-55948d6921c5">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -589,7 +589,7 @@
       <ids>
         <id value="3" />
       </ids>
-      <track name="Track" muted="False" locked="False" mutestateoverride="None">
+      <track name="Track" muted="True" locked="False" mutestateoverride="None">
         <component class="Light" start="0" end="2.505785" instancename="72bf8b64-6c45-458c-b862-e674c9bec04e">
           <properties>
             <property id="ef1d7d1e-02b6-4548-80d9-5ef2fbcda237">
@@ -972,7 +972,7 @@
             </property>
             <property id="726ea55f-d0f9-4176-9a22-c5539199a83a">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,-0.02" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,0" />
               </data>
             </property>
             <property id="40a5b37b-f093-4bbe-8ca7-f4d4cc844312">
@@ -2038,7 +2038,7 @@
             </property>
             <property id="726ea55f-d0f9-4176-9a22-c5539199a83a">
               <data>
-                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,-0.02" />
+                <datum platform="00000000-0000-0000-0000-000000000000" lod="00000000-0000-0000-0000-000000000000" value="0,0,0" />
               </data>
             </property>
             <property id="40a5b37b-f093-4bbe-8ca7-f4d4cc844312">

@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+LLNWIZ_Start_Internal_CompleteIfStarted(); // Existing saves
 KBSECTION
 PROC
 LLNWIZ_Internal_StartNamingWizard()
@@ -12,6 +12,14 @@ GoalCompleted;
 IF
 GameEventSet("GAMEEVENT_GameStarted")
 THEN
+LLNWIZ_Internal_StartNamingWizard();
+
+PROC
+LLNWIZ_Start_Internal_CompleteIfStarted()
+AND
+SysIsCompleted("__Start")
+THEN
+DebugBreak("[LLNWIZ] Existing save detected.");
 LLNWIZ_Internal_StartNamingWizard();
 EXITSECTION
 

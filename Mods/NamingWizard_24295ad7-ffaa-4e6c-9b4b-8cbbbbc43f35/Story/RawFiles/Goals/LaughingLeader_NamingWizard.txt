@@ -21,6 +21,12 @@ DB_StoryStarted(_)
 THEN
 DebugBreak("[LLNWIZ] Existing save detected.");
 LLNWIZ_Internal_StartNamingWizard();
+
+IF
+DB_LeaderLib_GameStarted(_)
+THEN
+DebugBreak("[LLNWIZ] Existing save detected.");
+LLNWIZ_Internal_StartNamingWizard();
 EXITSECTION
 
 ENDEXITSECTION

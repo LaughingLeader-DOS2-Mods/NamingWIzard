@@ -243,6 +243,15 @@ AND
 _Name != ""
 THEN
 DB_NOOP(1);
+
+QRY
+LLNWIZ_Naming_QRY_CustomNameVariableSet((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_CustomNameOverride", _Name)
+AND
+_Name != ""
+THEN
+DB_NOOP(1);
 //END_REGION
 
 //REGION TEXT_SETTINGS
@@ -922,7 +931,7 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_TargetNameSet");
 LLNWIZ_Naming_SetInitialText("", _Player);
 
 PROC
-LLNWIZ_Naming_SetTargetCustomName((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+LLNWIZ_Naming_ClearCustomName((CHARACTERGUID)_Player)
 AND
 DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
 THEN
@@ -935,6 +944,7 @@ GetVarString(_Target, "LLNWIZ_CustomName", _CustomName)
 AND
 _CustomName != ""
 THEN
+LLNWIZ_Naming_ClearCustomName(_Player);
 DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName);
 
 PROC
@@ -1065,6 +1075,15 @@ StringConcatenate("Target: ", _Name, _TargetNameVal)
 THEN
 DialogSetVariableStringForInstance(_Instance, _TargetNameVar, _TargetNameVal);
 
+QRY
+LLNWIZ_Naming_QRY_CustomNameOverride((CHARACTERGUID)_Player)
+AND
+GetVarString(_Player, "LLNWIZ_CustomNameOverride", _Name)
+AND
+_Name != ""
+THEN
+DB_NOOP(1);
+
 PROC
 LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
 AND
@@ -1074,9 +1093,36 @@ DB_LLNWIZ_Naming_TargetName(_Player, _Name)
 AND
 DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
 AND
+NOT LLNWIZ_Naming_QRY_CustomNameOverride(_Player)
+AND
 DB_LLNWIZ_Naming_DialogVariables("TargetName", _TargetNameVar)
 AND
 StringConcatenate("Target: ", _CustomName, _Str1)
+AND
+StringConcatenate(_Str1, " (", _Str2)
+AND
+StringConcatenate(_Str2, _Name, _Str3)
+AND
+StringConcatenate(_Str3, ")", _TargetNameVal)
+THEN
+DialogSetVariableStringForInstance(_Instance, _TargetNameVar, _TargetNameVal);
+
+PROC
+LLNWIZ_Naming_InitMenu((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLNWIZ_Naming_TargetName(_Player, _Name)
+AND
+DB_LLNWIZ_Naming_TargetCustomName(_Player, _CustomName)
+AND
+LLNWIZ_Naming_QRY_CustomNameOverride(_Player)
+AND
+GetVarString(_Player, "LLNWIZ_CustomNameOverride", _CustomNameOverride)
+AND
+DB_LLNWIZ_Naming_DialogVariables("TargetName", _TargetNameVar)
+AND
+StringConcatenate("Target: ", _CustomNameOverride, _Str1)
 AND
 StringConcatenate(_Str1, " (", _Str2)
 AND

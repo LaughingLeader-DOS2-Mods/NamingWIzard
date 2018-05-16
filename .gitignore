@@ -1,39 +1,43 @@
-#TestLevel stuff. Nothing special here. Just a basic level.
+# SourceControlGenerator #
+##########################
+SourceControlGenerator.json
+
+# Level Data         #
+######################
 Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
 Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Globals/*
 Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
 
-#Story files that can be compiled by the user (only raw files needed).
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/meta.lsx
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/log.txt
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/goals.div
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/goals.raw
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story.div
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story.div.osi
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story_ac.dat
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_definitions.div
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/RawFiles/story_header.div
+# Story files        #
+######################
+*.div
+*.raw
+*.osi
+story_ac.dat
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/Dialogs/Autosave/*
+Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/Dialogs/Recovered/*
 
-#Assets
-#Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/Effects/*
-#Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
-#Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/GUI/*
-
-#Log files, etc
-*.log
-*.ailog
-log.txt
-dialoglog.txt
-errors.txt
-StatsEditorConfig.xml
-DockPanel.config
+# Editor files       #
+######################
+*.config
+StatsEditorConfig.*
 EditorBrowserMetadata.*
-EffectEditorConfig.xml
+EditorMetadata.*
+EffectEditorConfig.*
+ResourceSelectorConfig.*
+RootTemplateSelectorConfig.*
+meta.lsx
+*.lsmg
 
-#Shaders
-*.shd
+# Asset Folders      #
+######################
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Content/*
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/RootTemplates/*
+Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Voice/*
 
-#Assets
+# Assets             #
+######################
 *.gr2
 *.dae
 *.swf
@@ -43,7 +47,14 @@ EffectEditorConfig.xml
 *.png
 *.ttf
 
-#Binary Files
+# Logs               #
+######################
+*.log
+*.ailog
+log.txt
+
+# Binary Files       #
+######################
 *.dat
 *.data
 *.bik
@@ -56,10 +67,42 @@ EffectEditorConfig.xml
 *.lsb
 *.lsf
 *.lsfx
+*.lsefx
 *.osi
 *.patch
 *.tmpl
 
-# Dump files
+# Dump files         #
+######################
 *.stackdump
 *.dmp
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

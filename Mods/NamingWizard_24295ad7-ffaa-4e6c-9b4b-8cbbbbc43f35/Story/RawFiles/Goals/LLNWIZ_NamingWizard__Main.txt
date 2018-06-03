@@ -180,6 +180,13 @@ THEN
 NOT DB_LLNWIZ_Naming_VisibleText(_Text, _Instance);
 
 PROC
+LLNWIZ_Naming_ClearInstanceVariables((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_Index, _Group, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_LastSelectedGroupLetter(_Index, _Group, _Instance);
+
+PROC
 LLNWIZ_Naming_ClearPlayerVariables((CHARACTERGUID)_Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 1)
@@ -493,6 +500,7 @@ AND
 DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
 
 PROC
 LLNWIZ_Naming_MoveLetterForward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
@@ -512,6 +520,7 @@ AND
 DB_LLNWIZ_Naming_Groups(_GroupIndex, _NextGroup)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(0, _NextGroup, _Instance);
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
 
 PROC
 LLNWIZ_Naming_MoveLetterBackward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
@@ -521,6 +530,7 @@ AND
 DB_LLNWIZ_Naming_Codex(_Group, _Index, _Letter)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Index, _Group, _Instance);
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
 
 PROC
 LLNWIZ_Naming_MoveLetterBackward((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
@@ -540,6 +550,7 @@ AND
 DB_LLNWIZ_Naming_GroupMax(_NextGroup, _Max)
 THEN
 LLNWIZ_Naming_SetSelectedLetter(_Max, _NextGroup, _Instance);
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
 //END_REGION
 
 //REGION LETTER_COUNTING
@@ -617,6 +628,42 @@ DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length)
 THEN
 LLNWIZ_Naming_SetLength(_Length, _Instance);
 NOT DB_LLNWIZ_Naming_Temp_TextLength(_Name, _Instance, _Length);
+//END_REGION
+
+//REGION GROUP_LAST_LETTER
+QRY
+LLNWIZ_Naming_Internal_QRY_SaveLastSelectedLetter((INTEGER)_Instance)
+THEN
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
+
+QRY
+LLNWIZ_Naming_Internal_QRY_SaveLastSelectedGroupLetter((INTEGER)_Instance, (STRING)_NextGroup)
+THEN
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter(_Instance);
+LLNWIZ_Naming_Internal_SaveLastSelectedGroupLetter(_Instance, _NextGroup);
+
+PROC
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+AND
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_LastIndex, _Group, _Instance)
+THEN
+NOT DB_LLNWIZ_Naming_LastSelectedGroupLetter(_LastIndex, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_Internal_SaveLastSelectedLetter((INTEGER)_Instance)
+AND
+DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance)
+THEN
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_Index, _Group, _Instance);
+
+PROC
+LLNWIZ_Naming_Internal_SaveLastSelectedGroupLetter((INTEGER)_Instance, (STRING)_NextGroup)
+AND
+NOT DB_LLNWIZ_Naming_LastSelectedGroupLetter(_, _NextGroup, _Instance)
+THEN
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(0, _NextGroup, _Instance);
 //END_REGION
 
 //REGION NAMING_ACTIONS
@@ -922,6 +969,44 @@ AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_CanUndo", 1)
 THEN
 ObjectClearFlag(_Player, "LLNWIZ_Naming_CanUndo");
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SetGroup_Letters", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_SetGroup_Letters")
+AND
+DB_LLNWIZ_Naming_CurrentCasing(_Group, _Instance)
+AND
+LLNWIZ_Naming_Internal_QRY_SaveLastSelectedGroupLetter(_Instance, _Group)
+AND
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_LastIndex, _Group, _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_LastIndex, _Group, _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SetGroup_Numbers", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_SetGroup_Numbers")
+AND
+LLNWIZ_Naming_Internal_QRY_SaveLastSelectedGroupLetter(_Instance, "Number")
+AND
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_LastIndex, "Number", _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_LastIndex, "Number", _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
+
+IF
+ObjectFlagSet("LLNWIZ_Naming_SetGroup_Symbols", _Speaker, _Instance)
+AND
+LLNWIZ_QRY_ClearObjectFlag(_Speaker, "LLNWIZ_Naming_SetGroup_Symbols")
+AND
+LLNWIZ_Naming_Internal_QRY_SaveLastSelectedGroupLetter(_Instance, "Symbol")
+AND
+DB_LLNWIZ_Naming_LastSelectedGroupLetter(_LastIndex, "Symbol", _Instance)
+THEN
+LLNWIZ_Naming_SetSelectedLetter(_LastIndex, "Symbol", _Instance);
+LLNWIZ_Naming_UpdateSelectedLetterVariable(_Instance);
 //END_REGION
 
 //REGION DIALOG_INITIAL_TEXT
@@ -1223,10 +1308,20 @@ THEN
 LLNWIZ_Naming_ClearSelectedLetter(_Instance);
 DB_LLNWIZ_Naming_SelectedLetter(_Index, _Group, _Instance);
 
+QRY
+LLNWIZ_Naming_QRY_GroupIsNotLetter("Number")
+THEN
+DB_NOOP(1);
+
+QRY
+LLNWIZ_Naming_QRY_GroupIsNotLetter("Symbol")
+THEN
+DB_NOOP(1);
+
 PROC
 LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
 AND
-_Group != "Number"
+NOT LLNWIZ_Naming_QRY_GroupIsNotLetter(_Group)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 THEN
@@ -1235,7 +1330,7 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_GroupIsLetter");
 PROC
 LLNWIZ_Naming_SetSelectedLetter((INTEGER)_Index, (STRING)_Group, (INTEGER)_Instance)
 AND
-_Group == "Number"
+LLNWIZ_Naming_QRY_GroupIsNotLetter(_Group)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 THEN

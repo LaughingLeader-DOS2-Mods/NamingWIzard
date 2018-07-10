@@ -3,8 +3,12 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-
+IF
+RegionStarted("LLNWIZ_DebugLevel")
+THEN
+GlobalSetFlag("LeaderLog_Trace_Enabled");
+GoalCompleted;
 EXITSECTION
-GlobalClearFlag("LLNWIZ_DEBUGLOG_ENABLED");
+
 ENDEXITSECTION
 ParentTargetEdge "LaughingLeader_NamingWizard"

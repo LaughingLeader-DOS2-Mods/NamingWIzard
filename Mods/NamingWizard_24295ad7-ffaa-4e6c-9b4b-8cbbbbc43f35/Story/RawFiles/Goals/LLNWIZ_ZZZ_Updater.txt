@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.1.0");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.1.1");
 LeaderUpdater_Register_ActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
 LLNWIZ_Updater_RegisterDatabasesOnce();
 KBSECTION
@@ -37,10 +37,10 @@ LeaderLog_Log("DEBUG", "[LLNWIZ:Updater] Databases cleared and re-initialized.")
 IF
 GameStarted(_,_)
 AND
-LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", "0.9.1.0")
+LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", "0.9.1.1")
 THEN
 LLNWIZ_System_UpdateDatabases();
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.1.0");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "0.9.1.1");
 //END_REGION
 
 //REGION UNINSTALLING

@@ -49,7 +49,7 @@ DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Common", _CompletionEvent)
 AND
 DB_LLNWIZ_Words_Common(_Index, _Word)
 THEN
-LLLIB_DictionarySort_AddString(_DictionaryID, "Common", _Word);
+LeaderLib_DictionarySort_AddString(_DictionaryID, "Common", _Word);
 
 PROC
 LLNWIZ_Words_SortMenu("Names")
@@ -58,7 +58,7 @@ DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Names", _CompletionEvent)
 AND
 DB_LLNWIZ_Words_Name(_Index, _Word)
 THEN
-LLLIB_DictionarySort_AddString(_DictionaryID, "Names", _Word);
+LeaderLib_DictionarySort_AddString(_DictionaryID, "Names", _Word);
 
 PROC
 LLNWIZ_Words_SortMenu("Saved")
@@ -67,7 +67,7 @@ DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Saved", _CompletionEvent)
 AND
 DB_LLNWIZ_Words_Saved(_Index, _Word)
 THEN
-LLLIB_DictionarySort_AddString(_DictionaryID, "Saved", _Word);
+LeaderLib_DictionarySort_AddString(_DictionaryID, "Saved", _Word);
 
 PROC
 LLNWIZ_Words_SortMenu("Mod")
@@ -78,7 +78,7 @@ DB_LLNWIZ_Words_Mod(_Index, _Word)
 AND
 NOT DB_LLLIB_DictionarySort_Temp_StringQueue(_DictionaryID, _, _Word)
 THEN
-LLLIB_DictionarySort_AddString(_DictionaryID, "Mod", _Word);
+LeaderLib_DictionarySort_AddString(_DictionaryID, "Mod", _Word);
 //LeaderLog_Log("DEBUG", "[LLNWIZ:Sorting] Adding [",_Word,"] to sorting queue.");
 
 PROC
@@ -86,10 +86,10 @@ LLNWIZ_Words_SortMenu((STRING)_MenuID)
 AND
 DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, _MenuID, _CompletionEvent)
 AND
-NOT LLLIB_DictionarySort_QRY_QueueEmpty(_DictionaryID)
+NOT LeaderLib_DictionarySort_QRY_QueueEmpty(_DictionaryID)
 THEN
 DB_LLNWIZ_Words_CurrentlySorting(_MenuID);
-LLLIB_DictionarySort_StartSorting(_DictionaryID, 1, _CompletionEvent, 0);
+LeaderLib_DictionarySort_StartSorting(_DictionaryID, 1, _CompletionEvent, 0);
 
 IF
 StoryEvent(_, _CompletionEvent)
@@ -119,7 +119,7 @@ LLNWIZ_Words_AddWordToMenu(_MenuID, _Value);
 PROC
 LLNWIZ_Words_OnSortComplete((STRING)_DictionaryID, (STRING)_MenuID)
 THEN
-LLLIB_Array_ClearDictionary(_DictionaryID);
+LeaderLib_Array_ClearDictionary(_DictionaryID);
 NOT DB_LLNWIZ_Words_CurrentlySorting(_MenuID);
 //END_REGION
 

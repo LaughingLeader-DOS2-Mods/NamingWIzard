@@ -2,7 +2,7 @@
 ##########################
 SourceControlGenerator.json
 
-# Level Data         #
+# Levels
 ######################
 Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
 Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Globals/*
@@ -12,29 +12,24 @@ Editor/Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Levels/*
 ######################
 *.div
 *.raw
-*.osi
-story_ac.dat
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/Dialogs/Autosave/*
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/Dialogs/Recovered/*
-
-# Editor files       #
-######################
-*.config
-StatsEditorConfig.*
-EditorBrowserMetadata.*
-EditorMetadata.*
-EffectEditorConfig.*
-ResourceSelectorConfig.*
-RootTemplateSelectorConfig.*
-meta.lsx
-*.lsmg
+story_orphanqueries_ignore.txt
 
 # Asset Folders      #
 ######################
 Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Assets/*
-Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Content/*
-Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/RootTemplates/*
-Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Voice/*
+#Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/GUI/*
+
+# Editor files       #
+######################
+RootTemplateSelectorConfig_*
+ResourceSelectorConfig_*
+StatsEditorConfig.xml
+EffectEditorConfig.xml
+DockPanel.config
+EditorBrowserMetadata_*
+EditorBrowserMetadata.xml
+Autosave/*
+Recovered/*
 
 # Assets             #
 ######################
@@ -46,12 +41,21 @@ Public/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Voice/*
 *.tga
 *.png
 *.ttf
+*.lsb
+*.lsf
+*.lsfx
+*.lsefx
+#*.lsx
+*.lsmg
 
 # Logs               #
 ######################
 *.log
 *.ailog
 log.txt
+errors.txt
+dialoglog.txt
+personallog.txt
 
 # Binary Files       #
 ######################
@@ -64,10 +68,6 @@ log.txt
 *.fnt
 *.iggy
 *.iggytex
-*.lsb
-*.lsf
-*.lsfx
-*.lsefx
 *.osi
 *.patch
 *.tmpl
@@ -106,4 +106,4 @@ log.txt
 .Trashes
 ehthumbs.db
 Thumbs.db
-Mods/NamingWizard_24295ad7-ffaa-4e6c-9b4b-8cbbbbc43f35/Story/story_orphanqueries_ignore.txt
+*.lnk

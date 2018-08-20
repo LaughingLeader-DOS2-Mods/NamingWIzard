@@ -6,7 +6,7 @@ KBSECTION
 PROC
 LLNWIZ_Internal_StartNamingWizard()
 THEN
-DebugBreak("[LLNWIZ] Naming Wizard starting.");
+DebugBreak("[LLNWIZ] Starting Naming Wizard.");
 GoalCompleted;
 
 IF
@@ -19,13 +19,15 @@ LLNWIZ_Start_Internal_CompleteIfStarted()
 AND
 DB_StoryStarted(_)
 THEN
-DebugBreak("[LLNWIZ] Existing save detected.");
+DebugBreak("[LLNWIZ:CompleteIfStarted] Naming Wizard was added to an existing save. Starting from the INIT section.");
 LLNWIZ_Internal_StartNamingWizard();
 
 IF
-DB_LeaderLib_GameStarted(_)
+SavegameLoaded(_,_,_,_)
+AND
+DB_StoryStarted(_)
 THEN
-DebugBreak("[LLNWIZ] Existing save detected.");
+DebugBreak("[LLNWIZ:SavegameLoaded] Naming Wizard was added to an existing save.");
 LLNWIZ_Internal_StartNamingWizard();
 EXITSECTION
 

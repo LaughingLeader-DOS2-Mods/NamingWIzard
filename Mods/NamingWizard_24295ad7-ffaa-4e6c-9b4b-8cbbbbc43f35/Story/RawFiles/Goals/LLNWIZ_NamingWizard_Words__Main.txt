@@ -29,10 +29,8 @@ KBSECTION
 PROC
 LLNWIZ_Words_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_WordsPerPage", 1);
 DB_LLNWIZ_Words_WordsPerPage(9);
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_DialogVariables", 4);
 DB_LLNWIZ_Words_DialogVariables(0, "LLNWIZ_Naming_Word1_e05055e1-d008-44c0-b6d2-f64d11ecf563", "LLNWIZ_Naming_SelectedWord1", "LLNWIZ_Naming_Word1Empty");
 DB_LLNWIZ_Words_DialogVariables(1, "LLNWIZ_Naming_Word2_1db77bd2-f3a4-40c7-8a15-f0e0caf5ec6b", "LLNWIZ_Naming_SelectedWord2", "LLNWIZ_Naming_Word2Empty");
 DB_LLNWIZ_Words_DialogVariables(2, "LLNWIZ_Naming_Word3_56f0192b-d33c-495a-a5fe-14fd72e3c766", "LLNWIZ_Naming_SelectedWord3", "LLNWIZ_Naming_Word3Empty");
@@ -42,32 +40,13 @@ DB_LLNWIZ_Words_DialogVariables(5, "LLNWIZ_Naming_Word6_c592657e-f33a-4759-bf1f-
 DB_LLNWIZ_Words_DialogVariables(6, "LLNWIZ_Naming_Word7_c1daa983-8936-44da-9dcf-cf734026e32d", "LLNWIZ_Naming_SelectedWord7", "LLNWIZ_Naming_Word7Empty");
 DB_LLNWIZ_Words_DialogVariables(7, "LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9827ac2a2ea0", "LLNWIZ_Naming_SelectedWord8", "LLNWIZ_Naming_Word8Empty");
 DB_LLNWIZ_Words_DialogVariables(8, "LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-eee79b9ca96d", "LLNWIZ_Naming_SelectedWord9", "LLNWIZ_Naming_Word9Empty");
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-LLNWIZ_Words_InitializeSettings();
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_CategoryToDatabase", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_DialogVariables", 4);
-//LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_PageFlags", 4);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_WordsPerPage", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_PageMax", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_LastWord", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Words_CurrentPageIndex", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Temp_IsChangingPage", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words", "DB_LLNWIZ_Temp_WordVariableValue", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Naming:Words] Databases registered.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION
 PROC
 LLNWIZ_Words_CalculateMaxPage()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Words_PageMax", 3);
+SysClear("DB_LLNWIZ_Words_PageMax", 3);
 
 PROC
 LLNWIZ_Words_CalculateMaxPage()

@@ -23,15 +23,6 @@ THEN
 DB_NOOP(1);
 
 PROC
-LLNWIZ_System_ClearExistingDatabase((STRING)_DatabaseName, (INTEGER)_Arity)
-AND
-SysCount(_DatabaseName, _Arity, _Count)
-AND
-_Count > 0
-THEN
-SysClear(_DatabaseName, _Arity);
-
-PROC
 LLNWIZ_System_Debug_DatabaseCount((STRING)_DatabaseName, (INTEGER)_Arity)
 AND
 SysCount(_DatabaseName, _Arity, _Total)
@@ -51,35 +42,16 @@ LeaderLog_Log("DEBUG", "[LLNWIZ] ", _Str3);
 PROC
 LLNWIZ_System_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Dialog", 1);
+SysClear("DB_LLNWIZ_Dialog", 1);
 DB_LLNWIZ_Dialog("NamingWizard", "LLNWIZ_NamingWizard");
 DB_LLNWIZ_Dialog("Settings", "LLNWIZ_NamingWizardSettings");
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_ItemTemplates", 2);
+SysClear("DB_LLNWIZ_ItemTemplates", 2);
 DB_LLNWIZ_ItemTemplates("RenameWand", "WPN_LLNWIZ_Wand_Renamer_0a65dc24-7785-48af-8266-9b5b55f6c683");
 DB_LLNWIZ_ItemTemplates("SettingsBook", "BOOK_LLNWIZ_Settings_a66e3eae-8ea3-43b1-8db7-0e736ad53336");
 
 SysClear("DB_LLNWIZ_Temp_OutVariable", 2);
 SysClear("DB_LLNWIZ_Temp_TracedCharacterValue", 2);
-//END_REGION
-
-//REGION UPDATER
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-LLNWIZ_System_InitializeSettings();
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Dialog", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_ItemTemplates", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_System_PlayerInitialized", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Temp_OutVariable", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Temp_TracedCharacterValue", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Random_Seed", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "System", "DB_LLNWIZ_Temp_Rand", 1);
-LeaderLog_Log("TRACE", "[LLNWIZ:System] Databases registered.");
 //END_REGION
 
 //REGION QUERIES
@@ -252,7 +224,7 @@ AND
 NOT SysIsActive("LLNWIZ_Debug")
 THEN
 SysActivateGoal("LLNWIZ_Debug");
-LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level starting. Activating LLNWIZ_Debug.");
+LeaderLog_Log("DEBUG", "[LLNWIZ:System] Debug level loaded. Activating LLNWIZ_Debug.");
 
 IF
 GameStarted(_Level, 0)

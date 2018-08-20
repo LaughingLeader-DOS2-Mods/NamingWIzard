@@ -26,10 +26,10 @@ DB_LLNWIZ_Wizard_RandomGreeting(_Index, _Text);
 PROC
 LLNWIZ_Wizard_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Temp_NextWizardGreeting", 1);
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_LastGreeting", 1);
+SysClear("DB_LLNWIZ_Temp_NextWizardGreeting", 1);
+SysClear("DB_LLNWIZ_Wizard_LastGreeting", 1);
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Wizard_RandomGreeting", 2);
+SysClear("DB_LLNWIZ_Wizard_RandomGreeting", 2);
 LLNWIZ_Wizard_AddGreeting("Welcome. What shall we name today?");
 LLNWIZ_Wizard_AddGreeting("Beep, boop. I am the Naming Wizard. How may I serv-o you today?");
 LLNWIZ_Wizard_AddGreeting("I once had I dream I existed within a moddable user interface. Hah! Can you imagine?");
@@ -39,19 +39,6 @@ LLNWIZ_Wizard_AddGreeting("Namelolocus Renamicus. Your wish is my command.");
 LLNWIZ_Wizard_AddGreeting("Names are power. Let's get crackin'.");
 LLNWIZ_Wizard_AddGreeting("Beeeep. This is the Naming Wizard. Press 1 to continue.");
 LLNWIZ_Wizard_AddGreeting("Where words fail, music speaks. Unfortunately, words are all I have!");
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Temp_NextWizardGreeting", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_CreatedWizard", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_WizardTarget", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_WizardFX", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_WizardDisappearTimer", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_WizardStartTimer", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_LastGreeting", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Wizard", "DB_LLNWIZ_Wizard_RandomGreeting", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Wizard] Databases registered.");
 
 PROC
 LLNWIZ_Wizard_DeleteAllWizards()

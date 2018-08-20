@@ -15,21 +15,6 @@ INITSECTION
 //DB_LLNWIZ_Words_Mod(_Index, _Word)			"Mod"
 //DB_LLNWIZ_Words_CategoryToDatabase(_Category, _Database, _Arity)
 KBSECTION
-//REGION SETTINGS
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-DB_NOOP(1);
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Temp_IndexRebuilding", 4);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_ReplacedWords", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Utils", "DB_LLNWIZ_Words_RemovedWords", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Words:Utils] Databases registered.");
-//END_REGION
-
 //REGION SORTING
 PROC
 LLNWIZ_Words_SortMenu((STRING)_MenuID)
@@ -76,7 +61,7 @@ DB_LLNWIZ_Words_Temp_ActiveSort(_DictionaryID, "Mod", _CompletionEvent)
 AND
 DB_LLNWIZ_Words_Mod(_Index, _Word)
 AND
-NOT DB_LLLIB_DictionarySort_Temp_StringQueue(_DictionaryID, _, _Word)
+NOT DB_LeaderLib_DictionarySort_Temp_StringQueue(_DictionaryID, _, _Word)
 THEN
 LeaderLib_DictionarySort_AddString(_DictionaryID, "Mod", _Word);
 //LeaderLog_Log("DEBUG", "[LLNWIZ:Sorting] Adding [",_Word,"] to sorting queue.");
@@ -109,9 +94,9 @@ SysClear(_DatabaseName, _Arity);
 PROC
 LLNWIZ_Words_OnSortComplete((STRING)_DictionaryID, (STRING)_MenuID)
 AND
-DB_LLLIB_Array_Iterator(_DictionaryID, _Index)
+DB_LeaderLib_Array_Iterator(_DictionaryID, _Index)
 AND
-DB_LLLIB_Dictionary_Data(_DictionaryID, _Index, _MenuID, _Value)
+DB_LeaderLib_Dictionary_Data(_DictionaryID, _Index, _MenuID, _Value)
 THEN
 //LeaderLog_Log("DEBUG", "[LLNWIZ:Sorting] Adding word [",_Value,"] to menu [",_MenuID,"]");
 LLNWIZ_Words_AddWordToMenu(_MenuID, _Value);

@@ -13,7 +13,7 @@ LLNWIZ_Settings_InitializeCodex()
 AND
 NOT DB_LLNWIZ_Naming_Groups(_,_)
 THEN
-//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Groups", 2);
+//SysClear("DB_LLNWIZ_Naming_Groups", 2);
 DB_LLNWIZ_Naming_Groups(0, "Letters");
 DB_LLNWIZ_Naming_Groups(1, "Number");
 DB_LLNWIZ_Naming_Groups(2, "Symbol");
@@ -23,7 +23,7 @@ LLNWIZ_Settings_InitializeCodex()
 AND
 NOT DB_LLNWIZ_Naming_GroupMax(_,_)
 THEN
-//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_GroupMax", 2);
+//SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
 DB_LLNWIZ_Naming_GroupMax("Letters", 25);
 DB_LLNWIZ_Naming_GroupMax("Upper", 25);
 DB_LLNWIZ_Naming_GroupMax("Lower", 25);
@@ -35,7 +35,7 @@ LLNWIZ_Settings_InitializeCodex()
 AND
 NOT DB_LLNWIZ_Naming_Codex(_,_,_)
 THEN
-//LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_Codex", 3);
+//SysClear("DB_LLNWIZ_Naming_Codex", 3);
 DB_LLNWIZ_Naming_Codex("Upper", 0, "A");
 DB_LLNWIZ_Naming_Codex("Upper", 1, "B");
 DB_LLNWIZ_Naming_Codex("Upper", 2, "C");
@@ -139,27 +139,6 @@ SysClear("DB_LLNWIZ_Naming_Codex", 3);
 SysClear("DB_LLNWIZ_Naming_Groups", 2);
 SysClear("DB_LLNWIZ_Naming_GroupMax", 2);
 LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Cleared codex.");
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-AND
-DB_Mods_Registered("NamingWizard", "LaughingLeader", "0.9.0.0")
-THEN
-LLNWIZ_Settings_ClearCodex();
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-LLNWIZ_Settings_InitializeCodex();
-LeaderLog_Log("DEBUG", "[LLNWIZ:Settings:Codex] Updated codex databases.");
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Codex", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_Groups", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "Codex", "DB_LLNWIZ_Naming_GroupMax", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Settings:Codex] Databases registered.");
 EXITSECTION
 
 ENDEXITSECTION

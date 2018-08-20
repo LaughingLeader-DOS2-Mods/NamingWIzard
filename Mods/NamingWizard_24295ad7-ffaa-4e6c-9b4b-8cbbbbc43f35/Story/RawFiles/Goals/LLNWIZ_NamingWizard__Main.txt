@@ -49,7 +49,6 @@ DB_LLNWIZ_Naming_Init_CharStart(_NextIndex);
 PROC
 LLNWIZ_Naming_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_CharIndex", 1);
 DB_LLNWIZ_Naming_CharIndex(0);
 DB_LLNWIZ_Naming_Init_CharStart(0);
 TimerLaunch("LLNWIZ_Timers_CharIndexInit", 100);
@@ -78,7 +77,7 @@ NOT DB_LLNWIZ_Naming_Init_CharStart(_Index);
 PROC
 LLNWIZ_Naming_InitialzeDialogVariables()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_DialogVariables", 2);
+//SysClear("DB_LLNWIZ_Naming_DialogVariables", 2);
 DB_LLNWIZ_Naming_DialogVariables("RandomGreeting", "LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4");
 DB_LLNWIZ_Naming_DialogVariables("SpeakerIndex", "LLNWIZ_Menu_SpeakerIndex_a58be75c-66f9-4c4d-9edb-8c6422f47c7c");
 DB_LLNWIZ_Naming_DialogVariables("CurrentPage", "LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf");
@@ -99,50 +98,25 @@ LLNWIZ_Naming_SetMaxCharacterLength((INTEGER)_Max)
 AND
 _Max < 256
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_MaxLength", 1);
+SysClear("DB_LLNWIZ_Naming_MaxLength", 1);
 DB_LLNWIZ_Naming_MaxLength(_Max);
 
 PROC
 LLNWIZ_Naming_InitializeSettings()
 THEN
 //LLNWIZ_Naming_SetMaxCharacterLength(70); // May be overriden by a mod
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_Naming_StartText", 2);
+SysClear("DB_LLNWIZ_Naming_StartText", 2);
 LLNWIZ_Naming_InitialzeDialogVariables();
 
 //Stop on-going Naming Wizard dialogs if updating
 PROC
-LLNWIZ_System_UpdateDatabases()
+LLNWIZ_Naming_InitializeSettings()
 AND
 DB_LLNWIZ_Naming_VisibleText(_Text, _Instance)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 THEN
 DialogRequestStop(_Player);
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-LLNWIZ_Naming_InitializeSettings();
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_StartText", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_VisibleText", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_FinishedText", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_LastFinishedText", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_CurrentGroup", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_CurrentCasing", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_SelectedLetter", 3);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_TextLength", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_MaxLength", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_DialogVariables", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_TargetName", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_TargetCustomName", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_Temp_FoundWord", 5);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_Naming_Temp_LastVisibleText", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard", "DB_LLNWIZ_NamingWand_TimerDelay", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Settings:NamingWizard] Databases registered.");
 //END_REGION
 
 //REGION CLEAR

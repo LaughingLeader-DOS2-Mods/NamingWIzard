@@ -36,17 +36,17 @@ DB_LLNWIZ_WordMenus_RegisteredMenu(_Index, _MenuID, _DisplayName, _DatabaseName,
 PROC
 LLNWIZ_WordMenus_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_WordMenus_MenusPerPage", 1);
+SysClear("DB_LLNWIZ_WordMenus_MenusPerPage", 1);
 DB_LLNWIZ_WordMenus_MenusPerPage(5);
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
+SysClear("DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
 DB_LLNWIZ_WordMenus_DynamicMenuVars(0, "LLNWIZ_WordMenus_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982", "LLNWIZ_WordMenus_SelectedMenu1", "LLNWIZ_WordMenus_Menu1Empty");
 DB_LLNWIZ_WordMenus_DynamicMenuVars(1, "LLNWIZ_WordMenus_MenuName2_f31e98c3-674c-4469-8922-c427c40252f9", "LLNWIZ_WordMenus_SelectedMenu2", "LLNWIZ_WordMenus_Menu2Empty");
 DB_LLNWIZ_WordMenus_DynamicMenuVars(2, "LLNWIZ_WordMenus_MenuName3_107d30f4-9e67-4620-abc6-e594db88109e", "LLNWIZ_WordMenus_SelectedMenu3", "LLNWIZ_WordMenus_Menu3Empty");
 DB_LLNWIZ_WordMenus_DynamicMenuVars(3, "LLNWIZ_WordMenus_MenuName4_b3f45779-4710-4152-97ce-39aa20961a3f", "LLNWIZ_WordMenus_SelectedMenu4", "LLNWIZ_WordMenus_Menu4Empty");
 DB_LLNWIZ_WordMenus_DynamicMenuVars(4, "LLNWIZ_WordMenus_MenuName5_9b51d734-099e-4c29-bfd5-48b4b8d30b35", "LLNWIZ_WordMenus_SelectedMenu5", "LLNWIZ_WordMenus_Menu5Empty");
 
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_WordMenus_DialogVariables", 2);
+SysClear("DB_LLNWIZ_WordMenus_DialogVariables", 2);
 DB_LLNWIZ_WordMenus_DialogVariables("CurrentPage", "LLNWIZ_WordMenus_CurrentPage_0204b2c4-711d-4b65-b3cf-8f96efde3b0e");
 DB_LLNWIZ_WordMenus_DialogVariables("LastPage", "LLNWIZ_WordMenus_LastPage_bf67a72f-3829-48ce-bcfc-c9b40ef0b093");
 
@@ -54,26 +54,13 @@ LLNWIZ_WordMenus_RegisterWordMenu("Common", "Common Words", "DB_LLNWIZ_Words_Com
 LLNWIZ_WordMenus_RegisterWordMenu("Names", "Names", "DB_LLNWIZ_Words_Name", 2);
 LLNWIZ_WordMenus_RegisterWordMenu("Saved", "Saved Words", "DB_LLNWIZ_Words_Saved", 2);
 LLNWIZ_WordMenus_RegisterWordMenu("Mod", "Mod Words", "DB_LLNWIZ_Words_Mod", 2);
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-LLNWIZ_WordMenus_InitializeSettings();
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_DynamicMenuVars", 4);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_DialogVariables", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWizard_Words_Menus", "DB_LLNWIZ_WordMenus_MenusPerPage", 1);
-LeaderLog_Log("TRACE", "[LLNWIZ:Naming:Words:Menus] Databases registered.");
 //END_REGION
 
 //REGION VARIABLE_INITIALIZATION
 PROC
 LLNWIZ_WordMenus_CalculateMaxPage()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_WordMenus_PageMax", 3);
+SysClear("DB_LLNWIZ_WordMenus_PageMax", 3);
 
 PROC
 LLNWIZ_WordMenus_CalculateMaxPage()

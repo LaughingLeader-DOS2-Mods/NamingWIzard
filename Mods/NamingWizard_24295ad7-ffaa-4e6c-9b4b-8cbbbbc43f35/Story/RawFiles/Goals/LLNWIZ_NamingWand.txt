@@ -12,18 +12,8 @@ KBSECTION
 PROC
 LLNWIZ_NamingWand_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NamingWand_Skills", 1);
 DB_LLNWIZ_NamingWand_Skills("Target_LLNWIZ_Rename");
-
-LLNWIZ_System_ClearExistingDatabase("DB_LLNWIZ_NamingWand_TimerDelay", 2);
 DB_LLNWIZ_NamingWand_TimerDelay(3000, 700);
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_Skills", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "NamingWand", "DB_LLNWIZ_NamingWand_TimerDelay", 2);
-LeaderLog_Log("TRACE", "[LLNWIZ:Settings:NamingWand] Databases registered.");
 //END_REGION
 
 //REGION PERMISSIONS
@@ -84,7 +74,7 @@ NOT DB_LLNWIZ_NamingWand_FailTimer(_TimerName, _Player, _Target);
 
 //REGION SKILL_USE
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
 AND
 DB_LLNWIZ_NamingWand_Skills(_Skill)
 AND
@@ -93,7 +83,7 @@ THEN
 CharacterStatusText(_Player, "<font color='#FF0000'>Wand of Renaming is Disabled</font><font color='#FF7F50'> (NamingWizard Settings)</font>");
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
 AND
 DB_LLNWIZ_NamingWand_Skills(_Skill)
 AND
@@ -105,7 +95,7 @@ CharacterStatusText(_Player, "<font color='#FF0000'>Unable to Rename Target</fon
 CharacterStatusText(_Target, "<font color='#DC143C'>Renaming Resisted</font>");
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
 AND
 DB_LLNWIZ_NamingWand_Skills(_Skill)
 AND
@@ -126,7 +116,7 @@ LLNWIZ_NamingWand_SetBlockTag(_Target);
 TimerLaunch(_TimerName, _SkillUseDelay); // Failsafe, in case the skill never reaches a "cast"
 
 IF
-SkillCast(_Player, _Skill, _)
+SkillCast(_Player, _Skill, _, _)
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 AND

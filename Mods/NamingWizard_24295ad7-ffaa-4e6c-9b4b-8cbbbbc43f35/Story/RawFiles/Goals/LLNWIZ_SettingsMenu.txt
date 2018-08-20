@@ -12,28 +12,13 @@ KBSECTION
 PROC
 LLNWIZ_SettingsMenu_InitializeSettings()
 THEN
-LLNWIZ_System_ClearExistingDatabase("DB_SettingsMenu_FlagSetMessage", 2);
-LLNWIZ_System_ClearExistingDatabase("DB_SettingsMenu_FlagClearedMessage", 2);
+SysClear("DB_SettingsMenu_FlagSetMessage", 2);
+SysClear("DB_SettingsMenu_FlagClearedMessage", 2);
 DB_SettingsMenu_FlagSetMessage("LLNWIZ_DisplayHostPermissionMessage", "<font color='#FF0000'>Only the Host player may access this.</font>");
 DB_SettingsMenu_FlagSetMessage("LLNWIZ_Settings_RenameWandDisabled", "<font color='#00FF00'>Wand of Renaming Enabled</font>");
 DB_SettingsMenu_FlagClearedMessage("LLNWIZ_Settings_RenameWandDisabled", "<font color='#FF4500'>Wand of Renaming Disabled</font>");
 DB_SettingsMenu_FlagSetMessage("LLNWIZ_Settings_CrossPlayerRenamingEnabled", "<font color='#FF4500'>Cross-User Player Renaming Enabled. </font><font color='#FF00FF' size='23'>Chaos reigns.</font>");
 DB_SettingsMenu_FlagClearedMessage("LLNWIZ_Settings_CrossPlayerRenamingEnabled", "<font color='#00FF00'>Cross-User Player Renaming Disabled. </font><font color='#00FFFF' size='23'>Peace is restored.</font>");
-
-PROC
-LLNWIZ_System_UpdateDatabases()
-THEN
-SysClear("DB_Temp_SettingsMenuBookTimerActive", 1);
-LLNWIZ_SettingsMenu_InitializeSettings();
-
-PROC
-LLNWIZ_System_RegisterDatabases()
-THEN
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_SettingsMenu_FlagSetMessage", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_SettingsMenu_FlagClearedMessage", 2);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_InSettingsMenu", 1);
-LeaderUpdater_Register_Database("NamingWizard", "LaughingLeader", "SettingsMenu", "DB_Temp_SettingsMenuBookTimerActive", 1);
-LeaderLog_Log("TRACE", "[LLNWIZ:SettingsMenu] Databases registered.");
 //END_REGION
 
 //REGION FLAGS
@@ -86,24 +71,6 @@ THEN
 ItemTemplateAddTo(_Template, _Player, 1, 1);
 CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font>");
 
-//END_REGION
-
-//REGION DEBUG_COMMAND_FLAGS
-IF
-ObjectFlagSet("LLNWIZ_Commands_Debug_ResetDatabases", (CHARACTERGUID)_Player, _Instance)
-AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_ResetDatabases")
-THEN
-LLNWIZ_Updater_ResetDatabases();
-CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Databases Reset</font>");
-
-IF
-ObjectFlagSet("LLNWIZ_Commands_Debug_UninstallMod", (CHARACTERGUID)_Player, _Instance)
-AND
-LLNWIZ_QRY_ClearObjectFlag(_Player, "LLNWIZ_Commands_Debug_UninstallMod")
-THEN
-LLNWIZ_Updater_UninstallMod();
-CharacterStatusText(_Player, "<font color='#FF4500'>Naming Wizard Uninstalled. Good luck, adventurerer.</font>");
 //END_REGION
 
 //REGION BOOK_SPAWNING

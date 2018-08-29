@@ -25,7 +25,7 @@ LLNWIZ_LeaderLib_RegisterTreasure()
 AND
 DB_LLNWIZ_ItemTemplates("RenameWand", _Template)
 THEN
-LeaderLib_Treasure_Register_TreasureToTrader("LLNWIZ.LeaderTrader.NamingWand", "LLLIB_LeaderTrader");
+LeaderLib_Treasure_Register_TreasureToTrader("LLNWIZ.LeaderTrader.NamingWand", "LeaderLib.LeaderTrader");
 LeaderLib_Treasure_Register_ItemTemplate("LLNWIZ.LeaderTrader.NamingWand", _Template, 1);
 LeaderLib_Treasure_Configure_GenerationType("LLNWIZ.LeaderTrader.NamingWand", _Template, "DIALOG_STARTED");
 LeaderLib_Treasure_Configure_AddMaxAmount("LLNWIZ.LeaderTrader.NamingWand", _Template, 1);
@@ -42,9 +42,9 @@ LeaderLib_Treasure_Configure_AddMaxAmount("LeaderLib.LeaderTrade.ModBooks", _Tem
 PROC
 LLNWIZ_LeaderLib_RegisterSettings()
 THEN
-LeaderLib_Trader_Register_Position("LLLIB_LeaderTrader", "LLNWIZ_DebugLevel", 15.70, 0.0, 3.19);
-LeaderLib_Trader_Register_StartingGold("LLLIB_LeaderTrader", "LLNWIZ_DebugLevel", 11000);
-//LeaderLib_Trader_Register_PositionObject("LLLIB_LeaderTrader", "LLNWIZ_DebugLevel", ITEMGUID_WPN_Dwarves_Shield_A_000_ef289002-e5b3-4a3e-8ad5-1d68ac847f67);
+LeaderLib_Trader_Register_Position("LeaderLib.LeaderTrader", "LLNWIZ_DebugLevel", 15.70, 0.0, 3.19);
+LeaderLib_Trader_Register_StartingGold("LeaderLib.LeaderTrader", "LLNWIZ_DebugLevel", 11000);
+//LeaderLib_Trader_Register_PositionObject("LeaderLib.LeaderTrader", "LLNWIZ_DebugLevel", ITEMGUID_WPN_Dwarves_Shield_A_000_ef289002-e5b3-4a3e-8ad5-1d68ac847f67);
 EXITSECTION
 
 ENDEXITSECTION

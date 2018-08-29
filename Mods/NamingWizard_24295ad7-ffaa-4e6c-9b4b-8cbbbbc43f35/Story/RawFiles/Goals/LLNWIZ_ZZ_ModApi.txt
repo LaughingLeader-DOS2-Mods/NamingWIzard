@@ -219,10 +219,10 @@ TimerLaunch("LLNWIZ_Timers_ModApi_CleanupDatabases", 200);
 IF
 TimerFinished("LLNWIZ_Timers_ModApi_CleanupDatabases")
 THEN
-LLLIB_ModApi_RunCleanup();
+LeaderLib_ModApi_RunCleanup();
 
 PROC
-LLLIB_ModApi_RunCleanup()
+LeaderLib_ModApi_RunCleanup()
 THEN
 LeaderLog_Log("DEBUG", "[LLNWIZ:ModAPI] ModApi cleanup started. Running ModAPI databases.");
 //END_REGION

@@ -32,52 +32,11 @@ LLNWIZ_Naming_SetMaxCharacterLength(70);
 //DB_LLNWIZ_Naming_Temp_FoundWord(_Text, _StartIndex, _StartLength, _StartIndex2, _StartLength2)
 //DB_LLNWIZ_Naming_Temp_LastVisibleText(_LastText, _Instance)
 KBSECTION
-//REGION SETTINGS_COUNTING
-PROC
-LLNWIZ_Naming_ConfigureCountingDatabase()
-AND
-DB_LLNWIZ_Naming_Init_CharStart(_Index)
-AND
-IntegerSum(_Index, 1, _NextIndex)
-AND
-_NextIndex <= 255
-THEN
-DB_LLNWIZ_Naming_CharIndex(_NextIndex);
-NOT DB_LLNWIZ_Naming_Init_CharStart(_Index);
-DB_LLNWIZ_Naming_Init_CharStart(_NextIndex);
-
-PROC
-LLNWIZ_Naming_InitializeSettings()
-THEN
-DB_LLNWIZ_Naming_CharIndex(0);
-DB_LLNWIZ_Naming_Init_CharStart(0);
-TimerLaunch("LLNWIZ_Timers_CharIndexInit", 100);
-
-IF
-TimerFinished("LLNWIZ_Timers_CharIndexInit")
-AND
-DB_LLNWIZ_Naming_Init_CharStart(_Index)
-AND
-_Index < 256
-THEN
-LLNWIZ_Naming_ConfigureCountingDatabase();
-TimerLaunch("LLNWIZ_Timers_CharIndexInit", 100);
-
-IF
-TimerFinished("LLNWIZ_Timers_CharIndexInit")
-AND
-DB_LLNWIZ_Naming_Init_CharStart(_Index)
-AND
-_Index >= 256
-THEN
-NOT DB_LLNWIZ_Naming_Init_CharStart(_Index);
-//END_REGION
-
 //REGION SETTINGS_DIALOG_VARS
 PROC
-LLNWIZ_Naming_InitialzeDialogVariables()
+LLNWIZ_Naming_InitializeDialogVariables()
 THEN
-//SysClear("DB_LLNWIZ_Naming_DialogVariables", 2);
+SysClear("DB_LLNWIZ_Naming_DialogVariables", 2);
 DB_LLNWIZ_Naming_DialogVariables("RandomGreeting", "LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4");
 DB_LLNWIZ_Naming_DialogVariables("SpeakerIndex", "LLNWIZ_Menu_SpeakerIndex_a58be75c-66f9-4c4d-9edb-8c6422f47c7c");
 DB_LLNWIZ_Naming_DialogVariables("CurrentPage", "LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf");
@@ -106,7 +65,7 @@ LLNWIZ_Naming_InitializeSettings()
 THEN
 //LLNWIZ_Naming_SetMaxCharacterLength(70); // May be overriden by a mod
 SysClear("DB_LLNWIZ_Naming_StartText", 2);
-LLNWIZ_Naming_InitialzeDialogVariables();
+LLNWIZ_Naming_InitializeDialogVariables();
 
 //Stop on-going Naming Wizard dialogs if updating
 PROC
@@ -117,6 +76,22 @@ AND
 DialogGetInvolvedPlayer(_Instance, 1, _Player)
 THEN
 DialogRequestStop(_Player);
+//END_REGION
+
+//REGION SETTINGS_UPDATE
+PROC
+LeaderUpdater_ModUpdated("NamingWizard", "LaughingLeader", _PastVersion)
+AND
+LeaderLib_StringExt_QRY_VersionIsLessThan(_PastVersion, 1, 0, 0, 6)
+AND
+SysCount("DB_LLNWIZ_Naming_CharIndex", 1, _Count)
+AND
+_Count > 0
+THEN
+TimerCancel("LLNWIZ_Timers_CharIndexInit");
+SysClear("DB_LLNWIZ_Naming_Init_CharStart", 1);
+SysClear("DB_LLNWIZ_Naming_CharIndex", 1);
+LeaderLog_Log("DEBUG", "[NamingWizard:__Main] Updated settings from version [",_PastVersion,"]. Removed old iterator databases.");
 //END_REGION
 
 //REGION CLEAR
@@ -578,7 +553,7 @@ DB_LLNWIZ_Naming_Temp_TextLength(_Text, _Instance, 1);
 QRY
 LLNWIZ_QRY_Naming_FUNC_CharCount((STRING)_Text, (INTEGER)_Instance)
 AND
-DB_LLNWIZ_Naming_CharIndex(_Index)
+DB_LeaderLib_Codex_Iterator(_Index, _)
 AND
 StringSub(_Text, _Index, 1, _Result)
 AND

@@ -1,4 +1,4 @@
-Naming Wizard Mod for Divinity: Original Sin 2
+Naming Wizard for Divinity: Original Sin 2 - Definitive Edition
 =======
 
 Naming Wizard is a mod which enables player text input through a dialog window. Naming Wizard also includes a way for players to rename characters.

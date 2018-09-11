@@ -79,7 +79,7 @@ CharacterStatusText(_Player, "<font color='#00FF7F'>Wand of Renaming Added</font
 IF
 GameStarted(_Level,_)
 AND
-IsCharacterCreationLevel(_Level, 0)
+IsGameLevel(_Level, 1)
 AND
 NOT DB_Temp_SettingsMenuBookTimerActive(_)
 THEN

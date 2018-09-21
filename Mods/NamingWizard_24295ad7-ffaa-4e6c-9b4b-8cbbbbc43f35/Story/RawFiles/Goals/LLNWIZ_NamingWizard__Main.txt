@@ -80,7 +80,7 @@ DialogRequestStop(_Player);
 
 //REGION SETTINGS_UPDATE
 PROC
-LeaderUpdater_ModUpdated("NamingWizard", "LaughingLeader", _PastVersion)
+LeaderUpdater_ModUpdated("NamingWizard", "LaughingLeader", (STRING)_PastVersion, (STRING)_NewVersion)
 AND
 LeaderLib_StringExt_QRY_VersionIsLessThan(_PastVersion, 1, 0, 0, 6)
 AND

@@ -114,6 +114,20 @@ DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
 LLNWIZ_NamingWand_SetBlockTag(_Player);
 LLNWIZ_NamingWand_SetBlockTag(_Target);
 TimerLaunch(_TimerName, _SkillUseDelay); // Failsafe, in case the skill never reaches a "cast"
+ProcObjectTimer(_Player, "LLNWIZ_Timers_BlockTagFailsafe", 5000); // Failsafe for the block tag not being cleared
+
+//In case the dialog never started
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Player, "LLNWIZ_Timers_BlockTagFailsafe")
+AND
+IsTagged(_Player, "NAMINGWIZARD_BLOCK_RENAMING", 1)
+AND
+NOT DB_DialogNPCs(_, _Player, _)
+AND
+NOT DB_DialogPlayers(_, _Player, _)
+THEN
+LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
+LLNWIZ_NamingWand_RemoveBlockTag(_Player);
 
 IF
 SkillCast(_Player, _Skill, _, _)
@@ -131,7 +145,7 @@ TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 THEN
-LLWIZ_Wizard_Start(_Player, _Target);
+LLNWIZ_Wizard_Start(_Player, _Target);
 
 //END_REGION
 
@@ -169,6 +183,30 @@ DB_LLNWIZ_NamingWand_TaggedTarget(_Target)
 THEN
 ClearTag(_Target, "NAMINGWIZARD_BLOCK_RENAMING");
 NOT DB_LLNWIZ_NamingWand_TaggedTarget(_Target);
+//END_REGION
+
+//REGION UPDATES
+PROC
+LeaderUpdater_ModUpdated("NamingWizard", "LaughingLeader", _OldVersion, "1.0.1.0")
+THEN
+LeaderLib_SendEvent("LLNWIZ_Commands_StartBlockTagClearIterator");
+
+IF
+GlobalFlagSet("LLNWIZ_Commands_RunBlockedTagSanityIterator")
+THEN
+GlobalClearFlag("LLNWIZ_Commands_RunBlockedTagSanityIterator");
+LeaderLib_SendEvent("LLNWIZ_Commands_StartBlockTagClearIterator");
+
+IF
+StoryEvent((CHARACTERGUID)_Character, "LLNWIZ_Commands_BlockTagSanityCheck")
+AND
+IsTagged(_Character, "NAMINGWIZARD_BLOCK_RENAMING", 1)
+AND
+NOT DB_DialogNPCs(_, _Character, _)
+AND
+NOT DB_DialogPlayers(_, _Character, _)
+THEN
+LLNWIZ_NamingWand_RemoveBlockTag(_Character);
 //END_REGION
 EXITSECTION
 

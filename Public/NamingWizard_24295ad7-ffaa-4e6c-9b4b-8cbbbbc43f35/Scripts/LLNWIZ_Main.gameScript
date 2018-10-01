@@ -15,3 +15,19 @@ THEN
 	DisplayCombatInfoText(_Character, _LogText, 0)
 	DisplayText(_Character, "", 0)
 ENDIF
+
+EVENT LLNWIZ_ClearBlockTagIterator_Start
+VARS
+	ITEM:_EventParser
+ON
+	OnItemEvent(_EventParser, "LLNWIZ_Commands_StartBlockTagClearIterator")
+ACTIONS
+	IterateCharacters("LLNWIZ_Iterate_CheckBlockTag", null, null, "NAMINGWIZARD_BLOCK_RENAMING")
+
+EVENT LLNWIZ_ClearBlockTagIterator_OnIterate
+VARS
+	CHARACTER:_Character
+ON
+	OnIterateCharacter(_Character, "LLNWIZ_Iterate_CheckBlockTag")
+ACTIONS
+	CharacterEvent(_Character, "LLNWIZ_Commands_BlockTagSanityCheck")

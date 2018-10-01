@@ -193,7 +193,7 @@ TeleportToPosition(_Wizard, _x, _y, _z, "LLNWIZ_Events_WizardCreated", 0, 0);
 SetOnStage(_Wizard, 1);
 
 PROC
-LLWIZ_Wizard_Start((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+LLNWIZ_Wizard_Start((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
 AND
 LLNWIZ_QRY_Wizard_CreateWizard(_Player, _Target)
 AND
@@ -249,7 +249,7 @@ LLNWIZ_Naming_OpenNamingWizard(_Player, _Wizard);
 PROC
 LLNWIZ_Wizard_HideWizard((CHARACTERGUID)_Wizard)
 AND
-DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
+DB_LLNWIZ_Wizard_WizardFX(_Wizard, (INTEGER64)_Handle)
 THEN
 StopLoopEffect(_Handle);
 NOT DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);
@@ -370,7 +370,7 @@ NOT DB_LLNWIZ_Wizard_WizardTarget(_Wizard, _Target);
 PROC
 LLNWIZ_Wizard_ClearVariables((CHARACTERGUID)_Wizard)
 AND
-DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle)
+DB_LLNWIZ_Wizard_WizardFX(_Wizard, (INTEGER64)_Handle)
 THEN
 StopLoopEffect(_Handle);
 NOT DB_LLNWIZ_Wizard_WizardFX(_Wizard, _Handle);

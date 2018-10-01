@@ -142,7 +142,7 @@ CharacterCharacterEvent((CHARACTERGUID)_Player, (CHARACTERGUID)_Target, "LLNWIZ_
 THEN
 ApplyStatus(_Target, "LLNWIZ_RENAMING", -1.0, 1, _Player);
 DB_LLNWIZ_Naming_CustomRename(_Player, _Target);
-LLWIZ_Wizard_Start(_Player, _Target);
+LLNWIZ_Wizard_Start(_Player, _Target);
 
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLNWIZ_Events_NamingComplete")
@@ -177,19 +177,23 @@ DialogEnded(_Dialog, _Instance)
 AND
 DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
-DialogGetInvolvedPlayer(_Instance, 1, _Player)
-AND
-ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
-SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
+LLNWIZ_OnNamingWizardDialogEnded(_Player);
 
-//In case the dialog is ended through some other means (combat).
 IF
-DialogEnded(_Dialog, _Instance)
+DialogRequestFailed(_Dialog, _Instance)
 AND
 DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
 AND
-DialogGetInvolvedPlayer(_Instance, 1, _Player)
+DB_DialogPlayers(_Instance, _Player, _)
+THEN
+ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
+LLNWIZ_OnNamingWizardDialogEnded((CHARACTERGUID)_Player);
+
+//In case the dialog is ended through some other means (combat).
+PROC
+LLNWIZ_OnNamingWizardDialogEnded((CHARACTERGUID)_Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 0)
 AND
@@ -197,16 +201,20 @@ ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 0)
 THEN
 ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 
-IF
-DialogEnded(_Dialog, _Instance)
+PROC
+LLNWIZ_OnNamingWizardDialogEnded((CHARACTERGUID)_Player)
 AND
-DB_LLNWIZ_Dialog("NamingWizard", _Dialog)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, _Player)
+ObjectGetFlag(_Player, "LLNWIZ_Naming_TextSaved", 1)
+THEN
+SetStoryEvent(_Player, "LLNWIZ_Events_NamingComplete");
+
+PROC
+LLNWIZ_OnNamingWizardDialogEnded((CHARACTERGUID)_Player)
 AND
 ObjectGetFlag(_Player, "LLNWIZ_Naming_CancelledSaving", 1)
 THEN
 SetStoryEvent(_Player, "LLNWIZ_Events_NamingCanceled");
+
 //END_REGION
 
 //REGION LATE_DATABASES

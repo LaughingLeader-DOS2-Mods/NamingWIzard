@@ -428,6 +428,7 @@ RemoveStatus(_Target, "LLNWIZ_RENAMING");
 //END_REGION
 
 //REGION CLEANUP_EVENTS
+/*
 IF
 CharacterSawCharacter(_Char1, _Char2)
 AND
@@ -436,6 +437,7 @@ AND
 LLNWIZ_QRY_Wizard_CleanupStatus(_Char2)
 THEN
 DB_NOOP(1);
+*/
 
 /*
 HasActiveStatus(_Target, "LLNWIZ_RENAMING", 1)
@@ -485,11 +487,13 @@ THEN
 LeaderLog_Log("DEBUG", "[LLNWIZ]", "[Wizard][ERROR] Rogue wizard detected (not in the database). Wizard is unregistered. Attempting to remove.");
 LLNWIZ_Wizard_DeleteWizard(_Wizard);
 
+/*
 IF
 CharacterSawCharacter(_Character1, _Character2)
 THEN
 LLNWIZ_Wizard_CheckRogue(_Character1);
 LLNWIZ_Wizard_CheckRogue(_Character2);
+*/
 //END_REGION
 EXITSECTION
 

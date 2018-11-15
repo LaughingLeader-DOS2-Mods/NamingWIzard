@@ -136,7 +136,7 @@ DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
 AND
 DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 THEN
-ApplyStatus(_Target, "LLNWIZ_RENAMING", -1.0, 1, _Player);
+ApplyStatus(_Target, "LLNWIZ_RENAMING", 999.0, 1, _Player);
 TimerCancel(_TimerName);
 TimerLaunch(_TimerName, _CastDelay);
 

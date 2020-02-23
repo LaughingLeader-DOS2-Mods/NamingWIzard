@@ -96,13 +96,9 @@
 	<content contentuid="h5feea5dcgaa18g43ddgb6b6g655560f03e3d" Source="LLNWIZ_NamingWizardSettings.lsj">Wand of Renaming added to inventory.</content>
 	<content contentuid="h58f85b5bgae08g4b7agbccfgfd5ddf830813" Source="LLNWIZ_NamingWizardSettings.lsj">Add Wand of Renaming to Inventory</content>
 	<content contentuid="h9d5e8ea2g366fg4701g96a6g746a7e2ba518" Source="LLNWIZ_NamingWizardSettings.lsj">[Exit]</content>
-	<content contentuid="heb9d3390g8f93g446eg80e7gd23939ffc1b3" Source="Projectile_Description.lsb" Key="Projectile_LLNWIZ_Rename_Description">Tear apart the very fabric of reality to rename the target character.</content>
-	<content contentuid="hc7ee3e20g4af1g472cga965gdbf26d34e55a" Source="Projectile_DisplayName.lsb" Key="Projectile_LLNWIZ_Rename_DisplayName">Nameicus Renameicus</content>
-	<content contentuid="hece2027fgc5ccg4ef0g9ed3gaebf0cfaabc8" Source="Status_EFFECT_Description.lsb" Key="LLNWIZ_RENAMING_Description">Character is being renamed!</content>
-	<content contentuid="hfeabdc20g7af7g4f12g8536g07e960b8e81e" Source="Status_EFFECT_DisplayName.lsb" Key="LLNWIZ_RENAMING_DisplayName">Renaming</content>
-	<content contentuid="hb65cfb19gaac8g48b2g9dfdg897a3ab2dbb7" Source="Target_Description.lsb" Key="Target_LLNWIZ_Rename_Description">Activate the &lt;font color=&quot;#00FA9A&quot;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&quot;#DC143C&quot;&gt;Not usable on characters in combat.&lt;/font&gt;</content>
-	<content contentuid="h023fe1d2g17deg4d21ga215gddf73e42ced6" Source="Target_DisplayName.lsb" Key="Target_LLNWIZ_Rename_DisplayName">Renameo Exacteo</content>
-	<content contentuid="hfa3816e7gc873g4cf6gb365gc93a84ddbfb4" Source="Target_StatsDescription.lsb" Key="Target_LLNWIZ_Rename_StatsDescription">Range: [1]</content>
+	<content contentuid="h253c83b6gefa5g464bgab79g102b3afb8611" Source="LLNWIZ_Skills.lsb" Key="Target_LLNWIZ_Rename_Description">Activate the &lt;font color=&apos;#00FA9A&apos;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&apos;#DC143C&apos;&gt;Not usable on characters in combat.&lt;/font&gt;</content>
+	<content contentuid="hf5a5ca2fg3c30g418dg956cg649d01b86b8d" Source="LLNWIZ_Skills.lsb" Key="Target_LLNWIZ_Rename_DisplayName">Renameo Exacteo</content>
+	<content contentuid="hece2027fgc5ccg4ef0g9ed3gaebf0cfaabc8" Source="LLNWIZ_Statuses.lsb" Key="LLNWIZ_RENAMING_Description">Character is being renamed!</content>
 	<content contentuid="hc5b44ef3g45c2g46e4ga94cg02b801a9e6f8" Source="WPN_LLNWIZ_Wand_Renamer">A luminescent wand with the power to &lt;font color=&quot;#87CEFA&quot;&gt;rename&lt;/font&gt; any person, living or otherwise.&lt;br&gt;&lt;font color=&quot;#FFFF00&quot;&gt;Oddly enough, it appears to only work when held in your left hand.&lt;/font&gt;</content>
 	<content contentuid="ha604044dg5fd5g4cb3g8413g6c533d8ecaf2" Source="WPN_LLNWIZ_Wand_Renamer">Wand of Renaming</content>
 </contentList>

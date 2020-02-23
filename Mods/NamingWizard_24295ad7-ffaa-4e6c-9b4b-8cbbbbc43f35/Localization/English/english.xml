@@ -1,0 +1,108 @@
+<contentList>
+	<content contentuid="he919e69bg8e18g408dga99bgbc13634e39f6" Source="BOOK_LLNWIZ_Settings">Use to open the Naming Wizard settings menu.</content>
+	<content contentuid="ha46981a8ge927g4aefg85afg31a9fe9e193d" Source="BOOK_LLNWIZ_Settings">Naming Wizard Settings</content>
+	<content contentuid="hcc82f8b3g78e4g4138ga7b9g72652b5ed92b" Source="BOOK_LLNWIZ_Settings">Open Settings Menu</content>
+	<content contentuid="he58d31e8g47a5g4edag9f7ag50b3fa940c8e" Source="LLNWIZ_NamingWizard">Naming Wizard</content>
+	<content contentuid="h71884464g4023g4498gb2afgb5180fd14119" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word5_bd2f1c32-7ce3-4cfa-b6cd-f57632ac534c]</content>
+	<content contentuid="h7d9b52f9g9cbdg4a20g81c2g4b4984bb2878" Source="LLNWIZ_NamingWizard.lsj">Cancelling and exiting Naming Wizard...</content>
+	<content contentuid="he2d7489cg025cg489ag8109g64c33d2f8e42" Source="LLNWIZ_NamingWizard.lsj">Cancel</content>
+	<content contentuid="h5c0cef94g1277g4451g803eg8d8ccc88b521" Source="LLNWIZ_NamingWizard.lsj">Next Character (+5)</content>
+	<content contentuid="h7c084468ge8b2g4cd0gb050ga844385be615" Source="LLNWIZ_NamingWizard.lsj">[+] Next Page</content>
+	<content contentuid="h8ca403e2g678fg4350gbe9cg940d45ecb253" Source="LLNWIZ_NamingWizard.lsj">Last Letter</content>
+	<content contentuid="h0e184146g3a55g44f9ga836ga2bcd45d9989" Source="LLNWIZ_NamingWizard.lsj">Confirm</content>
+	<content contentuid="hbef9d90bg770dg4276gbd58g682d7d6768c8" Source="LLNWIZ_NamingWizard.lsj">[+] Add Character</content>
+	<content contentuid="ha758201cg8423g47f4gabfegefe0073338bd" Source="LLNWIZ_NamingWizard.lsj">Save Text As Word in Saved Words</content>
+	<content contentuid="h89ffd02fg81cfg46a0g8dd8g244aadcd7a00" Source="LLNWIZ_NamingWizard.lsj">Text saved to word menu &quot;Names&quot;.</content>
+	<content contentuid="h98565d06gd318g4e05g8a31g62a4dc2ac4a7" Source="LLNWIZ_NamingWizard.lsj">Changing page...</content>
+	<content contentuid="hea4f8b2dg28fag42b3g9cafg8aafd1530682" Source="LLNWIZ_NamingWizard.lsj">[  ] Add Space</content>
+	<content contentuid="h1fb53d31g9d7dg4541ga57aga5f225279e99" Source="LLNWIZ_NamingWizard.lsj">First Letter</content>
+	<content contentuid="h22021e8fg3cd0g466egbee7g405033b2c9e5" Source="LLNWIZ_NamingWizard.lsj">Save Text As Name</content>
+	<content contentuid="h52fbd520gbedag4544g916dg3237f09df788" Source="LLNWIZ_NamingWizard.lsj">[-] Backspace (Disabled)</content>
+	<content contentuid="h58246aaag4219g4a25g950bgbf167122f903" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word6_c592657e-f33a-4759-bf1f-4be7c88ecc9f]</content>
+	<content contentuid="h30e15b7dga22bg40efga721gac0d0c951a87" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word7_c1daa983-8936-44da-9dcf-cf734026e32d]</content>
+	<content contentuid="h05017a34ge1efg4a69ga7ffgd5b0fbd18820" Source="LLNWIZ_NamingWizard.lsj">Set to Original Name</content>
+	<content contentuid="h5efc620fg8012g4c72g982dga237bf8e34e4" Source="LLNWIZ_NamingWizard.lsj">Refreshing...</content>
+	<content contentuid="h4ad71ddaga84ag4957ga75dg865aec008fcb" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_Naming_Word1_e05055e1-d008-44c0-b6d2-f64d11ecf563]</content>
+	<content contentuid="ha3dbcfb4g378dg47deg959cgb40721ec6a05" Source="LLNWIZ_NamingWizard.lsj">Replace text with [LLNWIZ_Naming_LastConfirmedText_27064f2f-b14b-4038-b853-edaf2cc1b480]?</content>
+	<content contentuid="hfa0a7880ge277g4f91g892bge88ee9e8fa50" Source="LLNWIZ_NamingWizard.lsj">[CLEAR] Clear Text</content>
+	<content contentuid="h66c3c9feg99a5g4838g9efbgbf6e630e7c36" Source="LLNWIZ_NamingWizard.lsj">Save text to &quot;Names&quot; menu?</content>
+	<content contentuid="he55d28b5gea6fg4a7bg8cc3g6c272c5e5cdc" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word9_1521ba0f-dd1a-4f20-8a67-eee79b9ca96d]</content>
+	<content contentuid="haaa294abgb8adg4d94g8f0cg89d5e6e618db" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_WordMenus_MenuName5_9b51d734-099e-4c29-bfd5-48b4b8d30b35]</content>
+	<content contentuid="haa20791bg60d7g4b46gaf49gb4f9cfc5aa57" Source="LLNWIZ_NamingWizard.lsj">Saving...</content>
+	<content contentuid="h279769adged58g4876gbaa5gd82e1a8d70aa" Source="LLNWIZ_NamingWizard.lsj">&lt;i&gt;Character Menu&lt;/i&gt;&lt;br&gt;Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
+	<content contentuid="h1bd802d5g4baag4e8eg9edcge41ca755cf2e" Source="LLNWIZ_NamingWizard.lsj">Save Text As...</content>
+	<content contentuid="h67114a83g3f3dg4b55ga5e2ge12345daf934" Source="LLNWIZ_NamingWizard.lsj">&lt;i&gt;Character Commands Menu&lt;/i&gt;&lt;br&gt;Name: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
+	<content contentuid="h51352a80gd841g435eg857fgd3184000ea4a" Source="LLNWIZ_NamingWizard.lsj">Clear text?</content>
+	<content contentuid="h68822fd6gbb28g41e5g8764gc18f7ca29966" Source="LLNWIZ_NamingWizard.lsj">[Main Menu]</content>
+	<content contentuid="h1507708fg0eb0g41d7gac91g88cf69e34257" Source="LLNWIZ_NamingWizard.lsj">[1] First Page</content>
+	<content contentuid="h22407ebagea47g4d23g9050gacc1bbb81ae3" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word3_56f0192b-d33c-495a-a5fe-14fd72e3c766]</content>
+	<content contentuid="h2fdc52f4g9bdbg47f9ga106gfcd52e0934cf" Source="LLNWIZ_NamingWizard.lsj">[-] Previous Page</content>
+	<content contentuid="hc278de54gb89fg4415g8605g58c6534f3e88" Source="LLNWIZ_NamingWizard.lsj">[[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]] Last Page</content>
+	<content contentuid="h4050f0e7g59ccg4869g99f4g35a32e536e13" Source="LLNWIZ_NamingWizard.lsj">Symbols</content>
+	<content contentuid="h0bd534ccg2aeeg4344gb457gecc5ef174dee" Source="LLNWIZ_NamingWizard.lsj">Loading word menus...</content>
+	<content contentuid="ha0588282g7d07g4512gaed4gf7a4144a916f" Source="LLNWIZ_NamingWizard.lsj">Word Menus&lt;br&gt;Page [LLNWIZ_WordMenus_CurrentPage_0204b2c4-711d-4b65-b3cf-8f96efde3b0e]/[LLNWIZ_WordMenus_LastPage_bf67a72f-3829-48ce-bcfc-c9b40ef0b093]</content>
+	<content contentuid="h9de1dfd4g187dg44ecgb0cdg7bf0df099479" Source="LLNWIZ_NamingWizard.lsj">[CANCEL] Cancel &amp; Exit</content>
+	<content contentuid="he8cb2cfdgf024g4ffdgb09dg968eb8251986" Source="LLNWIZ_NamingWizard.lsj">[W] Word Menus</content>
+	<content contentuid="h250c2313g0e2fg4c70gae8dg53cd92241ea3" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9827ac2a2ea0]</content>
+	<content contentuid="h8631c61ag1fc6g43adg8383gfd20b5d88119" Source="LLNWIZ_NamingWizard.lsj">[Aa] Change Casing</content>
+	<content contentuid="haf36ee1ag31d4g4e45ga0f9g2a173d8911f3" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4]</content>
+	<content contentuid="h668cedb2gd815g4a42g98cbge5f8fa971263" Source="LLNWIZ_NamingWizard.lsj">[Back]</content>
+	<content contentuid="ha76652dcg968ag4a1ega37egbbb4eb93dc4a" Source="LLNWIZ_NamingWizard.lsj">[CANCEL] Cancel and Return to Main Menu</content>
+	<content contentuid="he6ab168ag340dg485bg88dag309af46df8e8" Source="LLNWIZ_NamingWizard.lsj">&lt;b&gt;[CONFIRM] Save &amp; Exit&lt;/b&gt;</content>
+	<content contentuid="h744d3c3fgab9dg4497g83ffgaf9f1580003b" Source="LLNWIZ_NamingWizard.lsj">Character limit reached.</content>
+	<content contentuid="h53a6fb3age3cfg4179g8060gc3a166fefd3a" Source="LLNWIZ_NamingWizard.lsj">Closing Naming Wizard...</content>
+	<content contentuid="h7efcd511g92aeg449fg9e3fg664c8327a7d1" Source="LLNWIZ_NamingWizard.lsj">Text saved to word menu &quot;Saved Words&quot;.</content>
+	<content contentuid="ha7f3db15gbd6eg4ec7ga4fegb534fd04868f" Source="LLNWIZ_NamingWizard.lsj">[-] Backspace</content>
+	<content contentuid="h0412ac6bga392g4bf5g8ddcg0c9accbfa4c7" Source="LLNWIZ_NamingWizard.lsj">Insert Last Word: [LLNWIZ_Naming_LastWord_fcc4d39a-1009-4037-9848-3838066ee9b7]</content>
+	<content contentuid="hc8b7a99cg86e2g418fg88a0g95f1227a6f18" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_WordMenus_MenuName1_8aeeb251-be1d-44ee-9cf6-189a54674982]</content>
+	<content contentuid="h7f2a08ecg837cg4b69gb59cg11e9040c8ada" Source="LLNWIZ_NamingWizard.lsj">Letters</content>
+	<content contentuid="h5a3f0f71g6c03g4705g91b3gb3fd3140098f" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word2_1db77bd2-f3a4-40c7-8a15-f0e0caf5ec6b]</content>
+	<content contentuid="h87bdb527g7da7g440fga671g147ba2155682" Source="LLNWIZ_NamingWizard.lsj">Loading words...</content>
+	<content contentuid="hfc2ac531gd2f8g45b5g89b2gd9372fba56b8" Source="LLNWIZ_NamingWizard.lsj">Additional Character Commands</content>
+	<content contentuid="h6f115886gfdd0g4f1cg98d6g09d841358149" Source="LLNWIZ_NamingWizard.lsj">[UNDO] Undo Last Action</content>
+	<content contentuid="h9cf84c17g838ag436ag85cfg2ad43a7f6ce0" Source="LLNWIZ_NamingWizard.lsj">[Aa] Change Casing (Disabled)</content>
+	<content contentuid="hb1cd91c3gf616g4b41ga79bgda1e882f57f4" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_WordMenus_MenuName2_f31e98c3-674c-4469-8922-c427c40252f9]</content>
+	<content contentuid="h08223f6ag7744g45abg8a65gc8facfdbf83a" Source="LLNWIZ_NamingWizard.lsj">Numbers</content>
+	<content contentuid="h3122885bge2edg451agbff7gbaf97052a691" Source="LLNWIZ_NamingWizard.lsj">Last action undone.</content>
+	<content contentuid="h958d6294gf7b3g42b1ga052gaf9391c5662b" Source="LLNWIZ_NamingWizard.lsj">Words Submenu&lt;br&gt;Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;Page [LLNWIZ_Naming_CurrentPage_90ca7bcc-e4c5-47d7-b055-0ac318380edf]/[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
+	<content contentuid="h8c5b473eg0309g4318g950aga22c1a4d388c" Source="LLNWIZ_NamingWizard.lsj">Next Character (+1)</content>
+	<content contentuid="h248983d3g15dcg43d8gb513ge3bed3f8dfc0" Source="LLNWIZ_NamingWizard.lsj">&lt;i&gt;Main Menu&lt;/i&gt;&lt;br&gt;Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
+	<content contentuid="h946cd9fag27ceg4671g8247g3b30b252dc55" Source="LLNWIZ_NamingWizard.lsj">Replace text with [LLNWIZ_Naming_OriginalCharacterName_c4ae7eac-1cd4-48ad-a48d-ab2a1a299319]?</content>
+	<content contentuid="hc45461d5gde37g4f28g9f43g070a9983f98b" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_WordMenus_MenuName4_b3f45779-4710-4152-97ce-39aa20961a3f]</content>
+	<content contentuid="h38916a6egdf96g44cfg80f6ge8bda934cf67" Source="LLNWIZ_NamingWizard.lsj">Set to Last Confirmed Text</content>
+	<content contentuid="hc283b365g2ab3g4c88gb60fg34f1b8f079c9" Source="LLNWIZ_NamingWizard.lsj">[Back to Words Menu]</content>
+	<content contentuid="haee85bd1g7760g4914gb1ccgc8f567aa386a" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word4_2459bfdd-2c5f-4c1d-9f54-6b72ce2adde3]</content>
+	<content contentuid="h42c58000gfc58g4d7ag99c6g9090260b6ea1" Source="LLNWIZ_NamingWizard.lsj">Previous Character (-1)</content>
+	<content contentuid="hfc121e93g26c2g48a0gbd4ag7f3478ee907c" Source="LLNWIZ_NamingWizard.lsj">[Group] Change Character Group</content>
+	<content contentuid="h0755cad6gf3cfg4556gad66g162eb02a368d" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_NamingWizard_RandomGreeting_7b3afe6c-373f-4586-8b62-06cd89b2efc4]</content>
+	<content contentuid="h7d592481gef0bg4635g8ef5g61ff18c545e4" Source="LLNWIZ_NamingWizard.lsj">Previous Character (-5)</content>
+	<content contentuid="h73de57d0g845fg4494ga869g087f394a00bb" Source="LLNWIZ_NamingWizard.lsj">Save text to &quot;Saved Words&quot; menu?</content>
+	<content contentuid="h19a73d58g18a2g4c9ag8812gb6a7ad491977" Source="LLNWIZ_NamingWizard.lsj">[C] Character Menu (A-z, 0-9, !-@)</content>
+	<content contentuid="h630af3bdg6613g4c5aga160gd45cff0aab28" Source="LLNWIZ_NamingWizard.lsj">[LLNWIZ_WordMenus_MenuName3_107d30f4-9e67-4620-abc6-e594db88109e]</content>
+	<content contentuid="h0519bb7bg34a8g44d5g811dg9d76c2633296" Source="LLNWIZ_NamingWizardSettings.lsj">Commands</content>
+	<content contentuid="hdac3478ag7d99g4c3cg8d22gdad013c0458e" Source="LLNWIZ_NamingWizardSettings.lsj">Running character iterator for tag [NAMINGWIZARD_BLOCK_RENAMING]... This dialog will now close, just in case you&apos;re tagged as well!</content>
+	<content contentuid="hcc11538bgb9a2g430bg99fbgb96c71432d8c" Source="LLNWIZ_NamingWizardSettings.lsj">Run the &quot;Blocked&quot; tag sanity check. Use this if you can&apos;t target someone you should be able to target with the Wand of Renaming.</content>
+	<content contentuid="h87bd13b4g28ecg4e59g8aefg19e4b04cfa39" Source="LLNWIZ_NamingWizardSettings.lsj">Disable Cross-User Character Renaming</content>
+	<content contentuid="h93dabacbgebb2g459dgb43dg2afae966f8d4" Source="LLNWIZ_NamingWizardSettings.lsj">Settings</content>
+	<content contentuid="hb18e6a8cg9c84g4752g8368ged16e95f9b64" Source="LLNWIZ_NamingWizardSettings.lsj">Enable Cross-User Character Renaming. This will let anyone rename characters controlled by other players.</content>
+	<content contentuid="h68aac80bg241eg4253g905egc8ea5b3e8e65" Source="LLNWIZ_NamingWizardSettings.lsj">Naming Wizard Settings Menu</content>
+	<content contentuid="h3d503784gebbcg4096gadcag6f21de8ac884" Source="LLNWIZ_NamingWizardSettings.lsj">Updating settings...</content>
+	<content contentuid="h271d050fg1a8cg4b8bg9092g0dc017fd5c0c" Source="LLNWIZ_NamingWizardSettings.lsj">Enable/Disable Renaming Wand (Host Only)</content>
+	<content contentuid="h18df685bga32bg4cd5gaa15gff7ecdc2b64d" Source="LLNWIZ_NamingWizardSettings.lsj">Disable Renaming Wand</content>
+	<content contentuid="ha1b43611gda74g4459gaaefg89bec31685ee" Source="LLNWIZ_NamingWizardSettings.lsj">Enable Renaming Wand</content>
+	<content contentuid="h05da2d96g394bg43a0gb16eg619c0ca49869" Source="LLNWIZ_NamingWizardSettings.lsj">Enable/Disable Cross-User Character Renaming (Host Only)</content>
+	<content contentuid="hdb061948gf92ag45f4ga6ccg269653f73344" Source="LLNWIZ_NamingWizardSettings.lsj">Debug Commands (Host Only)</content>
+	<content contentuid="hb851cfb6g5413g4696g936eg62582f0a0bc7" Source="LLNWIZ_NamingWizardSettings.lsj">Debug Commands</content>
+	<content contentuid="h5feea5dcgaa18g43ddgb6b6g655560f03e3d" Source="LLNWIZ_NamingWizardSettings.lsj">Wand of Renaming added to inventory.</content>
+	<content contentuid="h58f85b5bgae08g4b7agbccfgfd5ddf830813" Source="LLNWIZ_NamingWizardSettings.lsj">Add Wand of Renaming to Inventory</content>
+	<content contentuid="h9d5e8ea2g366fg4701g96a6g746a7e2ba518" Source="LLNWIZ_NamingWizardSettings.lsj">[Exit]</content>
+	<content contentuid="heb9d3390g8f93g446eg80e7gd23939ffc1b3" Source="Projectile_Description.lsb" Key="Projectile_LLNWIZ_Rename_Description">Tear apart the very fabric of reality to rename the target character.</content>
+	<content contentuid="hc7ee3e20g4af1g472cga965gdbf26d34e55a" Source="Projectile_DisplayName.lsb" Key="Projectile_LLNWIZ_Rename_DisplayName">Nameicus Renameicus</content>
+	<content contentuid="hece2027fgc5ccg4ef0g9ed3gaebf0cfaabc8" Source="Status_EFFECT_Description.lsb" Key="LLNWIZ_RENAMING_Description">Character is being renamed!</content>
+	<content contentuid="hfeabdc20g7af7g4f12g8536g07e960b8e81e" Source="Status_EFFECT_DisplayName.lsb" Key="LLNWIZ_RENAMING_DisplayName">Renaming</content>
+	<content contentuid="hb65cfb19gaac8g48b2g9dfdg897a3ab2dbb7" Source="Target_Description.lsb" Key="Target_LLNWIZ_Rename_Description">Activate the &lt;font color=&quot;#00FA9A&quot;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&quot;#DC143C&quot;&gt;Not usable on characters in combat.&lt;/font&gt;</content>
+	<content contentuid="h023fe1d2g17deg4d21ga215gddf73e42ced6" Source="Target_DisplayName.lsb" Key="Target_LLNWIZ_Rename_DisplayName">Renameo Exacteo</content>
+	<content contentuid="hfa3816e7gc873g4cf6gb365gc93a84ddbfb4" Source="Target_StatsDescription.lsb" Key="Target_LLNWIZ_Rename_StatsDescription">Range: [1]</content>
+	<content contentuid="hc5b44ef3g45c2g46e4ga94cg02b801a9e6f8" Source="WPN_LLNWIZ_Wand_Renamer">A luminescent wand with the power to &lt;font color=&quot;#87CEFA&quot;&gt;rename&lt;/font&gt; any person, living or otherwise.&lt;br&gt;&lt;font color=&quot;#FFFF00&quot;&gt;Oddly enough, it appears to only work when held in your left hand.&lt;/font&gt;</content>
+	<content contentuid="ha604044dg5fd5g4cb3g8413g6c533d8ecaf2" Source="WPN_LLNWIZ_Wand_Renamer">Wand of Renaming</content>
+</contentList>

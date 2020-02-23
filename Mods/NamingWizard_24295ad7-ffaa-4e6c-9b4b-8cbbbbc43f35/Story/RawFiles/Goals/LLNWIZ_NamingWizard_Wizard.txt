@@ -198,11 +198,27 @@ AND
 LLNWIZ_QRY_Wizard_CreateWizard(_Player, _Target)
 AND
 DB_LLNWIZ_Wizard_CreatedWizard(_Wizard, _Player)
-AND
-CharacterGetDisplayName(_Target,_,_TargetName)
 THEN
-LLNWIZ_Naming_SetTargetName(_TargetName, _Player);
+LLNWIZ_Wizard_Start_Internal_GetTargetName(_Player, _Target);
 LLNWIZ_Naming_SetTargetCustomName(_Player, _Target);
+
+PROC
+LLNWIZ_Wizard_Start_Internal_GetTargetName((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+LeaderLib_Variables_QRY_StringVariableSet(_Target, "LLNWIZ_OriginalName")
+AND
+GetVarString(_Target, "LLNWIZ_OriginalName", _Name)
+THEN
+LLNWIZ_Naming_SetTargetName(_Name, _Player);
+
+PROC
+LLNWIZ_Wizard_Start_Internal_GetTargetName((CHARACTERGUID)_Player, (CHARACTERGUID)_Target)
+AND
+NOT LeaderLib_Variables_QRY_StringVariableSet(_Target, "LLNWIZ_OriginalName")
+AND
+CharacterGetDisplayName(_Target, _, _Name)
+THEN
+LLNWIZ_Naming_SetTargetName(_Name, _Player);
 //END_REGION
 
 //REGION WIZARD_CREATION_EVENTS

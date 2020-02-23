@@ -18,7 +18,7 @@ LLNWIZ_LeaderLib_RegisterSettings()
 AND
 DB_LLNWIZ_Dialog("Settings", _DialogName)
 THEN
-LeaderLib_Register_ModMenu("LaughingLeader.NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
+LeaderLib_Register_ModMenu("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings");
 
 PROC
 LLNWIZ_LeaderLib_RegisterTreasure()

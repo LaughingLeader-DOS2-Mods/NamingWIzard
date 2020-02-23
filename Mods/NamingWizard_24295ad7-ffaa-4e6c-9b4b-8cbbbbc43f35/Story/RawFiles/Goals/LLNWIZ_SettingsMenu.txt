@@ -88,7 +88,7 @@ TimerFinished("LLNWIZ_Timers_CheckForSettingsBook")
 AND
 DB_Temp_SettingsMenuBookTimerActive(1)
 AND
-NOT GlobalGetFlag("LeaderLib_Active", 1)
+NOT GlobalGetFlag("LeaderLib_IsActive", 1)
 AND
 DB_LLNWIZ_ItemTemplates("SettingsBook", _Template)
 AND

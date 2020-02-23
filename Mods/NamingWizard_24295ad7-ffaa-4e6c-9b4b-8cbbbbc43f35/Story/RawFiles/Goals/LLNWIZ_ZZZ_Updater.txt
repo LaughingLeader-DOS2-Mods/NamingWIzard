@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,0,2,0);
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,1,0,0);
 LeaderUpdater_Register_ActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
 LeaderUpdater_Register_UUID("NamingWizard", "LaughingLeader", c8190ae0-aa68-1d98-a18e-b593ba90d63c);
 KBSECTION
@@ -9,10 +9,20 @@ KBSECTION
 IF
 GameStarted(_,_)
 AND
-LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", 1,0,2,0)
+LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", 1,1,0,0)
 THEN
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,0,2,0);
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,1,0,0);
 //END_REGION
+
+PROC
+LeaderUpdater_ModUpdated("NamingWizard", "LeaderLib", (STRING)_PastVersion, (STRING)_NewVersion)
+AND
+LeaderLib_StringExt_QRY_VersionIsLessThan(_PastVersion, 1,1,1,0)
+AND
+DB_LeaderLib_ModMenu_RegisteredMenuData("LaughingLeader.NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader")
+THEN
+NOT DB_LeaderLib_ModMenu_RegisteredMenuData("LaughingLeader.NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
+LeaderLib_Register_ModMenu("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings");
 EXITSECTION
 
 ENDEXITSECTION

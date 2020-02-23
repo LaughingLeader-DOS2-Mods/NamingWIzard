@@ -107,18 +107,27 @@ LeaderLog_Log("DEBUG", "[LLNWIZ] ", "Test command [UUID]: ", _Str);
 */
 //END_REGION
 
-IF
-GameStarted("LLNWIZ_DebugLevel", 1)
+PROC
+ProcBlockUseOfItem(_Player,ITEMGUID_PUZ_CharCreationMirror_000_0ad2db78-bb6e-4951-aabf-82a92637bcb4)
 AND
-NOT DB_IsPlayer(_)
-AND
-CharacterGetHostCharacter(_Host)
+DB_IsPlayer(_Player)
 THEN
-DB_IsPlayer(_Host);
-LeaderLog_Log("DEBUG", "[LLNWIZ:DebugLevel] Added host to DB_IsPlayer.");
+DB_Illusionist(_Player,ITEMGUID_PUZ_CharCreationMirror_000_0ad2db78-bb6e-4951-aabf-82a92637bcb4);
+
+/* [OSITOOLS_ONLY]
+IF
+TextEventSet("llwiz_playerdata")
+AND
+CharacterGetHostCharacter(_Player)
+AND
+NRD_PlayerGetCustomDataString(_Player, "Name", _PlayerDataName)
+THEN
+CharacterStatusText(_Player, _PlayerDataName);
+LeaderLog_Log("DEBUG", "[LLNWIZ_NamingWizard__Main:llwiz_playerdata] PlayerData name is (",_PlayerDataName,")");
+*/
 
 IF
-GameStarted("LLNWIZ_DebugLevel", 1)
+GameStarted(_, 1)
 THEN
 LLNWIZ_WordMenus_RegisterWordMenu("Test1", "Test1", "DB_LLNWIZ_Test1", 2);
 LLNWIZ_WordMenus_RegisterWordMenu("Test2", "Test2");

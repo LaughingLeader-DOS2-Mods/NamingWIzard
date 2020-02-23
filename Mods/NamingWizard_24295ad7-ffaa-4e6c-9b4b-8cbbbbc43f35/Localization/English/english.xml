@@ -2,6 +2,17 @@
 	<content contentuid="he919e69bg8e18g408dga99bgbc13634e39f6" Source="BOOK_LLNWIZ_Settings">Use to open the Naming Wizard settings menu.</content>
 	<content contentuid="ha46981a8ge927g4aefg85afg31a9fe9e193d" Source="BOOK_LLNWIZ_Settings">Naming Wizard Settings</content>
 	<content contentuid="hcc82f8b3g78e4g4138ga7b9g72652b5ed92b" Source="BOOK_LLNWIZ_Settings">Open Settings Menu</content>
+	<content contentuid="hfb0b6b64gf7c1g48b4g864agaba47f3e79af" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_CombatWarning">&lt;font color=&apos;#FF0000&apos;&gt;Unable to Open Naming Wizard Settings While in Combat&lt;/font&gt;</content>
+	<content contentuid="h3b7c6cdeg1f83g4c87gaa6egac7e9f099d2d" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_RenamingDisabled">&lt;font color=&apos;#FF0000&apos;&gt;Wand of Renaming is Disabled&lt;/font&gt;&lt;font color=&apos;#FF7F50&apos;&gt; (NamingWizard Settings)&lt;/font&gt;</content>
+	<content contentuid="h4d85a861g03adg47acga39fg14a1e2d9eb1d" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_RenamingFailed">&lt;font color=&apos;#FF0000&apos;&gt;Renaming Failed!&lt;/font&gt;</content>
+	<content contentuid="h3f51be0fg8aa6g44bcga811g6090859aa1b2" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_RenamingResisted">&lt;font color=&apos;#DC143C&apos;&gt;Renaming Resisted&lt;/font&gt;</content>
+	<content contentuid="h7b87fdfcgeb1eg4675g94b7g0fb3ca66cf02" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_Settings_CrossPlayerRenamingDisabled">&lt;font color=&apos;#00FF00&apos;&gt;Cross-User Player Renaming Disabled. &lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#00FFFF&apos; size=&apos;23&apos;&gt;Peace is restored.&lt;/font&gt;</content>
+	<content contentuid="h663472cfgb992g48e0ga5b6g722b9371272d" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_Settings_CrossPlayerRenamingEnabled">&lt;font color=&apos;#FF4500&apos;&gt;Cross-User Player Renaming Enabled. &lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#FF00FF&apos; size=&apos;23&apos;&gt;Chaos reigns.&lt;/font&gt;</content>
+	<content contentuid="h88b8d44cg3ec2g4184g8e45g72720eb223a4" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_Settings_HostPermissionWarning">&lt;font color=&apos;#FF0000&apos;&gt;Only the Host player may access this.&lt;/font&gt;</content>
+	<content contentuid="h2fbee179ge9edg41dfg89afg34893200789d" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_Settings_RenameWandDisabled">&lt;font color=&apos;#FF4500&apos;&gt;Wand of Renaming Disabled&lt;/font&gt;</content>
+	<content contentuid="h2a0534e2gd7c5g4f6dga9cfg6fa9632d3cb0" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_Settings_RenameWandEnabled">&lt;font color=&apos;#00FF00&apos;&gt;Wand of Renaming Enabled&lt;/font&gt;</content>
+	<content contentuid="h804809abg75feg47f1gbfd9ga909dff74b48" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_UnableToRename">&lt;font color=&apos;#FF0000&apos;&gt;Unable to Rename Target&lt;/font&gt;</content>
+	<content contentuid="ha06eb7a4g81dag4050g87d7gf58b1dca33f5" Source="LLNWIZ_Misc.lsb" Key="LLNWIZ_StatusText_WandAdded">&lt;font color=&apos;#00FF7F&apos;&gt;Wand of Renaming Added&lt;/font&gt;</content>
 	<content contentuid="he58d31e8g47a5g4edag9f7ag50b3fa940c8e" Source="LLNWIZ_NamingWizard">Naming Wizard</content>
 	<content contentuid="h71884464g4023g4498gb2afgb5180fd14119" Source="LLNWIZ_NamingWizard.lsj"> [LLNWIZ_Naming_Word5_bd2f1c32-7ce3-4cfa-b6cd-f57632ac534c]</content>
 	<content contentuid="h7d9b52f9g9cbdg4a20g81c2g4b4984bb2878" Source="LLNWIZ_NamingWizard.lsj">Cancelling and exiting Naming Wizard...</content>
@@ -99,6 +110,7 @@
 	<content contentuid="h253c83b6gefa5g464bgab79g102b3afb8611" Source="LLNWIZ_Skills.lsb" Key="Target_LLNWIZ_Rename_Description">Activate the &lt;font color=&apos;#00FA9A&apos;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&apos;#DC143C&apos;&gt;Not usable on characters in combat.&lt;/font&gt;</content>
 	<content contentuid="hf5a5ca2fg3c30g418dg956cg649d01b86b8d" Source="LLNWIZ_Skills.lsb" Key="Target_LLNWIZ_Rename_DisplayName">Renameo Exacteo</content>
 	<content contentuid="hece2027fgc5ccg4ef0g9ed3gaebf0cfaabc8" Source="LLNWIZ_Statuses.lsb" Key="LLNWIZ_RENAMING_Description">Character is being renamed!</content>
+	<content contentuid="hbe3f79e7g5bc8g424aga5a5g4286cc038b8b" Source="LLNWIZ_Statuses.lsb" Key="LLNWIZ_RENAMING_DisplayName">Renaming</content>
 	<content contentuid="hc5b44ef3g45c2g46e4ga94cg02b801a9e6f8" Source="WPN_LLNWIZ_Wand_Renamer">A luminescent wand with the power to &lt;font color=&quot;#87CEFA&quot;&gt;rename&lt;/font&gt; any person, living or otherwise.&lt;br&gt;&lt;font color=&quot;#FFFF00&quot;&gt;Oddly enough, it appears to only work when held in your left hand.&lt;/font&gt;</content>
 	<content contentuid="ha604044dg5fd5g4cb3g8413g6c533d8ecaf2" Source="WPN_LLNWIZ_Wand_Renamer">Wand of Renaming</content>
 </contentList>

@@ -1,0 +1,18 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+GameStarted(_Region, _)
+AND
+IsGameLevel(_Region, 1)
+THEN
+TimerCancel("Timers_LLNWIZ_SetCustomNames");
+TimerLaunch("Timers_LLNWIZ_SetCustomNames", 250);
+GoalCompleted;
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LLNWIZ_NamingWizard__Main"

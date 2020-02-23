@@ -1346,7 +1346,16 @@ ObjectSetFlag(_Player, "LLNWIZ_Naming_CancelledSaving");
 PROC
 LLNWIZ_Naming_SaveCustomName((STRING)_NewName, (CHARACTERGUID)_Target)
 AND
+NOT GetVarString(_Target, "LLNWIZ_OriginalName", _)
+AND
 CharacterGetDisplayName(_Target,_,_RealName)
+THEN
+SetVarString(_Target, "LLNWIZ_OriginalName", _RealName);
+
+PROC
+LLNWIZ_Naming_SaveCustomName((STRING)_NewName, (CHARACTERGUID)_Target)
+AND
+GetVarString(_Target, "LLNWIZ_OriginalName", _RealName)
 AND
 _NewName != _RealName
 THEN
@@ -1356,9 +1365,7 @@ ObjectSetFlag(_Target, "LLNWIZ_UsingCustomName", 0);
 PROC
 LLNWIZ_Naming_SaveCustomName((STRING)_NewName, (CHARACTERGUID)_Target)
 AND
-CharacterGetDisplayName(_Target,_,_RealName)
-AND
-_NewName == _RealName
+GetVarString(_Target, "LLNWIZ_OriginalName", _NewName)
 THEN
 SetVarString(_Target, "LLNWIZ_CustomName", "");
 ObjectClearFlag(_Target, "LLNWIZ_UsingCustomName", 0);
@@ -1369,29 +1376,57 @@ AND
 GetVarString(_Player, "LLNWIZ_FinalText", _Name)
 THEN
 LLNWIZ_Naming_SaveCustomName(_Name, _Target);
+LLNWIZ_Naming_SetCustomName(_Target, _Name);
 
 // [BEGIN_NO_OSITOOLS]
 PROC
-LLNWIZ_Naming_SaveCustomName((STRING)_Name, (CHARACTERGUID)_Target)
+LLNWIZ_Naming_SetCustomName((CHARACTERGUID)_Target, (STRING)_Name)
 THEN
 CharacterSetCustomName(_Target, _Name);
 // [END_NO_OSITOOLS]
 
 /* [OSITOOLS_ONLY]
 PROC
-LLNWIZ_Naming_SaveCustomName((STRING)_Name, (CHARACTERGUID)_Target)
+LLNWIZ_Naming_SetCustomName((CHARACTERGUID)_Target, (STRING)_Name)
 AND
-NRD_PlayerGetCustomDataString(_Target, "Name", _) // Has Player Data
+NRD_PlayerGetCustomDataString(_Target, "Name", _PlayerDataName) // Has Player Data
 THEN
 NRD_PlayerSetCustomDataString(_Target, "Name", _Name);
+CharacterAddAttribute(_Target, "Dummy", 0);
 
 PROC
-LLNWIZ_Naming_SaveCustomName((STRING)_Name, (CHARACTERGUID)_Target)
+LLNWIZ_Naming_SetCustomName((CHARACTERGUID)_Target, (STRING)_Name)
 AND
-NOT NRD_PlayerGetCustomDataString(_Target, "Name", _) // Has Player Data
+NOT NRD_PlayerGetCustomDataString(_Target, "Name", _) // No Player Data
 THEN
 CharacterSetCustomName(_Target, _Name);
+CharacterAddAttribute(_Target, "Dummy", 0);
 */
+//END_REGION
+
+//REGION LEVEL_LOAD_SET_NAME
+IF
+RegionEnded(_Region)
+AND
+IsGameLevel(_Region, 1)
+THEN
+SysActivateGoal("LLNWIZ_NamingWizard_InitializeLevel");
+
+IF
+TimerFinished("Timers_LLNWIZ_SetCustomNames")
+THEN
+CharacterLaunchOsirisOnlyIterator("Iterator_NamingWizard_SetCustomNames");
+
+IF
+StoryEvent((CHARACTERGUID)_Char, "Iterator_NamingWizard_SetCustomNames")
+AND
+ObjectGetFlag(_Char, "LLNWIZ_UsingCustomName", 1)
+AND
+LeaderLib_Variables_QRY_StringVariableSet(_Char, "LLNWIZ_CustomName")
+AND
+GetVarString(_Char, "LLNWIZ_CustomName", _Name)
+THEN
+LLNWIZ_Naming_SetCustomName(_Char, _Name);
 //END_REGION
 
 //REGION LIMIT_REACHED

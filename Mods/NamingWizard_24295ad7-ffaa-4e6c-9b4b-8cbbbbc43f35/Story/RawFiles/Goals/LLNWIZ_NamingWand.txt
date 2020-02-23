@@ -12,7 +12,6 @@ KBSECTION
 PROC
 LLNWIZ_NamingWand_InitializeSettings()
 THEN
-DB_LLNWIZ_NamingWand_Skills("Target_LLNWIZ_Rename");
 DB_LLNWIZ_NamingWand_TimerDelay(3000, 700);
 //END_REGION
 
@@ -74,18 +73,14 @@ NOT DB_LLNWIZ_NamingWand_FailTimer(_TimerName, _Player, _Target);
 
 //REGION SKILL_USE
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
-AND
-DB_LLNWIZ_NamingWand_Skills(_Skill)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLNWIZ_Rename", _, _)
 AND
 GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 1)
 THEN
 CharacterStatusText(_Player, "LLNWIZ_StatusText_RenamingDisabled");
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
-AND
-DB_LLNWIZ_NamingWand_Skills(_Skill)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLNWIZ_Rename", _, _)
 AND
 GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 0)
 AND
@@ -95,9 +90,7 @@ CharacterStatusText(_Player, "LLNWIZ_StatusText_UnableToRename");
 CharacterStatusText(_Target, "LLNWIZ_StatusText_RenamingResisted");
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
-AND
-DB_LLNWIZ_NamingWand_Skills(_Skill)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLNWIZ_Rename", _, _)
 AND
 GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 0)
 AND
@@ -110,7 +103,7 @@ AND
 DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 THEN
 LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
-DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill);
+DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, "Target_LLNWIZ_Rename");
 LLNWIZ_NamingWand_SetBlockTag(_Player);
 LLNWIZ_NamingWand_SetBlockTag(_Target);
 TimerLaunch(_TimerName, _SkillUseDelay); // Failsafe, in case the skill never reaches a "cast"
@@ -130,9 +123,9 @@ LLNWIZ_NamingWand_ClearPreviousTargets(_Player);
 LLNWIZ_NamingWand_RemoveBlockTag(_Player);
 
 IF
-SkillCast(_Player, _Skill, _, _)
+SkillCast(_Player, "Target_LLNWIZ_Rename", _, _)
 AND
-DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, _Skill)
+DB_LLNWIZ_NamingWand_RenameTarget(_TimerName, _Player, _Target, "Target_LLNWIZ_Rename")
 AND
 DB_LLNWIZ_NamingWand_TimerDelay(_SkillUseDelay, _CastDelay)
 THEN

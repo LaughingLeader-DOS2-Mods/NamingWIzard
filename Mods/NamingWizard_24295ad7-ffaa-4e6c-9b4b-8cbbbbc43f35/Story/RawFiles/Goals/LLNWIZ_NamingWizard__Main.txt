@@ -1404,6 +1404,21 @@ CharacterAddAttribute(_Target, "Dummy", 0);
 */
 //END_REGION
 
+//REGION RESPEC_MIRROR_NAME_FIX
+// [BEGIN_NO_OSITOOLS]
+IF
+CharacterCreationFinished(_Player)
+AND
+ObjectGetFlag(_Player, "LLNWIZ_UsingCustomName", 1)
+AND
+LeaderLib_Variables_QRY_StringVariableSet(_Player, "LLNWIZ_CustomName")
+AND
+GetVarString(_Player, "LLNWIZ_CustomName", _Name)
+THEN
+LLNWIZ_Naming_SetCustomName(_Player, _Name);
+// [END_NO_OSITOOLS]
+//END_REGION
+
 //REGION LEVEL_LOAD_SET_NAME
 IF
 RegionEnded(_Region)

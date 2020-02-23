@@ -4,10 +4,14 @@ INITSECTION
 
 KBSECTION
 IF
-RegionStarted("LLNWIZ_DebugLevel")
+RegionStarted("TestLevel_LL_LeaderLib")
 THEN
-GlobalSetFlag("LeaderLog_Trace_Enabled");
-GoalCompleted;
+SysActivateGoal("LLNWIZ_Debug");
+
+IF
+RegionStarted("_TMPL_Sandbox")
+THEN
+SysActivateGoal("LLNWIZ_Debug");
 EXITSECTION
 
 ENDEXITSECTION

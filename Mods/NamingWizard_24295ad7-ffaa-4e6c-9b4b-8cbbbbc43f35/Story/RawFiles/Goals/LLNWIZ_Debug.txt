@@ -162,6 +162,12 @@ NOT DB_IsPlayer(_Player)
 THEN
 DB_IsPlayer(_Player);
 */
+
+IF
+RegionEnded(_)
+THEN
+GoalCompleted;
+
 EXITSECTION
 
 ENDEXITSECTION

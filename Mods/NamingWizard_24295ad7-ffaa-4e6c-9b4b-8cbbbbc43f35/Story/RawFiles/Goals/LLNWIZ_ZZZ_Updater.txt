@@ -22,7 +22,7 @@ AND
 DB_LeaderLib_ModMenu_RegisteredMenuData("LaughingLeader.NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader")
 THEN
 NOT DB_LeaderLib_ModMenu_RegisteredMenuData("LaughingLeader.NamingWizard", "[Naming Wizard] Settings", _DialogName, "NamingWizard", "LaughingLeader");
-LeaderLib_Register_ModMenu("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings");
+LeaderLib_Register_ModMenuByUUID("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings", "NamingWizard", "LaughingLeader");
 EXITSECTION
 
 ENDEXITSECTION

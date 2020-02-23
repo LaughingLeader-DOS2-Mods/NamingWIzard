@@ -3,22 +3,33 @@ SubGoalCombiner SGC_AND
 INITSECTION
 //DB_LLNWIZ_RegisteredLeaderLibSettings(1)
 KBSECTION
+// [BEGIN_NO_OSITOOLS]
 IF
 StoryEvent(_, "LeaderLib_Initialized")
 AND
 NOT DB_LLNWIZ_RegisteredLeaderLibSettings(_)
 THEN
+DB_LLNWIZ_RegisteredLeaderLibSettings(1);
 LeaderLog_Log("DEBUG", "[LLNWIZ:LeaderLib] Registering LeaderLib settings.");
 LLNWIZ_LeaderLib_RegisterSettings();
 LLNWIZ_LeaderLib_RegisterTreasure();
+// [END_NO_OSITOOLS]
+
+PROC
+LeaderLib_Mods_OnVersionChanged(5e772b3a-8c72-5250-22f9-5d8bbe751d74, (INTEGER)_LastVersion, (INTEGER)_NextVersion)
+AND
+NOT DB_LLNWIZ_RegisteredLeaderLibSettings(_)
+THEN
 DB_LLNWIZ_RegisteredLeaderLibSettings(1);
+LLNWIZ_LeaderLib_RegisterSettings();
+LLNWIZ_LeaderLib_RegisterTreasure();
 
 PROC
 LLNWIZ_LeaderLib_RegisterSettings()
 AND
 DB_LLNWIZ_Dialog("Settings", _DialogName)
 THEN
-LeaderLib_Register_ModMenu("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings");
+LeaderLib_Register_ModMenuByUUID("c8190ae0-aa68-1d98-a18e-b593ba90d63c", _DialogName, "[Naming Wizard] Settings", "NamingWizard", "LaughingLeader");
 
 PROC
 LLNWIZ_LeaderLib_RegisterTreasure()

@@ -1,3 +1,11 @@
 DB_LLNWIZ_Words_RemovedWords 2
 DB_LLNWIZ_Words_CurrentlySorting 1
 DB_LLNWIZ_Words_ReplacedWords 3
+DB_LLNWIZ_Wizard_WizardFX 2
+DB_LLNWIZ_ModApi_RegisterMenu 4
+DB_LLNWIZ_ModApi_RegisterMenu 2
+DB_LLNWIZ_ModApi_SortMenu 1
+DB_LLNWIZ_ModApi_RebuildIndex 1
+DB_LLNWIZ_ModApi_RemoveAllWords 1
+DB_LLNWIZ_ModApi_MaxCharacterLength 1
+DB_LLNWIZ_ModApi_ClearSessionVariables 1

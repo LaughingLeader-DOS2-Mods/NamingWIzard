@@ -1,25 +1,17 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "1.0.1.1");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,0,2,0);
 LeaderUpdater_Register_ActiveGoal("NamingWizard", "LaughingLeader", "LLNWIZ_ZZZ_Updater");
+LeaderUpdater_Register_UUID("NamingWizard", "LaughingLeader", c8190ae0-aa68-1d98-a18e-b593ba90d63c);
 KBSECTION
 //REGION UPDATE_EVENT
 IF
 GameStarted(_,_)
 AND
-LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", "1.0.1.1")
+LeaderUpdater_QRY_ModUpdateNeeded("NamingWizard", "LaughingLeader", 1,0,2,0)
 THEN
-LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", "1.0.1.1");
-//END_REGION
-
-//REGION ACTIVE_FLAG
-IF
-GameStarted(_,_)
-AND
-GlobalGetFlag("NamingWizard_Active", 0)
-THEN
-GlobalSetFlag("NamingWizard_Active");
+LeaderUpdater_Register_Mod("NamingWizard", "LaughingLeader", 1,0,2,0);
 //END_REGION
 EXITSECTION
 

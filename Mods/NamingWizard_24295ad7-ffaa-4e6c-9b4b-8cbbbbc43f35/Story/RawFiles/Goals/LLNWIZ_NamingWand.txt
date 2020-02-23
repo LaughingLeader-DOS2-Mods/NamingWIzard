@@ -68,7 +68,7 @@ TimerFinished(_TimerName)
 AND
 DB_LLNWIZ_NamingWand_FailTimer(_TimerName, _Player, _Target)
 THEN
-CharacterStatusText(_Player, "<font color='#FF0000'>Renaming Failed!</font>");
+CharacterStatusText(_Player, "LLNWIZ_StatusText_RenamingFailed");
 LLNWIZ_Wizard_HideWizardByTarget(_Target);
 NOT DB_LLNWIZ_NamingWand_FailTimer(_TimerName, _Player, _Target);
 
@@ -80,7 +80,7 @@ DB_LLNWIZ_NamingWand_Skills(_Skill)
 AND
 GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 1)
 THEN
-CharacterStatusText(_Player, "<font color='#FF0000'>Wand of Renaming is Disabled</font><font color='#FF7F50'> (NamingWizard Settings)</font>");
+CharacterStatusText(_Player, "LLNWIZ_StatusText_RenamingDisabled");
 
 IF
 CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)
@@ -91,8 +91,8 @@ GlobalGetFlag("LLNWIZ_Settings_RenameWandDisabled", 0)
 AND
 NOT LLNWIZ_QRY_NamingWand_CanRename(_Player, _Target)
 THEN
-CharacterStatusText(_Player, "<font color='#FF0000'>Unable to Rename Target</font>");
-CharacterStatusText(_Target, "<font color='#DC143C'>Renaming Resisted</font>");
+CharacterStatusText(_Player, "LLNWIZ_StatusText_UnableToRename");
+CharacterStatusText(_Target, "LLNWIZ_StatusText_RenamingResisted");
 
 IF
 CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, _Skill, _, _)

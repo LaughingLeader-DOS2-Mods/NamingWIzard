@@ -1,0 +1,12 @@
+Key	Content
+LLNWIZ_StatusText_RenamingFailed	<font color='#FF0000'>Renaming Failed!</font>
+LLNWIZ_StatusText_RenamingDisabled	<font color='#FF0000'>Wand of Renaming is Disabled</font><font color='#FF7F50'> (NamingWizard Settings)</font>
+LLNWIZ_StatusText_UnableToRename	<font color='#FF0000'>Unable to Rename Target</font>
+LLNWIZ_StatusText_RenamingResisted	<font color='#DC143C'>Renaming Resisted</font>
+LLNWIZ_StatusText_WandAdded	<font color='#00FF7F'>Wand of Renaming Added</font>
+LLNWIZ_StatusText_CombatWarning	<font color='#FF0000'>Unable to Open Naming Wizard Settings While in Combat</font>
+LLNWIZ_StatusText_Settings_HostPermissionWarning	<font color='#FF0000'>Only the Host player may access this.</font>
+LLNWIZ_StatusText_Settings_RenameWandEnabled	<font color='#00FF00'>Wand of Renaming Enabled</font>
+LLNWIZ_StatusText_Settings_RenameWandDisabled	<font color='#FF4500'>Wand of Renaming Disabled</font>
+LLNWIZ_StatusText_Settings_CrossPlayerRenamingEnabled	<font color='#FF4500'>Cross-User Player Renaming Enabled. </font><br><font color='#FF00FF' size='23'>Chaos reigns.</font>
+LLNWIZ_StatusText_Settings_CrossPlayerRenamingDisabled	<font color='#00FF00'>Cross-User Player Renaming Disabled. </font><br><font color='#00FFFF' size='23'>Peace is restored.</font>

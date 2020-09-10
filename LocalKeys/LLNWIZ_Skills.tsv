@@ -1,3 +1,3 @@
-Key	Content
-Target_LLNWIZ_Rename_DisplayName	Renameo Exacteo
-Target_LLNWIZ_Rename_Description	Activate the <font color='#00FA9A'>Wand of Renaming</font> to rename the target character.<br><font color='#DC143C'>Not usable on characters in combat.</font>
+Key	Content	Handle
+Target_LLNWIZ_Rename_Description	Activate the <font color='#00FA9A'>Wand of Renaming</font> to rename the target character.<br><font color='#DC143C'>Not usable on characters in combat.</font>	h253c83b6gefa5g464bgab79g102b3afb8611
+Target_LLNWIZ_Rename_DisplayName	Renameo Exacteo	hf5a5ca2fg3c30g418dg956cg649d01b86b8d

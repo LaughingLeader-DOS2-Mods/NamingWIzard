@@ -1,7 +1,9 @@
 {
-    "RequiredExtensionVersion": 39,
+    "RequiredExtensionVersion": 51,
+    "ModTable": "NamingWizard",
     "FeatureFlags": [
         "OsirisExtensions",
-        "Preprocessor"
+        "Preprocessor",
+        "Lua"
     ]
 }

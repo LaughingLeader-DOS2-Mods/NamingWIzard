@@ -1,0 +1,8 @@
+treasure itemtypes "Common","Uncommon","Rare","Epic","Legendary","Divine","Unique"
+
+new treasuretable "ST_LeaderLib_LeaderTrader"
+CanMerge 1
+new subtable "1,1"
+object category "I_LLNWIZ_NamingTool",1,0,0,0,0,0,0,1
+new subtable "1,1"
+object category "I_BOOK_LLNWIZ_Settings",1,0,0,0,0,0,0,1

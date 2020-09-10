@@ -1,0 +1,2 @@
+new namegroup "LLNWIZ_NamingTool"
+add name "LLNWIZ_NamingTool_DisplayName",""

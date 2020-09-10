@@ -1,0 +1,5 @@
+new itemgroup "LLNWIZ_NamingTool"
+
+add levelgroup 0,0,"All"
+add rootgroup "0a65dc24-7785-48af-8266-9b5b55f6c683",""
+add namegroup "LLNWIZ_NamingTool","",""

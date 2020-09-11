@@ -7,5 +7,5 @@ data "Value" "0"
 data "Weight" "0"
 data "MinAmount" "1"
 data "MaxAmount" "1"
-data "Unique" "1"
+data "Unique" "0"
 

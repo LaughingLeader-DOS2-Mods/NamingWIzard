@@ -10,7 +10,7 @@ local function OnItemTooltip(item, tooltip)
 			}
 			tooltip:AppendElement(element)
 		end
-		element.Label = Ext.GetTranslatedStringFromKey("LLNWIZ_RenamingWand")
+		element.Label = Ext.GetTranslatedStringFromKey("LLNWIZ_RenamingWand") or "Wand (Offhand)"
 	end
 end
 

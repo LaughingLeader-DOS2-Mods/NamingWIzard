@@ -11,4 +11,4 @@ LLNWIZ_StatusText_Settings_RenameWandEnabled	<font color='#00FF00'>Wand of Renam
 LLNWIZ_StatusText_UnableToRename	<font color='#FF0000'>Unable to Rename Target</font>	h804809abg75feg47f1gbfd9ga909dff74b48
 LLNWIZ_StatusText_WandAdded	<font color='#00FF7F'>Wand of Renaming Added</font>	ha06eb7a4g81dag4050g87d7gf58b1dca33f5
 LLNWIZ_NamingTool_DisplayName	Wand of Renaming	h976fb20egb3acg4f17gb28egb3637a3b17c9
-LLNWIZ_RenamingWand	Special Wand	h327b2765g41f5g47a3g84c1gbf0428afbd4a
+LLNWIZ_RenamingWand	Wand (Offhand)	h327b2765g41f5g47a3g84c1gbf0428afbd4a

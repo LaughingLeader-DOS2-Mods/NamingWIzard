@@ -17,6 +17,7 @@
 	<content contentuid="h248983d3g15dcg43d8gb513ge3bed3f8dfc0">&lt;i&gt;Main Menu&lt;/i&gt;&lt;br&gt;Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
 	<content contentuid="h250c2313g0e2fg4c70gae8dg53cd92241ea3"> [LLNWIZ_Naming_Word8_f73547bc-c893-4810-8ad9-9827ac2a2ea0]</content>
 	<content contentuid="h253c83b6gefa5g464bgab79g102b3afb8611">Activate the &lt;font color=&apos;#00FA9A&apos;&gt;Wand of Renaming&lt;/font&gt; to rename the target character.&lt;br&gt;&lt;font color=&apos;#DC143C&apos;&gt;Not usable on characters in combat.&lt;/font&gt;</content>
+	<content contentuid="h26cc864fg15acg46a7gae57gd0be37b16ad5">Allow players to rename one another.</content>
 	<content contentuid="h271d050fg1a8cg4b8bg9092g0dc017fd5c0c">Enable/Disable Renaming Wand (Host Only)</content>
 	<content contentuid="h279769adged58g4876gbaa5gd82e1a8d70aa">&lt;i&gt;Character Menu&lt;/i&gt;&lt;br&gt;Text: [LLNWIZ_Naming_Text_06c2ac76-9529-4cf4-979f-d37911d55ef4]&lt;br&gt;Character: [LLNWIZ_Naming_SelectedLetter_5a8bb119-885b-4035-8690-e225a095687c]&lt;br&gt;[LLNWIZ_Naming_WordStateText_9d81dba3-e7bd-4209-a5b1-793491e80fc4]&lt;br&gt;[LLNWIZ_Naming_TargetName_36de6db5-815a-42c3-a8c9-6fe7c0ff1b35]</content>
 	<content contentuid="h2a0534e2gd7c5g4f6dga9cfg6fa9632d3cb0">&lt;font color=&apos;#00FF00&apos;&gt;Wand of Renaming Enabled&lt;/font&gt;</content>
@@ -26,6 +27,7 @@
 	<content contentuid="h3122885bge2edg451agbff7gbaf97052a691">Last action undone.</content>
 	<content contentuid="h327b2765g41f5g47a3g84c1gbf0428afbd4a">Wand (Offhand)</content>
 	<content contentuid="h38916a6egdf96g44cfg80f6ge8bda934cf67">Set to Last Confirmed Text</content>
+	<content contentuid="h3b387d5dgdc83g4f96gb860gb5f01668a114">Disable Wand of Renaming</content>
 	<content contentuid="h3b7c6cdeg1f83g4c87gaa6egac7e9f099d2d">&lt;font color=&apos;#FF0000&apos;&gt;Wand of Renaming is Disabled&lt;/font&gt;&lt;font color=&apos;#FF7F50&apos;&gt; (NamingWizard Settings)&lt;/font&gt;</content>
 	<content contentuid="h3d503784gebbcg4096gadcag6f21de8ac884">Updating settings...</content>
 	<content contentuid="h3f51be0fg8aa6g44bcga811g6090859aa1b2">&lt;font color=&apos;#DC143C&apos;&gt;Renaming Resisted&lt;/font&gt;</content>
@@ -79,6 +81,7 @@
 	<content contentuid="ha06eb7a4g81dag4050g87d7gf58b1dca33f5">&lt;font color=&apos;#00FF7F&apos;&gt;Wand of Renaming Added&lt;/font&gt;</content>
 	<content contentuid="ha1b43611gda74g4459gaaefg89bec31685ee">Enable Renaming Wand</content>
 	<content contentuid="ha3dbcfb4g378dg47deg959cgb40721ec6a05">Replace text with [LLNWIZ_Naming_LastConfirmedText_27064f2f-b14b-4038-b853-edaf2cc1b480]?</content>
+	<content contentuid="ha41fa4f0gd69cg41d2g9873g9799daf8442d">Prevent the Wand of Renaming from functioning.</content>
 	<content contentuid="ha46981a8ge927g4aefg85afg31a9fe9e193d">Naming Wizard Settings</content>
 	<content contentuid="ha604044dg5fd5g4cb3g8413g6c533d8ecaf2">Wand of Renaming</content>
 	<content contentuid="ha758201cg8423g47f4gabfegefe0073338bd">Save Text As Word in Saved Words</content>
@@ -93,6 +96,7 @@
 	<content contentuid="hb851cfb6g5413g4696g936eg62582f0a0bc7">Debug Commands</content>
 	<content contentuid="hbe3f79e7g5bc8g424aga5a5g4286cc038b8b">Renaming</content>
 	<content contentuid="hbef9d90bg770dg4276gbd58g682d7d6768c8">[+] Add Character</content>
+	<content contentuid="hc11dc3e1g078ag4949g9010g0b9294b30bd9">Enable Cross-Player Renaming</content>
 	<content contentuid="hc278de54gb89fg4415g8605g58c6534f3e88">[[LLNWIZ_Naming_LastPage_7a9befad-b178-478e-b374-f65e7efcf94f]] Last Page</content>
 	<content contentuid="hc283b365g2ab3g4c88gb60fg34f1b8f079c9">[Back to Words Menu]</content>
 	<content contentuid="hc45461d5gde37g4f28g9f43g070a9983f98b">[LLNWIZ_WordMenus_MenuName4_b3f45779-4710-4152-97ce-39aa20961a3f]</content>

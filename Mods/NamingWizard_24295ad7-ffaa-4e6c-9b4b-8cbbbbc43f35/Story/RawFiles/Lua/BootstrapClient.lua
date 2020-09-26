@@ -1,3 +1,5 @@
+Ext.Require("Shared.lua")
+
 ---@param item EsvItem
 ---@param tooltip TooltipData
 local function OnItemTooltip(item, tooltip)
